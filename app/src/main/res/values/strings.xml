@@ -1,11 +1,63 @@
 <resources>
-    <string name="app_name">IEQCelulas</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name" translatable="false">Slim</string>
+    <string name="navigation_drawer_open" translatable="true">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="true">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="true">Quadrangular em Células</string>
+    <string name="nav_header_subtitle" translatable="true">jeovajire2003@gmail.com</string>
+    <string name="nav_header_desc" translatable="true">Navigation header</string>
+    <string name="action_settings" translatable="true">Configurações</string>
+
+    <string name="title_activity_celulas" translatable="true">Células</string>
+    <string name="title_activity_add_celula">Nova Célula</string>
+    <string name="title_activity_comunicados" translatable="true">Comunicados</string>
+    <string name="title_activity_intercessao" translatable="true">Intercessão</string>
+    <string name="title_activity_agenda" translatable="true">Agenda</string>
+    <string name="title_activity_contato" translatable="true">Contato</string>
+    <string name="title_activity_visao" translatable="true">Visão</string>
+    <string name="title_activity_compartilhar" translatable="true">Compartilhar</string>
+    <string name="title_activity_enviar" translatable="true">Enviar</string>
+    <string name="title_activity_relatorio">Relatorio</string>
+    <string name="title_activity_splash_screen">activity_splash_screen</string>
+
+    <string name="Home" translatable="true">Início</string>
+    <string name="Cells" translatable="true">Células</string>
+    <string name="Communication" translatable="true">Comunicados</string>
+    <string name="Intersession" translatable="true">Intercessão</string>
+    <string name="Schedule" translatable="true">Agenda</string>
+    <string name="View" translatable="true">Visão</string>
+    <string name="Contact" translatable="true">Contato</string>
+    <string name="Share" translatable="true">compartilhar</string>
+    <string name="Send" translatable="true">Enviar</string>
+
+    <string name="communicate" translatable="true">Comunicacão</string>
+
+    <string name="add" translatable="true">Adicionar</string>
+    <string name="textGrid" translatable="true">0dp</string>
+    <string name="comunicados" translatable="true">Comunicados</string>
+    <string name="btnSend" translatable="true">Enviar</string>
+    <string name="btnCancel" translatable="true">Cancelar</string>
+    <string name="action_login" translatable="true">Login</string>
+
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="enviar">Enviar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="title_activity_login">Entre</string>
+    <string name="prompt_email" translatable="true">Email</string>
+    <string name="prompt_password" translatable="true">Senha</string>
+
+    <string name="action_sign_in" translatable="true">Entre</string>
+    <string name="action_sign_in_short" translatable="true">Entrar</string>
+    <string name="welcome" translatable="true">"Bem vindo Welcome !"</string>
+    <string name="invalid_username" translatable="true">Não é um usuário válido</string>
+    <string name="invalid_password" translatable="true">Senha precisa ser  > 5 characteres</string>
+    <string name="login_failed" translatable="true">"Falha no login"</string>
+    <string name="senha">Senha</string>
+    <string name="registrar">Registrar</string>
+    <string name="login">Login</string>
+
+    <string name="celula">Célula</string>
+    <string name="lider">Líder</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -13,4 +65,63 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="celula1">célula</string>
+    <string name="rede1">Rede</string>
+    <string name="supervisor1">Supervisor</string>
+    <string name="lider1">Lider</string>
+    <string name="anfitriao1">Anfitrião</string>
+    <string name="vice_lider1">Vice - Lider</string>
+    <string name="secretario1">Secretário</string>
+    <string name="colaborador1">Colaborador</string>
+    <string name="dia_da_semana1">Dia da semana</string>
+    <string name="horario1">Horário</string>
+    <string name="base_celula1">Base celula</string>
+    <string name="membros_ieq1">Membros IEQ</string>
+    <string name="convidados1">Convidados</string>
+    <string name="criancas1">Crianças</string>
+    <string name="total1">Total</string>
+    <string name="houve_estudo1">Houve estudo?</string>
+    <string name="houve_quebra_gelo1">Houve Quebra-gelo?</string>
+    <string name="teve_lanche1">Teve lanche?</string>
+    <string name="algu_m_aceitou_jesus1">Alguém aceitou Jesus?</string>
+    <string name="reconciliacao1">Reconciliação?</string>
+    <string name="houve_testemunho1">Houve testemunho?</string>
+    <string name="sim">SIM</string>
+    <string name="nao">NÃO</string>
+    <string name="houve_estudo">Houve estudo?</string>
+    <string name="foi_ministrado_o_estudo"><u>Foi ministrado o estudo ?</u></string>
+    <string name="foi_realizado_o_quebra_gelo">Foi realizado o quebra gelo ?</string>
+    <string name="algu_m_se_reconcilhou_com_cristo">Alguém se reconcilhou com Cristo ?</string>
+    <string name="algu_m_contou_testemunho">Alguém contou testemunho ?</string>
+    <string name="foi_servido_lanche">Foi servido lanche ?</string>
+    <string name="algu_m_aceitou_jesus_como_seu_salvador">Alguém aceitou Jesus como seu salvador ?</string>
+    <string name="rede">Rede</string>
+    <string name="supervisor">Supervisor</string>
+    <string name="vice_lider">Vice-lider</string>
+    <string name="anfitriao">Anfitrião</string>
+    <string name="colaborador">Colaborador</string>
+    <string name="secretario">Secretário</string>
+    <string name="hora">Hora</string>
+    <string name="dataInicio">Data início</string>
+
+    <string name="action_save">Salvar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Apagar</string>
+    <string name="action_settings_edit_celula">Configurações</string>
+    <string name="title_activity_edit_celula">Editar Célula</string>
+    <string name="title_activity_read_relatorio">Relatorio</string>
+    <string name="apagar_a_c_lula">APAGAR A CÉLULA ?</string>
+    <string name="apagar_c_lula">Apagar Célula</string>
+    <string name="title_activity_relatorio_view">Relatórios</string>
+    <string name="title_activity_read_celula">Celulas</string>
+    <string name="batismo">Batismo</string>
+    <string name="celulas">Celulas</string>
+    <string name="title_activity_add_relatorio">Adiciona Relatório</string>
+    <string name="title_activity_delete_celula">Apaga Celula</string>
+    <string name="BemVindo">Bem Vindo</string>
+    <string name="BemVindo">Bem Vindo</string>
+
+
 </resources>

@@ -1,20 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
+    android:weightSum="10"
+    tools:context=".HomeActivity"
+    tools:ignore="MissingDefaultResource"
     tools:showIn="@layout/app_bar_home">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/imgbackground1"
+            android:columnCount="3"
+            android:padding="30dp"
+            android:rowCount="3">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview_celula"
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardcellClick"
+                android:padding="20dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imgcelulaligacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/celulaligacao" /> 
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardrelatorioClick"
+                android:padding="20dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imgrelatorio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/list" /> 
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardintercessaoClick"
+                android:padding="20dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imgintercesao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/intercesao" /> 
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardagendaClick"
+                android:padding="20dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imgagenda"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/address_book" /> 
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardvisaoClick"
+                android:padding="15dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/imgvisao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/visao" /> 
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="62dp"
+                android:layout_margin="15dp"
+                android:onClick="cardcontatoClick"
+                android:padding="15dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/vago1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/pomba" />
+            </android.support.v7.widget.CardView>
+
+        </GridLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.constraint.ConstraintLayout>
