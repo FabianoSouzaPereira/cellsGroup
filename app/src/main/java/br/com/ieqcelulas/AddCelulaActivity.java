@@ -33,6 +33,15 @@ import static br.com.ieqcelulas.HomeActivity.igreja;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public String DataTime;
+    public String DataT;
+    private String dia;
+    private String hh;
+    private String mm;
+    private Spinner sp;
+    private Spinner hr;
+    private Spinner min;
+    private String  hrs;
     private DatabaseReference Celulas;
     private TextInputLayout textInputCelula;
     private TextInputLayout textInputRede;
@@ -45,15 +54,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputDia;
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
-    public String DataTime;
-    public String DataT;
-    private String dia;
-    private String hh;
-    private String mm;
-    private Spinner sp;
-    private Spinner hr;
-    private Spinner min;
-    private String  hrs;
+
 
     private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
     private String[] hora = new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00" };
@@ -68,6 +69,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         setContentView( R.layout.activity_add_celula );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
+        addDataHora();
         inicializarComponentes();
         inicializarFirebase();
 
@@ -130,16 +132,27 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     private void inicializarComponentes() {
         textInputCelula = findViewById(R.id.text_input_celula);
+        textInputCelula.setHint(textInputCelula.getHint()+" "+getString(R.string.asteriskred));
         textInputRede = findViewById(R.id.text_input_rede);
+        textInputRede.setHint(textInputRede.getHint()+" "+getString(R.string.asteriskred));
         textInputSupervisor = findViewById(R.id.text_input_supervisor);
+        textInputSupervisor.setHint(textInputSupervisor.getHint()+" "+getString(R.string.asteriskred));
         textInputLider = findViewById(R.id.text_input_lider);
+        textInputLider.setHint(textInputLider.getHint()+" "+getString(R.string.asteriskred));
         textInputViceLider = findViewById(R.id.text_input_vice_lider);
+        textInputViceLider.setHint(textInputViceLider.getHint()+" "+getString(R.string.asteriskred));
         textInputAnfitriao = findViewById(R.id.text_input_anfitriao);
+        textInputAnfitriao.setHint(textInputAnfitriao.getHint()+" "+getString(R.string.asteriskred));
         textInputSecretario = findViewById(R.id.text_input_secretario);
+        textInputSecretario.setHint(textInputSecretario.getHint()+" "+getString(R.string.asteriskred));
         textInputColaborador = findViewById(R.id.text_input_colaborador);
+        textInputColaborador.setHint(textInputColaborador.getHint()+" "+getString(R.string.asteriskred));
         textInputDia = findViewById(R.id.text_input_dia);
         textInputHora = findViewById(R.id.text_input_hora);
+
         textInputDataInicio = findViewById(R.id.text_input_DataInicio);
+        textInputDataInicio.getEditText().setText( DataT );
+
     }
 
 
@@ -219,6 +232,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void addCelulaClick(MenuItem item) {
+        addDataHora();
         String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
         String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
         String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
@@ -227,12 +241,11 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
         String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
         String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-       // String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
-        String status = "1";
-        addDataHora();
         String hora = hh+":"+mm;
         String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
-        String[] var = new String[]{rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio};
+        String status = "1";
+
+
         if(!TextUtils.isEmpty( celula )){
             String uid = Celulas.push().getKey();
             Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
@@ -249,14 +262,18 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         finish();
     }
 
-/*    public boolean  testNullvariable(String[] var){
-        for (String vart: var ) {
-            if (vart == null){
-              return false;
-            }
-            Toast.makeText(getApplicationContext(), "Preencha todas as informações !", Toast.LENGTH_SHORT).show();
+    public void  testNullvariable(String var){
+
+        switch (var){
+            case "null" : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
+                break;
+            case "" : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
+                break;
+            case "   " : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
+                break;
+
         }
-    }*/
+    }
 
     @SuppressLint("SimpleDateFormat")
     public void addDataHora() {
@@ -266,4 +283,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         DataTime = data + " "+ hora;
         DataT = data;
     }
+
+
 }
