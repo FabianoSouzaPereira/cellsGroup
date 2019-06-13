@@ -23,15 +23,15 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import celulas.Celula;
-
-import static br.com.ieqcelulas.HomeActivity.DataT;
-import static br.com.ieqcelulas.HomeActivity.DataTime;
 import static br.com.ieqcelulas.HomeActivity.igreja;
-import static br.com.ieqcelulas.HomeActivity.status;
 
+
+@SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference Celulas;
     private TextInputLayout textInputCelula;
@@ -45,6 +45,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputDia;
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
+    public String DataTime;
+    public String DataT;
     private String dia;
     private String hh;
     private String mm;
@@ -226,6 +228,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
         String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
        // String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
+        String status = "1";
+        addDataHora();
         String hora = hh+":"+mm;
         String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
         String[] var = new String[]{rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio};
@@ -253,4 +257,13 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             Toast.makeText(getApplicationContext(), "Preencha todas as informações !", Toast.LENGTH_SHORT).show();
         }
     }*/
+
+    @SuppressLint("SimpleDateFormat")
+    public void addDataHora() {
+        Date dataHoraAtual = new Date();
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+        DataTime = data + " "+ hora;
+        DataT = data;
+    }
 }

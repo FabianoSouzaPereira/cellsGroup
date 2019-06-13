@@ -26,9 +26,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public static boolean Logado;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    public static String DataTime;
-    public static String DataT;
-    public static String status = "1";
+    public String DataTime;
+    public String DataT;
+    public String status = "1";
     public static String igreja = "IEQSacodosLimões";
 
 
@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @SuppressLint("SimpleDateFormat")
-    public static void addDataHora() {
+    public void addDataHora() {
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);

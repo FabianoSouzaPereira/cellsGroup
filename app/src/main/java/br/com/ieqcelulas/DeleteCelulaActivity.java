@@ -71,6 +71,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         btnApagarCelula = findViewById(R.id.btnApagarCelula);
     }
 
+    //ToDo Falta fazer no futuro um metodo que não apague a celula permanentemento usando status= 0 ;
     private void deleteCelula() {
 
         novaRef3.child( uid_extra );

@@ -1,5 +1,6 @@
 package br.com.ieqcelulas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,14 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import relatorios.Relatorio;
 import celulas.Celula;
 
-import static br.com.ieqcelulas.HomeActivity.DataTime;
 import static br.com.ieqcelulas.HomeActivity.igreja;
-import static br.com.ieqcelulas.HomeActivity.status;
+
 
 @SuppressWarnings("ALL")
 public final class AddRelatorioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,7 +86,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     private String aceitacao;
     private String reconciliacao;
     private String testemunho;
-
+    public String DataTime;
+    public String DataT;
     public  String celulas_;
 
     @Override
@@ -307,7 +310,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         String convidados = Objects.requireNonNull( textInputConvidados.getEditText() ).getText().toString().trim();
         String criancas = Objects.requireNonNull( textInputCriancas.getEditText() ).getText().toString().trim();
         String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
-
+        String status = "1";
+        addDataHora();
         if(!TextUtils.isEmpty( celula )){
             String uid = relatorios.push().getKey();
             Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
@@ -399,5 +403,13 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     }
 
+    @SuppressLint("SimpleDateFormat")
+    public void addDataHora() {
+        Date dataHoraAtual = new Date();
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+        DataTime = data + " "+ hora;
+        DataT = data;
+    }
 
 }

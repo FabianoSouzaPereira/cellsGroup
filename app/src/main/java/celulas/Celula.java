@@ -3,17 +3,17 @@ package celulas;
 public final class Celula {
     private String uid;
     private String celula;
-    private String rede;
-    private String supervisor;
-    private String lider;
-    private String viceLider;
-    private String anfitriao;
-    private String secretario;
-    private String colaborador;
-    private String dia;
-    private String hora;
-    private String datainicio;
-    private String datahora;
+    private String rede = "";
+    private String supervisor = "";
+    private String lider = "";
+    private String viceLider = "";
+    private String anfitriao = "";
+    private String secretario = "";
+    private String colaborador = "";
+    private String dia = "";
+    private String hora = "";
+    private String datainicio = "";
+    private String datahora = "";
     private String status = "1";
 
 
