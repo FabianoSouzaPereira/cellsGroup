@@ -360,7 +360,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         return super.onOptionsItemSelected( item );
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();

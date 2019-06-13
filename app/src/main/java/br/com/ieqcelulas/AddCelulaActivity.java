@@ -14,6 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +29,7 @@ import celulas.Celula;
 
 import static br.com.ieqcelulas.HomeActivity.DataT;
 import static br.com.ieqcelulas.HomeActivity.DataTime;
+import static br.com.ieqcelulas.HomeActivity.igreja;
 import static br.com.ieqcelulas.HomeActivity.status;
 
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,7 +45,19 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputDia;
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
+    private String dia;
+    private String hh;
+    private String mm;
+    private Spinner sp;
+    private Spinner hr;
+    private Spinner min;
+    private String  hrs;
 
+    private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
+    private String[] hora = new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00" };
+    private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
+            "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+            "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
 
     @SuppressLint("SimpleDateFormat")
     @Override
@@ -53,6 +70,53 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         inicializarFirebase();
 
         Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item, semana );
+        sp = findViewById( R.id.spinnerSemana );
+        sp.setAdapter( adapter );
+        sp.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                dia = (String)sp.getSelectedItem();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                dia = "";
+            }
+        } );
+
+
+        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,hora );
+        hr = findViewById( R.id.spinnerhora );
+        hr.setAdapter( adapterhora );
+        hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                hh = (String)hr.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                hh = "";
+            }
+        } );
+
+        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,minuto );
+        min = findViewById( R.id.spinnermin );
+        min.setAdapter( adaptermin );
+        min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mm = (String)min.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mm = "";
+            }
+        } );
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
@@ -105,10 +169,10 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         if (id == R.id.action_settings) {
             return true;
         }
-/*        if(id == R.id.action_Save){
+        if(id == R.id.action_Save){
             addCelulaClick(item);
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected( item );
     }
@@ -161,15 +225,15 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
         String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
         String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-        String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
-        String hora = Objects.requireNonNull( textInputHora.getEditText() ).getText().toString().trim();
+       // String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
+        String hora = hh+":"+mm;
         String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
-
+        String[] var = new String[]{rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio};
         if(!TextUtils.isEmpty( celula )){
             String uid = Celulas.push().getKey();
             Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
             if (uid == null) throw new AssertionError();
-            Celulas.child("Celulas").child( celula ).child( uid ).setValue( cel );
+            Celulas.child(igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
 
             Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
         }else{
@@ -180,4 +244,13 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         startActivity( celulas );
         finish();
     }
+
+/*    public boolean  testNullvariable(String[] var){
+        for (String vart: var ) {
+            if (vart == null){
+              return false;
+            }
+            Toast.makeText(getApplicationContext(), "Preencha todas as informações !", Toast.LENGTH_SHORT).show();
+        }
+    }*/
 }

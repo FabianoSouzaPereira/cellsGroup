@@ -120,8 +120,6 @@
     <string name="celulas">Celulas</string>
     <string name="title_activity_add_relatorio">Adiciona Relatório</string>
     <string name="title_activity_delete_celula">Apaga Celula</string>
-    <string name="BemVindo">Bem Vindo</string>
-    <string name="BemVindo">Bem Vindo</string>
-
+    <string name="Bem_Vindo">Bem Vindo :</string>
 
 </resources>

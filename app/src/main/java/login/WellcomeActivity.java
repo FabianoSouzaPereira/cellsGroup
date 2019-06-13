@@ -21,7 +21,7 @@ public class WellcomeActivity extends AppCompatActivity {
 
         txtUser = (TextView)findViewById(R.id.txtUser);
         String user = (getIntent().getStringExtra( "names"));
-        txtUser.setText(getString( R.string.BemVindo)+ user);
+        txtUser.setText(getString( R.string.Bem_Vindo)+ user);
 
         Intent Home = new Intent( WellcomeActivity.this, HomeActivity.class );
         startActivity( Home );

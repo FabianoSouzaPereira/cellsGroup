@@ -230,9 +230,9 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
                 .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                     //   Intent intent = new Intent( ReadCelulaActivity.this,DeleteCelulaActivity.class );
-                     //   intent.putExtra("Celula", String.valueOf( ReadCelulaActivity.this.celula_ ) );
-                     //   startActivity(intent);
+                        Intent intent = new Intent( ReadCelulaActivity.this,DeleteCelulaActivity.class );
+                        intent.putExtra("Celula", String.valueOf( ReadCelulaActivity.this.celula_ ) );
+                        startActivity(intent);
                         finish();
                     }
                 });
