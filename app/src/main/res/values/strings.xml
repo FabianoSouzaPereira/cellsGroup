@@ -55,7 +55,7 @@
     <string name="login_failed" translatable="true">"Falha no login"</string>
     <string name="senha">Senha</string>
     <string name="registrar">Registrar</string>
-    <string name="login">Login</string>
+
 
     <string name="celula">Célula</string>
     <string name="lider">Líder</string>
@@ -122,5 +122,13 @@
     <string name="title_activity_add_relatorio">Adiciona Relatório</string>
     <string name="title_activity_delete_celula">Apaga Celula</string>
     <string name="Bem_Vindo">Bem Vindo :</string>
+    <string name="title_activity_configuracao">Configuracao</string>
+    <string name="igreja">igreja</string>
+    <string name="endere_o">endereço</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="estado">Estado</string>
+    <string name="pa_s">País</string>
+    <string name="login">Login</string>
 
 </resources>

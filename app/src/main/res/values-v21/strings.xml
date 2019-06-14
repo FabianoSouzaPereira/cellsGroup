@@ -117,5 +117,11 @@
     <string name="batismo">Batismo</string>
     <string name="celulas">Celulas</string>
     <string name="Bem_Vindo">Bem Vindo</string>
+    <string name="igreja">igreja</string>
+    <string name="endere_o">endereço</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="estado">Estado</string>
+    <string name="pa_s">País</string>
 
 </resources>

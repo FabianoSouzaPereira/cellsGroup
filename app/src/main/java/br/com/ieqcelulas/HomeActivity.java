@@ -24,6 +24,7 @@ import java.util.Date;
 @SuppressWarnings("ALL")
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static boolean Logado;
+    public static String tag = "0";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     public String DataTime;
@@ -36,6 +37,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
+        splashScreean();
+
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
         inicializarFirebase();
@@ -47,6 +50,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+    }
+
+    private void splashScreean() {
+        if (tag == "0") {
+            Intent i = new Intent( HomeActivity.this, Activity_splash_screen.class );
+            startActivity( i );
+            finish();
+        }
     }
 
     private void inicializarFirebase() {
@@ -89,7 +100,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+/*            Intent intent = new Intent( HomeActivity.this,Configuracao.class );
+            startActivity( intent );*/
+        }
+        if (id == R.id.action_Login) {
+/*            Intent intent = new Intent( HomeActivity.this,login.Login.class );
+            startActivity( intent );*/
         }
 
         return super.onOptionsItemSelected( item );

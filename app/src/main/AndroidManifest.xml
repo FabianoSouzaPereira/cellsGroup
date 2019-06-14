@@ -23,9 +23,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".Configuracao"
+            android:label="@string/title_activity_configuracao"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".EditCelulaActivity"
             android:label="@string/title_activity_edit_celula"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DeleteCelulaActivity"
             android:label="@string/title_activity_delete_celula"
@@ -94,6 +98,8 @@
         </activity>
         <activity android:name="login.WellcomeActivity" />
         <activity android:name="login.LoginActivity" />
+        <activity android:name=".Activity_splash_screen"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
