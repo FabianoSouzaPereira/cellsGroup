@@ -123,5 +123,17 @@
     <string name="cidade">Cidade</string>
     <string name="estado">Estado</string>
     <string name="pa_s">País</string>
+    <!-- Login -->
+    <string name="Email_erro">Email inválido </string>
+    <string name="Senha_vazia">Falta colocar a senha</string>
+    <string name="obrigatorio">Obrigatório</string>
+    <string name="registrando">Realizando o registro…</string>
+    <string name="iniciando_login">Iniciando Login…</string>
+    <string name="ususario_existe">Esse usuário já existe.</string>
+    <string name="Falha_registro">Falha ao registrar usuário</string>
+    <string name="Registro_sucesso">Usuário registrado com sucesso.</string>
+    <string name="logado_sucesso">Usuário logado com sucesso.</string>
+    <string name="falha_login">Falha so logar usuário.</string>
+    <string name="usuario_existe">Usuário já existe</string>
 
 </resources>

@@ -2,6 +2,7 @@ package login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.ieqcelulas.HomeActivity;
 import br.com.ieqcelulas.R;
@@ -38,7 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
         Toolbar toolbar = findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
         mAuth = FirebaseAuth.getInstance();
             editEmail = findViewById( R.id.email );
             editSenha = findViewById( R.id.password );
@@ -52,17 +53,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Email não pode estar vazio ", Toast.LENGTH_LONG).show();
-
-        }
-
-        if (TextUtils.isEmpty( senha )){
-            Toast.makeText( this,"Falta colocar a senha",Toast.LENGTH_LONG ).show();
+        if (!validateForm()) {
             return;
         }
 
-        progressDialog.setMessage( "Iniciando Login..." );
+        progressDialog.setMessage( getString( R.string.iniciando_login) );
         progressDialog.show();
 
         //Consultar se usuario existe
@@ -72,31 +67,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checando sucesso
                         if(task.isSuccessful()){
-                            HomeActivity.Logado = true;
                             int pos = email.indexOf("@");
                             String user = email.substring(0,pos);
-                            Toast.makeText( LoginActivity.this,"Benvindo", Toast.LENGTH_LONG ).show();
-                            Intent logar = new Intent(getApplication(),login.WellcomeActivity.class);
-                            logar.putExtra(WellcomeActivity.user, user);
-                            startActivity(logar);
-
-
+                            Toast.makeText( LoginActivity.this, getString( R.string.logado_sucesso),Toast.LENGTH_SHORT).show();
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            updateUI(currentUser);
+                            Intent home = new Intent( LoginActivity.this, HomeActivity.class );
+                            startActivity( home );
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText( LoginActivity.this, "Esse usuário já existe. ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText( LoginActivity.this, getString( R.string.ususario_existe),Toast.LENGTH_SHORT).show();
                                 HomeActivity.Logado = false;
                             }else{
-                                Toast.makeText( LoginActivity.this,"Falha ao registrar usuário", Toast.LENGTH_LONG ).show();
+                                Toast.makeText( LoginActivity.this,getString( R.string.falha_login), Toast.LENGTH_LONG ).show();
                                 HomeActivity.Logado = false;
                             }
-
 
                         }
                         progressDialog.dismiss();
                     }
+
                 } );
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -107,7 +101,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 registrarUsuario();
                 break;
 
-            case R.id.btnEnviarLogin: logarUsuario();
+            case R.id.btnEnviarLogin:
+                logarUsuario();
                 break;
         }
 
@@ -118,17 +113,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Email não pode estar vazio ", Toast.LENGTH_LONG).show();
-
-        }
-
-        if (TextUtils.isEmpty( senha )){
-            Toast.makeText( this,"Falta colocar a senha",Toast.LENGTH_LONG ).show();
+        if (!validateForm()) {
             return;
         }
 
-        progressDialog.setMessage( "Realizando o registro ..." );
+        progressDialog.setMessage( getString( R.string.registrando) );
         progressDialog.show();
 
         //criando novo usuario
@@ -138,15 +127,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checando sucesso
                         if(task.isSuccessful()){
-                            Toast.makeText( LoginActivity.this,"Usuário registrado com sucesso.", Toast.LENGTH_LONG ).show();
-
+                            Toast.makeText( LoginActivity.this,getString( R.string.Registro_sucesso), Toast.LENGTH_LONG ).show();
+                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                            updateUI( currentUser );
+                            Intent home = new Intent( LoginActivity.this, HomeActivity.class );
+                            startActivity( home );
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                               Toast.makeText( LoginActivity.this, "Esse usuário já existe. ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText( LoginActivity.this,getString( R.string.ususario_existe), Toast.LENGTH_LONG ).show();
+                               updateUI( null );
                             }else{
-                                Toast.makeText( LoginActivity.this,"Falha ao registrar usuário", Toast.LENGTH_LONG ).show();
+                                Toast.makeText( LoginActivity.this,getString( R.string.Falha_registro), Toast.LENGTH_LONG ).show();
+                                updateUI( null );
                             }
-
 
                         }
                         progressDialog.dismiss();
@@ -156,7 +149,56 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private String getString(String string) {
+        return string;
+    }
 
+    private CharSequence getString(CharSequence charSequence) {
+        return charSequence;
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+        String email = editEmail.getText().toString().trim();
+        if (TextUtils.isEmpty(email) || validateEmailFormat(email) == false) {
+            Toast.makeText(this,getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
+            editEmail.setError(getString( R.string.obrigatorio));
+            valid = false;
+        }else{
+            editEmail.setError(null);
+        }
+
+        String senha = editSenha.getText().toString().trim();
+        if (TextUtils.isEmpty(senha)) {
+            Toast.makeText( this,getString( R.string.Senha_vazia),Toast.LENGTH_LONG ).show();
+            editSenha.setError(getString( R.string.obrigatorio));
+            valid = false;
+        }else{
+            editSenha.setError(null);
+        }
+
+        return valid;
+    }
+
+    public static void updateUI(FirebaseUser user){
+        if (user != null) {
+            HomeActivity.Logado = true;
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+        } else {
+            HomeActivity.Logado = false;
+
+        }
+    }
 
     @Override
     public void onStart() {
@@ -172,5 +214,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void nav_header(){
 
+    }
+
+    private void signOut() {
+        mAuth.signOut();
+        updateUI(null);
+    }
+
+    private boolean validateEmailFormat(final String email) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            return true;
+        }
+      //  Toast.makeText( LoginActivity.this,"Email inválido", Toast.LENGTH_LONG ).show();
+        return false;
     }
 }

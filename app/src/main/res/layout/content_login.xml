@@ -22,6 +22,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:maxLength="90"
         tools:ignore="Autofill" />
 
     <EditText
@@ -40,6 +41,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
+        android:maxLength="90"
         tools:ignore="Autofill" />
 
     <Button

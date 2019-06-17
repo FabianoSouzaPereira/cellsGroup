@@ -28,6 +28,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import celulas.Celula;
+
+import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.igreja;
 
 
@@ -69,6 +71,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         setContentView( R.layout.activity_add_celula );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
+
         addDataHora();
         inicializarComponentes();
         inicializarFirebase();
@@ -149,7 +152,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         textInputColaborador.setHint(textInputColaborador.getHint()+" "+getString(R.string.asteriskred));
         textInputDia = findViewById(R.id.text_input_dia);
         textInputHora = findViewById(R.id.text_input_hora);
-
         textInputDataInicio = findViewById(R.id.text_input_DataInicio);
         textInputDataInicio.getEditText().setText( DataT );
 
@@ -246,7 +248,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         String status = "1";
 
 
-        if(!TextUtils.isEmpty( celula )){
+        if(!TextUtils.isEmpty( celula ) && Logado == true){
             String uid = Celulas.push().getKey();
             Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
             if (uid == null) throw new AssertionError();

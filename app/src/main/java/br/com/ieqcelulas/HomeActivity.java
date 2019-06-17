@@ -1,8 +1,11 @@
 package br.com.ieqcelulas;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,18 +15,26 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import login.LoginActivity;
+import pessoas.Usuario;
 
 @SuppressWarnings("ALL")
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    public static boolean Logado;
+    public static FirebaseUser UI;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    public static boolean Logado = false;
     public static String tag = "0";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -40,9 +51,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         splashScreean();
 
         Toolbar toolbar = findViewById( R.id.toolbar );
+        mAuth = FirebaseAuth.getInstance();
         setSupportActionBar( toolbar );
         inicializarFirebase();
         addDataHora();
+
+
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
@@ -50,6 +64,69 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        LoginActivity.updateUI(currentUser);
+    }
+
+    @Override
+    protected void onResume() {
+         super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+     AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+            builder  = builder.setMessage( "Deseja encerrar o aplicativo mesmo ?" );
+            builder.setTitle( "Encerrando o aplicativo..." )
+                    .setCancelable( false )
+                    .setNegativeButton( "cancelado", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                System.exit(0);
+                            } catch (Throwable throwable) {
+                                throwable.printStackTrace();
+                            }
+                        }
+                    });
+
+            AlertDialog alertDialog = builder . create () ;
+            alertDialog.show();
+
     }
 
     private void splashScreean() {
@@ -76,15 +153,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         DataT = data;
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        if (drawer.isDrawerOpen( GravityCompat.START )) {
-            drawer.closeDrawer( GravityCompat.START );
-        } else {
-            super.onBackPressed();
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,8 +173,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity( intent );*/
         }
         if (id == R.id.action_Login) {
-/*            Intent intent = new Intent( HomeActivity.this,login.Login.class );
-            startActivity( intent );*/
+            Intent login = new Intent( HomeActivity.this, LoginActivity.class);
+            startActivity( login );
+            finish();
         }
 
         return super.onOptionsItemSelected( item );
@@ -228,6 +298,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public DatabaseReference getDatabaseReference() {
         return databaseReference;
     }
-
 
 }

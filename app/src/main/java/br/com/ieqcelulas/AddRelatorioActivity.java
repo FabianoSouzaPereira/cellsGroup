@@ -32,6 +32,7 @@ import java.util.Objects;
 import relatorios.Relatorio;
 import celulas.Celula;
 
+import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.igreja;
 
 
@@ -312,7 +313,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
         String status = "1";
         addDataHora();
-        if(!TextUtils.isEmpty( celula )){
+        if(!TextUtils.isEmpty( celula ) && Logado == true){
             String uid = relatorios.push().getKey();
             Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
             if (uid != null) {
