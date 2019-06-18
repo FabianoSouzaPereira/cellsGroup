@@ -295,39 +295,44 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
 
     public void addRelatorio(MenuItem menu) {
-        relatorios = databaseReference.child( igreja + "/Relatorios/" );
-        String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
-        String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
-        String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
-        String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
-        String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
-        String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
-        String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
-        String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-        String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
-        String hora = Objects.requireNonNull( textInputHora.getEditText() ).getText().toString().trim();
-        String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText() ).getText().toString().trim();
-        String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText() ).getText().toString().trim();
-        String convidados = Objects.requireNonNull( textInputConvidados.getEditText() ).getText().toString().trim();
-        String criancas = Objects.requireNonNull( textInputCriancas.getEditText() ).getText().toString().trim();
-        String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
-        String status = "1";
-        addDataHora();
-        if(!TextUtils.isEmpty( celula ) && Logado == true){
-            String uid = relatorios.push().getKey();
-            Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
-            if (uid != null) {
-                relatorios.child( celula ).child( uid ).setValue( relatorio );
+        try {
+            relatorios = databaseReference.child( igreja + "/Relatorios/" );
+            String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
+            String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
+            String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
+            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
+            String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
+            String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
+            String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
+            String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
+            String hora = Objects.requireNonNull( textInputHora.getEditText() ).getText().toString().trim();
+            String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText() ).getText().toString().trim();
+            String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText() ).getText().toString().trim();
+            String convidados = Objects.requireNonNull( textInputConvidados.getEditText() ).getText().toString().trim();
+            String criancas = Objects.requireNonNull( textInputCriancas.getEditText() ).getText().toString().trim();
+            String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
+            String status = "1";
+            addDataHora();
+            if(!TextUtils.isEmpty( celula ) && Logado == true){
+                String uid = relatorios.push().getKey();
+                Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
+                if (uid != null) {
+                    relatorios.child( celula ).child( uid ).setValue( relatorio );
 
-                Toast.makeText( this, "Relatório enviado com sucesso", Toast.LENGTH_LONG ).show();
+                    Toast.makeText( this, "Relatório enviado com sucesso", Toast.LENGTH_LONG ).show();
+                }
+            }else{
+                Toast.makeText(this,"Erro ao enviar o relatório !", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Toast.makeText(this,"Erro ao enviar o relatório !", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Intent celulas = new Intent( AddRelatorioActivity.this,CelulasActivity.class);
+            startActivity( celulas );
+            finish();
         }
 
-        Intent celulas = new Intent( AddRelatorioActivity.this,CelulasActivity.class);
-        startActivity( celulas );
-        finish();
     }
 
 

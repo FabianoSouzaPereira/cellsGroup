@@ -135,5 +135,13 @@
     <string name="logado_sucesso">Usuário logado com sucesso.</string>
     <string name="falha_login">Falha so logar usuário.</string>
     <string name="usuario_existe">Usuário já existe</string>
+    <string name="action_logout">logout</string>
+    <string name="Logout_sucesso">Logout realizado com sucesso.</string>
+    <!-- Adiciona igreja -->
+    <string name="action_addIgreja">Adicionar Igreja</string>
+    <string name="action_addUsuario">Adicionar usuario</string>
+    <string name="configura_o">configura_o</string>
+    <string name="cep">Cep</string>
+
 
 </resources>

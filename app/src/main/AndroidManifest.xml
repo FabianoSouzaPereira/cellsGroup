@@ -23,9 +23,21 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ConexaoActivity"
+            android:label="@string/title_activity_conexao"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AddUsuarioActivity"
+            android:label="@string/title_activity_add_usuario"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddIgrejaActivity"
+            android:label="@string/title_activity_add_igreja"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Configuracao"
             android:label="@string/title_activity_configuracao"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditCelulaActivity"
             android:label="@string/title_activity_edit_celula"
@@ -98,8 +110,9 @@
         </activity>
         <activity android:name="login.WellcomeActivity" />
         <activity android:name="login.LoginActivity" />
-        <activity android:name=".Activity_splash_screen"
-                  android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity_splash_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

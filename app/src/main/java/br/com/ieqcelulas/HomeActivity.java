@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import login.LoginActivity;
 import pessoas.Usuario;
+
+import static login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -71,8 +74,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        LoginActivity.updateUI(currentUser);
     }
 
     @Override
@@ -146,11 +147,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressLint("SimpleDateFormat")
     public void addDataHora() {
-        Date dataHoraAtual = new Date();
-        String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
-        DataT = data;
+
+        try {
+            Date dataHoraAtual = new Date();
+            String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+            String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+            DataTime = data + " "+ hora;
+            DataT = data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -165,21 +171,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
+        switch (item.getItemId()){
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-/*            Intent intent = new Intent( HomeActivity.this,Configuracao.class );
-            startActivity( intent );*/
-        }
-        if (id == R.id.action_Login) {
-            Intent login = new Intent( HomeActivity.this, LoginActivity.class);
-            startActivity( login );
-            finish();
+            case R.id.action_settings:
+                Intent config = new Intent( HomeActivity.this,Configuracao.class );
+                startActivity( config );
+                return true;
+            case R.id.action_addIgreja:
+                Intent addigreja = new Intent( HomeActivity.this,AddIgrejaActivity.class );
+                startActivity( addigreja );
+                return true;
+           case R.id.action_addUsuario:
+                Intent addusuario = new Intent( HomeActivity.this,AddUsuarioActivity.class );
+                startActivity( addusuario );
+               return true;
+            case R.id.action_Login:
+                Intent login = new Intent( HomeActivity.this, LoginActivity.class);
+                startActivity( login );
+                return true;
+            case R.id.action_Logout:
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected( item );
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

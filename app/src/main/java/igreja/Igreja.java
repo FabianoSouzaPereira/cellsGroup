@@ -1,6 +1,7 @@
 package igreja;
 
 public final class Igreja {
+    private String uid = "";
     private String nome = "";
     private String endereco = "";
     private String bairro = "";
@@ -8,11 +9,14 @@ public final class Igreja {
     private String estado = "";
     private String pais_ = "";
     private String cep = "";
+    private String datahora = "";
+    private String status = "1";
 
     public Igreja() {
     }
 
-    public Igreja(String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep) {
+    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String status) {
+        this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
         this.bairro = bairro;
@@ -20,6 +24,8 @@ public final class Igreja {
         this.estado = estado;
         this.pais_ = pais_;
         this.cep = cep;
+        this.datahora = datahora;
+        this.status = status;
     }
 
     public String getNome() {   return nome;   }

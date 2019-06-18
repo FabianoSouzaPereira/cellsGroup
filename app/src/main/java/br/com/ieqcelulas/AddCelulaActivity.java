@@ -32,7 +32,6 @@ import celulas.Celula;
 import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.igreja;
 
-
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public String DataTime;
@@ -235,33 +234,39 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     public void addCelulaClick(MenuItem item) {
         addDataHora();
-        String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
-        String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
-        String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
-        String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
-        String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
-        String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
-        String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
-        String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-        String hora = hh+":"+mm;
-        String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
-        String status = "1";
+
+        try {
+            String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
+            String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
+            String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
+            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
+            String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
+            String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
+            String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
+            String hora = hh+":"+mm;
+            String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
+            String status = "1";
 
 
-        if(!TextUtils.isEmpty( celula ) && Logado == true){
-            String uid = Celulas.push().getKey();
-            Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
-            if (uid == null) throw new AssertionError();
-            Celulas.child(igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
+            if(!TextUtils.isEmpty( celula ) && Logado == true){
+                String uid = Celulas.push().getKey();
+                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
+                if (uid == null) throw new AssertionError();
+                Celulas.child(igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
 
-            Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
+            startActivity( celulas );
+            finish();
         }
 
-        Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
-        startActivity( celulas );
-        finish();
     }
 
     public void  testNullvariable(String var){
