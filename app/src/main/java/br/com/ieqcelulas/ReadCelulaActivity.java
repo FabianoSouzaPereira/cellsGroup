@@ -90,7 +90,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef0 = databaseReference.child( igreja +"/Celulas/" + this.celula_);
+        novaRef0 = databaseReference.child( "Igrejas/" + igreja +"/Celulas/" + this.celula_);
         novaRef0.addValueEventListener( new ValueEventListener() {
 
             @Override

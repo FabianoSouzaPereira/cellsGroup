@@ -2,6 +2,7 @@ package pessoas;
 
 @SuppressWarnings( "ALL" )
 public class Pessoa {
+    private String uid = "";
     private String nome = "";
     private String idade = "";
     private String sexo = "";
@@ -18,10 +19,15 @@ public class Pessoa {
     private String pais = "";
     private String cep = "";
     private String cargoIgreja = "";
+    private String status = "1";
+    private String datahora = "";
+    private String igrejaPadrao = "";
+    private String userId = "";
 
-    public Pessoa() { }  //Construtor vazio para realizar update;
+    public Pessoa( ) { }  //Construtor vazio para realizar update;
 
-    public Pessoa(String nome, String idade, String sexo, String dataNascimento, String dataBastismo, String nomepai, String nomemae, String estadocivil, String telefone, String email, String endereco, String bairro, String cidade, String pais, String cep, String cargoIgreja) {
+    public Pessoa(String uid, String nome, String idade, String sexo, String dataNascimento, String dataBastismo, String nomepai, String nomemae, String estadocivil, String telefone, String email, String endereco, String bairro, String cidade, String pais, String cep, String cargoIgreja, String status, String datahora, String igrejapadrao, String userId) {
+        this.uid = uid;
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
@@ -38,6 +44,18 @@ public class Pessoa {
         this.pais = pais;
         this.cep = cep;
         this.cargoIgreja = cargoIgreja;
+        this.status = status;
+        this.datahora = datahora;
+        this.igrejaPadrao = igrejaPadrao;
+        this.userId = userId;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getNome() {
@@ -166,5 +184,37 @@ public class Pessoa {
 
     public void setCargoIgreja(String cargoIgreja) {
         this.cargoIgreja = cargoIgreja;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDatahora() {
+        return datahora;
+    }
+
+    public void setDatahora(String datahora) {
+        this.datahora = datahora;
+    }
+
+    public String getIgrejaPadrao() {
+        return igrejaPadrao;
+    }
+
+    public void setIgrejaPadrao(String igrejaPadrao) {
+        this.igrejaPadrao = igrejaPadrao;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

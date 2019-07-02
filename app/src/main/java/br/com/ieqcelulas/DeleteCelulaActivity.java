@@ -45,7 +45,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
         Intent intent = getIntent();
         uid_extra = intent.getStringExtra( "Celula" );
-        novaRef3 = databaseReference.child( igreja + "/Celulas");
+        novaRef3 = databaseReference.child( "Igrejas/" + igreja + "/Celulas");
         inicializarComponentes();
         Objects.requireNonNull(celulaParaApagar.getEditText() ).setText( uid_extra );
         btnApagarCelula.setOnClickListener( new View.OnClickListener() {

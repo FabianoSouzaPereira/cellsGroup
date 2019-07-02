@@ -10,12 +10,13 @@ public final class Igreja {
     private String pais_ = "";
     private String cep = "";
     private String datahora = "";
+    private String user;
     private String status = "1";
 
     public Igreja() {
     }
 
-    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String status) {
+    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status) {
         this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
@@ -25,6 +26,7 @@ public final class Igreja {
         this.pais_ = pais_;
         this.cep = cep;
         this.datahora = datahora;
+        this.user = user;
         this.status = status;
     }
 
@@ -56,4 +58,11 @@ public final class Igreja {
 
     public void setCep(String cep) {       this.cep = cep;    }
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 }

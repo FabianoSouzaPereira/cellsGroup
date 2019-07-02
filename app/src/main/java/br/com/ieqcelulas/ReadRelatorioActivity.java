@@ -14,8 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,9 +27,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import login.LoginActivity;
 import relatorios.Relatorio;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
 public class ReadRelatorioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -110,7 +114,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     }
 
     private void mostraRelatorio() {
-        novaRef6 = databaseReference.child( igreja + "/Relatorios/" + cel_1 );
+        novaRef6 = databaseReference.child( "Igrejas/" + igreja + "/Relatorios/" + cel_1 );
         novaRef6.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -194,13 +198,39 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()){
+
+            case R.id.action_settings:
+                Intent config = new Intent( ReadRelatorioActivity.this,Configuracao.class );
+                startActivity( config );
+                return true;
+            case R.id.action_addIgreja:
+                Intent addigreja = new Intent( ReadRelatorioActivity.this,AddIgrejaActivity.class );
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addigreja );
+                return true;
+            case R.id.action_addUsuario:
+                Intent addusuario = new Intent( ReadRelatorioActivity.this,AddUsuarioActivity.class );
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addusuario );
+                return true;
+            case R.id.action_Login:
+                Intent login = new Intent( ReadRelatorioActivity.this, LoginActivity.class);
+                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( login );
+                return true;
+            case R.id.action_Logout:
+                FirebaseAuth.getInstance().signOut();
+                updateUI(null);
+                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected( item );
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

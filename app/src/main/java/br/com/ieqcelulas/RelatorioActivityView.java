@@ -1,5 +1,6 @@
 package br.com.ieqcelulas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,8 +18,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,11 +29,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import celulas.Celula;
+import login.LoginActivity;
 import relatorios.Relatorio;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
 public class RelatorioActivityView extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +48,8 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     private ArrayList<String> rel = new ArrayList<String>();
     private ArrayAdapter<String> ArrayAdapterRelatorio;
     private ListView relatorio;
+    public String DataTime;
+    public String DataT;
     private int limitebusca = 500;
 
     @Override
@@ -67,17 +77,48 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int Id = (int)parent.getAdapter().getItemId(position);
-                String celula = ArrayAdapterRelatorio.getItem( Id );
+                String relatorio = ArrayAdapterRelatorio.getItem( Id );
                 Intent intent = new Intent(RelatorioActivityView.this, ReadRelatorioActivity.class);
-                intent.putExtra("Relatorio", String.valueOf( celula ) );
+                intent.putExtra("Relatorio", String.valueOf( relatorio) );
                 //  intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         } );
     }
 
+
+    private void clickListaRelatorioFiltro(){
+        novaRef4 = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
+        Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
+        query.addListenerForSingleValueEvent( new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rel.clear();
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    for(DataSnapshot dados : ds.getChildren()) {
+                        Relatorio r = dados.getValue( Relatorio.class );
+                        String relatorio = r.getCelula();
+                        String datahora = r.getDatahora();
+                        rel.add( relatorio +": "+ datahora);
+                    }
+                }
+                ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
+                relatorio.setAdapter( ArrayAdapterRelatorio );
+                ArrayAdapterRelatorio.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        } );
+    }
+
     private void readRelOnlyActive() {
-        novaRef4 = databaseReference.child( igreja + "/Relatorios" );
+        novaRef4 = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
         Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
         query.addListenerForSingleValueEvent( new ValueEventListener() {
 
@@ -132,13 +173,38 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
+        switch (item.getItemId()){
 
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_settings:
+                Intent config = new Intent( RelatorioActivityView.this,Configuracao.class );
+                startActivity( config );
+                return true;
+            case R.id.action_addIgreja:
+                Intent addigreja = new Intent( RelatorioActivityView.this,AddIgrejaActivity.class );
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addigreja );
+                return true;
+            case R.id.action_addUsuario:
+                Intent addusuario = new Intent( RelatorioActivityView.this,AddUsuarioActivity.class );
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addusuario );
+                return true;
+            case R.id.action_Login:
+                Intent login = new Intent( RelatorioActivityView.this, LoginActivity.class);
+                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( login );
+                return true;
+            case R.id.action_Logout:
+                FirebaseAuth.getInstance().signOut();
+                updateUI(null);
+                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected( item );
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -178,5 +244,19 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public void addDataHora() {
+
+        try {
+            Date dataHoraAtual = new Date();
+            String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
+            String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+            DataTime = data + " "+ hora;
+            DataT = data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

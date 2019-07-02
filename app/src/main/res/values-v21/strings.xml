@@ -142,6 +142,8 @@
     <string name="action_addUsuario">Adicionar usuario</string>
     <string name="configura_o">configura_o</string>
     <string name="cep">Cep</string>
+    <string name="c_lulas">Células</string>
+    <string name="relat_rios">Relatórios</string>
 
 
 </resources>

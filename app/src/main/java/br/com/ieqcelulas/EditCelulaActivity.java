@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -79,7 +80,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         celula_extra = intent.getStringExtra( "Celula" );
         inicializarComponentes();
         inicializarFirebase();
-        novaRef2 = databaseReference.child( igreja + "/Celulas");
+        novaRef2 = databaseReference.child( "Igrejas/" + igreja + "/Celulas");
         pegandoConteudoCelula();
 
 
@@ -141,7 +142,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef1 = databaseReference.child( igreja + "/Celulas/"+ this.celula_extra);
+        novaRef1 = databaseReference.child( "Igrejas/" + igreja + "/Celulas/"+ this.celula_extra);
         novaRef1.addValueEventListener( new ValueEventListener() {
 
             @Override
@@ -212,11 +213,12 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
         String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
         String hora = hh + ":" + mm;
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         novaRef2.child( celula ).child(  uid  );
 
         if(!TextUtils.isEmpty( celula )){
             Map<String, Object> celulaUpdates = new HashMap<>();
-            celulaUpdates.put( celula + "/" + uid + "/rede" , rede);
+            celulaUpdates.put( celula + "/"  + uid + "/rede" , rede);
             celulaUpdates.put( celula + "/"  + uid + "/supervisor", supervisor );
             celulaUpdates.put( celula + "/"  + uid + "/lider", lider );
             celulaUpdates.put( celula + "/"  + uid + "/viceLider", viceLider );
@@ -225,6 +227,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             celulaUpdates.put( celula + "/"  + uid + "/colaborador", colaborador );
             celulaUpdates.put( celula + "/"  + uid + "/dia", dia );
             celulaUpdates.put( celula + "/"  + uid + "/hora", hora );
+            celulaUpdates.put( celula + "/"  + uid + "/userId", userId );
 
             novaRef2.updateChildren( celulaUpdates );
 

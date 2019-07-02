@@ -143,14 +143,17 @@
     <string name="falha_login">Falha ao logar usuário.</string>
     <string name="action_logout">logout</string>
     <string name="Logout_sucesso">Logout realizado com sucesso.</string>
-    <string name="title_activity_add_igreja">addIgrejaActivity</string>
+    <string name="title_activity_add_igreja">Nova igreja</string>
     <!-- Adiciona igreja -->
     <string name="action_addIgreja">Adicionar Igreja</string>
     <string name="action_addUsuario">Adicionar usuario</string>
-    <string name="title_activity_add_usuario">AddUsuarioActivity</string>
-    <string name="configura_o">configura_o</string>
+    <!-- Adiciona usuario -->
+    <string name="title_activity_add_usuario">Novo usuario</string>
+    <string name="configura_o">configuração</string>
     <string name="cep">Cep</string>
-    <string name="title_activity_conexao">ConexaoActivity</string>
+    <string name="title_activity_conexao">Conexão</string>
+    <string name="c_lulas">Células</string>
+    <string name="relat_rios">Relatórios</string>
 
 
 </resources>

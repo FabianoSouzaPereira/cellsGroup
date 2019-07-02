@@ -1,7 +1,10 @@
 package br.com.ieqcelulas;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,13 +20,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -31,6 +37,7 @@ import celulas.Celula;
 
 import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static br.com.ieqcelulas.HomeActivity.typeUserAdmin;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -56,9 +63,18 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
 
+    private static String kEY_TEXTINPUTCELULA = "textInputCelula_Key";
+    private static String kEY_TEXTINPUTREDE = "textInputRede_Key";
+    private static String kEY_TEXTINPUTSUPERVISOR = "textInputSupervisor_Key";
+    private static String kEY_TEXTINPUTLIDER = "textInputLider_Key";
+    private static String kEY_TEXTINPUTVICELIDER = "textInputViceLider_Key";
+    private static String kEY_TEXTINPUTANFITRIAO = "textInputAnfitriao_Key";
+    private static String kEY_TEXTINPUTSECRETARIO = "textInputSecretario_Key";
+    private static  String kEY_TEXTINPUTCOLABORADOR = "textInputColaborador_Key";
+
 
     private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
-    private String[] hora = new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00" };
+    private String[] hora = new String[] { "00, 01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
             "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
@@ -70,11 +86,41 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         setContentView( R.layout.activity_add_celula );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-
+        inicializarFirebase();
         addDataHora();
         inicializarComponentes();
-        inicializarFirebase();
 
+
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        NavigationView navigationView = findViewById( R.id.nav_view );
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawer.addDrawerListener( toggle );
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener( this );
+
+    }
+
+    private void inicializarComponentes() {
+        textInputCelula = findViewById(R.id.text_input_celula);
+        textInputCelula.setHint(textInputCelula.getHint()+" "+getString(R.string.asteriskred));
+        textInputRede = findViewById(R.id.text_input_rede);
+        textInputRede.setHint(textInputRede.getHint()+" "+getString(R.string.asteriskred));
+        textInputSupervisor = findViewById(R.id.text_input_supervisor);
+        textInputSupervisor.setHint(textInputSupervisor.getHint()+" "+getString(R.string.asteriskred));
+        textInputLider = findViewById(R.id.text_input_lider);
+        textInputLider.setHint(textInputLider.getHint()+" "+getString(R.string.asteriskred));
+        textInputViceLider = findViewById(R.id.text_input_vice_lider);
+        textInputViceLider.setHint(textInputViceLider.getHint()+" "+getString(R.string.asteriskred));
+        textInputAnfitriao = findViewById(R.id.text_input_anfitriao);
+        textInputAnfitriao.setHint(textInputAnfitriao.getHint()+" "+getString(R.string.asteriskred));
+        textInputSecretario = findViewById(R.id.text_input_secretario);
+        textInputSecretario.setHint(textInputSecretario.getHint()+" "+getString(R.string.asteriskred));
+        textInputColaborador = findViewById(R.id.text_input_colaborador);
+        textInputColaborador.setHint(textInputColaborador.getHint()+" "+getString(R.string.asteriskred));
+        textInputDia = findViewById(R.id.text_input_dia);
+        textInputHora = findViewById(R.id.text_input_hora);
+        textInputDataInicio = findViewById(R.id.text_input_DataInicio);
+        textInputDataInicio.getEditText().setText( DataT );
         Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item, semana );
@@ -124,36 +170,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }
         } );
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
-        drawer.addDrawerListener( toggle );
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener( this );
-    }
-
-    private void inicializarComponentes() {
-        textInputCelula = findViewById(R.id.text_input_celula);
-        textInputCelula.setHint(textInputCelula.getHint()+" "+getString(R.string.asteriskred));
-        textInputRede = findViewById(R.id.text_input_rede);
-        textInputRede.setHint(textInputRede.getHint()+" "+getString(R.string.asteriskred));
-        textInputSupervisor = findViewById(R.id.text_input_supervisor);
-        textInputSupervisor.setHint(textInputSupervisor.getHint()+" "+getString(R.string.asteriskred));
-        textInputLider = findViewById(R.id.text_input_lider);
-        textInputLider.setHint(textInputLider.getHint()+" "+getString(R.string.asteriskred));
-        textInputViceLider = findViewById(R.id.text_input_vice_lider);
-        textInputViceLider.setHint(textInputViceLider.getHint()+" "+getString(R.string.asteriskred));
-        textInputAnfitriao = findViewById(R.id.text_input_anfitriao);
-        textInputAnfitriao.setHint(textInputAnfitriao.getHint()+" "+getString(R.string.asteriskred));
-        textInputSecretario = findViewById(R.id.text_input_secretario);
-        textInputSecretario.setHint(textInputSecretario.getHint()+" "+getString(R.string.asteriskred));
-        textInputColaborador = findViewById(R.id.text_input_colaborador);
-        textInputColaborador.setHint(textInputColaborador.getHint()+" "+getString(R.string.asteriskred));
-        textInputDia = findViewById(R.id.text_input_dia);
-        textInputHora = findViewById(R.id.text_input_hora);
-        textInputDataInicio = findViewById(R.id.text_input_DataInicio);
-        textInputDataInicio.getEditText().setText( DataT );
-
     }
 
 
@@ -161,6 +177,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private void inicializarFirebase() {
         Celulas = FirebaseDatabase.getInstance().getReference();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -171,6 +188,23 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             super.onBackPressed();
         }
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState( savedInstanceState );
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -247,17 +281,21 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String hora = hh+":"+mm;
             String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
             String status = "1";
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-            if(!TextUtils.isEmpty( celula ) && Logado == true){
+            if(!TextUtils.isEmpty( celula ) && Logado && typeUserAdmin){
                 String uid = Celulas.push().getKey();
-                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime);
+                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId);
                 if (uid == null) throw new AssertionError();
-                Celulas.child(igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
+                Celulas.child("Igrejas/" + igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
 
                 Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
+                if (!typeUserAdmin){
+                    Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar celulas !", Toast.LENGTH_LONG).show();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -290,6 +328,5 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         DataTime = data + " "+ hora;
         DataT = data;
     }
-
 
 }

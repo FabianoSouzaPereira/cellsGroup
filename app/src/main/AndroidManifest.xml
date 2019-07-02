@@ -14,6 +14,7 @@
         android:maxSdkVersion="19" />
 
     <application
+        android:name=".FirebaseHandler"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,7 +26,7 @@
         <activity
             android:name=".ConexaoActivity"
             android:label="@string/title_activity_conexao"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".AddUsuarioActivity"
             android:label="@string/title_activity_add_usuario"
@@ -113,6 +114,7 @@
         <activity
             android:name=".Activity_splash_screen"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="alertas.AlertDialogCodes" />
     </application>
 
 </manifest>

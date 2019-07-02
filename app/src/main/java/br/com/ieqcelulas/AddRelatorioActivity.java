@@ -34,6 +34,7 @@ import celulas.Celula;
 
 import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static br.com.ieqcelulas.HomeActivity.typeUserAdmin;
 
 
 @SuppressWarnings("ALL")
@@ -250,7 +251,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     private void pegandoConteudoCelula() {
 
-        novaRef5 = databaseReference.child( igreja +"/Celulas/" + this.celulas_);
+        novaRef5 = databaseReference.child( "Igrejas/" + igreja +"/Celulas/" + this.celulas_);
         novaRef5.addValueEventListener( new ValueEventListener() {
 
             @Override
@@ -296,7 +297,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     public void addRelatorio(MenuItem menu) {
         try {
-            relatorios = databaseReference.child( igreja + "/Relatorios/" );
+            relatorios = databaseReference.child( "Igrejas/" + igreja + "/Relatorios/" );
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
@@ -314,7 +315,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
             String status = "1";
             addDataHora();
-            if(!TextUtils.isEmpty( celula ) && Logado == true){
+            if(!TextUtils.isEmpty( celula ) && Logado == true && typeUserAdmin == true){
                 String uid = relatorios.push().getKey();
                 Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
                 if (uid != null) {

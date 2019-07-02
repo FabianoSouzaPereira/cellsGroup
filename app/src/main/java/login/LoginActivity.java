@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,9 +28,11 @@ import com.google.firebase.auth.FirebaseUser;
 import br.com.ieqcelulas.HomeActivity;
 import br.com.ieqcelulas.R;
 
-@SuppressWarnings("ALL")
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    // [START declare_auth]
     private FirebaseAuth mAuth;
+    // [END declare_auth]
     private FirebaseAuth.AuthStateListener mAuthListener;
     private View login;
     private EditText editNome = null;
@@ -33,19 +40,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editSenha = null;
     private Button btnRegistrar;
     private ProgressDialog progressDialog;
+    private static final String TAG = "CustomAuthActivity";
+    private String mCustomToken;
+    private TokenBroadcastReceiver mTokenReceiver;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+       // Toolbar toolbar = findViewById( R.id.toolbar );
+      //  setSupportActionBar( toolbar );
+
         mAuth = FirebaseAuth.getInstance();
-            editEmail = findViewById( R.id.email );
-            editSenha = findViewById( R.id.password );
-        btnRegistrar = (Button)findViewById( R.id.btnEnviarRegistro );
+        editEmail = findViewById( R.id.email );
+        editSenha = findViewById( R.id.password );
+        btnRegistrar = findViewById( R.id.btnEnviarRegistro );
         btnRegistrar.setOnClickListener(this);
         progressDialog = new ProgressDialog( this );
+
+
+        // Create token receiver (for demo purposes only)
+        mTokenReceiver = new TokenBroadcastReceiver() {
+            @Override
+            public void onNewToken(String token) {
+                Log.d( TAG, "onNewToken:" + token );
+                setCustomToken( token );
+            }
+        };
 
     }
 
@@ -74,6 +96,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             updateUI(currentUser);
                             Intent home = new Intent( LoginActivity.this, HomeActivity.class );
                             startActivity( home );
+                          //  startSignIn();
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
                                 Toast.makeText( LoginActivity.this, getString( R.string.ususario_existe),Toast.LENGTH_SHORT).show();
@@ -133,6 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             updateUI( currentUser );
                             Intent home = new Intent( LoginActivity.this, HomeActivity.class );
                             startActivity( home );
+                          //  createToken();
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
                                 Toast.makeText( LoginActivity.this,getString( R.string.ususario_existe), Toast.LENGTH_LONG ).show();
@@ -150,6 +174,65 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } );
 
 
+    }
+
+    private void createToken() {
+        // Initiate sign in with custom token
+        // [START sign_in_custom]
+        mAuth.signInWithCustomToken(mCustomToken)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCustomToken:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+        // [END sign_in_custom]
+    }
+
+    private void setCustomToken(String token) {
+        mCustomToken = token;
+
+        String status;
+        if (mCustomToken != null) {
+            status = "Token:" + mCustomToken;
+        } else {
+            status = "Token: null";
+        }
+    }
+
+    private void startSignIn() {
+        // Initiate sign in with custom token
+        // [START sign_in_custom]
+        mAuth.signInWithCustomToken(mCustomToken)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCustomToken:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+        // [END sign_in_custom]
     }
 
     private String getString(String string) {
@@ -200,6 +283,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             HomeActivity.Logado = false;
 
+
+
         }
     }
 
@@ -209,6 +294,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+    }
+
+    @Override
+     protected void onResume() {
+        super.onResume();
+         registerReceiver(mTokenReceiver, TokenBroadcastReceiver.getFilter());
+      }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(mTokenReceiver);
     }
 
     @Override
@@ -227,10 +324,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private boolean validateEmailFormat(final String email) {
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            return true;
-        }
+        return android.util.Patterns.EMAIL_ADDRESS.matcher( email ).matches();
       //  Toast.makeText( LoginActivity.this,"Email inválido", Toast.LENGTH_LONG ).show();
-        return false;
     }
+
 }

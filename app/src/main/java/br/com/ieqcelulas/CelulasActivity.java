@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,10 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import celulas.Celula;
+import login.LoginActivity;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static login.LoginActivity.updateUI;
 
-@SuppressWarnings("ALL")
+
 public final class CelulasActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,17 +57,18 @@ public final class CelulasActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_celulas);
-        Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
         iniciaComponentes();
         inicializarFirebase();
+
         //  readCelulaLista() ;
         readOnlyActive();
         clickLista();
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById( R.id.fab );
+        FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,22 +77,22 @@ public final class CelulasActivity extends AppCompatActivity
         } );
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById( R.id.nav_view );
+        NavigationView navigationView = findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
 
 
     }
 
    private void readOnlyActive() {
-        novaRef = databaseReference.child( igreja + "/Celulas" );
+        novaRef = databaseReference.child( "Igrejas/" + igreja + "/Celulas" );
         Query query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
-        query.addListenerForSingleValueEvent( new ValueEventListener() {
+        query.addValueEventListener( new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -210,7 +214,7 @@ public final class CelulasActivity extends AppCompatActivity
     }
 
     private void iniciaComponentes() {
-        celulaList = (ListView)findViewById( R.id.listViewCelula );
+        celulaList = findViewById( R.id.listViewCelula );
         celulaList.setLongClickable(true);
     }
 
@@ -218,6 +222,7 @@ public final class CelulasActivity extends AppCompatActivity
         FirebaseApp.initializeApp(CelulasActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        databaseReference.keepSynced(true);
 
     }
 
@@ -246,9 +251,11 @@ public final class CelulasActivity extends AppCompatActivity
 
     }
 
+
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -264,14 +271,39 @@ public final class CelulasActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
+        switch (item.getItemId()){
 
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_settings:
+                Intent config = new Intent( CelulasActivity.this,Configuracao.class );
+                startActivity( config );
+                return true;
+            case R.id.action_addIgreja:
+                Intent addigreja = new Intent( CelulasActivity.this,AddIgrejaActivity.class );
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addigreja );
+                return true;
+            case R.id.action_addUsuario:
+                Intent addusuario = new Intent( CelulasActivity.this,AddUsuarioActivity.class );
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( addusuario );
+                return true;
+            case R.id.action_Login:
+                Intent login = new Intent( CelulasActivity.this, LoginActivity.class);
+                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( login );
+                return true;
+            case R.id.action_Logout:
+                FirebaseAuth.getInstance().signOut();
+                updateUI(null);
+                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected( item );
     }
 
     @Override
@@ -308,7 +340,7 @@ public final class CelulasActivity extends AppCompatActivity
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

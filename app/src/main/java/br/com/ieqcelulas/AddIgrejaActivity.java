@@ -1,22 +1,30 @@
 package br.com.ieqcelulas;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import igreja.Igreja;
 import static br.com.ieqcelulas.HomeActivity.Logado;
+import static br.com.ieqcelulas.HomeActivity.UI;
+import static br.com.ieqcelulas.HomeActivity.igreja;
+import static br.com.ieqcelulas.HomeActivity.typeUserAdmin;
 
 public class AddIgrejaActivity extends AppCompatActivity {
     private DatabaseReference Igrejas;
@@ -63,20 +71,20 @@ public class AddIgrejaActivity extends AppCompatActivity {
     private void addIgrejaClick(MenuItem item) {
         addDataHora();
         try {
-            HomeActivity.igreja = editIgreja.getEditText().getText().toString().trim();
+            igreja = editIgreja.getEditText().getText().toString().trim();
             String endereco = editEndereco.getEditText().getText().toString().trim();
             String bairro = editBairro.getEditText().getText().toString().trim();
             String cidade = editCidade.getEditText().getText().toString().trim();
             String estado = editEstado.getEditText().getText().toString().trim();
             String pais = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-            if (!TextUtils.isEmpty( HomeActivity.igreja  ) && Logado == true) {
+            if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = Igrejas.push().getKey();
-                Igreja ig = new Igreja( uid, HomeActivity.igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, status );
-                Igrejas.child( HomeActivity.igreja).child( uid ).setValue( ig );
-
+                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status );
+                Igrejas.child( "Igrejas/"+ igreja).child( uid ).setValue( ig );
+                clearEditTexts();
                 Toast.makeText( this, "Criado Igreja com sucesso", Toast.LENGTH_LONG ).show();
 
             } else {
@@ -85,6 +93,8 @@ public class AddIgrejaActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            Intent home = new Intent(AddIgrejaActivity.this,HomeActivity.class);
+            startActivity(home);
         }
     }
 
@@ -116,5 +126,15 @@ public class AddIgrejaActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected( item );
+    }
+
+    private void clearEditTexts(){
+            editIgreja.getEditText().getText().toString().trim();
+            editEndereco.getEditText().setText( "" );
+            editBairro.getEditText().setText( "" );
+            editCidade.getEditText().setText( "" );
+            editEstado.getEditText().setText( "" );
+            editPais.getEditText().setText( "" );
+            editCep.getEditText().setText( "" );
     }
 }

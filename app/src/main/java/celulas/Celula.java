@@ -15,11 +15,12 @@ public final class Celula {
     private String datainicio = "";
     private String datahora = "";
     private String status = "1";
+    private String userId = "";
 
 
     public Celula() { }
 
-    public Celula(String uid, String celula, String rede, String supervisor, String lider, String viceLider, String anfitriao, String secretario, String colaborador, String dia, String hora, String datainicio, String status, String datahora) {
+    public Celula(String uid, String celula, String rede, String supervisor, String lider, String viceLider, String anfitriao, String secretario, String colaborador, String dia, String hora, String datainicio, String datahora, String status, String userId) {
         this.uid = uid;
         this.celula = celula;
         this.rede = rede;
@@ -34,9 +35,8 @@ public final class Celula {
         this.datainicio = datainicio;
         this.datahora = datahora;
         this.status = status;
+        this.userId = userId;
     }
-
-
 
     public String getUid() {
         return uid;
@@ -148,6 +148,14 @@ public final class Celula {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     /*    @Override

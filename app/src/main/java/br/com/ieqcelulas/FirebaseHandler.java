@@ -3,6 +3,9 @@ package br.com.ieqcelulas;
 import android.app.Application;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.core.SyncTree;
+
 /* PROBLEMA
  * com.google.firebase.database.DatabaseException: Calls to setPersistenceEnabled() must be made before any other usage of FirebaseDatabase instance.
  * SOLUÇÃO
@@ -14,5 +17,6 @@ public class FirebaseHandler extends Application {
     public void onCreate() {
         super.onCreate();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
     }
 }

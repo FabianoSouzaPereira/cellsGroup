@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.SubMenu;
 import android.view.View;
@@ -16,18 +17,35 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import alertas.AlertDialogCodes;
+import celulas.Celula;
 import login.LoginActivity;
+import pessoas.Pessoa;
 import pessoas.Usuario;
 
 import static login.LoginActivity.updateUI;
@@ -37,26 +55,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public static FirebaseUser UI;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    public static boolean Logado = false;
-    public static String tag = "0";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private DatabaseReference novaref = null;
+    private FirebaseFunctions mFunctions;
+
+    public static boolean Logado = false;
+    public static String tag = "0";
+
     public String DataTime;
     public String DataT;
     public String status = "1";
-    public static String igreja = "IEQSacodosLimões";
+    public static String igreja = "";
+    public static boolean typeUserAdmin = true;
+    public static boolean typeUserNormal = false;
 
+
+    private int limitebusca = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
         splashScreean();
-
         Toolbar toolbar = findViewById( R.id.toolbar );
-        mAuth = FirebaseAuth.getInstance();
         setSupportActionBar( toolbar );
+
+        mAuth = FirebaseAuth.getInstance();
+        mFunctions = FirebaseFunctions.getInstance();
         inicializarFirebase();
+
         addDataHora();
 
 
@@ -71,9 +99,39 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void pegarIgrejaPadrao() {
+        try {
+            String email = mAuth.getInstance().getCurrentUser().getEmail();
+            novaref = databaseReference.child( "Usuarios" );
+            novaref.addValueEventListener( new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Usuario u = ds.getValue( Usuario.class );
+                        String igrejaPadrao = u.getIgrejaPadrao();
+                        HomeActivity.igreja = igrejaPadrao;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            } );
+        }catch (Exception e){
+
+        }
+    }
+
+
     @Override
     protected void onStart() {
         super.onStart();
+
+       UI = FirebaseAuth.getInstance().getCurrentUser();
+        updateUI( UI ); //verifica se usuario está logado
+        pegarIgrejaPadrao();
+     //   initAlertDialogoIgreja();  //verifica se tem igreja cadastrada
     }
 
     @Override
@@ -138,11 +196,56 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void initAlertDialogoIgreja(){
+        if(igreja.isEmpty()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
+            builder = builder.setMessage( "Deseja associar uma igreja ?" );
+            builder.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
+                }
+            } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
+                    Intent addIgreja = new Intent( HomeActivity.this, AddIgrejaActivity.class );
+                    startActivity( addIgreja );
+                }
+            } );
+
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+    }
+
     private void inicializarFirebase() {
-        FirebaseApp.initializeApp(HomeActivity.this);
+        FirebaseApp.initializeApp(HomeActivity.this);  //inicializa  o SDK credenciais padrão do aplicativo do Google
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         databaseReference.keepSynced(true);
+    }
+
+    /* Create the arguments to the callable function. */
+    private Task<String> addMessage(String text) {
+        // Create the arguments to the callable function.
+        Map<String, Object> data = new HashMap<>();
+        data.put("text", text);
+        data.put("push", true);
+
+        return mFunctions
+                .getHttpsCallable("addMessage")
+                .call(data)
+                .continueWith(new Continuation<HttpsCallableResult, String>() {
+                    @Override
+                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        // This continuation runs on either success or failure, but if the task
+                        // has failed then getResult() will throw an Exception which will be
+                        // propagated down.
+                        String result = (String) task.getResult().getData();
+                        return result;
+                    }
+                });
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -158,8 +261,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -179,18 +280,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             case R.id.action_addIgreja:
                 Intent addigreja = new Intent( HomeActivity.this,AddIgrejaActivity.class );
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addigreja );
                 return true;
            case R.id.action_addUsuario:
                 Intent addusuario = new Intent( HomeActivity.this,AddUsuarioActivity.class );
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addusuario );
                return true;
             case R.id.action_Login:
                 Intent login = new Intent( HomeActivity.this, LoginActivity.class);
+                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( login );
                 return true;
             case R.id.action_Logout:
                 FirebaseAuth.getInstance().signOut();
+                updateUI(null);
                 Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
                 return true;
             default:
