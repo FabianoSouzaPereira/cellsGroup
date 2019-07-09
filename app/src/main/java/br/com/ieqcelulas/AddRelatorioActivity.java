@@ -329,8 +329,10 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            Intent celulas = new Intent( AddRelatorioActivity.this,CelulasActivity.class);
-            startActivity( celulas );
+            Intent intent = new Intent( AddRelatorioActivity.this,RelatorioActivityView.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity( intent );
             finish();
         }
 

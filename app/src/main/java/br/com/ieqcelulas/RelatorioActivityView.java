@@ -87,40 +87,10 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     }
 
 
-    private void clickListaRelatorioFiltro(){
-        novaRef4 = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
-        Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
-        query.addListenerForSingleValueEvent( new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                rel.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    for(DataSnapshot dados : ds.getChildren()) {
-                        Relatorio r = dados.getValue( Relatorio.class );
-                        String relatorio = r.getCelula();
-                        String datahora = r.getDatahora();
-                        rel.add( relatorio +": "+ datahora);
-                    }
-                }
-                ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
-                relatorio.setAdapter( ArrayAdapterRelatorio );
-                ArrayAdapterRelatorio.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        } );
-    }
-
     private void readRelOnlyActive() {
         novaRef4 = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
         Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
-        query.addListenerForSingleValueEvent( new ValueEventListener() {
+        query.addValueEventListener( new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

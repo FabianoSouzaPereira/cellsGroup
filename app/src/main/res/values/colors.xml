@@ -3,8 +3,10 @@
     <color name="colorPrimary">#40F4E1</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#E91E1E</color>
-    <color name="colorblack">#000</color>
+    <color name="colorblack">#000000</color>
     <color name="colorYellow">#EDED7B</color>
-    <color name="colorWhite">#FFFFFF</color>
-    <color name="WhiteSmoke">#F5F5F5</color>
+    <color name="colorWhite">#FDFCFC</color>
+    <color name="WhiteSmoke">#FEFEFE</color>
+    <color name="greensoft">#6795E4</color>
+    <color name="bluesoft">#99E7E5</color>
 </resources>

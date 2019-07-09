@@ -236,8 +236,10 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             Toast.makeText(this,"Erro ao tentar Editar célula !", Toast.LENGTH_LONG).show();
         }
 
-        Intent celulas = new Intent( EditCelulaActivity.this,CelulasActivity.class);
-        startActivity( celulas );
+        Intent intent = new Intent( EditCelulaActivity.this,CelulasActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity( intent );
         finish();
 
     }

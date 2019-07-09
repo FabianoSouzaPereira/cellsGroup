@@ -144,6 +144,9 @@
     <string name="cep">Cep</string>
     <string name="c_lulas">Células</string>
     <string name="relat_rios">Relatórios</string>
+    <string name="data">Data</string>
+    <string name="motivo">Motivo</string>
+    <string name="data_">/ /</string>
 
 
 </resources>

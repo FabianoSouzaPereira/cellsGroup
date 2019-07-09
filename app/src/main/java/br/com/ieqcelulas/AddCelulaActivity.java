@@ -301,6 +301,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             e.printStackTrace();
         } finally {
             Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
+            celulas.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            celulas.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity( celulas );
             finish();
         }

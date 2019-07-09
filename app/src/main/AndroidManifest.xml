@@ -24,9 +24,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".AddIntercessaoActivity"
+            android:label="@string/title_activity_add_intercessaoa"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ConexaoActivity"
             android:label="@string/title_activity_conexao"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddUsuarioActivity"
             android:label="@string/title_activity_add_usuario"

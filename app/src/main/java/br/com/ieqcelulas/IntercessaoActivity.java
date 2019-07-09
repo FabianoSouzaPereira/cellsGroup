@@ -2,8 +2,10 @@ package br.com.ieqcelulas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,8 +16,38 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Adapters.AdapterListViewIntercessao;
+
+import static br.com.ieqcelulas.HomeActivity.igreja;
 
 public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DatabaseReference Intercessao;
+    private DatabaseReference novaRef;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    //private ListView  listaIntercessao;
+    private int limitebusca = 500;
+    private ArrayList<Intercessao> inter = new ArrayList<Intercessao>( );
+  //  private ArrayAdapter<String> arrayAdapterIntercessao;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +55,77 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         setContentView( R.layout.activity_intercessao );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener() {
+        iniciaComponentes();
+        inicializarFirebase();
+
+        
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        readIntercessao();
+
+
+
+        FloatingActionButton fabIntercessao = findViewById( R.id.fabIntercessao);
+        fabIntercessao.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
+                Intent intent = new Intent(IntercessaoActivity.this, AddIntercessaoActivity.class);
+                startActivity(intent);
             }
         } );
+
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+    }
+
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(IntercessaoActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        Intercessao = FirebaseDatabase.getInstance().getReference();
+    }
+
+    private void iniciaComponentes() {
+        recyclerView = findViewById(R.id.recycleView);
+
+    }
+
+    private void clickListaIntercessao(){
+
+    }
+
+    private void readIntercessao() {
+        novaRef = Intercessao.child( "Igrejas/" + igreja );
+        Query query = novaRef.child("Intercessao").orderByChild( "data" ).limitToFirst( limitebusca );
+        query.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                inter.clear();
+                for(DataSnapshot ds:dataSnapshot.getChildren()) {
+                    Intercessao intercessao = ds.getValue( Intercessao.class );
+                    inter.add( intercessao);
+                }
+                List<Intercessao> intercessoes = inter;
+
+                // specify an adapter (see also next example)
+                mAdapter = new AdapterListViewIntercessao(intercessoes,IntercessaoActivity.this );
+                recyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
     }
 
     @Override
@@ -50,21 +140,21 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.intercessao, menu );
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if(id == R.id.action_delete_intercessao){
+
         }
 
         return super.onOptionsItemSelected( item );

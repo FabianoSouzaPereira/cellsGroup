@@ -157,8 +157,10 @@ public class AddUsuarioActivity extends AppCompatActivity {
                 Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar usuario admin !", Toast.LENGTH_LONG).show();
             }
         }
-            Intent home = new Intent(AddUsuarioActivity.this,HomeActivity.class);
-            startActivity(home);
+            Intent intent= new Intent(AddUsuarioActivity.this,HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
     }
 
 
@@ -207,6 +209,9 @@ public class AddUsuarioActivity extends AppCompatActivity {
         }
         if(id == R.id.action_Save_addUsuario){
             addUsuarioClick(item);
+            return true;
+        }
+        if(id == R.id.action_cancel_addUsuario){
             return true;
         }
 
