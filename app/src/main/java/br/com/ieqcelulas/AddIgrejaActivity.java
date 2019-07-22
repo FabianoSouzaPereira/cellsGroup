@@ -10,6 +10,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import igreja.Igreja;
 import static br.com.ieqcelulas.HomeActivity.Logado;
 import static br.com.ieqcelulas.HomeActivity.UI;
@@ -38,7 +42,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editEstado;
     private TextInputLayout editPais;
     private TextInputLayout editCep;
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
         addDataHora();
         inicializarComponentes();
         inicializarFirebase();
-
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -83,20 +87,34 @@ public class AddIgrejaActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = Igrejas.push().getKey();
                 Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status );
-                Igrejas.child( "Igrejas/"+ igreja).child( uid ).setValue( ig );
+                Igrejas.child( "Igrejas/" + igreja ).child( uid ).setValue( ig );
                 clearEditTexts();
                 Toast.makeText( this, "Criado Igreja com sucesso", Toast.LENGTH_LONG ).show();
-
-            } else {
-                Toast.makeText( this, "Erro ao tentar criar célula !", Toast.LENGTH_LONG ).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText( this, "Erro ao tentar criar célula !", Toast.LENGTH_LONG ).show();
         } finally {
             Intent home = new Intent(AddIgrejaActivity.this,HomeActivity.class);
             startActivity(home);
         }
     }
+
+    private void updateUsuario(){
+        try {
+            mAuth = FirebaseAuth.getInstance();
+            String userId = mAuth.getCurrentUser().getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference.child( "Usuarios" ).child( userId );
+            Map<String, Object> usuarioUpdates = new HashMap<>();
+            usuarioUpdates.put( "Usuarios" + userId + "/igrejaPadrao" , igreja);
+            databaseReference.updateChildren( usuarioUpdates );
+            Log.i("Updated", "Updated igreja padrão de usuário novo. ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     public void addDataHora() {

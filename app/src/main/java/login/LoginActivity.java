@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                           //  startSignIn();
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText( LoginActivity.this, getString( R.string.ususario_existe),Toast.LENGTH_SHORT).show();
+                                Toast.makeText( LoginActivity.this, getString( R.string.usuario_existe),Toast.LENGTH_SHORT).show();
                                 HomeActivity.Logado = false;
                             }else{
                                 Toast.makeText( LoginActivity.this,getString( R.string.falha_login), Toast.LENGTH_LONG ).show();
@@ -159,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                           //  createToken();
                         }else{  //se houver colisão de mesmo usuário
                             if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText( LoginActivity.this,getString( R.string.ususario_existe), Toast.LENGTH_LONG ).show();
+                                Toast.makeText( LoginActivity.this,getString( R.string.registro_existe), Toast.LENGTH_LONG ).show();
                                updateUI( null );
                             }else{
                                 Toast.makeText( LoginActivity.this,getString( R.string.Falha_registro), Toast.LENGTH_LONG ).show();
@@ -172,7 +172,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         progressDialog.dismiss();
                     }
                 } );
-
 
     }
 
@@ -280,11 +279,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
+
         } else {
             HomeActivity.Logado = false;
-
-
-
         }
     }
 

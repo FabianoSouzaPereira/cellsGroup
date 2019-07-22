@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="idade"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLength="65" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sexo"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:maxLength="65" />
             </android.support.design.widget.TextInputLayout>
 
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Telefone"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLength="65" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -160,7 +160,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:maxLength="65" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -230,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Cep"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:maxLength="65" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout

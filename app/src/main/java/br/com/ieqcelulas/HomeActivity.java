@@ -3,22 +3,19 @@ package br.com.ieqcelulas;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.view.SubMenu;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -36,39 +33,36 @@ import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import alertas.AlertDialogCodes;
-import celulas.Celula;
 import login.LoginActivity;
-import pessoas.Pessoa;
 import pessoas.Usuario;
 
 import static login.LoginActivity.updateUI;
 
-@SuppressWarnings("ALL")
+
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "IGREJA PADRAO -> ";
     public static FirebaseUser UI;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    public static String useremail = "";
+    public FirebaseAuth mAuth;
+    public FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaref = null;
     private FirebaseFunctions mFunctions;
-
     public static boolean Logado = false;
     public static String tag = "0";
-
     public String DataTime;
     public String DataT;
     public String status = "1";
-    public static String igreja = "";
+    public static String igreja = "IEQSacodosLimões";
     public static boolean typeUserAdmin = true;
     public static boolean typeUserNormal = false;
+    private int count = 0;
 
 
     private int limitebusca = 500;
@@ -76,17 +70,21 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        UI = FirebaseAuth.getInstance().getCurrentUser();
+        updateUI( UI ); //verifica se usuario está logado
         setContentView( R.layout.activity_home );
         splashScreean();
-        Toolbar toolbar = findViewById( R.id.toolbar );
-        setSupportActionBar( toolbar );
-
+        if (Logado == false){
+            Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
+            startActivity( intent );
+        }
         mAuth = FirebaseAuth.getInstance();
         mFunctions = FirebaseFunctions.getInstance();
+
+        Toolbar toolbar = findViewById( R.id.toolbar );
+        setSupportActionBar( toolbar );
         inicializarFirebase();
-
         addDataHora();
-
 
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
@@ -99,39 +97,48 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void pegarIgrejaPadrao() {
-        try {
-            String email = mAuth.getInstance().getCurrentUser().getEmail();
+    public void pegarPadroes() {
+        String email = mAuth.getCurrentUser().getEmail();
+        if ( email.isEmpty()){
+            Toast.makeText( this, "Sem email cadastrado", Toast.LENGTH_LONG ).show();
+            return;
+        }
             novaref = databaseReference.child( "Usuarios" );
-            novaref.addValueEventListener( new ValueEventListener() {
+            Query query = novaref.orderByChild( "email" ).equalTo( email ).limitToFirst( 1 );
+            query.addListenerForSingleValueEvent( new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        Usuario u = ds.getValue( Usuario.class );
-                        String igrejaPadrao = u.getIgrejaPadrao();
-                        HomeActivity.igreja = igrejaPadrao;
+                            Usuario u = ds.getValue( Usuario.class );
+                            HomeActivity.useremail = u.getEmail();
+                            HomeActivity.igreja = u.getIgrejaPadrao();
                     }
+                    Log.i( "email",""+useremail );
+                    Log.i( "igreja",""+igreja );
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    Log.i( "Erro", "Erro consulta usuario. Tipo de erro :" + databaseError.getCode() );
                 }
             } );
-        }catch (Exception e){
-
-        }
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-
-       UI = FirebaseAuth.getInstance().getCurrentUser();
+        UI = FirebaseAuth.getInstance().getCurrentUser();
         updateUI( UI ); //verifica se usuario está logado
-        pegarIgrejaPadrao();
-     //   initAlertDialogoIgreja();  //verifica se tem igreja cadastrada
+        if (Logado == false){
+            Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
+            startActivity( intent );
+        }
+
+ //       pegarPadroes();
+/*        initAlertDialogoIgreja();  //verifica se tem igreja cadastrada
+        initAlertDialogoUsuario();*/
+
     }
 
     @Override
@@ -198,9 +205,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void initAlertDialogoIgreja(){
         if(igreja.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
-            builder = builder.setMessage( "Deseja associar uma igreja ?" );
-            builder.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder( HomeActivity.this );
+            builder1 = builder1.setMessage( "Deseja criar e associar uma igreja ?" );
+            builder1.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
@@ -209,8 +216,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                    Intent addIgreja = new Intent( HomeActivity.this, AddIgrejaActivity.class );
-                    startActivity( addIgreja );
+                    Intent intent = new Intent( HomeActivity.this, AddIgrejaActivity.class );
+                    startActivity( intent);
+                }
+            } );
+
+            AlertDialog alertDialog1 = builder1.create();
+            alertDialog1.show();
+        }
+    }
+
+    public void initAlertDialogoUsuario(){
+        if(useremail.isEmpty() && !igreja.isEmpty()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
+            builder = builder.setMessage( "É necessário a criação de um usuário.\n Podemos proceguir ?" );
+            builder.setTitle( "Não existe ususario associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText( getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT ).show();
+                }
+            } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent( HomeActivity.this, AddUsuarioActivity.class );
+                    startActivity( intent);
                 }
             } );
 
@@ -301,12 +331,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 updateUI(null);
                 Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.action_Sobre:
+                Intent sobre = new Intent( HomeActivity.this, SobreActivity.class);
+                sobre.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                sobre.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity( sobre);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
 
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -355,30 +390,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( celulas );
     }
 
-
     public void cardcomunicacaoClick(View view) throws Exception {
         Intent comunidados = new Intent(HomeActivity.this,ComunicadosActivity.class);
         startActivity( comunidados );
     }
-
 
     public void cardintercessaoClick(View view) throws Exception {
         Intent intercessao = new Intent( HomeActivity.this,IntercessaoActivity.class );
         startActivity( intercessao );
     }
 
-
     public void cardagendaClick(View view) throws Exception {
         Intent agenda = new Intent( HomeActivity.this,AgendaActivity.class );
         startActivity( agenda );
     }
 
-
     public void cardvisaoClick(View view) throws Exception{
         Intent visao = new Intent( HomeActivity.this,VisaoActivity.class );
         startActivity( visao );
     }
-
 
     public void cardcontatoClick(View view) throws Exception {
         Intent contato = new Intent( HomeActivity.this,ContatoActivity.class );
@@ -400,16 +430,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent relatorio = new Intent( HomeActivity.this, RelatorioActivityView.class );
         startActivity( relatorio );
     }
-
-
-
-    /**
-     * @return showaviso
-     */
-/*    public boolean isShowaviso() {
-        return showaviso;
-    }*/
-
 
 
     /**

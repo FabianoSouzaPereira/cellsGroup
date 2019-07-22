@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import java.util.List;
 
 import br.com.ieqcelulas.Intercessao;
@@ -19,8 +18,6 @@ public class AdapterListViewIntercessao extends RecyclerView.Adapter<ViewholderI
     private List<Intercessao> intercessoes;
     private Context context;
 
-    private static int lastCheckedPos = 0;
-
     public AdapterListViewIntercessao(List<Intercessao> intercessoes,Context context) {
         this.intercessoes = intercessoes;
         this.context = context;
@@ -29,7 +26,7 @@ public class AdapterListViewIntercessao extends RecyclerView.Adapter<ViewholderI
     @NonNull
     @Override
     public ViewholderIntercessao onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_listview_intercessao, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.item_listview_intercessao, parent, false);
 
         ViewholderIntercessao holder = new ViewholderIntercessao(view);
 

@@ -10,12 +10,10 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,16 +25,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
-import celulas.Celula;
 import pessoas.Usuario;
-
 import static br.com.ieqcelulas.HomeActivity.igreja;
+import static br.com.ieqcelulas.HomeActivity.useremail;
 import static br.com.ieqcelulas.HomeActivity.typeUserAdmin;
 
 public class AddUsuarioActivity extends AppCompatActivity {
@@ -127,7 +120,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
            String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
            String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
            String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
-           String email =  EditTextemail.getEditText().getText().toString().trim();
+           useremail =  EditTextemail.getEditText().getText().toString().trim();
+           String email = useremail;
            String endereco =  EditTextendereco.getEditText().getText().toString().trim();
            String bairro = EditTextbairro.getEditText().getText().toString().trim();
            String cidade =  EditTextcidade.getEditText().getText().toString().trim();
@@ -135,9 +129,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
            String cep = EditTextcep.getEditText().getText().toString().trim();
            String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
            String status = "1";
+           String igreja = HomeActivity.igreja;
            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-           readOnlyActive();
 
         if(emaildual == true ){
                 Toast.makeText( AddUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
@@ -145,7 +138,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         }
             if(!TextUtils.isEmpty( nome )){
                 String uid = Usuarios.push().getKey();
-                Usuario usuario = new Usuario(uid, nome, idade, sexo, dataNascimento, dataBastismo, nomepai, nomemae, estadocivil, telefone, email, endereco, bairro, cidade, pais, cep, cargoIgreja, status, DataTime, igreja , userId);
+                Usuario usuario = new Usuario(uid, nome, idade, sexo, dataNascimento, dataBastismo, nomepai, nomemae, estadocivil, telefone, email , endereco, bairro, cidade, pais, cep, cargoIgreja, status, DataTime, igreja , userId);
                 if (uid != null) {
                     Usuarios.child( "/Usuarios/" ).child( uid ).setValue( usuario );
                 }
@@ -173,26 +166,25 @@ public class AddUsuarioActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    for (DataSnapshot dados : ds.getChildren()) {
-                        Usuario u = dados.getValue( Usuario.class );
-                        email = u.getEmail();
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        for (DataSnapshot dados : ds.getChildren()) {
+                            Usuario u = dados.getValue( Usuario.class );
+                            email = u.getEmail();
+                        }
+                    }
+                    if (email == emailTest) {
+                        emaildual = true;
                     }
                 }
-                if (email == emailTest) {
-                   emaildual = true;
-                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.i("Erro", "Erro consulta readOnlyActive(). Tipo de erro :"+  databaseError.getCode());
             }
 
         } );
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -228,28 +220,4 @@ public class AddUsuarioActivity extends AppCompatActivity {
         DataT = data;
     }
 
-
-
-/*
-    private void createToken(){
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("Admin", true);
-        FirebaseAuth.getInstance().setCustomUserClaims(uid, claims);
-    }
-
-
-    private void verifyToken() {
-        FirebaseToken decoded = FirebaseAuth.getInstance().verifyIdToken( idToken );
-        if (Boolean.TRUE.equals( decoded.getClaims().get( "admin" ) )) {
-            // Allow access to requested admin resource.
-        }
-    }
-
-    private void verifyAcessLevel(){
-        // Verify the ID token first.
-        FirebaseToken decoded = FirebaseAuth.getInstance().verifyIdToken(idToken);
-        if (Boolean.TRUE.equals(decoded.getClaims().get("admin"))) {
-            // Allow access to requested admin resource.
-        }
-    }*/
 }

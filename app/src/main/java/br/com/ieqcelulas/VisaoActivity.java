@@ -1,11 +1,10 @@
 package br.com.ieqcelulas;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -29,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
+
 public class VisaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseStorage mstorage;
     private StorageReference mstorageRef;
@@ -46,16 +46,16 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         inicializarFirebase();
         inicializaStorage();
 
-        DownloadFile();
+     //   DownloadFile();
 
-
+/*
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
             }
-        } );
+        } );*/
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
@@ -78,7 +78,7 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
 
     private  void inicializaStorage(){
         mstorage = FirebaseStorage.getInstance();
-        mstorageRef = mstorage.getReferenceFromUrl("gs://ieqcelulas-2912f.appspot.com").child( "Células.txt");
+        mstorageRef = mstorage.getReferenceFromUrl("gs://ieqcelulas-2912f.appspot.com").child( "celulas.txt");
     }
 
     private void DownloadFile() {

@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,6 +45,7 @@ public final class CelulasActivity extends AppCompatActivity
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
+    private static final String TAG = "ERRO ! ";
     public  String uid;
     public String rede;
     private ListView celulaList;
@@ -75,18 +77,13 @@ public final class CelulasActivity extends AppCompatActivity
                 initAlertDialogo();
             }
         } );
-
-
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
-
         NavigationView navigationView = findViewById( R.id.nav_view );
         navigationView.setNavigationItemSelectedListener( this );
-
-
     }
 
    private void readOnlyActive() {
@@ -112,76 +109,10 @@ public final class CelulasActivity extends AppCompatActivity
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
-
         } );
     }
-
-
- /*  private void readCelulaLista() {
-
-        novaRef = databaseReference.child( "Celulas" );
-        novaRef.addValueEventListener( new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                cels.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                 //   for(DataSnapshot dados : ds.getChildren()) {
-                        Celula c = ds.getValue( Celula.class );
-                        String celula = c.getCelula();
-                        cels.add( celula );
-                    }
-
-
-                arrayAdapterCelula = new ArrayAdapter<String>(CelulasActivity.this,android.R.layout.simple_list_item_1, cels );
-                celulaList.setAdapter( arrayAdapterCelula );
-                arrayAdapterCelula.notifyDataSetChanged();
-                }
-
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-
-
-        } );
-}*/
-
-
-/*    *//** Preenche lista *//*
-    private void readCelulaLista() {
-
-        novaRef = databaseReference.child( "IEQSacodosLimões/Celulas/" );
-        novaRef.addValueEventListener( new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                cels.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    for(DataSnapshot dados : ds.getChildren()) {
-                        Celula c = dados.getValue( Celula.class );
-                        String celula = c.getCelula();
-                        cels.add( celula );
-                    }
-                }
-                arrayAdapterCelula = new ArrayAdapter<String>(CelulasActivity.this,android.R.layout.simple_list_item_1, cels );
-                celulaList.setAdapter( arrayAdapterCelula );
-                arrayAdapterCelula.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        } );
-    }*/
-
 
     private void clickLista(){
         celulaList.setOnItemClickListener( new AdapterView.OnItemClickListener() {
@@ -193,10 +124,8 @@ public final class CelulasActivity extends AppCompatActivity
                 intent.putExtra("Celula", String.valueOf( celula ) );
                 intent.putExtra("uid", uid);
                 startActivity(intent);
-
             }
         } );
-
 
         celulaList.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
             @Override
@@ -223,7 +152,6 @@ public final class CelulasActivity extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         databaseReference.keepSynced(true);
-
     }
 
     public void initAlertDialogo(){
@@ -245,13 +173,9 @@ public final class CelulasActivity extends AppCompatActivity
                         startActivity( addCelula );
                     }
                 });
-
         AlertDialog alertDialog = builder . create () ;
         alertDialog.show();
-
     }
-
-
 
     @Override
     public void onBackPressed() {

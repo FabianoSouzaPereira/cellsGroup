@@ -136,7 +136,8 @@
     <string name="obrigatorio">Obrigatório</string>
     <string name="registrando">Realizando o registro…</string>
     <string name="iniciando_login">Iniciando Login…</string>
-    <string name="ususario_existe">Esse usuário já existe.</string>
+    <string name="registro_existe">Esse registro já existe.</string>
+    <string name="usuario_existe">Usuário já logado</string>
     <string name="Falha_registro">Falha ao registrar usuário</string>
     <string name="Registro_sucesso">Usuário registrado com sucesso.</string>
     <string name="logado_sucesso">Login logado com sucesso.</string>
@@ -158,6 +159,23 @@
     <string name="data">Data</string>
     <string name="motivo">Motivo</string>
     <string name="data_">/ /</string>
+    <string name="fileNotFound">File: not found!</string>
+    <string name="title_activity_add_agenda">AddAgendaActivity</string>
+    <string name="evento">Evento</string>
+    <string name="local">Local</string>
+    <string name="data_evento">Data Evento</string>
+    <string name="salvar">Salvar</string>
+    <string name="descri_o">Descrição</string>
+
+    <string name="informacaoAPP">Este aplicativo destina-se ao uso das igrejas evangélicas organizadas em células. Disponibiliza a criação de relatórios. E pedidos de oração e recados.</string>
+    <string name="sobre">Sobre</string>
+    <string name="aplicativoNome">Aplicativo: </string>
+    <string name="conex_o">Conexão</string>
+    <string name="android_developed_email">Android developed email :</string>
+    <string name="slim">Slim</string>
+    <string name="contato">Contato</string>
+    <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
+    <string name="nomeigreja">NomeIgreja</string>
 
 
 </resources>

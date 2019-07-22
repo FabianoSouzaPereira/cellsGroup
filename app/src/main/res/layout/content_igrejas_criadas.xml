@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".IntercessaoActivity"
-    tools:showIn="@layout/app_bar_intercessao">
-
+    tools:context=".IgrejasCriadasActivity"
+    tools:showIn="@layout/activity_igrejas_criadas">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleViewAgenda"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/recyclerViewIgreja"
+        android:layout_width="304dp"
+        android:layout_height="437dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

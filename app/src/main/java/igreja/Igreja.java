@@ -1,5 +1,6 @@
 package igreja;
 
+@SuppressWarnings( "ALL" )
 public final class Igreja {
     private String uid = "";
     private String nome = "";

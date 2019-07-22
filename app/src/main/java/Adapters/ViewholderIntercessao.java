@@ -1,6 +1,5 @@
 package Adapters;
 
-import android.media.projection.MediaProjection;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ public class ViewholderIntercessao extends RecyclerView.ViewHolder {
 
     public ViewholderIntercessao(@NonNull View view) {
         super( view );
-
         nome = (TextView) view.findViewById( R.id.tvNomeIntercessao);
         motivo = (TextView) view.findViewById(R.id.etMotivo);
         data = (TextView) view.findViewById(R.id.tvdataIntercessao);

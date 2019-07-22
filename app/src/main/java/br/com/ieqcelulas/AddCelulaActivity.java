@@ -1,10 +1,7 @@
 package br.com.ieqcelulas;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -20,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -63,18 +58,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
 
-    private static String kEY_TEXTINPUTCELULA = "textInputCelula_Key";
-    private static String kEY_TEXTINPUTREDE = "textInputRede_Key";
-    private static String kEY_TEXTINPUTSUPERVISOR = "textInputSupervisor_Key";
-    private static String kEY_TEXTINPUTLIDER = "textInputLider_Key";
-    private static String kEY_TEXTINPUTVICELIDER = "textInputViceLider_Key";
-    private static String kEY_TEXTINPUTANFITRIAO = "textInputAnfitriao_Key";
-    private static String kEY_TEXTINPUTSECRETARIO = "textInputSecretario_Key";
-    private static  String kEY_TEXTINPUTCOLABORADOR = "textInputColaborador_Key";
-
-
     private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
-    private String[] hora = new String[] { "00, 01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+    private String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
             "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};

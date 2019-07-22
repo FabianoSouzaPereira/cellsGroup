@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Slim</string>
+    <string name="asteriskred"><font color='#cc0029'>*</font></string>
     <string name="navigation_drawer_open" translatable="true">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="true">Close navigation drawer</string>
     <string name="nav_header_title" translatable="true">Quadrangular em Células</string>
@@ -29,7 +30,7 @@
     <string name="Share" translatable="true">compartilhar</string>
     <string name="Send" translatable="true">Enviar</string>
 
-    <string name="communicate" translatable="true">Communicão</string>
+    <string name="communicate" translatable="true">Comunicacão</string>
 
     <string name="add" translatable="true">Adicionar</string>
     <string name="textGrid" translatable="true">0dp</string>
@@ -54,7 +55,7 @@
     <string name="login_failed" translatable="true">"Falha no login"</string>
     <string name="senha">Senha</string>
     <string name="registrar">Registrar</string>
-    <string name="login">Login</string>
+
 
     <string name="celula">Célula</string>
     <string name="lider">Líder</string>
@@ -87,8 +88,8 @@
     <string name="algu_m_aceitou_jesus1">Alguém aceitou Jesus?</string>
     <string name="reconciliacao1">Reconciliação?</string>
     <string name="houve_testemunho1">Houve testemunho?</string>
-    <string name="sim">SIM</string>
-    <string name="nao">NÃO</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
     <string name="houve_estudo">Houve estudo?</string>
     <string name="foi_ministrado_o_estudo"><u>Foi ministrado o estudo ?</u></string>
     <string name="foi_realizado_o_quebra_gelo">Foi realizado o quebra gelo ?</string>
@@ -114,9 +115,14 @@
     <string name="title_activity_read_relatorio">Relatorio</string>
     <string name="apagar_a_c_lula">APAGAR A CÉLULA ?</string>
     <string name="apagar_c_lula">Apagar Célula</string>
+    <string name="title_activity_relatorio_view">Relatórios</string>
+    <string name="title_activity_read_celula">Celulas</string>
     <string name="batismo">Batismo</string>
     <string name="celulas">Celulas</string>
-    <string name="Bem_Vindo">Bem Vindo</string>
+    <string name="title_activity_add_relatorio">Adiciona Relatório</string>
+    <string name="title_activity_delete_celula">Apaga Celula</string>
+    <string name="Bem_Vindo">Bem Vindo :</string>
+    <string name="title_activity_configuracao">Configuracao</string>
     <string name="igreja">igreja</string>
     <string name="endere_o">endereço</string>
     <string name="bairro">Bairro</string>
@@ -124,29 +130,52 @@
     <string name="estado">Estado</string>
     <string name="pa_s">País</string>
     <!-- Login -->
+    <string name="login">Login</string>
     <string name="Email_erro">Email inválido </string>
     <string name="Senha_vazia">Falta colocar a senha</string>
     <string name="obrigatorio">Obrigatório</string>
     <string name="registrando">Realizando o registro…</string>
     <string name="iniciando_login">Iniciando Login…</string>
-    <string name="ususario_existe">Esse usuário já existe.</string>
+    <string name="registro_existe">Esse registro já existe.</string>
+    <string name="usuario_existe">Usuário já logado</string>
     <string name="Falha_registro">Falha ao registrar usuário</string>
     <string name="Registro_sucesso">Usuário registrado com sucesso.</string>
-    <string name="logado_sucesso">Usuário logado com sucesso.</string>
-    <string name="falha_login">Falha so logar usuário.</string>
-    <string name="usuario_existe">Usuário já existe</string>
+    <string name="logado_sucesso">Login logado com sucesso.</string>
+    <string name="falha_login">Falha ao logar usuário.</string>
     <string name="action_logout">logout</string>
     <string name="Logout_sucesso">Logout realizado com sucesso.</string>
+    <string name="title_activity_add_igreja">Nova igreja</string>
     <!-- Adiciona igreja -->
     <string name="action_addIgreja">Adicionar Igreja</string>
     <string name="action_addUsuario">Adicionar usuario</string>
-    <string name="configura_o">configura_o</string>
+    <!-- Adiciona usuario -->
+    <string name="title_activity_add_usuario">Novo usuario</string>
+    <string name="configura_o">configuração</string>
     <string name="cep">Cep</string>
+    <string name="title_activity_conexao">Conexão</string>
     <string name="c_lulas">Células</string>
     <string name="relat_rios">Relatórios</string>
+    <string name="title_activity_add_intercessaoa">AddIntercessaoaActivity</string>
     <string name="data">Data</string>
     <string name="motivo">Motivo</string>
     <string name="data_">/ /</string>
+    <string name="fileNotFound">File: not found!</string>
+    <string name="title_activity_add_agenda">AddAgendaActivity</string>
+    <string name="evento">Evento</string>
+    <string name="local">Local</string>
+    <string name="data_evento">Data Evento</string>
+    <string name="salvar">Salvar</string>
+    <string name="descri_o">Descrição</string>
+
+    <string name="informacaoAPP">Este aplicativo destina-se ao uso das igrejas evangélicas organizadas em células. Disponibiliza a criação de relatórios. E pedidos de oração e recados.</string>
+    <string name="sobre">Sobre</string>
+    <string name="aplicativoNome">Aplicativo: </string>
+    <string name="conex_o">Conexão</string>
+    <string name="android_developed_email">Android developed email :</string>
+    <string name="slim">Slim</string>
+    <string name="contato">Contato</string>
+    <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
+    <string name="nomeigreja">NomeIgreja</string>
 
 
 </resources>

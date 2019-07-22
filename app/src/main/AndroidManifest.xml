@@ -24,9 +24,18 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".IgrejasCriadasActivity"
+            android:label="@string/title_activity_igrejas_criadas"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SobreActivity" />
+        <activity
+            android:name=".AddAgendaActivity"
+            android:label="@string/title_activity_add_agenda"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ConexaoActivity"
             android:label="@string/title_activity_conexao"

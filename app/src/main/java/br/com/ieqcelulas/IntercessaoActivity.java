@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,8 +17,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -39,10 +38,8 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private DatabaseReference novaRef;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    //private ListView  listaIntercessao;
     private int limitebusca = 500;
     private ArrayList<Intercessao> inter = new ArrayList<Intercessao>( );
-  //  private ArrayAdapter<String> arrayAdapterIntercessao;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -95,12 +92,13 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     }
 
     private void iniciaComponentes() {
-        recyclerView = findViewById(R.id.recycleView);
+        recyclerView = findViewById(R.id.recycleViewAgenda );
+        recyclerView.setLongClickable( true );
 
     }
 
     private void clickListaIntercessao(){
-
+    //todo
     }
 
     private void readIntercessao() {
@@ -116,13 +114,14 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
                 }
                 List<Intercessao> intercessoes = inter;
 
-                // specify an adapter (see also next example)
                 mAdapter = new AdapterListViewIntercessao(intercessoes,IntercessaoActivity.this );
                 recyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.i("Msg","Erro readIntercessão");
 
             }
         } );
