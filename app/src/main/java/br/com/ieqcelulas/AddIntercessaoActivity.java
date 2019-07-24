@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -58,7 +60,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
 
         if(!TextUtils.isEmpty( nome ) && !TextUtils.isEmpty( motivo ) && !TextUtils.isEmpty( data ) ){
             String uid = Intercessoes.push().getKey();
-            Intercessao intercessao = new Intercessao( nome, motivo, data);
+            Intercessao intercessao = new Intercessao( uid, nome, motivo, data);
             Intercessoes.child("Igrejas/" + igreja + "/Intercessao").child( uid ).setValue( intercessao );
                 Intent intent = new Intent( AddIntercessaoActivity.this, IntercessaoActivity.class );
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -88,6 +90,17 @@ public class AddIntercessaoActivity extends AppCompatActivity {
         Intercessoes = FirebaseDatabase.getInstance().getReference();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent home = new Intent(AddIntercessaoActivity.this,HomeActivity.class);
+        startActivity(home);
+  /*      DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        if (drawer.isDrawerOpen( GravityCompat.START )) {
+            drawer.closeDrawer( GravityCompat.START );
+        } else {
+            super.onBackPressed();
+        }*/
+    }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate( R.menu.add_intercessao, menu );
         return true;

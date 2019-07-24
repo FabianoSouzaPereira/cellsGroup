@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -33,14 +34,15 @@ import Adapters.AdapterListViewIntercessao;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
 
-public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterListViewIntercessao.OnIntercessaoListener {
+    private static final String TAG = "ClickLista";
     private DatabaseReference Intercessao;
     private DatabaseReference novaRef;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private int limitebusca = 500;
     private ArrayList<Intercessao> inter = new ArrayList<Intercessao>( );
-
+    private String mUid;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -64,7 +66,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         readIntercessao();
-
+        clickListaIntercessao();
 
 
         FloatingActionButton fabIntercessao = findViewById( R.id.fabIntercessao);
@@ -73,6 +75,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
             public void onClick(View view) {
                 Intent intent = new Intent(IntercessaoActivity.this, AddIntercessaoActivity.class);
                 startActivity(intent);
+                finish();
             }
         } );
 
@@ -94,11 +97,10 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private void iniciaComponentes() {
         recyclerView = findViewById(R.id.recycleViewAgenda );
         recyclerView.setLongClickable( true );
-
     }
 
     private void clickListaIntercessao(){
-    //todo
+
     }
 
     private void readIntercessao() {
@@ -114,7 +116,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
                 }
                 List<Intercessao> intercessoes = inter;
 
-                mAdapter = new AdapterListViewIntercessao(intercessoes,IntercessaoActivity.this );
+                mAdapter = new AdapterListViewIntercessao(intercessoes,IntercessaoActivity.this,IntercessaoActivity.this );
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
             }
@@ -122,19 +124,20 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.i("Msg","Erro readIntercessão");
-
             }
         } );
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        Intent home = new Intent(IntercessaoActivity.this,HomeActivity.class);
+        startActivity(home);
+/*        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
@@ -153,7 +156,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         }
 
         if(id == R.id.action_delete_intercessao){
-
+            deleteViewselected(mUid);
         }
 
         return super.onOptionsItemSelected( item );
@@ -197,4 +200,17 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
+
+   public void onIntercessaoClick(int position, String uid){
+       Log.d( TAG, "" + position);
+       mUid = uid;
+
+   }
+
+    private void deleteViewselected(String uid) {
+        novaRef = Intercessao.child( "Igrejas/" + igreja + "/Intercessao" );
+        novaRef.child( uid ).removeValue();
+        Toast.makeText(this,"Apagada com sucesso", Toast.LENGTH_LONG).show();
+    }
+
 }

@@ -37,8 +37,6 @@ public class AdapterListViewIgreja extends RecyclerView.Adapter<AdapterListViewI
     public ViewholderIgreja onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.item_listview_igreja, parent, false);
 
-      //  ViewholderIgreja holder = new ViewholderIgreja( view, mOnIgrejaListener );
-
         return new ViewholderIgreja( view, mOnIgrejaListener );
     }
 

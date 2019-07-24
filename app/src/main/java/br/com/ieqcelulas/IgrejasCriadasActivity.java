@@ -36,8 +36,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     private AdapterListViewIgreja mAdapter;
 
     private RecyclerView recyclerView;
-  //  private RecyclerView.Adapter mAdapter;
-  //  private RecyclerView.LayoutManager layoutManager;
     private LinearLayoutManager layoutManager;
 
     @Override
@@ -54,7 +52,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration( this, layoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration( dividerItemDecoration );
-
 
         readIgrejaCadastrada();
 

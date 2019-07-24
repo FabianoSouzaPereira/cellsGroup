@@ -176,6 +176,7 @@
     <string name="contato">Contato</string>
     <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
     <string name="nomeigreja">NomeIgreja</string>
+    <string name="procurar">Procurar</string>
 
 
 </resources>

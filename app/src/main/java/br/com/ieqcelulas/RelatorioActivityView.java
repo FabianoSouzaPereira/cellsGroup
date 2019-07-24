@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +16,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
+
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,21 +33,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import celulas.Celula;
 import login.LoginActivity;
 import relatorios.Relatorio;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
 import static login.LoginActivity.updateUI;
 
-@SuppressWarnings("ALL")
+
 public class RelatorioActivityView extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef4;
+    private DatabaseReference novarefPesq;
     private ArrayList<String> rel = new ArrayList<String>();
     private ArrayAdapter<String> ArrayAdapterRelatorio;
     private ListView relatorio;
+    SearchView searchView;
     public String DataTime;
     public String DataT;
     private int limitebusca = 500;
@@ -59,10 +60,24 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
         inicializarFirebase();
-        relatorio = findViewById( R.id.listRelatorio );
+        inicializarComponents();
+
         readRelOnlyActive();
         clickListaRelatorio();
+        searchView = findViewById( R.id.searchViews );
 
+        searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayAdapterRelatorio.getFilter().filter(newText);
+                return false;
+            }
+        } );
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
@@ -70,6 +85,12 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+    }
+
+
+    private void inicializarComponents() {
+        relatorio = findViewById( R.id.listRelatorio );
+
     }
 
     private void clickListaRelatorio() {
@@ -123,6 +144,37 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         databaseReference = firebaseDatabase.getReference();
     }
 
+    private void pesquisarRelatorios(){
+        String datainicial = "";
+        String datafinal = "";
+
+        novarefPesq = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
+        Query querypesq = novarefPesq.orderByChild( "datahora" ).startAt( datainicial ).endAt( datafinal );
+        querypesq.addListenerForSingleValueEvent( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rel.clear();
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    for(DataSnapshot dados : ds.getChildren()) {
+                        Relatorio r = dados.getValue( Relatorio.class );
+                        String relatorio = r.getCelula();
+                        String datahora = r.getDatahora();
+                        rel.add( relatorio + ": " + datahora );
+                    }
+                }
+
+                 ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
+                 relatorio.setAdapter( ArrayAdapterRelatorio );
+                 ArrayAdapterRelatorio.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
@@ -135,9 +187,8 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate( R.menu.relatorio_activity_view, menu );
-        return true;
+        return  true;
     }
 
     @Override
@@ -211,7 +262,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

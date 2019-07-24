@@ -39,8 +39,7 @@ import static br.com.ieqcelulas.HomeActivity.igreja;
 import static login.LoginActivity.updateUI;
 
 
-public final class CelulasActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public final class CelulasActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -179,12 +178,14 @@ public final class CelulasActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        Intent home = new Intent(CelulasActivity.this,HomeActivity.class);
+        startActivity(home);
+/*        DrawerLayout drawer = findViewById( R.id.drawer_layout );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override

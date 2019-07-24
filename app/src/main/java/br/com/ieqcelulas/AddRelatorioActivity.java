@@ -341,12 +341,14 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        Intent home = new Intent(AddRelatorioActivity.this,HomeActivity.class);
+        startActivity(home);
+  /*      DrawerLayout drawer = findViewById( R.id.drawer_layout );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
