@@ -1,40 +1,23 @@
 package br.com.ieqcelulas;
 
-
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.io.IOException;
-
+import java.io.InputStream;
 
 public class VisaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private FirebaseStorage mstorage;
-    private StorageReference mstorageRef;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
     private EditText editTextVisao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +26,19 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
         inicilaizarComponentes();
-        inicializarFirebase();
-        inicializaStorage();
 
-     //   DownloadFile();
+        try{
+            Resources res =  getResources();
+            InputStream in = res.openRawResource( R.raw.celulas );
 
-/*
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
-            }
-        } );*/
+            byte[] b = new byte[in.available()];
+            in.read(b);
+            editTextVisao.setText( new String(b) );
+
+        }catch (Exception e){
+            editTextVisao.setText( "Sem dados no momento." );
+        }
+
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
@@ -64,46 +47,12 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener( this );
     }
 
+
+
     private void inicilaizarComponentes() {
         editTextVisao = findViewById( R.id.editVisao );
     }
 
-
-    private void inicializarFirebase() {
-        FirebaseApp.initializeApp(VisaoActivity.this);  //inicializa  o SDK credenciais padrão do aplicativo do Google
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-
-    }
-
-    private  void inicializaStorage(){
-        mstorage = FirebaseStorage.getInstance();
-        mstorageRef = mstorage.getReferenceFromUrl("gs://ieqcelulas-2912f.appspot.com").child( "celulas.txt");
-    }
-
-    private void DownloadFile() {
-
-        try {
-            final File localFile = File.createTempFile("Células", "txt");
-            mstorageRef.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            // Successfully downloaded data to local file
-
-                            editTextVisao.setText( localFile.getAbsolutePath() );
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle failed download
-                    // ...
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onBackPressed() {
