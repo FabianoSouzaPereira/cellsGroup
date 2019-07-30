@@ -56,13 +56,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         setSupportActionBar( toolbar );
         iniciaComponentes();
         inicializarFirebase();
-
-        
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         readIntercessao();

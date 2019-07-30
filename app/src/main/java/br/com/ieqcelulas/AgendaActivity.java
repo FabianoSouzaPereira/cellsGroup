@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.CalendarView;
+
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -44,7 +47,8 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private LinearLayoutManager layoutManager;
+    private CalendarView calendario;
 
 
     @Override
@@ -55,15 +59,11 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar( toolbar );
         iniciaComponentes();
         inicializarFirebase();
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration( this, LinearLayoutManager.VERTICAL );
         recyclerView.setLayoutManager(layoutManager);
-
+        recyclerView.addItemDecoration( dividerItemDecoration );
         readAgenda();
 
 
@@ -94,10 +94,26 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
 
     private void iniciaComponentes() {
         recyclerView = findViewById(R.id.recycleViewAgenda );
+        calendario = findViewById( R.id.calendarView );
+        calendario.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                int position = -1;
+                String dia = String.valueOf( dayOfMonth );
+                String mes = String.valueOf( month );
+                String ano = String.valueOf( year );
+                String data = dia + "/" + mes + "/" + ano;
+                position = recyclerView.findContainingViewHolder( view ).getAdapterPosition();
+                recyclerView.getScrollState();
+                recyclerView.scrollToPosition( position );
+                Log.i( "position","" + position );
+            }
+        } );
+
     }
 
     private void readAgenda(){
-    novaRef = databaseReference.child( "Igreja/" + igreja );
+        novaRef = databaseReference.child( "Igrejas/" + igreja );
         Query query = novaRef.child("Agenda").orderByChild( "data" ).limitToFirst( limitebusca );
         query.addValueEventListener( new ValueEventListener() {
             @Override
@@ -119,7 +135,6 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
             }
         });
     }
-
 
     @Override
     public void onBackPressed() {
