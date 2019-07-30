@@ -10,7 +10,7 @@
 
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendarViewAg"
         android:layout_width="288dp"
         android:layout_height="214dp"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:mcv_selectionColor="#00F"
-        app:mcv_showOtherDates="all" />
+        app:mcv_showOtherDates="defaults" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycleViewAgenda"

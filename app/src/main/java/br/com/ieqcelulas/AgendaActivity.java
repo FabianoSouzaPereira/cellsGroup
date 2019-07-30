@@ -4,22 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.CalendarView;
-
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +26,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Adapters.AdapterListViewAgenda;
+import Adapters.ViewholderAgenda;
 import agendas.Agenda;
 
 import static br.com.ieqcelulas.HomeActivity.igreja;
@@ -44,11 +47,12 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
     private static final String TAG = "ERRO ! ";
     private int limitebusca = 60;
     private ArrayList<Agenda> ag = new ArrayList<Agenda>( );
-
+    private List<Agenda> agendas;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager layoutManager;
-    private CalendarView calendario;
+    private MaterialCalendarView calendarView;
+    private String widgetdate;
 
 
     @Override
@@ -65,6 +69,7 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration( dividerItemDecoration );
         readAgenda();
+
 
 
 
@@ -94,22 +99,45 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
 
     private void iniciaComponentes() {
         recyclerView = findViewById(R.id.recycleViewAgenda );
-        calendario = findViewById( R.id.calendarView );
-        calendario.setOnDateChangeListener( new CalendarView.OnDateChangeListener() {
+        calendarView = findViewById( R.id.calendarViewAg );
+        calendarView.setCurrentDate( new Date() );
+        calendarView.setDateSelected( new Date(),true );
+        calendarView.setOnDateChangedListener( new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                int position = -1;
-                String dia = String.valueOf( dayOfMonth );
-                String mes = String.valueOf( month );
-                String ano = String.valueOf( year );
-                String data = dia + "/" + mes + "/" + ano;
-                position = recyclerView.findContainingViewHolder( view ).getAdapterPosition();
-                recyclerView.getScrollState();
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                Log.i( "LOG.i = ","" + widget.getSelectedDate() );
+                widgetdate =formatCalendaryData(date);
+
+                Log.i( "LOG.i = ","" + widgetdate );
+
+                int position = findAgArray( agendas, widgetdate );
                 recyclerView.scrollToPosition( position );
-                Log.i( "position","" + position );
+
+                Log.i( "Position - ",""+ position );
             }
         } );
+    }
 
+
+public String formatCalendaryData(CalendarDay date){
+        String dia = "";
+        String mes= "";
+        String ano = "";
+        dia = String.valueOf( date.getDay() );
+            int v = date.getMonth();
+            if(v < 10){ String m = String.valueOf( v );  mes = "0"+m; }
+        ano = String.valueOf( date.getYear() );
+        String data = dia + "/" + mes + "/" + ano;
+        return data;
+}
+
+
+    public int findAgArray(List<Agenda> agendas,String data ){
+        for(int i = 0 ;i < agendas.size(); i++){
+           String a = agendas.get( i ).getData();
+            if (a.equals( data )) { return i;}
+        }
+        return 0;
     }
 
     private void readAgenda(){
@@ -123,7 +151,7 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
                     Agenda a = ds.getValue(Agenda.class);
                     ag.add(a);
                 }
-                List<Agenda> agendas = ag;
+                agendas = ag;
                 mAdapter = new AdapterListViewAgenda( agendas, AgendaActivity.this );
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();

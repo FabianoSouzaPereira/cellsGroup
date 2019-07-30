@@ -68,7 +68,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         clickLista();
 
 
-
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
