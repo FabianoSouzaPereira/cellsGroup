@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_Save_edit_celula"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/action_save"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_cancel_edit_celula"
+        android:orderInCategory="101"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/action_delete"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings_edit_celula"
+        android:orderInCategory="102"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+</menu>

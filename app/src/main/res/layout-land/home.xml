@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="Conexão"
+        app:showAsAction="never" />
+    <item
+         android:id="@+id/action_addIgreja"
+         android:orderInCategory="101"
+         android:title="@string/action_addIgreja"
+         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_addUsuario"
+        android:orderInCategory="102"
+        android:title="@string/action_addUsuario"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_Login"
+        android:orderInCategory="103"
+        android:title="@string/action_login"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Logout"
+        android:orderInCategory="104"
+        android:title="@string/action_logout"
+        app:showAsAction="never" />
+</menu>
