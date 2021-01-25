@@ -3,14 +3,7 @@ package br.com.cellsgroup;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +11,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -324,7 +326,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                     Toast.makeText( this, "Relatório enviado com sucesso", Toast.LENGTH_LONG ).show();
                 }
             }else{
-                Toast.makeText(this,"Erro ao enviar o relatório !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Erro ao menu_config o relatório !", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             e.printStackTrace();

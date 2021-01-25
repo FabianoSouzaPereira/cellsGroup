@@ -3,7 +3,9 @@ package br.com.cellsgroup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import static br.com.cellsgroup.HomeActivity.tag;
 public final class Activity_splash_screen extends AppCompatActivity {

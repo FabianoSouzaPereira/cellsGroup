@@ -4,19 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
@@ -89,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
@@ -304,36 +305,34 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-
-            case R.id.action_settings:
-                Intent config = new Intent( HomeActivity.this,Configuracao.class );
-                startActivity( config );
-                return true;
-            case R.id.action_addIgreja:
-                Intent addigreja = new Intent( HomeActivity.this,AddIgrejaActivity.class );
-                startActivity( addigreja );
-                return true;
-           case R.id.action_addUsuario:
-                Intent addusuario = new Intent( HomeActivity.this,AddUsuarioActivity.class );
-                startActivity( addusuario );
-               return true;
-            case R.id.action_Login:
-                Intent login = new Intent( HomeActivity.this, LoginActivity.class);
-                startActivity( login );
-                return true;
-            case R.id.action_Logout:
-                FirebaseAuth.getInstance().signOut();
-                updateUI(null);
-                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.action_Sobre:
-                Intent sobre = new Intent( HomeActivity.this, SobreActivity.class);
-                startActivity( sobre);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( HomeActivity.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( HomeActivity.this , AddIgrejaActivity.class );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_addUsuario ) {
+            Intent addusuario = new Intent ( HomeActivity.this , AddUsuarioActivity.class );
+            startActivity ( addusuario );
+            return true;
+        } else if ( itemId == R.id.action_Login ) {
+            Intent login = new Intent ( HomeActivity.this , LoginActivity.class );
+            startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            return true;
+        } else if ( itemId == R.id.action_Sobre ) {
+            Intent sobre = new Intent ( HomeActivity.this , SobreActivity.class );
+            startActivity ( sobre );
+            return true;
         }
+        return super.onOptionsItemSelected ( item );
 
     }
 
