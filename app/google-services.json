@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "688027091228",
+    "project_id": "cellsgroup-383d5",
+    "storage_bucket": "cellsgroup-383d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688027091228:android:90c23b895a5c9a5b277ad9",
+        "android_client_info": {
+          "package_name": "br.com.cellsgroup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688027091228-fc9381otlqsbirooaf5oobpmv095dnne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw_jabxLwId-7SI3EVUH3psM1PSA-wzvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688027091228-fc9381otlqsbirooaf5oobpmv095dnne.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
