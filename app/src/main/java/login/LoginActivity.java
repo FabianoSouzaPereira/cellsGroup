@@ -6,16 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.com.ieqcelulas.HomeActivity;
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.HomeActivity;
+import br.com.cellsgroup.R;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // [END declare_auth]
     private FirebaseAuth.AuthStateListener mAuthListener;
     private View login;
-    private EditText editNome = null;
+    private final EditText editNome = null;
     private EditText editEmail = null;
     private EditText editSenha = null;
     private Button btnRegistrar;

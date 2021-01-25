@@ -179,7 +179,7 @@
                     android:id="@+id/imgContato"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    app:srcCompat="@drawable/pomba" />
+                    app:srcCompat="@drawable/phone"  />
 
                 <TextView
                     android:id="@+id/tvcardBatismo"

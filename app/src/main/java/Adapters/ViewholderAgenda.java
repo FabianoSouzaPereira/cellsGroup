@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.R;
 
 @SuppressWarnings( "ALL" )
 public class ViewholderAgenda  extends RecyclerView.ViewHolder  {

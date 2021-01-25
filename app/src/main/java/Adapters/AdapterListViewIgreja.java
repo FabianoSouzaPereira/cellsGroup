@@ -18,13 +18,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.R;
 
 
 public class AdapterListViewIgreja extends RecyclerView.Adapter<AdapterListViewIgreja.ViewholderIgreja> {
-    private List<String> igrejas;
-    private Context context;
-    private OnIgrejaListener mOnIgrejaListener;
+    private final List<String> igrejas;
+    private final Context context;
+    private final OnIgrejaListener mOnIgrejaListener;
 
     public AdapterListViewIgreja(List<String> igrejas, Context context, OnIgrejaListener onIgrejaListener) {
         this.igrejas = igrejas;

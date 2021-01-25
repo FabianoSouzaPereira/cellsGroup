@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="br.com.ieqcelulas">
+    package="br.com.cellsgroup">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +17,7 @@
         android:maxSdkVersion="19" />
 
     <application
-        android:name=".FirebaseHandler"
+        android:name="br.com.cellsgroup.FirebaseHandler"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,96 +27,96 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".IgrejasCriadasActivity"
+            android:name="br.com.cellsgroup.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".SobreActivity" />
+        <activity android:name="br.com.cellsgroup.SobreActivity" />
         <activity
-            android:name=".AddAgendaActivity"
+            android:name="br.com.cellsgroup.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddIntercessaoActivity"
+            android:name="br.com.cellsgroup.AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ConexaoActivity"
+            android:name="br.com.cellsgroup.ConexaoActivity"
             android:label="@string/title_activity_conexao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddUsuarioActivity"
+            android:name="br.com.cellsgroup.AddUsuarioActivity"
             android:label="@string/title_activity_add_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddIgrejaActivity"
+            android:name="br.com.cellsgroup.AddIgrejaActivity"
             android:label="@string/title_activity_add_igreja"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Configuracao"
+            android:name="br.com.cellsgroup.Configuracao"
             android:label="@string/title_activity_configuracao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditCelulaActivity"
+            android:name="br.com.cellsgroup.EditCelulaActivity"
             android:label="@string/title_activity_edit_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DeleteCelulaActivity"
+            android:name="br.com.cellsgroup.DeleteCelulaActivity"
             android:label="@string/title_activity_delete_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddRelatorioActivity"
+            android:name="br.com.cellsgroup.AddRelatorioActivity"
             android:label="@string/title_activity_add_relatorio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ReadCelulaActivity"
+            android:name="br.com.cellsgroup.ReadCelulaActivity"
             android:label="@string/title_activity_read_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddCelulaActivity"
+            android:name="br.com.cellsgroup.AddCelulaActivity"
             android:label="@string/title_activity_add_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RelatorioActivityView"
+            android:name="br.com.cellsgroup.RelatorioActivityView"
             android:label="@string/title_activity_relatorio_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ReadRelatorioActivity"
+            android:name="br.com.cellsgroup.ReadRelatorioActivity"
             android:label="@string/title_activity_read_relatorio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EnviarActivity"
+            android:name="br.com.cellsgroup.EnviarActivity"
             android:label="@string/title_activity_enviar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CompartilharActivity"
+            android:name="br.com.cellsgroup.CompartilharActivity"
             android:label="@string/title_activity_compartilhar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ContatoActivity"
+            android:name="br.com.cellsgroup.ContatoActivity"
             android:label="@string/title_activity_contato"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".VisaoActivity"
+            android:name="br.com.cellsgroup.VisaoActivity"
             android:label="@string/title_activity_visao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AgendaActivity"
+            android:name="br.com.cellsgroup.AgendaActivity"
             android:label="@string/title_activity_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".IntercessaoActivity"
+            android:name="br.com.cellsgroup.IntercessaoActivity"
             android:label="@string/title_activity_intercessao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ComunicadosActivity"
+            android:name="br.com.cellsgroup.ComunicadosActivity"
             android:label="@string/title_activity_comunicados"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CelulasActivity"
+            android:name="br.com.cellsgroup.CelulasActivity"
             android:label="@string/title_activity_celulas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".HomeActivity"
+            android:name="br.com.cellsgroup.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -128,7 +128,7 @@
         <activity android:name="login.WellcomeActivity" />
         <activity android:name="login.LoginActivity" />
         <activity
-            android:name=".Activity_splash_screen"
+            android:name="br.com.cellsgroup.Activity_splash_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="alertas.AlertDialogCodes" />
     </application>

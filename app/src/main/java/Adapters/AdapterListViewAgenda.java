@@ -11,7 +11,7 @@ import java.util.List;
 
 
 import agendas.Agenda;
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.R;
 
 @SuppressWarnings( "ALL" )
 public class AdapterListViewAgenda  extends RecyclerView.Adapter<ViewholderAgenda>{

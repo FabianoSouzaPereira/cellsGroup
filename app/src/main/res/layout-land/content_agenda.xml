@@ -11,8 +11,8 @@
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarViewAg"
-        android:layout_width="221dp"
-        android:layout_height="220dp"
+        android:layout_width="568dp"
+        android:layout_height="518dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -27,8 +27,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleViewAgenda"
-        android:layout_width="275dp"
-        android:layout_height="210dp"
+        android:layout_width="500dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="237dp" />
+        app:layout_constraintGuide_begin="670dp" />
 
 
 </android.support.constraint.ConstraintLayout>

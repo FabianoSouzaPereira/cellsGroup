@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import br.com.ieqcelulas.HomeActivity;
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.HomeActivity;
+import br.com.cellsgroup.R;
 
 @SuppressWarnings("ALL")
 public class WellcomeActivity extends AppCompatActivity {

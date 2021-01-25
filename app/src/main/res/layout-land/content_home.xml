@@ -32,8 +32,8 @@
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/cardview_celula"
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardcellClick"
                 android:padding="8dp"
@@ -43,7 +43,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgcelulaligacao"
                     android:layout_width="match_parent"
-                    android:layout_height="69dp"
+                    android:layout_height="151dp"
                     app:srcCompat="@drawable/celulaligacao" />
 
                 <TextView
@@ -58,8 +58,8 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardrelatorioClick"
                 android:padding="20dp"
@@ -69,7 +69,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgrelatorio"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="151dp"
                     app:srcCompat="@drawable/list" />
 
                 <TextView
@@ -85,8 +85,8 @@
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardintercessaoClick"
                 android:padding="20dp"
@@ -96,7 +96,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgintercesao"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="151dp"
                     app:srcCompat="@drawable/intercesao" />
 
                 <TextView
@@ -113,8 +113,8 @@
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardagendaClick"
                 android:padding="20dp"
@@ -124,7 +124,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgagenda"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="152dp"
                     app:srcCompat="@drawable/address_book" />
 
                 <TextView
@@ -140,8 +140,8 @@
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardvisaoClick"
                 android:padding="20dp"
@@ -151,7 +151,7 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgvisao"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="151dp"
                     app:srcCompat="@drawable/visao2" />
 
                 <TextView
@@ -167,8 +167,8 @@
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_width="182dp"
+                android:layout_height="183dp"
                 android:layout_margin="8dp"
                 android:onClick="cardcontatoClick"
                 android:padding="15dp"
@@ -178,15 +178,15 @@
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/imgContato"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    app:srcCompat="@drawable/pomba" />
+                    android:layout_height="151dp"
+                    app:srcCompat="@drawable/phone" />
 
                 <TextView
                     android:id="@+id/tvcardBatismo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
-                    android:text="@string/batismo"
+                    android:text="@string/contato"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />

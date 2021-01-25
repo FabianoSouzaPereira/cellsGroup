@@ -2,20 +2,18 @@ package Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.ieqcelulas.Intercessao;
-import br.com.ieqcelulas.R;
+import br.com.cellsgroup.Intercessao;
+import br.com.cellsgroup.R;
 
 @SuppressWarnings( "ALL" )
 public class AdapterListViewIntercessao extends RecyclerView.Adapter<AdapterListViewIntercessao.ViewholderIntercessao> {
@@ -83,8 +81,8 @@ public class AdapterListViewIntercessao extends RecyclerView.Adapter<AdapterList
         }
         @Override
         public void onClick(View v) {
-            onIntercessaoListener.onIntercessaoClick(getAdapterPosition(),uid.getText().toString());
-
+            onIntercessaoListener.onIntercessaoClick( getAdapterPosition(), uid.getText().toString() );
+                    cardView.setCardBackgroundColor( R.color.colorPrimary );
         }
     }
 // Fim viewholder

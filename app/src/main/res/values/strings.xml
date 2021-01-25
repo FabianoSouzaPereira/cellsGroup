@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Slim</string>
+    <string name="app_name" translatable="false">CellsGroup</string>
     <string name="asteriskred"><font color='#cc0029'>*</font></string>
     <string name="navigation_drawer_open" translatable="true">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="true">Close navigation drawer</string>
