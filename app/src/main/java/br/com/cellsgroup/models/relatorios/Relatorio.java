@@ -1,4 +1,4 @@
-package relatorios;
+package br.com.cellsgroup.models.relatorios;
 
 public class Relatorio {
     private String uid;

@@ -145,11 +145,11 @@
     <string name="action_logout">logout</string>
     <string name="Logout_sucesso">Logout realizado com sucesso.</string>
     <string name="title_activity_add_igreja">Nova igreja</string>
-    <!-- Adiciona igreja -->
+    <!-- Adiciona br.com.cellsgroup.models.igreja -->
     <string name="action_addIgreja">Adicionar Igreja</string>
-    <string name="action_addUsuario">Adicionar usuario</string>
-    <!-- Adiciona usuario -->
-    <string name="title_activity_add_usuario">Novo usuario</string>
+    <string name="action_addUsuario">Adicionar user</string>
+    <!-- Adiciona user -->
+    <string name="title_activity_add_usuario">Novo user</string>
     <string name="configura_o">configuração</string>
     <string name="cep">Cep</string>
     <string name="title_activity_conexao">Conexão</string>
@@ -177,6 +177,8 @@
     <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
     <string name="nomeigreja">NomeIgreja</string>
     <string name="procurar">Procurar</string>
+    <string name="c_digo_do_pa_s">Código do País</string>
+    <string name="telefone">Telefone</string>
 
 
 </resources>

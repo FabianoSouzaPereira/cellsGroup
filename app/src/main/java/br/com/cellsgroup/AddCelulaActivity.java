@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import celulas.Celula;
+import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.HomeActivity.Logado;
 import static br.com.cellsgroup.HomeActivity.igreja;
@@ -196,7 +196,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.add_celula, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -207,7 +207,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Save){
+        if(id == R.id.action_save){
             addCelulaClick(item);
             return true;
         }
@@ -282,7 +282,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }else{
                 Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
                 if (!typeUserAdmin){
-                    Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar celulas !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
                 }
             }
         } catch (Exception e) {

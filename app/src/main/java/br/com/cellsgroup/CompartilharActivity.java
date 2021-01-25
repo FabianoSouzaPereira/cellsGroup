@@ -54,7 +54,7 @@ public class CompartilharActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.compartilhar, menu );
+        getMenuInflater().inflate( R.menu.menu_config, menu );
         return true;
     }
 

@@ -1,4 +1,4 @@
-package login;
+package br.com.cellsgroup.models.login;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package igreja;
+package br.com.cellsgroup.models.igreja;
 
 @SuppressWarnings( "ALL" )
 public final class Igreja {

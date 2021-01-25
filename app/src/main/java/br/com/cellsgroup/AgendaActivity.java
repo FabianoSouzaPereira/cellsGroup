@@ -181,7 +181,7 @@ public String formatCalendaryData(CalendarDay date){
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.agenda, menu );
+        getMenuInflater().inflate( R.menu.menu_drawer, menu );
         return true;
     }
 

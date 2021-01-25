@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import igreja.Igreja;
+import br.com.cellsgroup.models.igreja.Igreja;
 import static br.com.cellsgroup.HomeActivity.Logado;
 import static br.com.cellsgroup.HomeActivity.igreja;
 import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
@@ -106,7 +106,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
             Map<String, Object> usuarioUpdates = new HashMap<>();
             usuarioUpdates.put( "Usuarios" + userId + "/igrejaPadrao" , igreja);
             databaseReference.updateChildren( usuarioUpdates );
-            Log.i("Updated", "Updated igreja padrão de usuário novo. ");
+            Log.i("Updated", "Updated br.com.cellsgroup.models.igreja padrão de usuário novo. ");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,7 +128,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.igreja, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -139,7 +139,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Save_addigreja){
+        if(id == R.id.action_save){
             addIgrejaClick(item);
             return true;
         }

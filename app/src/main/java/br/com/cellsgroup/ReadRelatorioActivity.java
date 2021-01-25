@@ -29,11 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import login.LoginActivity;
-import relatorios.Relatorio;
+import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.models.relatorios.Relatorio;
 
 import static br.com.cellsgroup.HomeActivity.igreja;
-import static login.LoginActivity.updateUI;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
 public class ReadRelatorioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -194,7 +194,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.read_relatorio, menu );
+        getMenuInflater().inflate( R.menu.menu_drawer, menu );
         return true;
     }
 

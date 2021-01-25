@@ -67,7 +67,7 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.visao, menu );
+        getMenuInflater().inflate( R.menu.menu_config, menu );
         return true;
     }
 

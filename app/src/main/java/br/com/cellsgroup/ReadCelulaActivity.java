@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-import celulas.Celula;
+import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.HomeActivity.igreja;
 
@@ -146,7 +146,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.read_celula, menu );
+        getMenuInflater().inflate( R.menu.menu_drawer, menu );
         return super.onCreateOptionsMenu( menu );
     }
 
@@ -154,18 +154,18 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings_readCelula) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
-        if(id == R.id.action_edit_readcelula){
+        if(id == R.id.action_Edit){
             Intent intent = new Intent( ReadCelulaActivity.this,EditCelulaActivity.class );
             intent.putExtra("Celula", String.valueOf( this.celula_ ) );
             startActivity(intent);
             finish();
             return true;
         }
-        if(id == R.id.action_delete_edit_celula){
+        if(id == R.id.action_delete){
             initAlertDlgDelete();
 
             return true;

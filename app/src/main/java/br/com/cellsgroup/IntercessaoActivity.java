@@ -138,7 +138,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.intercessao, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -151,7 +151,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
             return true;
         }
 
-        if(id == R.id.action_delete_intercessao){
+        if(id == R.id.action_delete){
             deleteViewselected(mUid);
         }
 

@@ -35,11 +35,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import login.LoginActivity;
-import relatorios.Relatorio;
+import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.models.relatorios.Relatorio;
 
 import static br.com.cellsgroup.HomeActivity.igreja;
-import static login.LoginActivity.updateUI;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class RelatorioActivityView extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -183,7 +183,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.relatorio_activity_view, menu );
+        getMenuInflater().inflate( R.menu.menu_drawer, menu );
         return  true;
     }
 

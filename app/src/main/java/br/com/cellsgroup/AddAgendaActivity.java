@@ -131,13 +131,11 @@ public class AddAgendaActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_save_addAgenda){
+        if(id == R.id.action_save){
             addAgendaClick(item);
             return true;
         }
-        if(id == R.id.action_cancel_addAgenda){
-            return true;
-        }
+
         return super.onOptionsItemSelected( item );
     }
 

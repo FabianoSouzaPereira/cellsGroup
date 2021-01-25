@@ -63,7 +63,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(this,"Erro ao tentar criar intercessão !", Toast.LENGTH_LONG).show();
                 // if (!typeUserAdmin){
-                //     Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar celulas !", Toast.LENGTH_LONG).show();
+                //     Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
                 // }
             }
         } finally {
@@ -101,7 +101,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.add_intercessao, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -113,14 +113,11 @@ public class AddIntercessaoActivity extends AppCompatActivity {
             return true;
         }
 
-        if(id == R.id.action_Save_addIntercessao){
+        if(id == R.id.action_save){
             addIntercessaoClick( item );
             return true;
         }
 
-        if(id == R.id.action_cancel_addIntercessao){
-            return true;
-        }
         return super.onOptionsItemSelected( item );
     }
 

@@ -108,7 +108,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.delete_celula, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -120,7 +120,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.action_cancel_delete) {
+        if (id == R.id.action_delete) {
             Intent celulas = new Intent( DeleteCelulaActivity.this,CelulasActivity.class);
             startActivity( celulas );
             finish();
@@ -130,28 +130,43 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
+            Intent home = new Intent(this,HomeActivity.class);
+            startActivity(home);
+        } else if (id == R.id.nav_cells) {
+            Intent celulas = new Intent(DeleteCelulaActivity.this,CelulasActivity.class);
+            startActivity( celulas );
+        } else if (id == R.id.nav_communication) {
+            Intent comunidados = new Intent(DeleteCelulaActivity.this,ComunicadosActivity.class);
+            startActivity( comunidados );
+        } else if (id == R.id.nav_intersession) {
+            Intent intercessao = new Intent( DeleteCelulaActivity.this,IntercessaoActivity.class );
+            startActivity( intercessao );
+        } else if (id == R.id.nav_schedule) {
+            Intent agenda = new Intent( DeleteCelulaActivity.this,AgendaActivity.class );
+            startActivity( agenda );
+        } else if (id == R.id.nav_view) {
+            Intent visao = new Intent( DeleteCelulaActivity.this,VisaoActivity.class );
+            startActivity( visao );
+        } else if (id == R.id.nav_contact) {
+            Intent contato = new Intent( DeleteCelulaActivity.this,ContatoActivity.class );
+            startActivity( contato );
         } else if (id == R.id.nav_share) {
-
+            Intent compartilhar = new Intent( DeleteCelulaActivity.this,CompartilharActivity.class );
+            startActivity( compartilhar );
         } else if (id == R.id.nav_send) {
-
+            Intent Enviar = new Intent( DeleteCelulaActivity.this,EnviarActivity.class );
+            startActivity( Enviar );
         }
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
+
 }

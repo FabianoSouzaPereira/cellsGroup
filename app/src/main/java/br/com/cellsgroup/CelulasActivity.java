@@ -33,11 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import celulas.Celula;
-import login.LoginActivity;
+import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.models.login.LoginActivity;
 
 import static br.com.cellsgroup.HomeActivity.igreja;
-import static login.LoginActivity.updateUI;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public final class CelulasActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,8 +67,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         //  readCelulaLista() ;
         readOnlyActive();
         clickLista();
-
-
+        
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -76,7 +75,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 initAlertDialogo();
             }
         } );
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById ( R.id.drawer_layout );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
@@ -86,7 +85,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     }
 
    private void readOnlyActive() {
-        novaRef = databaseReference.child( "Igrejas/" + igreja + "/Celulas" );
+        novaRef = databaseReference.child( "churchs/" + igreja + "/cells" );
         Query query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
         query.addValueEventListener( new ValueEventListener() {
 
@@ -193,36 +192,34 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-
-            case R.id.action_settings:
-                Intent config = new Intent( CelulasActivity.this,Configuracao.class );
-                startActivity( config );
-                return true;
-            case R.id.action_addIgreja:
-                Intent addigreja = new Intent( CelulasActivity.this,AddIgrejaActivity.class );
-                startActivity( addigreja );
-                return true;
-            case R.id.action_addUsuario:
-                Intent addusuario = new Intent( CelulasActivity.this,AddUsuarioActivity.class );
-                startActivity( addusuario );
-                return true;
-            case R.id.action_Login:
-                Intent login = new Intent( CelulasActivity.this, LoginActivity.class);
-                startActivity( login );
-                return true;
-            case R.id.action_Logout:
-                FirebaseAuth.getInstance().signOut();
-                updateUI(null);
-                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( CelulasActivity.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( CelulasActivity.this , AddIgrejaActivity.class );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_addUsuario ) {
+            Intent addusuario = new Intent ( CelulasActivity.this , AddUsuarioActivity.class );
+            startActivity ( addusuario );
+            return true;
+        } else if ( itemId == R.id.action_Login ) {
+            Intent login = new Intent ( CelulasActivity.this , LoginActivity.class );
+            startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            return true;
         }
+        return super.onOptionsItemSelected ( item );
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+   public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -258,6 +255,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         drawer.closeDrawer( GravityCompat.START );
         return true;
-    }
+   }
 
 }

@@ -31,8 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import relatorios.Relatorio;
-import celulas.Celula;
+import br.com.cellsgroup.models.relatorios.Relatorio;
+import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.HomeActivity.Logado;
 import static br.com.cellsgroup.HomeActivity.igreja;
@@ -354,7 +354,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.add_relatorio, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -362,14 +362,11 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings_relatorio) {
+        if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Save_relatorio){
+        if(id == R.id.action_save){
             addRelatorio(item);
-            return true;
-        }
-        if(id == R.id.action_cancel_relatorio){
             return true;
         }
 

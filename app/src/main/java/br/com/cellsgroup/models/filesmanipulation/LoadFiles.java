@@ -1,9 +1,8 @@
-package filesmanipulation;
+package br.com.cellsgroup.models.filesmanipulation;
 
 
 import android.content.res.Resources;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package celulas;
+package br.com.cellsgroup.models.celulas;
 
 public final class Celula {
     private String uid;

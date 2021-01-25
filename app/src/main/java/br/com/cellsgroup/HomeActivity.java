@@ -34,21 +34,25 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import login.LoginActivity;
-import pessoas.Usuario;
+import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.models.pessoas.User;
 
-import static login.LoginActivity.updateUI;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "IGREJA PADRAO -> ";
     public static FirebaseUser UI;
     public static String useremail = "";
+    public static ArrayList<String> group;
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
@@ -86,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar( toolbar );
         inicializarFirebase();
         addDataHora();
-
+        mAuth.getUid ();
 
         DrawerLayout drawer = findViewById( R.id.drawer_layout );
         NavigationView navigationView = findViewById( R.id.nav_view );
@@ -104,19 +108,24 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText( this, "Sem email cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
-            novaref = databaseReference.child( "Usuarios" );
-            Query query = novaref.orderByChild( "email" ).equalTo( email ).limitToFirst( 1 );
+
+            novaref = databaseReference.child( "users/");
+            Query query = novaref.orderByChild( "email" ).equalTo( email ).limitToFirst (1);
             query.addListenerForSingleValueEvent( new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            Usuario u = ds.getValue( Usuario.class );
-                            HomeActivity.useremail = u.getEmail();
-                            HomeActivity.igreja = u.getIgrejaPadrao();
+                      //  User u = ds.getValue( User.class );/
+                        Object value = ds.child("group").getValue ();
+                        Object valueEmail = ds.child("email").getValue ();
+                        Object valueIgreja = ds.child("igrejaPadrao").getValue();;
+                        Object valueGroup = ds.child("group/").getValue();;
+                        HomeActivity.useremail = valueEmail.toString ();
+                        HomeActivity.igreja = valueIgreja.toString ();
                     }
                     Log.i( "email",""+useremail );
                     Log.i( "igreja",""+igreja );
-                   count = 1;
+                    count = 1;
                 }
 
                 @Override
@@ -137,7 +146,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
         pegarPadroes();
-        initAlertDialogoIgreja();  //verifica se tem igreja cadastrada
+        initAlertDialogoIgreja();  //verifica se tem br.com.cellsgroup.models.igreja cadastrada
         initAlertDialogoUsuario();
 
     }
@@ -209,7 +218,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void initAlertDialogoIgreja(){
         if(igreja.isEmpty() && count == 1) {
             AlertDialog.Builder builder1 = new AlertDialog.Builder( HomeActivity.this );
-            builder1 = builder1.setMessage( "Deseja criar e associar uma igreja ?" );
+            builder1 = builder1.setMessage( "Deseja criar e associar uma br.com.cellsgroup.models.igreja ?" );
             builder1.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

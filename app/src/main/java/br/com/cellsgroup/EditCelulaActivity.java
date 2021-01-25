@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import celulas.Celula;
+import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.HomeActivity.igreja;
 
@@ -278,7 +278,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.edit_celula, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -286,15 +286,11 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings_edit_celula) {
+        if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Save_edit_celula){
+        if(id == R.id.action_Edit){
             editCelulaClick(item);
-            return true;
-        }
-        if (id ==R.id.action_cancel_edit_celula){
-
             return true;
         }
 

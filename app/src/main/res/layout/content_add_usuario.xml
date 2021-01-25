@@ -11,8 +11,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,6 +53,7 @@
                     android:inputType="numberDecimal"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editSexo"
                 android:layout_width="match_parent"
@@ -121,19 +125,34 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_editEstadoCivil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:errorEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_input_editEstadoCivil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="estado civil"
-                android:inputType="text"
-                android:maxLength="65" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="8dp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="estado civil"
+                    android:inputType="text"
+                    android:maxLength="65" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_editCodigoPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/c_digo_do_pa_s"
+                    android:inputType="numberDecimal"
+                    android:maxLength="65" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editTelefone"
@@ -145,10 +164,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Telefone"
+                    android:hint="@string/telefone"
                     android:inputType="numberDecimal"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editEmail"
                 android:layout_width="match_parent"
@@ -163,6 +183,7 @@
                     android:inputType="textEmailAddress"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editEndereco"
                 android:layout_width="match_parent"
@@ -177,6 +198,7 @@
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editBairro"
                 android:layout_width="match_parent"
@@ -191,6 +213,7 @@
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editCidade"
                 android:layout_width="match_parent"
@@ -205,6 +228,7 @@
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editPais"
                 android:layout_width="match_parent"
@@ -219,6 +243,7 @@
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editCep"
                 android:layout_width="match_parent"
@@ -233,6 +258,7 @@
                     android:inputType="numberDecimal"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editCargoIgreja"
                 android:layout_width="match_parent"
@@ -244,6 +270,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Cargo Igreja"
+                    android:inputType="text"
+                    android:maxLength="65" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_editGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#D5C5C5"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Grupo Padrão"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -11,7 +11,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="19" />
+        android:maxSdkVersion="19"
+        tools:ignore="ScopedStorage" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="19" />
@@ -29,7 +30,7 @@
         <activity
             android:name="br.com.cellsgroup.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="br.com.cellsgroup.SobreActivity" />
         <activity
             android:name="br.com.cellsgroup.AddAgendaActivity"
@@ -125,12 +126,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="login.WellcomeActivity" />
-        <activity android:name="login.LoginActivity" />
+        <activity android:name=".models.login.WellcomeActivity" />
+        <activity android:name=".models.login.LoginActivity" />
         <activity
             android:name="br.com.cellsgroup.Activity_splash_screen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="alertas.AlertDialogCodes" />
+<!--        <activity android:name="alertas.AlertDialogCodes" />-->
     </application>
 
 </manifest>

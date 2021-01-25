@@ -22,4 +22,4 @@
         app:headerLayout="@layout/nav_header_read_celula"
         app:menu="@menu/menu_drawer" />
 
-</>
+</androidx.drawerlayout.widget.DrawerLayout >

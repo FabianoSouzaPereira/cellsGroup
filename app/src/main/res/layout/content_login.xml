@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="0dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="login.LoginActivity"
+    tools:context=".models.login.LoginActivity"
     tools:showIn="@layout/activity_login">
 
     <EditText

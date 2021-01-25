@@ -1,4 +1,6 @@
-package pessoas;
+package br.com.cellsgroup.models.pessoas;
+
+import java.util.ArrayList;
 
 @SuppressWarnings( "ALL" )
 public class Pessoa {
@@ -11,6 +13,7 @@ public class Pessoa {
     private String nomepai = "";
     private String nomemae = "";
     private String estadocivil = "";
+    private String codigoPais = "+55";
     private String telefone = "";
     private String email = "";
     private String endereco = "";
@@ -23,10 +26,11 @@ public class Pessoa {
     private String datahora = "";
     private String igrejaPadrao = "";
     private String userId = "";
+    private ArrayList<String> group = new ArrayList <String> ();
 
-    public Pessoa( ) { }  //Construtor vazio para realizar update;
+    public Pessoa( ) { }
 
-    public Pessoa(String uid, String nome, String idade, String sexo, String dataNascimento, String dataBastismo, String nomepai, String nomemae, String estadocivil, String telefone, String email, String endereco, String bairro, String cidade, String pais, String cep, String cargoIgreja, String status, String datahora, String igrejapadrao, String userId) {
+    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade , String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , ArrayList < String > group ) {
         this.uid = uid;
         this.nome = nome;
         this.idade = idade;
@@ -36,6 +40,7 @@ public class Pessoa {
         this.nomepai = nomepai;
         this.nomemae = nomemae;
         this.estadocivil = estadocivil;
+        this.codigoPais = codigoPais;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
@@ -48,173 +53,190 @@ public class Pessoa {
         this.datahora = datahora;
         this.igrejaPadrao = igrejaPadrao;
         this.userId = userId;
+        this.group = group;
     }
 
-    public String getUid() {
+    public String getUid ( ) {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid ( String uid ) {
         this.uid = uid;
     }
 
-    public String getNome() {
+    public String getNome ( ) {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome ( String nome ) {
         this.nome = nome;
     }
 
-    public String getIdade() {
+    public String getIdade ( ) {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade ( String idade ) {
         this.idade = idade;
     }
 
-    public String getSexo() {
+    public String getSexo ( ) {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo ( String sexo ) {
         this.sexo = sexo;
     }
 
-    public String getDataNascimento() {
+    public String getDataNascimento ( ) {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento ( String dataNascimento ) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getDataBastismo() {
+    public String getDataBastismo ( ) {
         return dataBastismo;
     }
 
-    public void setDataBastismo(String dataBastismo) {
+    public void setDataBastismo ( String dataBastismo ) {
         this.dataBastismo = dataBastismo;
     }
 
-    public String getNomepai() {
+    public String getNomepai ( ) {
         return nomepai;
     }
 
-    public void setNomepai(String nomepai) {
+    public void setNomepai ( String nomepai ) {
         this.nomepai = nomepai;
     }
 
-    public String getNomemae() {
+    public String getNomemae ( ) {
         return nomemae;
     }
 
-    public void setNomemae(String nomemae) {
+    public void setNomemae ( String nomemae ) {
         this.nomemae = nomemae;
     }
 
-    public String getEstadocivil() {
+    public String getEstadocivil ( ) {
         return estadocivil;
     }
 
-    public void setEstadocivil(String estadocivil) {
+    public void setEstadocivil ( String estadocivil ) {
         this.estadocivil = estadocivil;
     }
 
-    public String getTelefone() {
+    public String getCodigoPais ( ) {
+        return codigoPais;
+    }
+
+    public void setCodigoPais ( String codigoPais ) {
+        this.codigoPais = codigoPais;
+    }
+
+    public String getTelefone ( ) {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone ( String telefone ) {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
+    public String getEmail ( ) {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail ( String email ) {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public String getEndereco ( ) {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco ( String endereco ) {
         this.endereco = endereco;
     }
 
-    public String getBairro() {
+    public String getBairro ( ) {
         return bairro;
     }
 
-    public void setBairro(String bairro) {
+    public void setBairro ( String bairro ) {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
+    public String getCidade ( ) {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade ( String cidade ) {
         this.cidade = cidade;
     }
 
-    public String getPais() {
+    public String getPais ( ) {
         return pais;
     }
 
-    public void setPais(String pais) {
+    public void setPais ( String pais ) {
         this.pais = pais;
     }
 
-    public String getCep() {
+    public String getCep ( ) {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep ( String cep ) {
         this.cep = cep;
     }
 
-    public String getCargoIgreja() {
+    public String getCargoIgreja ( ) {
         return cargoIgreja;
     }
 
-    public void setCargoIgreja(String cargoIgreja) {
+    public void setCargoIgreja ( String cargoIgreja ) {
         this.cargoIgreja = cargoIgreja;
     }
 
-    public String getStatus() {
+    public String getStatus ( ) {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus ( String status ) {
         this.status = status;
     }
 
-    public String getDatahora() {
+    public String getDatahora ( ) {
         return datahora;
     }
 
-    public void setDatahora(String datahora) {
+    public void setDatahora ( String datahora ) {
         this.datahora = datahora;
     }
 
-    public String getIgrejaPadrao() {
+    public String getIgrejaPadrao ( ) {
         return igrejaPadrao;
     }
 
-    public void setIgrejaPadrao(String igrejaPadrao) {
+    public void setIgrejaPadrao ( String igrejaPadrao ) {
         this.igrejaPadrao = igrejaPadrao;
     }
 
-    public String getUserId() {
+    public String getUserId ( ) {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId ( String userId ) {
         this.userId = userId;
+    }
+
+    public ArrayList < String > getGroup ( ) {
+        return group;
+    }
+
+    public void setGroup ( ArrayList < String > group ) {
+        this.group = group;
     }
 }

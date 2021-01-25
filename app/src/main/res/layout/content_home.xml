@@ -42,7 +42,8 @@
                     android:id="@+id/imgcelulaligacao"
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
-                    android:src="@drawable/ic_baseline_social_distance_24" />
+                    android:src="@drawable/ic_baseline_social_distance_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardCelulas"
@@ -68,7 +69,8 @@
                     android:id="@+id/imgrelatorio"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_baseline_view_list_24" />
+                    android:src="@drawable/ic_baseline_view_list_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardRelatorios"
@@ -94,7 +96,8 @@
                     android:id="@+id/imgintercesao"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_wifi_tethering_24" />
+                    android:src="@drawable/ic_baseline_wifi_tethering_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardIntercesão"
@@ -121,7 +124,8 @@
                     android:id="@+id/imgagenda"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
-                    android:src="@drawable/ic_baseline_menu_book_24" />
+                    android:src="@drawable/ic_baseline_menu_book_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardAgenda"
@@ -147,7 +151,8 @@
                     android:id="@+id/imgvisao"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_groups_24" />
+                    android:src="@drawable/ic_baseline_groups_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardVisão"
@@ -173,7 +178,8 @@
                     android:id="@+id/imgContato"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_phone_24" />
+                    android:src="@drawable/ic_baseline_phone_24"
+                    android:contentDescription="TODO" />
 
                 <TextView
                     android:id="@+id/tvcardBatismo"

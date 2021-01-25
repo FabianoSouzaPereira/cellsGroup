@@ -27,9 +27,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
-import pessoas.Usuario;
+import br.com.cellsgroup.models.pessoas.User;
 
 import static br.com.cellsgroup.HomeActivity.useremail;
 import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
@@ -42,7 +45,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private DatabaseReference Usuarios;
+    private DatabaseReference users;
     private final int limitebusca = 1;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
@@ -52,6 +55,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private TextInputLayout EditTextnomepai;
     private TextInputLayout EditTextnomemae;
     private TextInputLayout EditTextestadocivil;
+    private TextInputLayout EditTextCodigoPais;
     private TextInputLayout EditTexttelefone;
     private TextInputLayout EditTextemail;
     private TextInputLayout EditTextendereco;
@@ -60,9 +64,11 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private TextInputLayout EditTextpais;
     private TextInputLayout EditTextcep;
     private TextInputLayout EditTextcargoIgreja;
+    private TextInputLayout EditTextGroup;
     private boolean emaildual = false;
     private String email = "";
     private String emailTest = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +100,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         EditTextnomepai = findViewById( R.id.text_input_editNomePai );
         EditTextnomemae = findViewById( R.id.text_input_editNomeMae );
         EditTextestadocivil = findViewById( R.id.text_input_editEstadoCivil );
+        EditTextCodigoPais = findViewById ( R.id.text_input_editCodigoPais );
         EditTexttelefone = findViewById( R.id.text_input_editTelefone );
         EditTextemail = findViewById( R.id.text_input_editEmail );
         EditTextendereco = findViewById( R.id.text_input_editEndereco );
@@ -102,10 +109,11 @@ public class AddUsuarioActivity extends AppCompatActivity {
         EditTextpais = findViewById( R.id.text_input_editPais );
         EditTextcep = findViewById( R.id.text_input_editCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
+        EditTextGroup = findViewById (R.id.text_input_editGroup );
     }
 
     private void inicializarFirebase() {
-        Usuarios = FirebaseDatabase.getInstance().getReference();
+        users = FirebaseDatabase.getInstance().getReference();
     }
 
     private void addUsuarioClick(MenuItem item){
@@ -119,6 +127,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
            String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
            String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
            String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
+           String codigopais = EditTextCodigoPais.getEditText ().getText ().toString ().trim ();
            String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
            useremail =  EditTextemail.getEditText().getText().toString().trim();
            String email = useremail;
@@ -131,18 +140,23 @@ public class AddUsuarioActivity extends AppCompatActivity {
            String status = "1";
            String igreja = HomeActivity.igreja;
            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+           ArrayList<String> group = null;
 
-        if(emaildual == true ){
+        if(emaildual){
                 Toast.makeText( AddUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
                 return ;
         }
             if(!TextUtils.isEmpty( nome )){
-                String uid = Usuarios.push().getKey();
-                Usuario usuario = new Usuario(uid, nome, idade, sexo, dataNascimento, dataBastismo, nomepai, nomemae, estadocivil, telefone, email , endereco, bairro, cidade, pais, cep, cargoIgreja, status, DataTime, igreja , userId);
+                String uid = users.push().getKey();
+                User user = new User (uid, nome, idade, sexo, dataNascimento, dataBastismo, nomepai, nomemae, estadocivil, codigopais,telefone, email , endereco, bairro, cidade, pais, cep, cargoIgreja, status, DataTime, igreja , userId, group);
                 if (uid != null) {
-                    Usuarios.child( "/Usuarios/" ).child( uid ).setValue( usuario );
+                    try {
+                        users.child( "/users/" ).child( uid ).setValue( user );
+                    } catch ( Exception e ) {
+                        e.printStackTrace ( );
+                    }
                 }
-                Toast.makeText( this, "Criado usuario com sucesso", Toast.LENGTH_LONG ).show();
+                Toast.makeText( this, "Criado user com sucesso", Toast.LENGTH_LONG ).show();
 
             }else{
                 Toast.makeText(this,"Erro ao tentar criar usuário !", Toast.LENGTH_LONG).show();
@@ -155,11 +169,97 @@ public class AddUsuarioActivity extends AppCompatActivity {
     }
 
 
+    private void editUsuarioClick(MenuItem item){
+        addDataHora();
+
+        String nome =  EditTextnome.getEditText().getText().toString().trim();
+        String idade =  EditTextidade.getEditText().getText().toString().trim();
+        String sexo = EditTextsexo.getEditText().getText().toString().trim();
+        String dataNascimento = EditTextdataNascimento.getEditText().getText().toString().trim();
+        String dataBastismo = EditTextdataBastismo.getEditText().getText().toString().trim();
+        String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
+        String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
+        String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
+        String codigopais = EditTextCodigoPais.getEditText ().getText ().toString ().trim ();
+        String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
+        useremail =  EditTextemail.getEditText().getText().toString().trim();
+        String email = useremail;
+        String endereco =  EditTextendereco.getEditText().getText().toString().trim();
+        String bairro = EditTextbairro.getEditText().getText().toString().trim();
+        String cidade =  EditTextcidade.getEditText().getText().toString().trim();
+        String pais =  EditTextpais.getEditText().getText().toString().trim();
+        String cep = EditTextcep.getEditText().getText().toString().trim();
+        String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
+        String status = "1";
+        String igreja = HomeActivity.igreja;
+        String group = "Padrão";
+        users = databaseReference.child( "users/" ).child ( email );
+        if(emaildual){
+            Toast.makeText( AddUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
+            return ;
+        }
+
+        users.child (useremail);
+
+        if(!TextUtils.isEmpty( nome )){
+            Map <String, Object> usersUpdates = new HashMap <> ();
+            usersUpdates.put (users + "/name/",nome );
+            usersUpdates.put (users + "/idade/",idade );
+            usersUpdates.put (users + "/sexo/",sexo );
+            usersUpdates.put (users + "/dataNascimento /",dataNascimento );
+            usersUpdates.put (users + "/dataBastismo/",dataBastismo );
+            usersUpdates.put (users + "/nomepai/",nomepai );
+            usersUpdates.put (users + "/nomemae /",nomemae );
+            usersUpdates.put (users + "/estadocivil/",estadocivil );
+            usersUpdates.put (users + "/codigopais/",codigopais );
+            usersUpdates.put (users + "/email/",email );
+            usersUpdates.put (users + "/endereco/",endereco );
+            usersUpdates.put (users + "/bairro",bairro );
+            usersUpdates.put (users + "/cidade/",cidade );
+            usersUpdates.put (users + "/pais/",pais );
+            usersUpdates.put (users + "/cep/",cep );
+            usersUpdates.put (users + "/cargoIgreja/",cargoIgreja );
+            usersUpdates.put (users + "/status/",status );
+            usersUpdates.put (users + "/igreja/",igreja);
+            usersUpdates.put (users + "/group/",group );
+            String uid = users.push().getKey();
+
+             if (uid != null) {
+                try {
+                    users.updateChildren (usersUpdates );
+                } catch ( Exception e ) {
+                    e.printStackTrace ( );
+                }
+            }
+            Toast.makeText( this, "Criado user com sucesso", Toast.LENGTH_LONG ).show();
+
+        }else{
+            Toast.makeText(this,"Erro ao tentar criar usuário !", Toast.LENGTH_LONG).show();
+            if (!typeUserAdmin){
+                Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar usuario admin !", Toast.LENGTH_LONG).show();
+            }
+        }
+        Intent intent= new Intent(AddUsuarioActivity.this,HomeActivity.class);
+        startActivity(intent);
+    }
+
+    private void deleteUsuario(){
+        useremail =  EditTextemail.getEditText().getText().toString().trim();
+        if(!useremail.isEmpty()) {
+            users.child ( "users/" ).child ( useremail ).removeValue ( );
+            Toast.makeText ( this , "Usuário Apagada com sucesso" , Toast.LENGTH_LONG ).show ( );
+        }else{
+            Toast.makeText(this,"Erro ao tentar Apagar a usuário!", Toast.LENGTH_LONG).show();
+        }
+        Intent intent= new Intent(AddUsuarioActivity.this,HomeActivity.class);
+        startActivity(intent);
+    }
+
     private void readOnlyActive() {
 
         emailTest = EditTextemail.getEditText().getText().toString().trim();
-        Usuarios = databaseReference.child( "Usuarios/" );
-        Query query = Usuarios.orderByChild( "email" ).equalTo(email).limitToFirst(limitebusca);
+        users = databaseReference.child( "users/" );
+        Query query = users.orderByChild( "email" ).equalTo(email).limitToFirst(limitebusca);
         query.addListenerForSingleValueEvent( new ValueEventListener() {
 
             @Override
@@ -167,7 +267,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         for (DataSnapshot dados : ds.getChildren()) {
-                            Usuario u = dados.getValue( Usuario.class );
+                            User u = dados.getValue( User.class );
                             email = u.getEmail();
                         }
                     }
@@ -191,7 +291,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.usuario, menu );
+        getMenuInflater().inflate( R.menu.menu_save, menu );
         return true;
     }
 
@@ -202,11 +302,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Save_addUsuario){
+        if(id == R.id.action_save){
             addUsuarioClick(item);
-            return true;
-        }
-        if(id == R.id.action_cancel_addUsuario){
             return true;
         }
 

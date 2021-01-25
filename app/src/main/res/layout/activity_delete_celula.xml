@@ -22,4 +22,4 @@
         app:headerLayout="@layout/nav_header_delete_celula"
         app:menu="@menu/menu_config" />
 
-</>
+</androidx.drawerlayout.widget.DrawerLayout >

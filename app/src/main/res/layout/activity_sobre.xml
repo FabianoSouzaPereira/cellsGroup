@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="@+id/guideline21"
-        app:srcCompat="@drawable/calice" />
+        app:srcCompat="@drawable/calice"
+        android:contentDescription="TODO" />
 
     <TextView
         android:id="@+id/txNome"

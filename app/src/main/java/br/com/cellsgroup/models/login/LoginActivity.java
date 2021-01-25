@@ -1,4 +1,4 @@
-package login;
+package br.com.cellsgroup.models.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
