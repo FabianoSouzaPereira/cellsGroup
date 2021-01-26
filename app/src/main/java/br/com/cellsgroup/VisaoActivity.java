@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.view.MenuItem;
-
+import br.com.cellsgroup.R;
 import android.view.Menu;
 import android.widget.EditText;
 
@@ -18,6 +18,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.InputStream;
+
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
 public class VisaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private EditText editTextVisao;

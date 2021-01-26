@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.celulas;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,10 +33,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import br.com.cellsgroup.relatorios.AddRelatorioActivity;
+import br.com.cellsgroup.relatorios.AddUsuarioActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.Configuracao;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.login.LoginActivity;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -179,7 +192,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     @Override
     public void onBackPressed() {
         CelulasActivity.this.finish();
-        Intent home = new Intent(CelulasActivity.this,HomeActivity.class);
+        Intent home = new Intent(CelulasActivity.this, HomeActivity.class);
         startActivity(home);
     }
 
@@ -198,7 +211,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             startActivity ( config );
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
-            Intent addigreja = new Intent ( CelulasActivity.this , AddIgrejaActivity.class );
+            Intent addigreja = new Intent ( CelulasActivity.this , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {
@@ -230,25 +243,25 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             Intent celulas = new Intent(CelulasActivity.this,CelulasActivity.class);
             startActivity( celulas );
         } else if (id == R.id.nav_communication) {
-            Intent comunidados = new Intent(CelulasActivity.this,ComunicadosActivity.class);
+            Intent comunidados = new Intent(CelulasActivity.this, ComunicadosActivity.class);
             startActivity( comunidados );
         } else if (id == R.id.nav_intersession) {
-            Intent intercessao = new Intent( CelulasActivity.this,IntercessaoActivity.class );
+            Intent intercessao = new Intent( CelulasActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
         } else if (id == R.id.nav_schedule) {
-            Intent agenda = new Intent( CelulasActivity.this,AgendaActivity.class );
+            Intent agenda = new Intent( CelulasActivity.this, AgendaActivity.class );
             startActivity( agenda );
         } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( CelulasActivity.this,VisaoActivity.class );
+            Intent visao = new Intent( CelulasActivity.this, VisaoActivity.class );
             startActivity( visao );
         } else if (id == R.id.nav_contact) {
-            Intent contato = new Intent( CelulasActivity.this,ContatoActivity.class );
+            Intent contato = new Intent( CelulasActivity.this, ContatoActivity.class );
             startActivity( contato );
         } else if (id == R.id.nav_share) {
-            Intent compartilhar = new Intent( CelulasActivity.this,CompartilharActivity.class );
+            Intent compartilhar = new Intent( CelulasActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
         } else if (id == R.id.nav_send) {
-            Intent Enviar = new Intent( CelulasActivity.this,EnviarActivity.class );
+            Intent Enviar = new Intent( CelulasActivity.this, EnviarActivity.class );
             startActivity( Enviar );
         }
 

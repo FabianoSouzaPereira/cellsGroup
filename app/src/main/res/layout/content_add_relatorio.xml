@@ -4,16 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".AddRelatorioActivity"
+    tools:context=".relatorios.AddRelatorioActivity"
     tools:showIn="@layout/app_bar_add_relatorio">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="68dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,9 +40,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/celula1"
                     android:inputType="none"
-                    android:longClickable="false"
-                    android:hint="@string/celula1" />
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -52,9 +56,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/rede1"
                     android:inputType="none"
-                    android:longClickable="false"
-                    android:hint="@string/rede1" />
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -68,9 +72,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/supervisor1"
                     android:inputType="none"
-                    android:longClickable="false"
-                    android:hint="@string/supervisor1" />
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -84,10 +88,11 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/lider1"
                     android:inputType="none"
-                    android:longClickable="false"
-                    android:hint="@string/lider1" />
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_vice_lider"
                 android:layout_width="match_parent"
@@ -97,11 +102,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/vice_lider1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/vice_lider1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -113,11 +118,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/anfitriao1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/anfitriao1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -129,11 +134,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/secretario1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/secretario1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -145,11 +150,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/colaborador1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/colaborador1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -161,11 +166,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/dia_da_semana1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/dia_da_semana1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -177,11 +182,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/horario1"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/horario1"
                     android:inputType="none"
-                    android:longClickable="false"/>
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -254,9 +259,9 @@
                 android:id="@+id/tvEstudo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="@string/foi_ministrado_o_estudo"
-                android:textSize="18sp"
-                android:paddingBottom="8dp"/>
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/rgEstudo"
@@ -287,9 +292,9 @@
                 android:id="@+id/tvQuebragelo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="@string/foi_realizado_o_quebra_gelo"
-                android:textSize="18sp"
-                android:paddingBottom="8dp"/>
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/rgQuebragelo"
@@ -352,8 +357,8 @@
                 android:id="@+id/tvAceitacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/algu_m_aceitou_jesus_como_seu_salvador"
-                android:paddingBottom="8dp"/>
+                android:paddingBottom="8dp"
+                android:text="@string/algu_m_aceitou_jesus_como_seu_salvador" />
 
             <RadioGroup
                 android:id="@+id/rgAceitacao"
@@ -384,9 +389,9 @@
                 android:id="@+id/tvReconciliacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="@string/algu_m_se_reconcilhou_com_cristo"
-                android:textSize="18sp"
-                android:paddingBottom="8dp"/>
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/rgReconciliacao"
@@ -417,9 +422,9 @@
                 android:id="@+id/tvTestemunho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="@string/algu_m_contou_testemunho"
-                android:textSize="18sp"
-                android:paddingBottom="8dp"/>
+                android:textSize="18sp" />
 
             <RadioGroup
                 android:id="@+id/rgTestemunho"

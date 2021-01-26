@@ -118,7 +118,6 @@
     <string name="title_activity_relatorio_view">Relatórios</string>
     <string name="title_activity_read_celula">Celulas</string>
     <string name="batismo">Batismo</string>
-    <string name="celulas">Celulas</string>
     <string name="title_activity_add_relatorio">Adiciona Relatório</string>
     <string name="title_activity_delete_celula">Apaga Celula</string>
     <string name="Bem_Vindo">Bem Vindo :</string>
@@ -179,6 +178,7 @@
     <string name="procurar">Procurar</string>
     <string name="c_digo_do_pa_s">Código do País</string>
     <string name="telefone">Telefone</string>
+    <string name="celulas">Celulas</string>
 
 
 </resources>

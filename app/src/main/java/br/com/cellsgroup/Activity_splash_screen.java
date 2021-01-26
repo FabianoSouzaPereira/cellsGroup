@@ -7,7 +7,9 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static br.com.cellsgroup.HomeActivity.tag;
+import br.com.cellsgroup.home.HomeActivity;
+
+import static br.com.cellsgroup.home.HomeActivity.tag;
 public final class Activity_splash_screen extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT = 3000;
     @Override

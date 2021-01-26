@@ -19,6 +19,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+
 public class ComunicadosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override

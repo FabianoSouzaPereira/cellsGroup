@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.relatorios;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,10 +29,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.Configuracao;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
@@ -204,17 +216,17 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         switch (item.getItemId()){
 
             case R.id.action_settings:
-                Intent config = new Intent( ReadRelatorioActivity.this,Configuracao.class );
+                Intent config = new Intent( ReadRelatorioActivity.this, Configuracao.class );
                 startActivity( config );
                 return true;
             case R.id.action_addIgreja:
-                Intent addigreja = new Intent( ReadRelatorioActivity.this,AddIgrejaActivity.class );
+                Intent addigreja = new Intent( ReadRelatorioActivity.this, addIgrejaActivity.class );
                 addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addigreja );
                 return true;
             case R.id.action_addUsuario:
-                Intent addusuario = new Intent( ReadRelatorioActivity.this,AddUsuarioActivity.class );
+                Intent addusuario = new Intent( ReadRelatorioActivity.this, AddUsuarioActivity.class );
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addusuario );

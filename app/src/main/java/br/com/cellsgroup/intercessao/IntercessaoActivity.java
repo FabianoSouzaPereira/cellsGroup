@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.intercessao;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,8 +34,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapters.AdapterListViewIntercessao;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.home.HomeActivity;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterListViewIntercessao.OnIntercessaoListener {
     private static final String TAG = "ClickLista";
@@ -44,7 +53,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private final int limitebusca = 500;
-    private final ArrayList<Intercessao> inter = new ArrayList<Intercessao>( );
+    private final ArrayList< br.com.cellsgroup.intercessao.Intercessao > inter = new ArrayList<Intercessao>( );
     private String mUid;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;

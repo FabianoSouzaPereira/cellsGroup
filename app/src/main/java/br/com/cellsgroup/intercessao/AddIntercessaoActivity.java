@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.intercessao;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -21,7 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import br.com.cellsgroup.R;
+
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 public class AddIntercessaoActivity extends AppCompatActivity {
 

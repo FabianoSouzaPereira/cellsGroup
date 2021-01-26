@@ -6,44 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="10"
-    tools:context=".HomeActivity"
+    tools:context=".home.HomeActivity"
     tools:ignore="MissingDefaultResource"
     tools:showIn="@layout/app_bar_home">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="9dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:paddingTop="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <GridLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:columnCount="3"
-            android:padding="10dp"
-            android:rowCount="2">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview_celula"
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardcellClick"
                 android:padding="8dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgcelulaligacao"
                     android:layout_width="match_parent"
-                    android:layout_height="69dp"
-                    android:src="@drawable/ic_baseline_social_distance_24"
-                    android:contentDescription="TODO" />
+                    android:layout_height="64dp"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_social_distance_24" />
 
                 <TextView
                     android:id="@+id/tvcardCelulas"
@@ -54,23 +57,26 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardrelatorioClick"
                 android:padding="20dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgrelatorio"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
-                    android:src="@drawable/ic_baseline_view_list_24"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_view_list_24" />
 
                 <TextView
                     android:id="@+id/tvcardRelatorios"
@@ -81,23 +87,26 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardintercessaoClick"
                 android:padding="20dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgintercesao"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_wifi_tethering_24"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_wifi_tethering_24" />
 
                 <TextView
                     android:id="@+id/tvcardIntercesão"
@@ -111,21 +120,30 @@
 
             </androidx.cardview.widget.CardView>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardagendaClick"
                 android:padding="20dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgagenda"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
-                    android:src="@drawable/ic_baseline_menu_book_24"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_menu_book_24" />
 
                 <TextView
                     android:id="@+id/tvcardAgenda"
@@ -136,23 +154,27 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
             </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardvisaoClick"
                 android:padding="20dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgvisao"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_groups_24"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_groups_24" />
 
                 <TextView
                     android:id="@+id/tvcardVisão"
@@ -163,23 +185,26 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
                 android:layout_height="87dp"
                 android:layout_margin="8dp"
+                android:layout_weight="10"
                 android:onClick="cardcontatoClick"
                 android:padding="15dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:cardElevation="0dp">
 
+
                 <ImageView
                     android:id="@+id/imgContato"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:src="@drawable/ic_baseline_phone_24"
-                    android:contentDescription="TODO" />
+                    android:contentDescription="TODO"
+                    android:src="@drawable/ic_baseline_phone_24" />
 
                 <TextView
                     android:id="@+id/tvcardBatismo"
@@ -190,9 +215,10 @@
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
 
-        </GridLayout>
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,9 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.agenda;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -17,10 +16,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -43,8 +38,17 @@ import java.util.List;
 
 import Adapters.AdapterListViewAgenda;
 import agendas.Agenda;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 public class AgendaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference novaRef;

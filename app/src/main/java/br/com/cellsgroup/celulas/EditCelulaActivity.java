@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.celulas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,9 +33,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 @SuppressWarnings("ALL")
 public class EditCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -238,7 +247,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             Toast.makeText(this,"Erro ao tentar Editar célula !", Toast.LENGTH_LONG).show();
         }
 
-        Intent intent = new Intent( EditCelulaActivity.this,CelulasActivity.class);
+        Intent intent = new Intent( EditCelulaActivity.this, CelulasActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity( intent );

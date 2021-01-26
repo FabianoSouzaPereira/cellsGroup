@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.relatorios;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -32,10 +32,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.pessoas.User;
 
-import static br.com.cellsgroup.HomeActivity.useremail;
-import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.useremail;
+import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 
 public class AddUsuarioActivity extends AppCompatActivity {
 

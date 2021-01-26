@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.agenda;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -27,10 +27,11 @@ import java.util.Date;
 import java.util.Objects;
 
 import agendas.Agenda;
+import br.com.cellsgroup.R;
 
-import static br.com.cellsgroup.HomeActivity.Logado;
-import static br.com.cellsgroup.HomeActivity.igreja;
-import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 
 public class AddAgendaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
@@ -154,7 +155,7 @@ public class AddAgendaActivity extends AppCompatActivity {
             String uid = databaseReference.push().getKey();
             Agenda agenda = new Agenda( uid, data, hora, evento, local, descricao, status, userId );
             databaseReference.child( "Igrejas/" + igreja + "/Agenda").child( uid ).setValue( agenda );
-            Intent intent = new Intent( AddAgendaActivity.this,AgendaActivity.class );
+            Intent intent = new Intent( AddAgendaActivity.this, AgendaActivity.class );
             startActivity( intent );
             finish();
             Toast.makeText(this,"Criado agenda com sucesso", Toast.LENGTH_LONG).show();

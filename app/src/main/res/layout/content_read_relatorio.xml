@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_default"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ReadRelatorioActivity"
+    tools:context=".relatorios.ReadRelatorioActivity"
     tools:showIn="@layout/app_bar_read_relatorio">
 
     <ScrollView

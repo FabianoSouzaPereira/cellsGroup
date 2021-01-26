@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.celulas;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,9 +27,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 @SuppressWarnings("ALL")
 public class ReadCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -159,7 +168,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         }
 
         if(id == R.id.action_Edit){
-            Intent intent = new Intent( ReadCelulaActivity.this,EditCelulaActivity.class );
+            Intent intent = new Intent( ReadCelulaActivity.this, EditCelulaActivity.class );
             intent.putExtra("Celula", String.valueOf( this.celula_ ) );
             startActivity(intent);
             finish();
@@ -232,7 +241,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
                 .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent( ReadCelulaActivity.this,DeleteCelulaActivity.class );
+                        Intent intent = new Intent( ReadCelulaActivity.this, DeleteCelulaActivity.class );
                         intent.putExtra("Celula", String.valueOf( ReadCelulaActivity.this.celula_ ) );
                         startActivity(intent);
                         finish();

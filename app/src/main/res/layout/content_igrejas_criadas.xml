@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".IgrejasCriadasActivity"
+    tools:context=".Igreja.IgrejasCriadasActivity"
     tools:showIn="@layout/activity_igrejas_criadas">
 
     <androidx.recyclerview.widget.RecyclerView

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.cellsgroup.Intercessao;
+import br.com.cellsgroup.intercessao.Intercessao;
 import br.com.cellsgroup.R;
 
 @SuppressWarnings( "ALL" )

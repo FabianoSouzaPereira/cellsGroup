@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.Igreja;
 
 import android.os.Bundle;
 
@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import Adapters.AdapterListViewIgreja;
+import br.com.cellsgroup.R;
 
 
 @SuppressWarnings( "ALL" )

@@ -19,6 +19,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+
 public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -45,7 +50,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     @Override
     public void onBackPressed() {
         ContatoActivity.this.finish();
-        Intent home = new Intent(ContatoActivity.this,HomeActivity.class);
+        Intent home = new Intent(ContatoActivity.this, HomeActivity.class);
         startActivity(home);
     }
 

@@ -28,16 +28,16 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="br.com.cellsgroup.IgrejasCriadasActivity"
+            android:name="br.com.cellsgroup.Igreja.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name="br.com.cellsgroup.SobreActivity" />
         <activity
-            android:name="br.com.cellsgroup.AddAgendaActivity"
+            android:name="br.com.cellsgroup.agenda.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AddIntercessaoActivity"
+            android:name="br.com.cellsgroup.intercessao.AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -45,11 +45,11 @@
             android:label="@string/title_activity_conexao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AddUsuarioActivity"
+            android:name="br.com.cellsgroup.relatorios.AddUsuarioActivity"
             android:label="@string/title_activity_add_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AddIgrejaActivity"
+            android:name="br.com.cellsgroup.Igreja.addIgrejaActivity"
             android:label="@string/title_activity_add_igreja"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -57,31 +57,31 @@
             android:label="@string/title_activity_configuracao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.EditCelulaActivity"
+            android:name="br.com.cellsgroup.celulas.EditCelulaActivity"
             android:label="@string/title_activity_edit_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.DeleteCelulaActivity"
+            android:name="br.com.cellsgroup.celulas.DeleteCelulaActivity"
             android:label="@string/title_activity_delete_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AddRelatorioActivity"
+            android:name="br.com.cellsgroup.relatorios.AddRelatorioActivity"
             android:label="@string/title_activity_add_relatorio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.ReadCelulaActivity"
+            android:name="br.com.cellsgroup.celulas.ReadCelulaActivity"
             android:label="@string/title_activity_read_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AddCelulaActivity"
+            android:name="br.com.cellsgroup.celulas.AddCelulaActivity"
             android:label="@string/title_activity_add_celula"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.RelatorioActivityView"
+            android:name="br.com.cellsgroup.relatorios.RelatorioActivityView"
             android:label="@string/title_activity_relatorio_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.ReadRelatorioActivity"
+            android:name="br.com.cellsgroup.relatorios.ReadRelatorioActivity"
             android:label="@string/title_activity_read_relatorio"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -101,11 +101,11 @@
             android:label="@string/title_activity_visao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.AgendaActivity"
+            android:name="br.com.cellsgroup.agenda.AgendaActivity"
             android:label="@string/title_activity_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.IntercessaoActivity"
+            android:name="br.com.cellsgroup.intercessao.IntercessaoActivity"
             android:label="@string/title_activity_intercessao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -113,11 +113,11 @@
             android:label="@string/title_activity_comunicados"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.CelulasActivity"
+            android:name="br.com.cellsgroup.celulas.CelulasActivity"
             android:label="@string/title_activity_celulas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.HomeActivity"
+            android:name="br.com.cellsgroup.home.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

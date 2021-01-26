@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.celulas;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,11 +30,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
-import static br.com.cellsgroup.HomeActivity.Logado;
-import static br.com.cellsgroup.HomeActivity.igreja;
-import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -221,31 +230,31 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent home = new Intent(this,HomeActivity.class);
+            Intent home = new Intent(this, HomeActivity.class);
             startActivity( home );
         } else if (id == R.id.nav_cells) {
-            Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
+            Intent celulas = new Intent( AddCelulaActivity.this, CelulasActivity.class);
             startActivity( celulas );
         } else if (id == R.id.nav_communication) {
-            Intent comunidados = new Intent( AddCelulaActivity.this,ComunicadosActivity.class);
+            Intent comunidados = new Intent( AddCelulaActivity.this, ComunicadosActivity.class);
             startActivity( comunidados );
         } else if (id == R.id.nav_intersession) {
-            Intent intercessao = new Intent( AddCelulaActivity.this,IntercessaoActivity.class );
+            Intent intercessao = new Intent( AddCelulaActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
         } else if (id == R.id.nav_schedule) {
-            Intent agenda = new Intent( AddCelulaActivity.this,AgendaActivity.class );
+            Intent agenda = new Intent( AddCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
         } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( AddCelulaActivity.this,VisaoActivity.class );
+            Intent visao = new Intent( AddCelulaActivity.this, VisaoActivity.class );
             startActivity( visao );
         } else if (id == R.id.nav_contact) {
-            Intent contato = new Intent( AddCelulaActivity.this,ContatoActivity.class );
+            Intent contato = new Intent( AddCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );
         } else if (id == R.id.nav_share) {
-            Intent compartilhar = new Intent( AddCelulaActivity.this,CompartilharActivity.class );
+            Intent compartilhar = new Intent( AddCelulaActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
         } else if (id == R.id.nav_send) {
-            Intent Enviar = new Intent( AddCelulaActivity.this,EnviarActivity.class );
+            Intent Enviar = new Intent( AddCelulaActivity.this, EnviarActivity.class );
             startActivity( Enviar );
         }
 
@@ -276,7 +285,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 String uid = Celulas.push().getKey();
                 Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId);
                 if (uid == null) throw new AssertionError();
-                Celulas.child("Igrejas/" + igreja + "/Celulas/").child( celula ).child( uid ).setValue( cel );
+                Celulas.child("churchs/" + igreja + "/Cells/").child( celula ).child( uid ).setValue( cel );
 
                 Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
             }else{

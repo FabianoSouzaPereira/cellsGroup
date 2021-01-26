@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import br.com.cellsgroup.HomeActivity;
+import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
 @SuppressWarnings("ALL")

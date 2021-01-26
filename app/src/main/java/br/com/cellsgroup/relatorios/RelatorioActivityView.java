@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.relatorios;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -35,10 +35,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.Configuracao;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -193,17 +205,17 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         switch (item.getItemId()){
 
             case R.id.action_settings:
-                Intent config = new Intent( RelatorioActivityView.this,Configuracao.class );
+                Intent config = new Intent( RelatorioActivityView.this, Configuracao.class );
                 startActivity( config );
                 return true;
             case R.id.action_addIgreja:
-                Intent addigreja = new Intent( RelatorioActivityView.this,AddIgrejaActivity.class );
+                Intent addigreja = new Intent( RelatorioActivityView.this, addIgrejaActivity.class );
                 addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addigreja );
                 return true;
             case R.id.action_addUsuario:
-                Intent addusuario = new Intent( RelatorioActivityView.this,AddUsuarioActivity.class );
+                Intent addusuario = new Intent( RelatorioActivityView.this, AddUsuarioActivity.class );
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addusuario );

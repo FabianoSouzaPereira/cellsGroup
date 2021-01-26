@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.com.cellsgroup.HomeActivity;
+import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
 

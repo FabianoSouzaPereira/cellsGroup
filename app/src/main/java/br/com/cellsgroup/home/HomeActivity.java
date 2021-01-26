@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.home;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -34,16 +34,27 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.cellsgroup.Activity_splash_screen;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.Configuracao;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.SobreActivity;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
-import br.com.cellsgroup.models.pessoas.User;
+import br.com.cellsgroup.relatorios.AddUsuarioActivity;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -52,12 +63,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private static final String TAG = "IGREJA PADRAO -> ";
     public static FirebaseUser UI;
     public static String useremail = "";
-    public static ArrayList<String> group;
+    public static Object group;
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaref = null;
+    private DatabaseReference novaref2 = null;
     private FirebaseFunctions mFunctions;
     public static boolean Logado = false;
     public static String tag = "0";
@@ -99,7 +111,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
 
-
     }
 
     public void pegarPadroes() {
@@ -108,29 +119,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText( this, "Sem email cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
-
             novaref = databaseReference.child( "users/");
             Query query = novaref.orderByChild( "email" ).equalTo( email ).limitToFirst (1);
-            query.addListenerForSingleValueEvent( new ValueEventListener() {
+            query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                      //  User u = ds.getValue( User.class );/
+                public void onDataChange ( @NonNull DataSnapshot snapshot ) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
                         Object value = ds.child("group").getValue ();
                         Object valueEmail = ds.child("email").getValue ();
-                        Object valueIgreja = ds.child("igrejaPadrao").getValue();;
-                        Object valueGroup = ds.child("group/").getValue();;
-                        HomeActivity.useremail = valueEmail.toString ();
-                        HomeActivity.igreja = valueIgreja.toString ();
+                        Object valueIgreja = ds.child("igrejaPadrao").getValue();
+                        useremail = valueEmail.toString ();
+                        igreja = valueIgreja.toString ();
                     }
-                    Log.i( "email",""+useremail );
-                    Log.i( "igreja",""+igreja );
+                    Log.d( "email-------------> ",""+ useremail );
+                    Log.d( "igreja------------> ",""+ igreja );
                     count = 1;
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.i( "Erro", "Erro consulta usuario. Tipo de erro :" + databaseError.getCode() );
+                public void onCancelled ( @NonNull DatabaseError error ) {
+
                 }
             } );
     }
@@ -228,7 +236,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent( HomeActivity.this, AddIgrejaActivity.class );
+                    Intent intent = new Intent( HomeActivity.this, addIgrejaActivity.class );
                     startActivity( intent);
                 }
             } );
@@ -320,7 +328,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity ( config );
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
-            Intent addigreja = new Intent ( HomeActivity.this , AddIgrejaActivity.class );
+            Intent addigreja = new Intent ( HomeActivity.this , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {

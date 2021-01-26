@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.relatorios;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -31,12 +31,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.models.celulas.Celula;
 
-import static br.com.cellsgroup.HomeActivity.Logado;
-import static br.com.cellsgroup.HomeActivity.igreja;
-import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 
 
 @SuppressWarnings("ALL")
@@ -331,7 +341,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            Intent intent = new Intent( AddRelatorioActivity.this,RelatorioActivityView.class);
+            Intent intent = new Intent( AddRelatorioActivity.this, RelatorioActivityView.class);
             startActivity( intent );
             finish();
         }

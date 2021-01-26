@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CelulasActivity"
+    android:weightSum="10"
+    tools:context=".celulas.CelulasActivity"
+    tools:ignore="MissingDefaultResource"
     tools:showIn="@layout/app_bar_celulas">
 
     <LinearLayout
         android:id="@+id/linearlayoutcelula"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
+        android:layout_width="385dp"
+        android:layout_height="513dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ListView
             android:id="@+id/listViewCelula"

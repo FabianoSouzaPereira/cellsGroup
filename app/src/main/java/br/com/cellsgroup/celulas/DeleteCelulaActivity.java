@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.celulas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-import static br.com.cellsgroup.HomeActivity.igreja;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
+
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 @SuppressWarnings("ALL")
 public class DeleteCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +95,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
             Toast.makeText(this,"Erro ao tentar Apagar a célula !", Toast.LENGTH_LONG).show();
         }
 
-        Intent celulas = new Intent( DeleteCelulaActivity.this,CelulasActivity.class);
+        Intent celulas = new Intent( DeleteCelulaActivity.this, CelulasActivity.class);
         startActivity( celulas );
         finish();
     }
@@ -136,31 +146,31 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent home = new Intent(this,HomeActivity.class);
+            Intent home = new Intent(this, HomeActivity.class);
             startActivity(home);
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent(DeleteCelulaActivity.this,CelulasActivity.class);
             startActivity( celulas );
         } else if (id == R.id.nav_communication) {
-            Intent comunidados = new Intent(DeleteCelulaActivity.this,ComunicadosActivity.class);
+            Intent comunidados = new Intent(DeleteCelulaActivity.this, ComunicadosActivity.class);
             startActivity( comunidados );
         } else if (id == R.id.nav_intersession) {
-            Intent intercessao = new Intent( DeleteCelulaActivity.this,IntercessaoActivity.class );
+            Intent intercessao = new Intent( DeleteCelulaActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
         } else if (id == R.id.nav_schedule) {
-            Intent agenda = new Intent( DeleteCelulaActivity.this,AgendaActivity.class );
+            Intent agenda = new Intent( DeleteCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
         } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( DeleteCelulaActivity.this,VisaoActivity.class );
+            Intent visao = new Intent( DeleteCelulaActivity.this, VisaoActivity.class );
             startActivity( visao );
         } else if (id == R.id.nav_contact) {
-            Intent contato = new Intent( DeleteCelulaActivity.this,ContatoActivity.class );
+            Intent contato = new Intent( DeleteCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );
         } else if (id == R.id.nav_share) {
-            Intent compartilhar = new Intent( DeleteCelulaActivity.this,CompartilharActivity.class );
+            Intent compartilhar = new Intent( DeleteCelulaActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
         } else if (id == R.id.nav_send) {
-            Intent Enviar = new Intent( DeleteCelulaActivity.this,EnviarActivity.class );
+            Intent Enviar = new Intent( DeleteCelulaActivity.this, EnviarActivity.class );
             startActivity( Enviar );
         }
 

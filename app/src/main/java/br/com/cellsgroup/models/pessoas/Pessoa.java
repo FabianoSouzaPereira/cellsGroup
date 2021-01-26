@@ -1,9 +1,11 @@
 package br.com.cellsgroup.models.pessoas;
 
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-@SuppressWarnings( "ALL" )
-public class Pessoa {
+public class Pessoa implements Serializable {
     private String uid = "";
     private String nome = "";
     private String idade = "";
@@ -26,11 +28,11 @@ public class Pessoa {
     private String datahora = "";
     private String igrejaPadrao = "";
     private String userId = "";
-    private ArrayList<String> group = new ArrayList <String> ();
+    private Object group = null;
 
     public Pessoa( ) { }
 
-    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade , String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , ArrayList < String > group ) {
+    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade , String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
         this.uid = uid;
         this.nome = nome;
         this.idade = idade;
@@ -232,11 +234,11 @@ public class Pessoa {
         this.userId = userId;
     }
 
-    public ArrayList < String > getGroup ( ) {
+    public Object getGroup ( ) {
         return group;
     }
 
-    public void setGroup ( ArrayList < String > group ) {
+    public void setGroup ( JSONObject group ) {
         this.group = group;
     }
 }

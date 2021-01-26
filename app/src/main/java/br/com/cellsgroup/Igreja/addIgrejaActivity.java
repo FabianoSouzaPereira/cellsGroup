@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.Igreja;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,12 +22,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.igreja.Igreja;
-import static br.com.cellsgroup.HomeActivity.Logado;
-import static br.com.cellsgroup.HomeActivity.igreja;
-import static br.com.cellsgroup.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 
-public class AddIgrejaActivity extends AppCompatActivity {
+public class addIgrejaActivity extends AppCompatActivity {
     private DatabaseReference Igrejas;
     public String DataTime;
     public String DataT;
@@ -84,7 +86,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = Igrejas.push().getKey();
                 Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status );
-                Igrejas.child( "Igrejas/" + igreja ).child( uid ).setValue( ig );
+                Igrejas.child( "churchs/" + igreja ).child( uid ).setValue( ig );
                 clearEditTexts();
                 Toast.makeText( this, "Criado Igreja com sucesso", Toast.LENGTH_LONG ).show();
             }
@@ -92,7 +94,7 @@ public class AddIgrejaActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText( this, "Erro ao tentar criar célula !", Toast.LENGTH_LONG ).show();
         } finally {
-            Intent home = new Intent(AddIgrejaActivity.this,HomeActivity.class);
+            Intent home = new Intent( addIgrejaActivity.this, HomeActivity.class);
             startActivity(home);
         }
     }
@@ -102,9 +104,9 @@ public class AddIgrejaActivity extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
             String userId = mAuth.getCurrentUser().getUid();
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-            databaseReference.child( "Usuarios" ).child( userId );
+            databaseReference.child( "users" ).child( userId );
             Map<String, Object> usuarioUpdates = new HashMap<>();
-            usuarioUpdates.put( "Usuarios" + userId + "/igrejaPadrao" , igreja);
+            usuarioUpdates.put( "users" + userId + "/igrejaPadrao" , igreja);
             databaseReference.updateChildren( usuarioUpdates );
             Log.i("Updated", "Updated br.com.cellsgroup.models.igreja padrão de usuário novo. ");
         } catch (Exception e) {
@@ -112,9 +114,10 @@ public class AddIgrejaActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public void onBackPressed() {
-        AddIgrejaActivity.this.finish();
+        addIgrejaActivity.this.finish();
     }
 
     @SuppressLint("SimpleDateFormat")
