@@ -121,7 +121,7 @@ public class AddAgendaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save , menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -154,7 +154,7 @@ public class AddAgendaActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty( evento ) && !TextUtils.isEmpty( local ) && Logado && typeUserAdmin) {
             String uid = databaseReference.push().getKey();
             Agenda agenda = new Agenda( uid, data, hora, evento, local, descricao, status, userId );
-            databaseReference.child( "Igrejas/" + igreja + "/Agenda").child( uid ).setValue( agenda );
+            databaseReference.child( "churchs/" + igreja + "/\n" + "schedule").child( uid ).setValue( agenda );
             Intent intent = new Intent( AddAgendaActivity.this, AgendaActivity.class );
             startActivity( intent );
             finish();

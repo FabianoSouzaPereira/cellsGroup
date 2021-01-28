@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.view.MenuItem;
-import br.com.cellsgroup.R;
 import android.view.Menu;
 import android.widget.EditText;
 
@@ -21,6 +20,8 @@ import java.io.InputStream;
 
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
@@ -48,8 +49,8 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
             editTextVisao.setText( "Sem dados no momento." );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_visao );
+        NavigationView navigationView = findViewById( R.id.nav_view_visao );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -62,7 +63,7 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_visao);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -121,7 +122,7 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_visao);
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

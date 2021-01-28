@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +24,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.models.Intercessao;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 
@@ -59,7 +63,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty( nome ) && !TextUtils.isEmpty( motivo ) && !TextUtils.isEmpty( data ) ){
                 String uid = Intercessoes.push().getKey();
                 Intercessao intercessao = new Intercessao( uid, nome, motivo, data);
-                Intercessoes.child("Igrejas/" + igreja + "/Intercessao").child( uid ).setValue( intercessao );
+                Intercessoes.child("churchs/" + igreja + "/\n" + "Intercession").child( uid ).setValue( intercessao );
 
                 Toast.makeText(this,"Criado intercessão com sucesso", Toast.LENGTH_LONG).show();
             }else{
@@ -92,18 +96,18 @@ public class AddIntercessaoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AddIntercessaoActivity.this.finish();
-/*        Intent home = new Intent(AddIntercessaoActivity.this,HomeActivity.class);
-        startActivity(home);*/
-  /*      DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        Intent home = new Intent(AddIntercessaoActivity.this, HomeActivity.class);
+        startActivity(home);
+        DrawerLayout drawer = findViewById( R.id.drawer_add_intercessao);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 

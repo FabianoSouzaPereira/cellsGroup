@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.conexao;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import br.com.cellsgroup.R;
 
 public class ConexaoActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class ConexaoActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {

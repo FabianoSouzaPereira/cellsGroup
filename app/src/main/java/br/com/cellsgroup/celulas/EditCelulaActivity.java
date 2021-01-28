@@ -21,6 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,8 +35,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -55,6 +56,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     private DatabaseReference novaRef2;
     private String celula_extra;
     String uid;
+    private MaterialTextView text_uid_celula;
     private TextInputLayout textInputCelula;
     private TextInputLayout textInputRede;
     private TextInputLayout textInputSupervisor;
@@ -85,13 +87,13 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_edit_celula );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar18 );
         setSupportActionBar( toolbar );
         Intent intent = getIntent();
         celula_extra = intent.getStringExtra( "Celula" );
         inicializarComponentes();
         inicializarFirebase();
-        novaRef2 = databaseReference.child( "Igrejas/" + igreja + "/Celulas");
+        novaRef2 = databaseReference.child( "churchs/" + igreja +"/cells/" );
         pegandoConteudoCelula();
 
 
@@ -143,8 +145,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         } );
 
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_edit_celula);
+        NavigationView navigationView = findViewById( R.id.nav_view_editCelula);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -153,7 +155,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef1 = databaseReference.child( "Igrejas/" + igreja + "/Celulas/"+ this.celula_extra);
+        novaRef1 = databaseReference.child( "churchs/" + igreja +"/cells/" + this.celula_extra);
         novaRef1.addValueEventListener( new ValueEventListener() {
 
             @Override
@@ -172,7 +174,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                     dia = c.getDia();
                     hrs = c.getHora();
                     String datainicio = c.getDatainicio();
-
+                    text_uid_celula.setText (uid);
                     Objects.requireNonNull( textInputCelula.getEditText() ).setText( celula );
                     Objects.requireNonNull( textInputRede.getEditText() ).setText( rede );
                     Objects.requireNonNull( textInputSupervisor.getEditText() ).setText( supervisor );
@@ -262,6 +264,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     }
 
     private void inicializarComponentes() {
+        text_uid_celula = findViewById (R.id.text_uid_editCelula );
         textInputCelula = findViewById(R.id.text_input_celula);
         textInputRede = findViewById(R.id.text_input_rede);
         textInputSupervisor = findViewById(R.id.text_input_supervisor);
@@ -277,7 +280,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-       DrawerLayout drawer = findViewById( R.id.drawer_layout );
+       DrawerLayout drawer = findViewById( R.id.drawer_edit_celula );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -287,7 +290,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -298,8 +301,12 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_Edit){
+        if(id == R.id.action_save){
             editCelulaClick(item);
+            return true;
+        }
+        if(id == R.id.action_Edit){
+           // editCelulaClick(item);
             return true;
         }
 
@@ -340,7 +347,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_edit_celula);
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

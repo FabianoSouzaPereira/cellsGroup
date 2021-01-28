@@ -36,9 +36,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
@@ -49,6 +49,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
+import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
@@ -91,8 +92,8 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             }
         } );
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_relatorioView);
+        NavigationView navigationView = findViewById( R.id.nav_view_relatorio_activity_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -185,7 +186,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_relatorioView);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -202,41 +203,38 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-
-            case R.id.action_settings:
-                Intent config = new Intent( RelatorioActivityView.this, Configuracao.class );
-                startActivity( config );
-                return true;
-            case R.id.action_addIgreja:
-                Intent addigreja = new Intent( RelatorioActivityView.this, addIgrejaActivity.class );
-                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( addigreja );
-                return true;
-            case R.id.action_addUsuario:
-                Intent addusuario = new Intent( RelatorioActivityView.this, AddUsuarioActivity.class );
-                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( addusuario );
-                return true;
-            case R.id.action_Login:
-                Intent login = new Intent( RelatorioActivityView.this, LoginActivity.class);
-                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( login );
-                return true;
-            case R.id.action_Logout:
-                FirebaseAuth.getInstance().signOut();
-                updateUI(null);
-                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( RelatorioActivityView.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( RelatorioActivityView.this , addIgrejaActivity.class );
+            addigreja.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            addigreja.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_addUsuario ) {
+            Intent addusuario = new Intent ( RelatorioActivityView.this , AddUsuarioActivity.class );
+            addusuario.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            addusuario.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( addusuario );
+            return true;
+        } else if ( itemId == R.id.action_Login ) {
+            Intent login = new Intent ( RelatorioActivityView.this , LoginActivity.class );
+            login.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            login.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            return true;
         }
+        return super.onOptionsItemSelected ( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -270,7 +268,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_relatorioView );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

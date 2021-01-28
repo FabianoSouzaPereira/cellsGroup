@@ -7,4 +7,5 @@
     <dimen name="fab_margin">60dp</dimen>
     <dimen name="textsize10sp">10sp</dimen>
     <dimen name="ActionBarSize">55dp</dimen>
+    <dimen name="StatusBarSize">20dp</dimen>
 </resources>

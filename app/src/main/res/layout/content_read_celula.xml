@@ -25,6 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_uid_redCelula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_000000000000000000"
+                android:textColor="#5871F6"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_celula"
                 android:layout_width="match_parent"

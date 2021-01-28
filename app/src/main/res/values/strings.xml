@@ -122,7 +122,7 @@
     <string name="title_activity_delete_celula">Apaga Celula</string>
     <string name="Bem_Vindo">Bem Vindo :</string>
     <string name="title_activity_configuracao">Configuracao</string>
-    <string name="igreja">igreja</string>
+    <string name="igreja">Igreja</string>
     <string name="endere_o">endereço</string>
     <string name="bairro">Bairro</string>
     <string name="cidade">Cidade</string>
@@ -161,10 +161,10 @@
     <string name="fileNotFound">File: not found!</string>
     <string name="title_activity_add_agenda">AddAgendaActivity</string>
     <string name="evento">Evento</string>
-    <string name="local">Local</string>
+
     <string name="data_evento">Data Evento</string>
     <string name="salvar">Salvar</string>
-    <string name="descri_o">Descrição</string>
+
 
     <string name="informacaoAPP">Este aplicativo destina-se ao uso das igrejas evangélicas organizadas em células. Disponibiliza a criação de relatórios. E pedidos de oração e recados.</string>
     <string name="sobre">Sobre</string>
@@ -179,6 +179,12 @@
     <string name="c_digo_do_pa_s">Código do País</string>
     <string name="telefone">Telefone</string>
     <string name="celulas">Celulas</string>
+    <string name="_00_00">00:00</string>
+    <string name="descri_o">Descrição</string>
+    <string name="local">Local</string>
+    <string name="barras">/ /</string>
+    <string name="denominacao">Denominacao</string>
+    <string name="_000000000000000000">000000000000000000</string>
 
 
 </resources>

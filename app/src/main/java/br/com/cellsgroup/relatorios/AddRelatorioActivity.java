@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -33,8 +32,8 @@ import java.util.Objects;
 
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -119,13 +118,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
         pegandoConteudoCelula();
 
-
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
-        drawer.addDrawerListener( toggle );
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener( this );
 
     }
 
@@ -352,19 +344,19 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     @Override
     public void onBackPressed() {
         AddRelatorioActivity.this.finish();
-/*        Intent home = new Intent(AddRelatorioActivity.this,HomeActivity.class);
-        startActivity(home);*/
-  /*      DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        Intent home = new Intent(AddRelatorioActivity.this,HomeActivity.class);
+        startActivity(home);
+        DrawerLayout drawer = findViewById( R.id.drawer_add_relatorio);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -416,7 +408,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_del_celula );
         drawer.closeDrawer( GravityCompat.START );
         return true;
 

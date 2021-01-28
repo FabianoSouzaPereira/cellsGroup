@@ -18,6 +18,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -48,6 +49,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
     public  String celula_;
     public  String celula_2;
     public  String uid;
+    private MaterialTextView text_uid_celula;
     private TextInputLayout textInputCelula;
     private TextInputLayout textInputRede;
     private TextInputLayout textInputSupervisor;
@@ -76,7 +78,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
         pegandoConteudoCelula();
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_celula);
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
@@ -86,6 +88,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
 
     private void inicializarComponentes() {
+        text_uid_celula = findViewById (R.id.text_uid_redCelula );
         textInputCelula = findViewById(R.id.txt_celula);
         textInputRede = findViewById(R.id.txt_rede);
         textInputSupervisor = findViewById(R.id.txt_supervisor);
@@ -101,13 +104,14 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef0 = databaseReference.child( "Igrejas/" + igreja +"/Celulas/" + this.celula_);
+        novaRef0 = databaseReference.child("churchs/" + igreja +"/cells/" + this.celula_);
         novaRef0.addValueEventListener( new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     Celula c = ds.getValue( Celula.class );
+                    String uid =  c.getUid();
                     String celula = Objects.requireNonNull( c ).getCelula();
                     String rede = c.getRede();
                     String supervisor = c.getSupervisor();
@@ -119,7 +123,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
                     String dia = c.getDia();
                     String hora = c.getHora();
                     String datainicio = c.getDatainicio();
-
+                    text_uid_celula.setText (uid);
                     Objects.requireNonNull( textInputCelula.getEditText() ).setText( celula );
                     Objects.requireNonNull( textInputRede.getEditText() ).setText(rede);
                     Objects.requireNonNull( textInputSupervisor.getEditText() ).setText(supervisor);
@@ -145,7 +149,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_celula );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -155,7 +159,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_drawer, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return super.onCreateOptionsMenu( menu );
     }
 
@@ -164,6 +168,9 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if(id == R.id.action_save){
             return true;
         }
 
@@ -216,7 +223,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_read_celula );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

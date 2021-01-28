@@ -39,8 +39,8 @@ import java.util.List;
 import Adapters.AdapterListViewAgenda;
 import agendas.Agenda;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -92,7 +92,7 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
                 finish();
             }
         } );
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityAgenda );
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
@@ -175,7 +175,7 @@ public String formatCalendaryData(CalendarDay date){
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityAgenda);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -232,7 +232,7 @@ public String formatCalendaryData(CalendarDay date){
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

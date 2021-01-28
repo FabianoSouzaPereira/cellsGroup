@@ -1,5 +1,8 @@
 package br.com.cellsgroup.models.igreja;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SuppressWarnings( "ALL" )
 public final class Igreja {
     private String uid = "";
@@ -10,14 +13,16 @@ public final class Igreja {
     private String estado = "";
     private String pais_ = "";
     private String cep = "";
+    private String phone = "";
     private String datahora = "";
     private String user;
     private String status = "1";
+    private String group="";
 
     public Igreja() {
     }
 
-    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status) {
+    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status, String group, String phone) {
         this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
@@ -29,6 +34,8 @@ public final class Igreja {
         this.datahora = datahora;
         this.user = user;
         this.status = status;
+        this.group = group;
+        this.phone = phone;
     }
 
     public String getNome() {   return nome;   }
@@ -65,5 +72,21 @@ public final class Igreja {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone= phone;
     }
 }

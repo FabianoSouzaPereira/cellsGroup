@@ -30,9 +30,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
@@ -43,6 +43,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
+import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
@@ -93,8 +94,8 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         cel_1 = cel_.substring( 0, pos );
         mostraRelatorio();
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_relatorio );
+        NavigationView navigationView = findViewById( R.id.nav_view_relatorio_activity );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -196,7 +197,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_read_relatorio );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -281,7 +282,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_read_relatorio );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

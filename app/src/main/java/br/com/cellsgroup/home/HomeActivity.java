@@ -41,9 +41,9 @@ import java.util.Map;
 
 import br.com.cellsgroup.Activity_splash_screen;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -53,8 +53,8 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
-import br.com.cellsgroup.relatorios.AddUsuarioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
+import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -62,8 +62,16 @@ import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "IGREJA PADRAO -> ";
     public static FirebaseUser UI;
+    public static Object groups;
+    public static String group="";
+    public static String igreja = "";
     public static String useremail = "";
-    public static Object group;
+    public  static String cellPhone = "";
+    public static String uidIgreja = "";
+
+    public static boolean typeUserAdmin = true;
+    public static boolean typeUserNormal = false;
+
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
@@ -71,16 +79,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference novaref = null;
     private DatabaseReference novaref2 = null;
     private FirebaseFunctions mFunctions;
+
     public static boolean Logado = false;
     public static String tag = "0";
     public String DataTime;
     public String DataT;
     public String status = "1";
-    public static String igreja = "";
-    public static boolean typeUserAdmin = true;
-    public static boolean typeUserNormal = false;
-    private int count = 0;
 
+    private int count = 0;
     private final int limitebusca = 500;
 
     @Override
@@ -104,8 +110,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         addDataHora();
         mAuth.getUid ();
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        pegarPadroes();
+
+        DrawerLayout drawer = findViewById( R.id.drawer_activityHome);
+        NavigationView navigationView = findViewById( R.id.nav_view_home );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -115,6 +123,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void pegarPadroes() {
         String email = mAuth.getCurrentUser().getEmail();
+
         if ( email.isEmpty()){
             Toast.makeText( this, "Sem email cadastrado", Toast.LENGTH_LONG ).show();
             return;
@@ -125,15 +134,55 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onDataChange ( @NonNull DataSnapshot snapshot ) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        Object value = ds.child("group").getValue ();
+                        Object valuegroup = ds.child("group").getValue ();
                         Object valueEmail = ds.child("email").getValue ();
                         Object valueIgreja = ds.child("igrejaPadrao").getValue();
+                        Object valuePhone = ds.child ("telefone").getValue ();
                         useremail = valueEmail.toString ();
                         igreja = valueIgreja.toString ();
+                        group = valuegroup.toString ();
+                        cellPhone = valuePhone.toString ();
                     }
                     Log.d( "email-------------> ",""+ useremail );
                     Log.d( "igreja------------> ",""+ igreja );
-                    count = 1;
+                    Log.d( "group------------> ",""+ group );
+                  //  count = 1;
+                }
+
+                @Override
+                public void onCancelled ( @NonNull DatabaseError error ) {
+
+                }
+            } );
+
+            //carrega dados da igreja cadastrada
+        final String ui = UI.getUid ().toString ();
+        novaref2 = databaseReference.child ("churchs/");
+         Query query2 =  novaref2.orderByChild ("user").equalTo (ui);
+            query2.addValueEventListener ( new ValueEventListener ( ) {
+                @Override
+                public void onDataChange ( @NonNull DataSnapshot datasnapshot ) {
+                    for(DataSnapshot sd : datasnapshot.getChildren ()){
+                        String keyChurch = sd.getKey ();
+                        igreja = sd.child ("nome").getValue ().toString ();
+                        group = sd.child ("group").getValue ().toString ();
+                        uidIgreja =  sd.getKey ();
+                        if(!cellPhone.equals("")) {
+                            String key = sd.child ( "members" ).getValue ( ).toString ( );
+                            if ( key != null ) {
+                                try {
+                                    String[] v = key.split ( "=" );
+                                    String[] v0 = v[ 0 ].split ( "\\{" );
+                                    String membersIgreja = v0[ 1 ];
+                                    //TODO transformar variaveis em static
+                                    String[] v1 = v[ 1 ].split ( "\\}" );
+                                    String cellPhoneMemberIgreja = v1[ 0 ];
+                                } catch ( Exception e ) {
+                                    e.printStackTrace ( );
+                                }
+                            }
+                        }
+                    }
                 }
 
                 @Override
@@ -153,16 +202,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity( intent );
         }
 
-        pegarPadroes();
-        initAlertDialogoIgreja();  //verifica se tem br.com.cellsgroup.models.igreja cadastrada
-        initAlertDialogoUsuario();
-
+    //    initAlertDialogoIgreja();  //verifica se tem br.com.cellsgroup.models.igreja cadastrada
+    //    initAlertDialogoUsuario();
     }
 
 
     @Override
     protected void onResume() {
-         super.onResume();
+        pegarPadroes();
+        super.onResume();
     }
 
     @Override
@@ -184,8 +232,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onRestart() {
         super.onRestart();
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -224,7 +270,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initAlertDialogoIgreja(){
-        if(igreja.isEmpty() && count == 1) {
+        if(igreja.equals ("")) {
             AlertDialog.Builder builder1 = new AlertDialog.Builder( HomeActivity.this );
             builder1 = builder1.setMessage( "Deseja criar e associar uma br.com.cellsgroup.models.igreja ?" );
             builder1.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
@@ -247,10 +293,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void initAlertDialogoUsuario(){
-        if(useremail.isEmpty() && !igreja.isEmpty()) {
+        if(useremail.equals ("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
             builder = builder.setMessage( "É necessário a criação de um usuário.\n Podemos proceguir ?" );
-            builder.setTitle( "Não existe ususario associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+            builder.setTitle( "Não existe usuario associado ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText( getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT ).show();
@@ -353,7 +399,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -396,7 +441,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityHome );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

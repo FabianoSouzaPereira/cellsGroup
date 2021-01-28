@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.comunicados;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
@@ -32,15 +37,15 @@ public class ComunicadosActivity extends AppCompatActivity implements Navigation
         setContentView( R.layout.activity_comunicados );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-        FloatingActionButton fab = findViewById( R.id.fab );
-        fab.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
-            }
-        } );
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+//        FloatingActionButton fab = findViewById( R.id.fab );
+//        fab.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
+//            }
+//        } );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_comun);
+        NavigationView navigationView = findViewById( R.id.nav_view_comunicado );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -49,7 +54,7 @@ public class ComunicadosActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_comun);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -79,7 +84,6 @@ public class ComunicadosActivity extends AppCompatActivity implements Navigation
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -113,7 +117,7 @@ public class ComunicadosActivity extends AppCompatActivity implements Navigation
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_comun );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

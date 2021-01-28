@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -32,8 +31,8 @@ import java.util.Objects;
 
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -56,7 +55,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private Spinner hr;
     private Spinner min;
     private String  hrs;
-    private DatabaseReference Celulas;
+    private DatabaseReference Cells;
     private TextInputLayout textInputCelula;
     private TextInputLayout textInputRede;
     private TextInputLayout textInputSupervisor;
@@ -87,12 +86,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         inicializarComponentes();
 
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
-        drawer.addDrawerListener( toggle );
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener( this );
 
     }
 
@@ -171,19 +164,19 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     /** Inicia Firebase   */
     private void inicializarFirebase() {
-        Celulas = FirebaseDatabase.getInstance().getReference();
+        Cells = FirebaseDatabase.getInstance().getReference();
     }
 
 
     @Override
     public void onBackPressed() {
         AddCelulaActivity.this.finish();
- /*       DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_add_celula );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
 
@@ -205,7 +198,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -258,7 +251,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_add_celula);
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
@@ -282,10 +275,10 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
 
             if(!TextUtils.isEmpty( celula ) && Logado && typeUserAdmin){
-                String uid = Celulas.push().getKey();
-                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId);
+                String uid = Cells.push().getKey();
+                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId, igreja);
                 if (uid == null) throw new AssertionError();
-                Celulas.child("churchs/" + igreja + "/Cells/").child( celula ).child( uid ).setValue( cel );
+                Cells.child("churchs/" + igreja +"/cells/").child( celula ).child( uid ).setValue( cel );
 
                 Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
             }else{
@@ -306,14 +299,12 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     public void  testNullvariable(String var){
 
-        switch (var){
-            case "null" : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
-                break;
-            case "" : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
-                break;
-            case "   " : Toast.makeText(this,"Todos os camos tem que ser preenchidos !", Toast.LENGTH_LONG).show();
-                break;
-
+        if ( "null".equals ( var ) ) {
+            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
+        } else if ( "".equals ( var ) ) {
+            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
+        } else if ( "   ".equals ( var ) ) {
+            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
         }
     }
 

@@ -32,7 +32,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview_celula"
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardcellClick"
@@ -44,7 +44,7 @@
                 <ImageView
                     android:id="@+id/imgcelulaligacao"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_social_distance_24" />
 
@@ -54,15 +54,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/c_lulas"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardrelatorioClick"
@@ -74,7 +74,7 @@
                 <ImageView
                     android:id="@+id/imgrelatorio"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_view_list_24" />
 
@@ -84,15 +84,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/relat_rios"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardintercessaoClick"
@@ -104,7 +104,7 @@
                 <ImageView
                     android:id="@+id/imgintercesao"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_wifi_tethering_24" />
 
@@ -114,8 +114,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/Intersession"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
@@ -129,7 +129,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardagendaClick"
@@ -141,7 +141,7 @@
                 <ImageView
                     android:id="@+id/imgagenda"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_menu_book_24" />
 
@@ -151,8 +151,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/Schedule"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
@@ -160,7 +160,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardvisaoClick"
@@ -172,7 +172,7 @@
                 <ImageView
                     android:id="@+id/imgvisao"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_groups_24" />
 
@@ -182,15 +182,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/View"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="74dp"
-                android:layout_height="87dp"
+                android:layout_height="110dp"
                 android:layout_margin="8dp"
                 android:layout_weight="10"
                 android:onClick="cardcontatoClick"
@@ -202,7 +202,7 @@
                 <ImageView
                     android:id="@+id/imgContato"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="80dp"
                     android:contentDescription="TODO"
                     android:src="@drawable/ic_baseline_phone_24" />
 
@@ -212,8 +212,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/contato"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
+                    android:textColor="#F8E902"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>

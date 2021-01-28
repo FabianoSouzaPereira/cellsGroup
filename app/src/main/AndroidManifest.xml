@@ -37,16 +37,16 @@
             android:label="@string/title_activity_add_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="br.com.cellsgroup.usuario.AddUsuarioActivity"
+            android:label="@string/title_activity_add_usuario"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="br.com.cellsgroup.intercessao.AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.ConexaoActivity"
+            android:name="br.com.cellsgroup.conexao.ConexaoActivity"
             android:label="@string/title_activity_conexao"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="br.com.cellsgroup.relatorios.AddUsuarioActivity"
-            android:label="@string/title_activity_add_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="br.com.cellsgroup.Igreja.addIgrejaActivity"
@@ -93,7 +93,7 @@
             android:label="@string/title_activity_compartilhar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.ContatoActivity"
+            android:name="br.com.cellsgroup.contato.ContatoActivity"
             android:label="@string/title_activity_contato"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -109,7 +109,7 @@
             android:label="@string/title_activity_intercessao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="br.com.cellsgroup.ComunicadosActivity"
+            android:name="br.com.cellsgroup.comunicados.ComunicadosActivity"
             android:label="@string/title_activity_comunicados"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

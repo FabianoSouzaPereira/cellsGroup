@@ -11,12 +11,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="68dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -24,11 +26,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_uid_editCelula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_000000000000000000"
+                android:textColor="#5871F6"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_celula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -37,12 +48,12 @@
                     android:background="@null"
                     android:clickable="false"
                     android:focusable="false"
-                    android:longClickable="false"
                     android:hint="@string/celula1"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+                    android:inputType="text"
+                    android:longClickable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_rede"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,9 +64,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/rede1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_supervisor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/supervisor1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_lider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,9 +90,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/lider1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_vice_lider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,9 +103,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/vice_lider1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_anfitriao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,9 +116,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/anfitriao1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_secretario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,9 +129,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/secretario1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_colaborador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/colaborador1"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
                 android:id="@+id/spinnerUpdateSemana"
@@ -157,7 +168,7 @@
                     android:layout_weight="1" />
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_DataInicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/dataInicio"
                     android:inputType="text" />
-            </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>

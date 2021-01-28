@@ -35,14 +35,15 @@ import java.util.List;
 
 import Adapters.AdapterListViewIntercessao;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.models.Intercessao;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 
@@ -53,7 +54,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private final int limitebusca = 500;
-    private final ArrayList< br.com.cellsgroup.intercessao.Intercessao > inter = new ArrayList<Intercessao>( );
+    private final ArrayList< br.com.cellsgroup.models.Intercessao > inter = new ArrayList<Intercessao>( );
     private String mUid;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -85,7 +86,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
             }
         } );
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityIntercessao );
         NavigationView navigationView = findViewById( R.id.nav_view );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
@@ -137,17 +138,17 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     @Override
     public void onBackPressed() {
         IntercessaoActivity.this.finish();
-/*       DrawerLayout drawer = findViewById( R.id.drawer_layout );
+         DrawerLayout drawer = findViewById( R.id.drawer_activityIntercessao);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -166,8 +167,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
 
         return super.onOptionsItemSelected( item );
     }
-
-    @SuppressWarnings("StatementWithEmptyBody")
+    
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -210,7 +210,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
             finish();
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityIntercessao);
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

@@ -71,8 +71,9 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     private void readIgrejaCadastrada() {
 
-        novaRef = databaseReference.child( "Igrejas" );
-        Query query = novaRef.orderByChild("nome").limitToFirst( limitebusca );
+        novaRef = databaseReference.child( "churchs" );
+        Query query = novaRef.child ("-Lk_lRXcpzldjUdgW4w1").child ("member")
+            .orderByKey ().equalTo ( "48998166345" ).limitToFirst ( limitebusca );
         query.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,7 +104,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.constraint_igrejas_cri);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {

@@ -1,4 +1,4 @@
-package br.com.cellsgroup;
+package br.com.cellsgroup.contato;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
@@ -39,8 +44,8 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
                 Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_LONG ).setAction( "Action", null ).show();
             }
         } );
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_contato);
+        NavigationView navigationView = findViewById( R.id.nav_view_contato );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -72,7 +77,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -106,7 +110,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_contato);
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }

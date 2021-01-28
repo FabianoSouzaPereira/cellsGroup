@@ -34,12 +34,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.com.cellsgroup.relatorios.AddRelatorioActivity;
-import br.com.cellsgroup.relatorios.AddUsuarioActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
@@ -48,6 +47,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
@@ -88,17 +88,17 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 initAlertDialogo();
             }
         } );
-        DrawerLayout drawer = findViewById ( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById ( R.id.drawer_activityCelulas );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        NavigationView navigationView = findViewById( R.id.nav_view_celula );
         navigationView.setNavigationItemSelectedListener( this );
     }
 
    private void readOnlyActive() {
-        novaRef = databaseReference.child( "churchs/" + igreja + "/cells" );
+        novaRef = databaseReference.child( "churchs/" + igreja +"/cells/");
         Query query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
         query.addValueEventListener( new ValueEventListener() {
 
@@ -265,7 +265,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_activityCelulas );
         drawer.closeDrawer( GravityCompat.START );
         return true;
    }

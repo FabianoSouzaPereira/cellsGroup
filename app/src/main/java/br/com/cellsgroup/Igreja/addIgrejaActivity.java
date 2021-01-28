@@ -25,15 +25,19 @@ import java.util.Map;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.igreja.Igreja;
+
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
+import static java.lang.System.currentTimeMillis;
 
 public class addIgrejaActivity extends AppCompatActivity {
-    private DatabaseReference Igrejas;
+    private DatabaseReference ref;
+    private DatabaseReference ref2;
     public String DataTime;
     public String DataT;
     public String status = "1";
+    private TextInputLayout editDenominacao;
     private TextInputLayout editIgreja;
     private TextInputLayout editEndereco;
     private TextInputLayout editBairro;
@@ -41,6 +45,7 @@ public class addIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editEstado;
     private TextInputLayout editPais;
     private TextInputLayout editCep;
+    private TextInputLayout editPhone;
     private FirebaseAuth mAuth;
 
     @Override
@@ -57,10 +62,13 @@ public class addIgrejaActivity extends AppCompatActivity {
     }
 
     private void inicializarFirebase() {
-        Igrejas = FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference();
+        ref2 = FirebaseDatabase.getInstance().getReference();
+
     }
 
     private void inicializarComponentes() {
+        editDenominacao = findViewById( R.id.text_input_denominacao );
         editIgreja = findViewById( R.id.text_input_editIgreja );
         editEndereco = findViewById( R.id.text_input_editEndereco );
         editBairro = findViewById( R.id.text_input_editBairro );
@@ -68,12 +76,14 @@ public class addIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById( R.id.text_input_editEstado );
         editPais = findViewById( R.id.text_input_editPais_ );
         editCep = findViewById( R.id.text_input_editCep );
+        editPhone= findViewById (R.id.text_input_phone );
     }
 
 
     private void addIgrejaClick(MenuItem item) {
         addDataHora();
         try {
+            String denominacao = editDenominacao.getEditText().getText().toString().trim();
             igreja = editIgreja.getEditText().getText().toString().trim();
             String endereco = editEndereco.getEditText().getText().toString().trim();
             String bairro = editBairro.getEditText().getText().toString().trim();
@@ -81,12 +91,25 @@ public class addIgrejaActivity extends AppCompatActivity {
             String estado = editEstado.getEditText().getText().toString().trim();
             String pais = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
+            String phone  = editPhone.getEditText().getText().toString().trim();
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+            //insere igreja
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
-                String uid = Igrejas.push().getKey();
-                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status );
-                Igrejas.child( "churchs/" + igreja ).child( uid ).setValue( ig );
+                String uid = ref.push().getKey();
+                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao, phone );
+                ref.child( "churchs/").child(uid).setValue( ig );
+
+                // Insere na igreja os membros
+//                Map<String, Object> map = new HashMap<>();
+//                map.put("members/"+ userId, cellPhone);
+//                ref.child("churchs/").child(uid).updateChildren (map);
+
+                //insere no groups de igrejas
+                Map<String, Object> map1 = new HashMap<>();
+                map1.put("members/"+ currentTimeMillis(), igreja);
+                ref2.child("groups/").child(denominacao).updateChildren (map1);
+
                 clearEditTexts();
                 Toast.makeText( this, "Criado Igreja com sucesso", Toast.LENGTH_LONG ).show();
             }
@@ -131,7 +154,7 @@ public class addIgrejaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 

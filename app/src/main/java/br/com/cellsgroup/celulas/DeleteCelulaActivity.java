@@ -26,8 +26,8 @@ import java.util.Objects;
 
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.ComunicadosActivity;
-import br.com.cellsgroup.ContatoActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
@@ -57,7 +57,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
         Intent intent = getIntent();
         uid_extra = intent.getStringExtra( "Celula" );
-        novaRef3 = databaseReference.child( "Igrejas/" + igreja + "/Celulas");
+        novaRef3 = databaseReference.child( "churchs/" + igreja + "/cells");
         inicializarComponentes();
         Objects.requireNonNull(celulaParaApagar.getEditText() ).setText( uid_extra );
         btnApagarCelula.setOnClickListener( new View.OnClickListener() {
@@ -68,8 +68,8 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         } );
 
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
+        NavigationView navigationView = findViewById( R.id.nav_view_delite_celulas );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -108,7 +108,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
         } else {
@@ -118,7 +118,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save, menu );
+        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
 
@@ -174,7 +174,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = findViewById( R.id.drawer_layout );
+        DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
