@@ -61,7 +61,7 @@ public class AdapterListViewIgreja extends RecyclerView.Adapter<AdapterListViewI
 
         public ViewholderIgreja(@NonNull View view, OnIgrejaListener onIgrejaListener) {
             super( view );
-            nome = view.findViewById( R.id.tvNomeIgreja);
+            nome = view.findViewById( R.id.tvItem );
             this.onIgrejaListener = onIgrejaListener;
             view.setOnClickListener( this );
         }

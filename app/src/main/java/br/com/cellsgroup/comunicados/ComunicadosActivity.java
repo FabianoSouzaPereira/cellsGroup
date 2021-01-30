@@ -29,6 +29,8 @@ import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+
 public class ComunicadosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override

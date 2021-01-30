@@ -30,28 +30,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="65"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome"
+                    android:hint="@string/nome_required"
                     android:inputType="text"
-                    android:maxLength="65" />
+                    android:maxLength="65"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editIdade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="3"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="idade"
+                    android:hint="@string/idade"
                     android:inputType="numberDecimal"
-                    android:maxLength="65" />
+                    android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -63,7 +67,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Sexo"
+                    android:hint="@string/sexo"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -72,14 +76,16 @@
                 android:id="@+id/text_input_editDataNascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="10"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="data de nascimento"
+                    android:hint="@string/data_de_nascimento_required"
                     android:inputType="date"
-                    android:maxLength="65" />
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +97,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="data de batismo"
+                    android:hint="@string/data_de_batismo"
                     android:inputType="date"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -105,7 +111,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome do Pai"
+                    android:hint="@string/nome_do_pai"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -119,7 +125,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nome da Mãe"
+                    android:hint="@string/nome_da_m_e"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +140,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="estado civil"
+                    android:hint="@string/estado_civil"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -144,14 +150,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="2"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/c_digo_do_pa_s"
+                    android:hint="@string/c_digo_do_pa_s_required"
                     android:inputType="numberDecimal"
-                    android:maxLength="65" />
+                    android:maxLength="2" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -164,7 +172,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/telefone"
+                    android:hint="@string/telefone_required"
                     android:inputType="numberDecimal"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -179,7 +187,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email_required"
                     android:inputType="textEmailAddress"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -194,7 +202,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Endereço"
+                    android:hint="@string/endere_o"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -209,7 +217,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Bairro"
+                    android:hint="@string/bairro"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -224,7 +232,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cidade"
+                    android:hint="@string/cidade"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -239,7 +247,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="País"
+                    android:hint="@string/pa_s"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -249,14 +257,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="25"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cep"
+                    android:hint="@string/cep"
                     android:inputType="numberDecimal"
-                    android:maxLength="65" />
+                    android:maxLength="25" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -269,7 +279,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cargo Igreja"
+                    android:hint="@string/cargo_igreja"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -285,9 +295,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#D5C5C5"
-                    android:editable="false"
+                    android:enabled="false"
                     android:focusable="false"
-                    android:hint="Grupo Padrão"
+                    android:hint="@string/grupo_padr_o"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -27,6 +27,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.igreja.Igreja;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.cellPhone;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static java.lang.System.currentTimeMillis;
@@ -45,6 +46,7 @@ public class addIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editEstado;
     private TextInputLayout editPais;
     private TextInputLayout editCep;
+    private TextInputLayout editCodigopais;
     private TextInputLayout editPhone;
     private FirebaseAuth mAuth;
 
@@ -76,6 +78,7 @@ public class addIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById( R.id.text_input_editEstado );
         editPais = findViewById( R.id.text_input_editPais_ );
         editCep = findViewById( R.id.text_input_editCep );
+        editCodigopais = findViewById( R.id.text_input_editCodigoPais);
         editPhone= findViewById (R.id.text_input_phone );
     }
 
@@ -91,19 +94,17 @@ public class addIgrejaActivity extends AppCompatActivity {
             String estado = editEstado.getEditText().getText().toString().trim();
             String pais = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
+            String codigopais = editCodigopais.getEditText().getText().toString().trim();
             String phone  = editPhone.getEditText().getText().toString().trim();
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            String members = "";
 
             //insere igreja
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = ref.push().getKey();
-                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao, phone );
-                ref.child( "churchs/").child(uid).setValue( ig );
-
-                // Insere na igreja os membros
-//                Map<String, Object> map = new HashMap<>();
-//                map.put("members/"+ userId, cellPhone);
-//                ref.child("churchs/").child(uid).updateChildren (map);
+                String igrejaID = uid;
+                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao,codigopais, phone, igrejaID, members);
+                ref.child( "churchs/").child(uid + "/" + igreja).setValue( ig );
 
                 //insere no groups de igrejas
                 Map<String, Object> map1 = new HashMap<>();

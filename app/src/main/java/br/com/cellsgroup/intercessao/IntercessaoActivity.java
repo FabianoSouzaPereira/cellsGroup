@@ -46,6 +46,7 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.Intercessao;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterListViewIntercessao.OnIntercessaoListener {
     private static final String TAG = "ClickLista";
@@ -111,8 +112,8 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     }
 
     private void readIntercessao() {
-        novaRef = Intercessao.child( "Igrejas/" + igreja );
-        Query query = novaRef.child("Intercessao").orderByChild( "data" ).limitToFirst( limitebusca );
+        novaRef = Intercessao.child( "churchs/" + uidIgreja);
+        Query query = novaRef.child("/Intercession").orderByChild( "data" ).limitToFirst( limitebusca );
         query.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -222,7 +223,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
    }
 
     private void deleteViewselected(String uid) {
-        novaRef = Intercessao.child( "Igrejas/" + igreja + "/Intercessao" );
+        novaRef = Intercessao.child( "Igrejas/" + uidIgreja + "/Intercessao" );
         novaRef.child( uid ).removeValue();
         Toast.makeText(this,"Apagada com sucesso", Toast.LENGTH_LONG).show();
     }

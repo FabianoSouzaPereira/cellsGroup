@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
@@ -67,6 +69,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private String email = "";
     private String emailTest = "";
     private String key;
+    private static boolean validate = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,25 +112,62 @@ public class AddUsuarioActivity extends AppCompatActivity {
 
     private void addUsuarioClick(MenuItem item){
         addDataHora();
-
+        validate=true;
         String nome =  EditTextnome.getEditText().getText().toString().trim();
-        String idade =  EditTextidade.getEditText().getText().toString().trim();
-        String sexo = EditTextsexo.getEditText().getText().toString().trim();
+        if(nome.equals ("")|| nome.length() < 4){
+            validate = false;
+            EditTextnome.setError("Este campo é obrigatório");
+            EditTextnome.setFocusable (true);
+            EditTextnome.requestFocus ();
+        }
+        String idade =  EditTextidade.getEditText ( ).getText().toString().trim();
+        String sexo = EditTextsexo.getEditText ( ).getText().toString().trim();
         String dataNascimento = EditTextdataNascimento.getEditText().getText().toString().trim();
+        if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 ){
+            validate = false;
+            EditTextdataNascimento.setError("Este campo é obrigatório");
+            EditTextdataNascimento.setFocusable (true);
+            EditTextdataNascimento.requestFocus ();
+        }
         String dataBastismo = EditTextdataBastismo.getEditText().getText().toString().trim();
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
         String codigoPais = EdiTextCodigoPais.getEditText().getText().toString().trim();
+        if( codigoPais.equals ( "" ) || codigoPais.length ( ) > 2 ){
+            validate = false;
+            EdiTextCodigoPais.setError("Este campo é obrigatório, dois dígitos");
+            EdiTextCodigoPais.setFocusable (true);
+            EdiTextCodigoPais.requestFocus ();
+        }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
+
+        if( telefone.equals ( "" ) || telefone.length ( ) < 9 ){
+            validate = false;
+            EditTexttelefone.setError("Este campo é obrigatório, min. 9 dígitos.");
+            EditTexttelefone.setFocusable (true);
+            EditTexttelefone.requestFocus ();
+        }
         useremail =  EditTextemail.getEditText().getText().toString().trim();
         String email = useremail;
+        if(email .equals ("")|| email.length() < 8 || !email.contains ("@" )){
+            validate = false;
+            EditTextemail.setError("Campo inválido");
+            EditTextemail.setFocusable (true);
+            EditTextemail.requestFocus ();
+        }
         String endereco =  EditTextendereco.getEditText().getText().toString().trim();
         String bairro = EditTextbairro.getEditText().getText().toString().trim();
         String cidade =  EditTextcidade.getEditText().getText().toString().trim();
         String pais =  EditTextpais.getEditText().getText().toString().trim();
         String cep = EditTextcep.getEditText().getText().toString().trim();
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
+        if(cargoIgreja.equals ("")|| cargoIgreja.length() < 4){
+            validate = false;
+            EditTextcargoIgreja.setError("Este campo é obrigatório,");
+            EditTextcargoIgreja.setFocusable (true);
+            EditTextcargoIgreja.requestFocus ();
+        }
         String status = "1";
         final String igreja = HomeActivity.igreja;
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -136,30 +176,36 @@ public class AddUsuarioActivity extends AppCompatActivity {
             Toast.makeText( AddUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
             return ;
         }
-        if(!TextUtils.isEmpty( nome )){
-            String uid = Usuarios.push().getKey();
-            User usuario = new User( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , codigoPais , telefone , email , endereco , bairro , cidade , pais , cep , cargoIgreja , status , DataTime , igreja , userId , group);
+        if( validate ){
+            if(!TextUtils.isEmpty( nome ) ) {
 
-            if (uid != null) {
-            //Cria usuario
-            Usuarios.child( "users/" ).child( uid ).setValue( usuario );
-                //atualiza membro na igreja
-                Map < String , Object > map = new HashMap <> ( );
-                map.put("members/"+ uid, telefone);
-                ref.child( "churchs/"+ uidIgreja ).updateChildren (map);
+                String uid = Usuarios.push ( ).getKey ( );
+                User usuario = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , codigoPais , telefone , email , endereco , bairro , cidade , pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
 
-            }
-            Toast.makeText( this, "Criado usuario com sucesso", Toast.LENGTH_LONG ).show();
+                if ( uid != null ) {
+                    //Cria usuario
+                    Usuarios.child ( "users/" ).child ( uid ).setValue ( usuario );
 
-        }else{
-            Toast.makeText(this,"Erro ao tentar criar usuário !", Toast.LENGTH_LONG).show();
-            if (!typeUserAdmin){
-                Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar usuario admin !", Toast.LENGTH_LONG).show();
+                    //atualiza membro na igreja
+                    Map < String, Object > map = new HashMap <> ( );
+                    map.put ( "/members/" + uid , telefone );
+                    ref.child ( "churchs/" + uidIgreja ).updateChildren ( map );
+
+                    Toast.makeText ( this , "Criado usuario com sucesso" , Toast.LENGTH_LONG ).show ( );
+
+                    Intent intent = new Intent ( AddUsuarioActivity.this , HomeActivity.class );
+                    startActivity ( intent );
+                }else {
+                    Toast.makeText ( this , "Erro ao tentar criar usuário !" , Toast.LENGTH_LONG ).show ( );
+                    if ( !typeUserAdmin ) {
+                        Toast.makeText ( this , "Você não é um usuario administrador. \n Não pode criar usuario admin !" , Toast.LENGTH_LONG ).show ( );
+                    }
+                    Intent intent = new Intent ( AddUsuarioActivity.this , HomeActivity.class );
+                    startActivity ( intent );
+                }
             }
         }
 
-        Intent intent= new Intent(AddUsuarioActivity.this,HomeActivity.class);
-        startActivity(intent);
     }
 
 
@@ -202,6 +248,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
         getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -43,6 +43,7 @@ import br.com.cellsgroup.models.celulas.Celula;
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -278,7 +279,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 String uid = Cells.push().getKey();
                 Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId, igreja);
                 if (uid == null) throw new AssertionError();
-                Cells.child("churchs/" + igreja +"/cells/").child( celula ).child( uid ).setValue( cel );
+                Cells.child( "churchs/" + uidIgreja + "/cells/").child( celula ).child( uid ).setValue( cel );
 
                 Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
             }else{

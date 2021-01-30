@@ -15,6 +15,7 @@
         <item
             android:id="@+id/nav_communication"
             android:icon="@drawable/rss"
+            android:enabled="false"
             android:title="@string/Communication" />
 
         <item
@@ -24,6 +25,7 @@
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/address_book"
+            android:enabled="false"
             android:title="@string/Schedule" />
         <item
             android:id="@+id/nav_view"
@@ -35,7 +37,7 @@
             android:title="@string/Contact" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/comunicados" android:visible="false">
         <menu>
             <item
                 android:id="@+id/nav_share"

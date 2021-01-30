@@ -129,7 +129,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     }
 
     private void mostraRelatorio() {
-        novaRef6 = databaseReference.child( "Igrejas/" + igreja + "/Relatorios/" + cel_1 );
+        novaRef6 = databaseReference.child( "churchs/" + igreja + "/Reports/" + cel_1 );
         novaRef6.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

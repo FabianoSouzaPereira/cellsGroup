@@ -176,8 +176,9 @@
     <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
     <string name="nomeigreja">NomeIgreja</string>
     <string name="procurar">Procurar</string>
-    <string name="c_digo_do_pa_s">Código do País</string>
+    <string name="c_digo_do_pa_s_required">Código do País ex. 55*</string>
     <string name="telefone">Telefone</string>
+    <string name="telefone_required">Telefone*</string>
     <string name="celulas">Celulas</string>
     <string name="_00_00">00:00</string>
     <string name="descri_o">Descrição</string>
@@ -185,6 +186,20 @@
     <string name="barras">/ /</string>
     <string name="denominacao">Denominacao</string>
     <string name="_000000000000000000">000000000000000000</string>
+    <string name="data_de_nascimento_required">data de nascimento*</string>
+    <string name="data_de_batismo">data de batismo</string>
+    <string name="nome_do_pai">Nome do Pai</string>
+    <string name="nome_da_m_e">Nome da Mãe</string>
+    <string name="estado_civil">estado civil</string>
+    <string name="sexo">Sexo</string>
+    <string name="idade">idade</string>
+    <string name="nome_required">Nome*</string>
+    <string name="email_required">Email*</string>
+    <string name="cargo_igreja">Cargo Igreja</string>
+    <string name="grupo_padr_o">Grupo Padrão</string>
+    <string name="item">Item</string>
+    <string name="apagar_igreja_question">APAGAR IGREJA ?</string>
+    <string name="apagar_igreja">APAGAR IGREJA</string>
 
 
 </resources>

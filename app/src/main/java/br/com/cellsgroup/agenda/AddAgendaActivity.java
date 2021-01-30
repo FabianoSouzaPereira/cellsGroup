@@ -32,6 +32,7 @@ import br.com.cellsgroup.R;
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class AddAgendaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
@@ -154,7 +155,7 @@ public class AddAgendaActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty( evento ) && !TextUtils.isEmpty( local ) && Logado && typeUserAdmin) {
             String uid = databaseReference.push().getKey();
             Agenda agenda = new Agenda( uid, data, hora, evento, local, descricao, status, userId );
-            databaseReference.child( "churchs/" + igreja + "/\n" + "schedule").child( uid ).setValue( agenda );
+            databaseReference.child( "churchs/" + uidIgreja + "/\n" + "schedule").child( uid ).setValue( agenda );
             Intent intent = new Intent( AddAgendaActivity.this, AgendaActivity.class );
             startActivity( intent );
             finish();

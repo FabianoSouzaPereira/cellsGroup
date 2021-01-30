@@ -119,7 +119,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     }
 
     private void readRelOnlyActive() {
-        novaRef4 = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
+        novaRef4 = databaseReference.child("churchs/" + igreja + "/Reports" );
         Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
         query.addValueEventListener( new ValueEventListener() {
 
@@ -158,7 +158,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         String datainicial = "";
         String datafinal = "";
 
-        novarefPesq = databaseReference.child("Igrejas/" + igreja + "/Relatorios" );
+        novarefPesq = databaseReference.child("churchs/" + igreja + "/Reports" );
         Query querypesq = novarefPesq.orderByChild( "datahora" ).startAt( datainicial ).endAt( datafinal );
         querypesq.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override

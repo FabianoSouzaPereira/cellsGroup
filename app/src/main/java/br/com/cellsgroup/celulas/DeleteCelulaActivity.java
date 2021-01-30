@@ -35,6 +35,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings("ALL")
 public class DeleteCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -57,7 +58,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
         Intent intent = getIntent();
         uid_extra = intent.getStringExtra( "Celula" );
-        novaRef3 = databaseReference.child( "churchs/" + igreja + "/cells");
+        novaRef3 = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
         inicializarComponentes();
         Objects.requireNonNull(celulaParaApagar.getEditText() ).setText( uid_extra );
         btnApagarCelula.setOnClickListener( new View.OnClickListener() {
@@ -79,7 +80,7 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
 
     private void inicializarComponentes() {
         celulaParaApagar = findViewById( R.id.tvCelulaParaApagar );
-        apagarCelula = findViewById(R.id.tvApagarCelula);
+        apagarCelula = findViewById(R.id.tvApagarCelula );
         btnApagarCelula = findViewById(R.id.btnApagarCelula);
     }
 

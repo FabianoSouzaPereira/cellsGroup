@@ -46,6 +46,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings("ALL")
 public class EditCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -93,7 +94,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         celula_extra = intent.getStringExtra( "Celula" );
         inicializarComponentes();
         inicializarFirebase();
-        novaRef2 = databaseReference.child( "churchs/" + igreja +"/cells/" );
+        novaRef2 = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
         pegandoConteudoCelula();
 
 
@@ -155,7 +156,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef1 = databaseReference.child( "churchs/" + igreja +"/cells/" + this.celula_extra);
+        novaRef1 = databaseReference.child( "churchs/" + uidIgreja +"/cells/" + this.celula_extra);
         novaRef1.addValueEventListener( new ValueEventListener() {
 
             @Override

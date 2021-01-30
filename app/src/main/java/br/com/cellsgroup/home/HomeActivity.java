@@ -35,12 +35,15 @@ import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import br.com.cellsgroup.Activity_splash_screen;
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -52,6 +55,8 @@ import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.models.igreja.Igreja;
+import br.com.cellsgroup.models.igreja.Members;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
@@ -86,8 +91,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public String DataT;
     public String status = "1";
 
-    private int count = 0;
+    private final int count = 0;
     private final int limitebusca = 500;
+
+    //Variaveis de MENU
+    int addigreja;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +104,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         updateUI( UI ); //verifica se usuario está logado
         setContentView( R.layout.activity_home );
         splashScreean();
-        if (Logado == false){
+        if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
             finish();
@@ -110,7 +118,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         addDataHora();
         mAuth.getUid ();
 
-        pegarPadroes();
 
         DrawerLayout drawer = findViewById( R.id.drawer_activityHome);
         NavigationView navigationView = findViewById( R.id.nav_view_home );
@@ -146,6 +153,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     Log.d( "email-------------> ",""+ useremail );
                     Log.d( "igreja------------> ",""+ igreja );
                     Log.d( "group------------> ",""+ group );
+                    Log.d( "cellPhone------------> ",""+ cellPhone );
                   //  count = 1;
                 }
 
@@ -155,41 +163,43 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
             } );
 
-            //carrega dados da igreja cadastrada
-        final String ui = UI.getUid ().toString ();
+        //carrega dados da igreja cadastrada
+        final String ui = UI.getUid ();
         novaref2 = databaseReference.child ("churchs/");
-         Query query2 =  novaref2.orderByChild ("user").equalTo (ui);
-            query2.addValueEventListener ( new ValueEventListener ( ) {
-                @Override
+        Query query3 = novaref2.orderByChild ("igrejaId").limitToFirst (1);
+        query3.addValueEventListener (new ValueEventListener ( ) {
+                 @Override
                 public void onDataChange ( @NonNull DataSnapshot datasnapshot ) {
-                    for(DataSnapshot sd : datasnapshot.getChildren ()){
-                        String keyChurch = sd.getKey ();
-                        igreja = sd.child ("nome").getValue ().toString ();
-                        group = sd.child ("group").getValue ().toString ();
-                        uidIgreja =  sd.getKey ();
-                        if(!cellPhone.equals("")) {
-                            String key = sd.child ( "members" ).getValue ( ).toString ( );
-                            if ( key != null ) {
-                                try {
-                                    String[] v = key.split ( "=" );
-                                    String[] v0 = v[ 0 ].split ( "\\{" );
-                                    String membersIgreja = v0[ 1 ];
-                                    //TODO transformar variaveis em static
-                                    String[] v1 = v[ 1 ].split ( "\\}" );
-                                    String cellPhoneMemberIgreja = v1[ 0 ];
-                                } catch ( Exception e ) {
-                                    e.printStackTrace ( );
-                                }
-                            }
-                        }
-                    }
+                     for(DataSnapshot ds : datasnapshot.getChildren ()) {
+                         for ( DataSnapshot sd : ds.getChildren ( ) ) {
+                                String key = sd.getKey ();
+                             if(!key.equalsIgnoreCase ( "members" )
+                                 && !key.equalsIgnoreCase ( "cells" )
+                                 && !key.equalsIgnoreCase ( "reports" )
+                                 && !key.equalsIgnoreCase ( "intercession" )
+                             ) {
+
+                                 Igreja ig = sd.getValue ( Igreja.class );
+
+                                 String members = ig.getMembers ( );
+                                 String user = ig.getUser ( );
+                                 igreja = ig.getNome ( );
+                                 group = ig.getGroup ( );
+                                 uidIgreja = ig.getIgrejaID ( );
+                             }
+                         }
+                     }
+                    Log.d( "uidIgreja------------> ",""+ uidIgreja);
                 }
 
                 @Override
                 public void onCancelled ( @NonNull DatabaseError error ) {
 
                 }
-            } );
+            });
+
+
+
     }
 
     @Override
@@ -197,11 +207,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
         UI = FirebaseAuth.getInstance().getCurrentUser();
         updateUI( UI ); //verifica se usuario está logado
-        if (Logado == false){
+        if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
         }
-
+        pegarPadroes();
     //    initAlertDialogoIgreja();  //verifica se tem br.com.cellsgroup.models.igreja cadastrada
     //    initAlertDialogoUsuario();
     }
@@ -249,7 +259,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             try {
-                                System.exit(0);
+                              //  Finish this activity as well as all activities immediately below it in the current task that have the same affinity.
+                                finishAffinity();
                             } catch (Throwable throwable) {
                                 throwable.printStackTrace();
                             }
@@ -358,10 +369,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void init(){
+        int addigreja = R.id.action_addIgreja;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.home, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+        MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+            addIgreja.setVisible ( false );
+            igreja.setVisible (true );
+        }else{
+            addIgreja.setVisible ( true );
+            igreja.setVisible (false);
+        }
         return true;
     }
 
@@ -377,7 +406,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent addigreja = new Intent ( HomeActivity.this , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
-        } else if ( itemId == R.id.action_addUsuario ) {
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( HomeActivity.this , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_addUsuario ) {
             Intent addusuario = new Intent ( HomeActivity.this , AddUsuarioActivity.class );
             startActivity ( addusuario );
             return true;
@@ -389,10 +422,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
-            return true;
-        } else if ( itemId == R.id.action_Sobre ) {
-            Intent sobre = new Intent ( HomeActivity.this , SobreActivity.class );
-            startActivity ( sobre );
             return true;
         }
         return super.onOptionsItemSelected ( item );
@@ -409,6 +438,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent( HomeActivity.this, CelulasActivity.class );
+            celulas.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity( celulas );
 
         } else if (id == R.id.nav_communication) {

@@ -1,8 +1,11 @@
 package br.com.cellsgroup.Igreja;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -26,8 +29,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import Adapters.AdapterListViewIgreja;
+import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.models.igreja.Igreja;
+
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
 @SuppressWarnings( "ALL" )
@@ -39,9 +51,12 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     private int limitebusca = 500;
     private ArrayList<String> ig = new ArrayList<String>( );
     private AdapterListViewIgreja mAdapter;
-
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
+    private String uid;
+    private String nome;
+    private Query query;
+    private ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,17 +85,49 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     }
 
     private void readIgrejaCadastrada() {
-
-        novaRef = databaseReference.child( "churchs" );
-        Query query = novaRef.child ("-Lk_lRXcpzldjUdgW4w1").child ("member")
-            .orderByKey ().equalTo ( "48998166345" ).limitToFirst ( limitebusca );
-        query.addListenerForSingleValueEvent( new ValueEventListener() {
+        final String ui = HomeActivity.UI.getUid ().toString ();
+        novaRef = databaseReference.child( "churchs/");
+        Query query = novaRef.orderByChild ("igrejaId").limitToFirst (1);
+        listener =  new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ig.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
-                   String i = ds.getKey();
-                   ig.add( i );
+                    for(DataSnapshot sd : ds.getChildren ()) {
+                        String key = sd.getKey ();
+                        if(!key.equalsIgnoreCase ( "members" )
+                            && !key.equalsIgnoreCase ( "cells" )
+                            && !key.equalsIgnoreCase ( "reports" )
+                            && !key.equalsIgnoreCase ( "intercession" )
+                        ) {
+
+                            Igreja igr = sd.getValue ( Igreja.class );
+                            uid = igr.getUid ();
+                            String user = igr.getUser ();
+                            String group = igr.getGroup ();
+                            String nome = igr.getNome ();
+                            String endereco = igr.getEndereco ();
+                            String bairro = igr.getBairro ();
+                            String cidade = igr.getCidade ();
+                            String estado = igr.getEstado ();
+                            String pais = igr.getPais_ ();
+                            String cep = igr.getCep ();
+                            String codigopais = igr.getCodigopais ();
+                            String telefone = igr.getPhone ();
+
+                            ig.add ( uid );
+                            ig.add ( "Denominação: " + group );
+                            ig.add ( "Nome: " + nome );
+                            ig.add ( "Endereço: " + endereco );
+                            ig.add ( "Bairro: " + bairro );
+                            ig.add ( "Cidade: " + cidade );
+                            ig.add ( "Estado: " + estado );
+                            ig.add ( "País: " + pais );
+                            ig.add ( "Cep: " + cep );
+                            ig.add ( "Cod.Pais" + codigopais );
+                            ig.add ( "Fone: " + telefone );
+                        }
+                    }
                 }
 
                 List<String> igrejas = ig;
@@ -88,13 +135,16 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                 mAdapter = new AdapterListViewIgreja(igrejas, IgrejasCriadasActivity.this, IgrejasCriadasActivity.this );
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.i("Msg","Erro readIntercessão");
             }
-        } );
+        };
+        query.addListenerForSingleValueEvent (listener);
+        query.removeEventListener (listener);
     }
 
 
@@ -104,12 +154,9 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById( R.id.constraint_igrejas_cri);
-        if (drawer.isDrawerOpen( GravityCompat.START )) {
-            drawer.closeDrawer( GravityCompat.START );
-        } else {
-            super.onBackPressed();
-        }
+        IgrejasCriadasActivity.this.finish();
+        Intent home = new Intent(IgrejasCriadasActivity.this, HomeActivity.class);
+        startActivity(home);
     }
 
     private void inicializaFirebase() {
@@ -127,5 +174,61 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu) {
+        getMenuInflater().inflate( R.menu.menu_edit_delete , menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_Edit){
+            Intent config = new Intent ( IgrejasCriadasActivity.this , EditIgrejaActivity.class );
+            startActivity ( config );
+            return true;
+        }
+        if(id == R.id.action_delete){
+            Intent intent = new Intent ( IgrejasCriadasActivity.this , DeleteIgrejaActivity.class );
+            intent.putExtra("Igreja", "" + uid );
+            intent.putExtra("Nome", "" + nome );
+            startActivity ( intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected( item );
+    }
+
+    @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
+    protected void onRestart ( ) {
+        super.onRestart ( );
+    }
+
+    @Override
+    protected void onPause ( ) {
+        super.onPause ( );
+    }
+
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
     }
 }

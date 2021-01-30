@@ -13,16 +13,20 @@ public final class Igreja {
     private String estado = "";
     private String pais_ = "";
     private String cep = "";
+    private String codigopais = "";
     private String phone = "";
     private String datahora = "";
     private String user;
     private String status = "1";
     private String group="";
+    private String igrejaID = "";
+    private String members = "";
 
-    public Igreja() {
+
+    public Igreja ( ) {
     }
 
-    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status, String group, String phone) {
+    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status, String group, String codigopais,String phone,String igrejaID, String members) {
         this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
@@ -36,6 +40,9 @@ public final class Igreja {
         this.status = status;
         this.group = group;
         this.phone = phone;
+        this.codigopais = codigopais;
+        this.igrejaID = igrejaID;
+        this.members = members;
     }
 
     public String getNome() {   return nome;   }
@@ -82,11 +89,59 @@ public final class Igreja {
         this.group = group;
     }
 
+    public String getCodigopais() {
+        return codigopais;
+    }
+
+    public void setCodigopais(String codigopais) {
+        this.phone= codigopais;
+    }
+
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone= phone;
+    }
+
+    public String getUid ( ) {
+        return uid;
+    }
+
+    public void setUid ( String uid ) {
+        this.uid = uid;
+    }
+
+    public String getDatahora ( ) {
+        return datahora;
+    }
+
+    public void setDatahora ( String datahora ) {
+        this.datahora = datahora;
+    }
+
+    public String getStatus ( ) {
+        return status;
+    }
+
+    public void setStatus ( String status ) {
+        this.status = status;
+    }
+
+    public String getIgrejaID ( ) {
+        return igrejaID;
+    }
+
+    public void setIgrejaID ( String igrejaID ) {
+        this.igrejaID = igrejaID;
+    }
+
+    public String getMembers ( ) {
+        return members;
+    }
+
+    public void setMembers ( String members ) {
+        this.members = members;
     }
 }

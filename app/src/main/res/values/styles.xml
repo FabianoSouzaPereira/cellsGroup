@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" >
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/bluesoft</item>
         <item name="android:navigationBarColor">@color/lightcolor</item>
         <item name="android:windowBackground">@color/colorWhite</item>
+        <!-- statusbar text color fica cinza -->
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/bluesoft</item>
+        <item name="colorSecondaryVariant">@color/bluesoft</item>
+        <item name="colorOnSecondary">@color/greensoft</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

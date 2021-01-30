@@ -50,6 +50,7 @@ import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -65,6 +66,8 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     private final ArrayList<String> cels = new ArrayList<String>();
     private ArrayAdapter<String> arrayAdapterCelula;
     private final int limitebusca = 500;
+    Query query;
+    ValueEventListener queryListener;
 
 
 
@@ -98,9 +101,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     }
 
    private void readOnlyActive() {
-        novaRef = databaseReference.child( "churchs/" + igreja +"/cells/");
-        Query query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
-        query.addValueEventListener( new ValueEventListener() {
+        novaRef = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
+        query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
+         queryListener =  new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -122,7 +125,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
-        } );
+        } ;
+
+       query.addValueEventListener (queryListener );
     }
 
     private void clickLista(){
@@ -203,6 +208,20 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     }
 
     @Override
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+        MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+            addIgreja.setVisible ( false );
+            igreja.setVisible (true );
+        }else{
+            addIgreja.setVisible ( true );
+            igreja.setVisible (false);
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int itemId = item.getItemId ( );
@@ -270,4 +289,29 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         return true;
    }
 
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+        query.removeEventListener (queryListener);
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onRestart ( ) {
+        super.onRestart ( );
+    }
+
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
+    }
 }

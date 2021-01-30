@@ -28,6 +28,7 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.Intercessao;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class AddIntercessaoActivity extends AppCompatActivity {
 
@@ -63,7 +64,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty( nome ) && !TextUtils.isEmpty( motivo ) && !TextUtils.isEmpty( data ) ){
                 String uid = Intercessoes.push().getKey();
                 Intercessao intercessao = new Intercessao( uid, nome, motivo, data);
-                Intercessoes.child("churchs/" + igreja + "/\n" + "Intercession").child( uid ).setValue( intercessao );
+                Intercessoes.child("churchs/" + uidIgreja +  "/Intercession").child( uid ).setValue( intercessao );
 
                 Toast.makeText(this,"Criado intercessão com sucesso", Toast.LENGTH_LONG).show();
             }else{

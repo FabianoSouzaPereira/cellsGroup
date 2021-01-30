@@ -40,6 +40,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings("ALL")
 public class ReadCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -104,7 +105,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     private void pegandoConteudoCelula() {
 
-        novaRef0 = databaseReference.child("churchs/" + igreja +"/cells/" + this.celula_);
+        novaRef0 = databaseReference.child( "churchs/" + uidIgreja + "/cells/" + this.celula_);
         novaRef0.addValueEventListener( new ValueEventListener() {
 
             @Override

@@ -255,7 +255,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     private void pegandoConteudoCelula() {
 
-        novaRef5 = databaseReference.child( "Igrejas/" + igreja +"/Celulas/" + this.celulas_);
+        novaRef5 = databaseReference.child( "churchs/" + igreja +"/cells/" + this.celulas_);
         novaRef5.addValueEventListener( new ValueEventListener() {
 
             @Override
@@ -301,7 +301,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     public void addRelatorio(MenuItem menu) {
         try {
-            relatorios = databaseReference.child( "Igrejas/" + igreja + "/Relatorios/" );
+            relatorios = databaseReference.child( "churchs/" + igreja + "/Reports/" );
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
