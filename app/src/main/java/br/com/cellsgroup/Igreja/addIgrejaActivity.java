@@ -127,11 +127,15 @@ public class addIgrejaActivity extends AppCompatActivity {
         try {
             mAuth = FirebaseAuth.getInstance();
             String userId = mAuth.getCurrentUser().getUid();
+
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
             databaseReference.child( "users" ).child( userId );
+
             Map<String, Object> usuarioUpdates = new HashMap<>();
             usuarioUpdates.put( "users" + userId + "/igrejaPadrao" , igreja);
+
             databaseReference.updateChildren( usuarioUpdates );
+
             Log.i("Updated", "Updated br.com.cellsgroup.models.igreja padrão de usuário novo. ");
         } catch (Exception e) {
             e.printStackTrace();

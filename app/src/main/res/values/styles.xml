@@ -14,6 +14,7 @@
         <item name="colorSecondary">@color/bluesoft</item>
         <item name="colorSecondaryVariant">@color/bluesoft</item>
         <item name="colorOnSecondary">@color/greensoft</item>
+        <item name="titleTextColor">@color/Browncolor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

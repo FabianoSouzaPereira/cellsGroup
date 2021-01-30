@@ -80,4 +80,12 @@ public class DeleteIgrejaActivity extends AppCompatActivity {
         apagarIgreja = findViewById(R.id.tvApagarIgreja );
         btnApagarIgreja = findViewById(R.id.btnApagarIgreja);
     }
+
+    @Override
+    public void onBackPressed() {
+        DeleteIgrejaActivity.this.finish ();
+        Intent readigreja = new Intent ( DeleteIgrejaActivity.this , HomeActivity.class );
+        startActivity ( readigreja );
+        super.onBackPressed();
+    }
 }

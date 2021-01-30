@@ -105,7 +105,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                             uid = igr.getUid ();
                             String user = igr.getUser ();
                             String group = igr.getGroup ();
-                            String nome = igr.getNome ();
+                            nome = igr.getNome ();
                             String endereco = igr.getEndereco ();
                             String bairro = igr.getBairro ();
                             String cidade = igr.getCidade ();
@@ -187,8 +187,10 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         int id = item.getItemId();
 
         if(id == R.id.action_Edit){
-            Intent config = new Intent ( IgrejasCriadasActivity.this , EditIgrejaActivity.class );
-            startActivity ( config );
+            Intent intent = new Intent ( IgrejasCriadasActivity.this , EditIgrejaActivity.class );
+            intent.putExtra("Igreja", "" + uid );
+            intent.putExtra("Nome", "" + nome );
+            startActivity ( intent );
             return true;
         }
         if(id == R.id.action_delete){

@@ -35,6 +35,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Igreja.EditIgrejaActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
@@ -299,15 +300,17 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id == R.id.action_save){
             editCelulaClick(item);
             return true;
         }
-        if(id == R.id.action_Edit){
-           // editCelulaClick(item);
+        if(id == R.id.action_Cancel){
+            DrawerLayout drawer = findViewById( R.id.drawer_edit_celula );
+            if (drawer.isDrawerOpen( GravityCompat.START )) {
+                drawer.closeDrawer( GravityCompat.START );
+            } else {
+                super.onBackPressed();
+            }
             return true;
         }
 
