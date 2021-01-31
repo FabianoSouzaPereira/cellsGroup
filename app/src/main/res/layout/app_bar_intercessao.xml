@@ -47,13 +47,13 @@
         android:id="@+id/fabIntercessao"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="56dp"
-        android:contentDescription="@string/add"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/add"
         app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
