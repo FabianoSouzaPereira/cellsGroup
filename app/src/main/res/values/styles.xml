@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorYellow</item>
         <item name="colorPrimaryDark">@color/colorYellow</item>
         <item name="colorAccent">@color/bluesoft</item>
-        <item name="android:navigationBarColor">@color/lightcolor</item>
+        <item name="android:navigationBarColor">@color/colorYellow</item>
         <item name="android:windowBackground">@color/colorWhite</item>
         <!-- statusbar text color fica cinza -->
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>

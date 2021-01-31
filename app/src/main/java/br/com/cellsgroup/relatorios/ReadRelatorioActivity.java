@@ -46,6 +46,7 @@ import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
@@ -129,7 +130,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     }
 
     private void mostraRelatorio() {
-        novaRef6 = databaseReference.child( "churchs/" + igreja + "/Reports/" + cel_1 );
+        novaRef6 = databaseReference.child( "churchs/" + uidIgreja + "/Reports/" + cel_1 );
         novaRef6.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

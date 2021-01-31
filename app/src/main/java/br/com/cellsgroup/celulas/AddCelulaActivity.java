@@ -86,8 +86,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         addDataHora();
         inicializarComponentes();
 
-
-
     }
 
     private void inicializarComponentes() {
@@ -162,24 +160,17 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
     }
 
-
     /** Inicia Firebase   */
     private void inicializarFirebase() {
         Cells = FirebaseDatabase.getInstance().getReference();
     }
 
-
     @Override
     public void onBackPressed() {
-        AddCelulaActivity.this.finish();
-        DrawerLayout drawer = findViewById( R.id.drawer_add_celula );
-        if (drawer.isDrawerOpen( GravityCompat.START )) {
-            drawer.closeDrawer( GravityCompat.START );
-        } else {
-            super.onBackPressed();
-        }
+        AddCelulaActivity.this.finish ();
+        Intent intent = new Intent(AddCelulaActivity.this, CelulasActivity.class);
+        startActivity(intent);
     }
-
 
     @Override
     protected void onPause() {
@@ -196,10 +187,9 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         super.onRestoreInstanceState( savedInstanceState );
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel , menu );
         return true;
     }
 
@@ -207,17 +197,19 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id == R.id.action_save){
             addCelulaClick(item);
+            return true;
+        }
+        if(id == R.id.action_Cancel){
+            AddCelulaActivity.this.finish ();
+            Intent intent = new Intent(AddCelulaActivity.this, CelulasActivity.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected( item );
     }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -277,7 +269,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
 
             if(!TextUtils.isEmpty( celula ) && Logado && typeUserAdmin){
                 String uid = Cells.push().getKey();
-                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, status, DataTime, userId, igreja);
+                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, DataTime, status, userId, igreja);
                 if (uid == null) throw new AssertionError();
                 Cells.child( "churchs/" + uidIgreja + "/cells/").child( celula ).child( uid ).setValue( cel );
 

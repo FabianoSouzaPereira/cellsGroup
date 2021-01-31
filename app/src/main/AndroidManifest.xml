@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".usuario.EditUsuarioActivity"></activity>
+        <activity android:name=".usuario.EditUsuarioActivity" />
         <activity android:name=".usuario.UsuarioActivity" />
         <activity android:name=".Igreja.DeleteIgrejaActivity" />
         <activity android:name=".Igreja.EditIgrejaActivity" />
@@ -47,10 +47,6 @@
         <activity
             android:name=".intercessao.AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".conexao.ConexaoActivity"
-            android:label="@string/title_activity_conexao"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Igreja.addIgrejaActivity"

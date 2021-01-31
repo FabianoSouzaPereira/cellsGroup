@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
 import br.com.cellsgroup.relatorios.AddRelatorioActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
@@ -48,6 +49,7 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
+import br.com.cellsgroup.usuario.UsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
@@ -75,7 +77,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_celulas);
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbarCelulas );
         setSupportActionBar( toolbar );
         iniciaComponentes();
         inicializarFirebase();
@@ -101,7 +103,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         navigationView.setNavigationItemSelectedListener( this );
     }
 
-   private void readOnlyActive() {
+    private void readOnlyActive() {
         novaRef = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
         query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
          queryListener =  new ValueEventListener() {
@@ -170,7 +172,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         databaseReference.keepSynced(true);
     }
 
-
     @Override
     public void onBackPressed() {
         CelulasActivity.this.finish();
@@ -209,6 +210,14 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         } else if ( itemId == R.id.action_addIgreja ) {
             Intent addigreja = new Intent ( CelulasActivity.this , addIgrejaActivity.class );
             startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( CelulasActivity.this , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_Usuario ) {
+            Intent addusuario = new Intent ( CelulasActivity.this , UsuarioActivity.class );
+            startActivity ( addusuario );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {
             Intent addusuario = new Intent ( CelulasActivity.this , AddUsuarioActivity.class );

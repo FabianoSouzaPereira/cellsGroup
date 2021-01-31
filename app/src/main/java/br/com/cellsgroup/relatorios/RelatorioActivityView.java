@@ -52,6 +52,7 @@ import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -119,7 +120,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     }
 
     private void readRelOnlyActive() {
-        novaRef4 = databaseReference.child("churchs/" + igreja + "/Reports" );
+        novaRef4 = databaseReference.child("churchs/" + uidIgreja + "/Reports" );
         Query query = novaRef4.orderByChild( "datahora" ).limitToFirst(limitebusca);
         query.addValueEventListener( new ValueEventListener() {
 
@@ -158,7 +159,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         String datainicial = "";
         String datafinal = "";
 
-        novarefPesq = databaseReference.child("churchs/" + igreja + "/Reports" );
+        novarefPesq = databaseReference.child("churchs/" + uidIgreja + "/Reports/" );
         Query querypesq = novarefPesq.orderByChild( "datahora" ).startAt( datainicial ).endAt( datafinal );
         querypesq.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
@@ -196,8 +197,22 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_drawer, menu );
+        getMenuInflater().inflate( R.menu.home, menu );
         return  true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+        MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+            addIgreja.setVisible ( false );
+            igreja.setVisible (true );
+        }else{
+            addIgreja.setVisible ( true );
+            igreja.setVisible (false);
+        }
+        return true;
     }
 
     @Override
@@ -210,8 +225,6 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
             Intent addigreja = new Intent ( RelatorioActivityView.this , addIgrejaActivity.class );
-            addigreja.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            addigreja.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity ( addigreja );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {

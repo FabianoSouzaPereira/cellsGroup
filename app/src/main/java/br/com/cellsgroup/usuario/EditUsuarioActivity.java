@@ -1,9 +1,11 @@
 package br.com.cellsgroup.usuario;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,11 +32,15 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.celulas.AddCelulaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.celulas.EditCelulaActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.pessoas.User;
 
+import static br.com.cellsgroup.home.HomeActivity.cellPhone;
 import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
@@ -82,6 +88,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
 
     private Query query;
     private ValueEventListener queryListener;
+    private static final boolean DeletePermission = false;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -206,13 +213,13 @@ public class EditUsuarioActivity extends AppCompatActivity {
                     userUpdates.put( "/nomemae", nomemae );
                     userUpdates.put( "/estadocivil", estadocivil );
                     userUpdates.put( "/codigopais", codigoPais );
-                    userUpdates.put( "/phone", telefone );
-                    userUpdates.put( "/endereco", email );
-                    userUpdates.put( "/bairro", email );
-                    userUpdates.put( "/cidade", email );
-                    userUpdates.put( "/estado", email );
-                    userUpdates.put( "/pais", email );
-                    userUpdates.put( "/cep", email );
+                    userUpdates.put( "/telefone", telefone );
+                    userUpdates.put( "/endereco", endereco );
+                    userUpdates.put( "/bairro", bairro );
+                    userUpdates.put( "/cidade", cidade );
+                    userUpdates.put( "/estado", estado );
+                    userUpdates.put( "/pais", pais );
+                    userUpdates.put( "/cep", cep );
                     userUpdates.put( "/email", email );
 
                     Usuarios.child(uid).updateChildren( userUpdates);
@@ -324,19 +331,42 @@ public class EditUsuarioActivity extends AppCompatActivity {
     }
 
     private void deleteUsuario(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder( EditUsuarioActivity.this );
+        builder1 = builder1.setMessage( "Usuario "+ useremail);
+        builder1.setTitle( "Apagar Usuario ?" ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
+            }
+        } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ref = databaseReference;
 
-        try {
-            Usuarios.child(uid).removeValue ();
-            Toast.makeText(this,"Usuário apagado com sucesso", Toast.LENGTH_LONG).show();
-        } catch ( Exception e ) {
-            e.printStackTrace ( );
-        }
+                //apaga usuario de membros
+                ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
 
-        EditUsuarioActivity.this.finish();
-        Intent intent = new Intent( EditUsuarioActivity.this, UsuarioActivity.class );
-        startActivity(intent);
+                //Apaga usuario em users/
+                Usuarios.child ( uid ).removeValue ( );
+
+                Toast.makeText ( EditUsuarioActivity.this , "Usuário apagado com sucesso" , Toast.LENGTH_LONG ).show ( );
+
+                EditUsuarioActivity.this.finish();
+                Intent intent = new Intent( EditUsuarioActivity.this, UsuarioActivity.class );
+                startActivity(intent);
+            }
+        } );
+
+        AlertDialog alertDialog1 = builder1.create();
+        alertDialog1.show();
 
     }
+
+    public void initAlertDialogo(){
+
+
+    }
+
     @Override
     public void onBackPressed() {
         EditUsuarioActivity.this.finish();

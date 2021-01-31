@@ -4,102 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="0dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".models.login.LoginActivity"
+    tools:layout_editor_absoluteY="25dp"
     tools:showIn="@layout/activity_login">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_email"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:maxLength="90"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_password"
-        android:imeActionLabel="@string/action_sign_in_short"
-        android:imeOptions="actionDone"
-        android:inputType="textPassword"
-        android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        android:maxLength="90"
-        tools:ignore="Autofill" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/ic_baseline_menu_book_24" />
 
-    <Button
-        android:id="@+id/btnEnviarRegistro"
-        android:layout_width="67dp"
-        android:layout_height="31dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent"
-        android:enabled="true"
-        android:onClick="onClick"
-        android:text="@string/registrar"
-        android:textSize="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toEndOf="@+id/btnEnviarLogin"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.304" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
+            android:drawableStart="@drawable/ic_baseline_alternate_email_24"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:maxLength="90"
+            android:selectAllOnFocus="true"
+            tools:ignore="Autofill" />
 
-    <Button
-        android:id="@+id/btnEnviarLogin"
-        android:layout_width="142dp"
-        android:layout_height="45dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="140dp"
-        android:background="@color/colorPrimary"
-        android:enabled="true"
-        android:onClick="onClick"
-        android:text="@string/login"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.222" />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="90"
+            android:selectAllOnFocus="true"
+            tools:ignore="Autofill" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btnEnviarLogin"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|center_horizontal|end"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="10"
+                android:background="#F4CD07"
+                android:ellipsize="start"
+                android:enabled="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/entrar"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|left"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="10"
+                android:background="#DDCEA7"
+                android:text="@string/cancelar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnEnviarRegistro"
+                android:layout_width="67dp"
+                android:layout_height="31dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/lightcolor"
+                android:enabled="true"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="@string/registrar"
+                android:textSize="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

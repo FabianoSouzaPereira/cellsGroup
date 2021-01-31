@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         mFunctions = FirebaseFunctions.getInstance();
 
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbarhome );
         setSupportActionBar( toolbar );
         inicializarFirebase();
         addDataHora();

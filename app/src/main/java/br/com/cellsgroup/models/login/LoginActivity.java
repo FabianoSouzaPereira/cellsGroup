@@ -1,5 +1,6 @@
 package br.com.cellsgroup.models.login;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView( R.layout.activity_login );
        // Toolbar toolbar = findViewById( R.id.toolbar );
       //  setSupportActionBar( toolbar );
+
 
         mAuth = FirebaseAuth.getInstance();
         editEmail = findViewById( R.id.email );

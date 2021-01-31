@@ -1,5 +1,6 @@
 package br.com.cellsgroup.celulas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -30,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -70,7 +73,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     private TextInputLayout textInputDia;
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
-
+    public String DataTime;
+    public String DataT;
     private String dia;
     private String hh;
     private String mm;
@@ -114,7 +118,6 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 dia = "";
             }
         } );
-
 
         ArrayAdapter<String> adapterhora = new ArrayAdapter<>( EditCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,hora );
         hr = (Spinner)findViewById( R.id.spinnerUpdatehora );
@@ -176,6 +179,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                     dia = c.getDia();
                     hrs = c.getHora();
                     String datainicio = c.getDatainicio();
+                    String status = c.getStatus ();
                     text_uid_celula.setText (uid);
                     Objects.requireNonNull( textInputCelula.getEditText() ).setText( celula );
                     Objects.requireNonNull( textInputRede.getEditText() ).setText( rede );
@@ -185,7 +189,6 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                     Objects.requireNonNull( textInputAnfitriao.getEditText() ).setText( anfitriao );
                     Objects.requireNonNull( textInputSecretario.getEditText() ).setText( secretario );
                     Objects.requireNonNull( textInputColaborador.getEditText() ).setText( colaborador );
-
                     Objects.requireNonNull( textInputDataInicio.getEditText() ).setText( datainicio );
 
                     sp = (Spinner) findViewById( R.id.spinnerUpdateSemana );
@@ -230,7 +233,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         String hora = hh + ":" + mm;
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         novaRef2.child( celula ).child(  uid  );
-
+        addDataHora();
         if(!TextUtils.isEmpty( celula )){
             Map<String, Object> celulaUpdates = new HashMap<>();
             celulaUpdates.put( celula + "/"  + uid + "/rede" , rede);
@@ -242,6 +245,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             celulaUpdates.put( celula + "/"  + uid + "/colaborador", colaborador );
             celulaUpdates.put( celula + "/"  + uid + "/dia", dia );
             celulaUpdates.put( celula + "/"  + uid + "/hora", hora );
+            celulaUpdates.put( celula + "/"  + uid + "/datahora", DataTime );
             celulaUpdates.put( celula + "/"  + uid + "/userId", userId );
 
             novaRef2.updateChildren( celulaUpdates );
@@ -354,5 +358,14 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_edit_celula);
         drawer.closeDrawer( GravityCompat.START );
         return true;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public void addDataHora() {
+        Date dataHoraAtual = new Date();
+        String data = new SimpleDateFormat ("dd/MM/yyyy").format(dataHoraAtual);
+        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+        DataTime = data + " "+ hora;
+        DataT = data;
     }
 }

@@ -46,6 +46,7 @@ import br.com.cellsgroup.models.celulas.Celula;
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
 @SuppressWarnings("ALL")
@@ -115,12 +116,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         Intent intent = getIntent();
         celulas_ = intent.getStringExtra( "Celula" );
 
-
         pegandoConteudoCelula();
 
-
     }
-
 
     private void inicializarComponentes() {
 
@@ -255,7 +253,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     private void pegandoConteudoCelula() {
 
-        novaRef5 = databaseReference.child( "churchs/" + igreja +"/cells/" + this.celulas_);
+        novaRef5 = databaseReference.child( "churchs/" + uidIgreja + "/cells/" + this.celulas_);
         novaRef5.addValueEventListener( new ValueEventListener() {
 
             @Override
@@ -301,7 +299,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     public void addRelatorio(MenuItem menu) {
         try {
-            relatorios = databaseReference.child( "churchs/" + igreja + "/Reports/" );
+            relatorios = databaseReference.child( "churchs/" + uidIgreja + "/Reports/" );
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();

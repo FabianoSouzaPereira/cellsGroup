@@ -76,14 +76,12 @@ public class AddUsuarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_usuario );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbarAdduser );
         setSupportActionBar( toolbar );
         mAuth = FirebaseAuth.getInstance();
 
         inicializarComponentes();
         inicializarFirebase();
-
-
     }
 
     private void inicializarComponentes() {
