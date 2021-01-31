@@ -55,7 +55,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private final int limitebusca = 500;
-    private final ArrayList< br.com.cellsgroup.models.Intercessao > inter = new ArrayList<Intercessao>( );
+    private final ArrayList< Intercessao > inter = new ArrayList<Intercessao>( );
     private String mUid;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -70,9 +70,11 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         setSupportActionBar( toolbar );
         iniciaComponentes();
         inicializarFirebase();
+
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager (this);
         recyclerView.setLayoutManager(layoutManager);
+
         readIntercessao();
         clickListaIntercessao();
 

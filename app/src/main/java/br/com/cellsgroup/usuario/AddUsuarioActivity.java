@@ -62,6 +62,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private TextInputLayout EditTextendereco;
     private TextInputLayout EditTextbairro;
     private TextInputLayout EditTextcidade;
+    private TextInputLayout EditTextestado;
     private TextInputLayout EditTextpais;
     private TextInputLayout EditTextcep;
     private TextInputLayout EditTextcargoIgreja;
@@ -100,6 +101,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         EditTextendereco = findViewById( R.id.text_input_editEndereco );
         EditTextbairro = findViewById( R.id.text_input_editBairro );
         EditTextcidade = findViewById( R.id.text_input_editCidade );
+        EditTextestado = findViewById ( R.id.text_input_editEstado );
         EditTextpais = findViewById( R.id.text_input_editPais );
         EditTextcep = findViewById( R.id.text_input_editCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
@@ -159,6 +161,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         String endereco =  EditTextendereco.getEditText().getText().toString().trim();
         String bairro = EditTextbairro.getEditText().getText().toString().trim();
         String cidade =  EditTextcidade.getEditText().getText().toString().trim();
+        String estado =  EditTextestado.getEditText().getText().toString().trim();
         String pais =  EditTextpais.getEditText().getText().toString().trim();
         String cep = EditTextcep.getEditText().getText().toString().trim();
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
@@ -180,7 +183,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty( nome ) ) {
 
                 String uid = Usuarios.push ( ).getKey ( );
-                User usuario = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , codigoPais , telefone , email , endereco , bairro , cidade , pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
+                User usuario = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , codigoPais , telefone , email , endereco , bairro , cidade , estado, pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
 
                 if ( uid != null ) {
                     //Cria usuario
@@ -245,27 +248,22 @@ public class AddUsuarioActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel , menu );
         return true;
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id == R.id.action_save){
             addUsuarioClick(item);
             return true;
         }
-        if(id == R.id.action_Edit){
-            return true;
-        }
-        if(id == R.id.action_delete){
+        if(id == R.id.action_Cancel){
+            AddUsuarioActivity.this.finish();
+            Intent intent = new Intent( AddUsuarioActivity.this, UsuarioActivity.class );
+            startActivity(intent);
             return true;
         }
 
@@ -280,6 +278,32 @@ public class AddUsuarioActivity extends AppCompatActivity {
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
         DataTime = data + " "+ hora;
         DataT = data;
+    }
+
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onRestart ( ) {
+        super.onRestart ( );
+    }
+
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
     }
 
 }

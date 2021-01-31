@@ -200,6 +200,9 @@
     <string name="item">Item</string>
     <string name="apagar_igreja_question">APAGAR IGREJA ?</string>
     <string name="apagar_igreja">APAGAR IGREJA</string>
+    <string name="usu_rio">Usuário</string>
+    <string name="nomeusuario">nomeUsuario</string>
+    <string name="uidusuario">uidUsuario</string>
 
 
 </resources>

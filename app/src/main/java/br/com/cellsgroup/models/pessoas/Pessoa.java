@@ -1,11 +1,6 @@
 package br.com.cellsgroup.models.pessoas;
 
-import org.json.JSONObject;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-
-public class Pessoa implements Serializable {
+public class Pessoa {
     private String uid = "";
     private String nome = "";
     private String idade = "";
@@ -21,6 +16,7 @@ public class Pessoa implements Serializable {
     private String endereco = "";
     private String bairro = "";
     private String cidade = "";
+    private String estado = "";
     private String pais = "";
     private String cep = "";
     private String cargoIgreja = "";
@@ -32,7 +28,7 @@ public class Pessoa implements Serializable {
 
     public Pessoa( ) { }
 
-    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade , String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
+    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade ,String estado, String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
         this.uid = uid;
         this.nome = nome;
         this.idade = idade;
@@ -48,6 +44,7 @@ public class Pessoa implements Serializable {
         this.endereco = endereco;
         this.bairro = bairro;
         this.cidade = cidade;
+        this.estado = estado;
         this.pais = pais;
         this.cep = cep;
         this.cargoIgreja = cargoIgreja;
@@ -57,6 +54,7 @@ public class Pessoa implements Serializable {
         this.userId = userId;
         this.group = group;
     }
+
 
     public String getUid ( ) {
         return uid;
@@ -178,6 +176,14 @@ public class Pessoa implements Serializable {
         this.cidade = cidade;
     }
 
+    public String getEstado ( ) {
+        return estado;
+    }
+
+    public void setEstado ( String estado ) {
+        this.estado = estado;
+    }
+
     public String getPais ( ) {
         return pais;
     }
@@ -238,7 +244,7 @@ public class Pessoa implements Serializable {
         return group;
     }
 
-    public void setGroup ( JSONObject group ) {
+    public void setGroup ( Object group ) {
         this.group = group;
     }
 }

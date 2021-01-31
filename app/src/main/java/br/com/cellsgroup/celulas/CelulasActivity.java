@@ -80,7 +80,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         iniciaComponentes();
         inicializarFirebase();
 
-        //  readCelulaLista() ;
         readOnlyActive();
         clickLista();
         
@@ -88,7 +87,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initAlertDialogo();
+                Intent addCelula = new Intent(CelulasActivity.this, AddCelulaActivity.class);
+                startActivity( addCelula );
+                finish();
             }
         } );
         DrawerLayout drawer = findViewById ( R.id.drawer_activityCelulas );
@@ -138,7 +139,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 String celula = arrayAdapterCelula.getItem( Id );
                 Intent intent = new Intent(CelulasActivity.this, ReadCelulaActivity.class);
                 intent.putExtra("Celula", String.valueOf( celula ) );
-                intent.putExtra("uid", uid);
                 startActivity(intent);
             }
         } );
@@ -151,7 +151,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 String celula = arrayAdapterCelula.getItem( Id );
                 Intent intent = new Intent(CelulasActivity.this, AddRelatorioActivity.class);
                 intent.putExtra("Celula", String.valueOf( celula ) );
-                intent.putExtra("uid", uid);
+
                 startActivity(intent);
                 return true;
             }
@@ -170,29 +170,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         databaseReference.keepSynced(true);
     }
 
-    public void initAlertDialogo(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(CelulasActivity.this);
-        builder  = builder.setMessage( "Inserir nova célula?" );
-        builder.setTitle( "Adicionando célula..." )
-                .setCancelable( false )
-                .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                        Intent addCelula = new Intent(CelulasActivity.this, AddCelulaActivity.class);
-                        startActivity( addCelula );
-                        finish();
-                    }
-                });
-        AlertDialog alertDialog = builder . create () ;
-        alertDialog.show();
-    }
 
     @Override
     public void onBackPressed() {

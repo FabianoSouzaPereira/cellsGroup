@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".usuario.AddUsuarioActivity"
-    tools:showIn="@layout/activity_add_usuario">
+    tools:context=".usuario.EditUsuarioActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -247,7 +245,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/cidade"
+                    android:hint="@string/estado"
                     android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>

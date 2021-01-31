@@ -60,6 +60,7 @@ import br.com.cellsgroup.models.igreja.Members;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 import br.com.cellsgroup.usuario.AddUsuarioActivity;
+import br.com.cellsgroup.usuario.UsuarioActivity;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -409,6 +410,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if ( itemId == R.id.action_readIgreja ) {
             Intent readigreja = new Intent ( HomeActivity.this , IgrejasCriadasActivity.class );
             startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_Usuario ) {
+            Intent addusuario = new Intent ( HomeActivity.this , UsuarioActivity.class );
+            startActivity ( addusuario );
             return true;
         }else if ( itemId == R.id.action_addUsuario ) {
             Intent addusuario = new Intent ( HomeActivity.this , AddUsuarioActivity.class );

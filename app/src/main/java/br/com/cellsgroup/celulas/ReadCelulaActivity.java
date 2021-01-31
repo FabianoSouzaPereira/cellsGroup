@@ -76,7 +76,6 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         Intent intent = getIntent();
         celula_ = intent.getStringExtra( "Celula" );
 
-
         pegandoConteudoCelula();
 
         DrawerLayout drawer = findViewById( R.id.drawer_read_celula);
@@ -179,7 +178,6 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
             Intent intent = new Intent( ReadCelulaActivity.this, EditCelulaActivity.class );
             intent.putExtra("Celula", String.valueOf( this.celula_ ) );
             startActivity(intent);
-            finish();
             return true;
         }
         if(id == R.id.action_delete){

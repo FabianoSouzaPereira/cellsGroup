@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Igreja.DeleteIgrejaActivity"></activity>
+        <activity android:name=".usuario.EditUsuarioActivity"></activity>
+        <activity android:name=".usuario.UsuarioActivity" />
+        <activity android:name=".Igreja.DeleteIgrejaActivity" />
         <activity android:name=".Igreja.EditIgrejaActivity" />
         <activity
             android:name=".Igreja.IgrejasCriadasActivity"

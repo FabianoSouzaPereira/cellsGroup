@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontwarn com.firebase.ui.**
+-dontnote io.grpc.internal.**
+
+# Opcional: configurar o ProGuard
+# Ao usar o Firebase Realtime Database e o ProGuard no seu app, pense em como os objetos do modelo
+# serão serializados e desserializados após a ofuscação. Se você usar DataSnapshot.getValue(Class)
+# ou DatabaseReference.setValue(Object) para ler e gravar dados, será preciso adicionar regras ao arquivo
+# proguard-rules.pro:
+# Add this global rule
+-keepattributes Signature
+
+# This rule will properly ProGuard all the model classes in
+# the package com.yourcompany.models. Modify to fit the structure
+# of your app.
+-keepclassmembers class br.com.cellsgroup.models.** { *;}
