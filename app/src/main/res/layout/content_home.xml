@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_baseline_social_distance_24" />
+                    android:src="@drawable/ic_baseline_social_distance_24_yellow" />
 
                 <TextView
                     android:id="@+id/tvcardCelulas"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/c_lulas"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_baseline_view_list_24" />
+                    android:src="@drawable/ic_baseline_view_list_24_yewllow" />
 
                 <TextView
                     android:id="@+id/tvcardRelatorios"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/relat_rios"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_baseline_wifi_tethering_24" />
+                    android:src="@drawable/ic_baseline_sports_kabaddi_24_yellow" />
 
                 <TextView
                     android:id="@+id/tvcardIntercesão"
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/Intersession"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_baseline_menu_book_24" />
+                    android:src="@drawable/ic_baseline_menu_book_24_yellow" />
 
                 <TextView
                     android:id="@+id/tvcardAgenda"
@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/Schedule"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/View"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -204,7 +204,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/ic_baseline_phone_24" />
+                    android:src="@drawable/ic_baseline_phone_24_yellow" />
 
                 <TextView
                     android:id="@+id/tvcardBatismo"
@@ -212,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:text="@string/contato"
-                    android:textColor="#F8E902"
+                    android:textColor="#9CC1CA"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

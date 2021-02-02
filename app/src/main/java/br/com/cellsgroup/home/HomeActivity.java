@@ -35,11 +35,11 @@ import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import br.com.cellsgroup.Activity_splash_screen;
 import br.com.cellsgroup.CompartilharActivity;
@@ -130,14 +130,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void pegarPadroes() {
-        String email = mAuth.getCurrentUser().getEmail();
-
-        if ( email.isEmpty()){
-            Toast.makeText( this, "Sem email cadastrado", Toast.LENGTH_LONG ).show();
+      //  String email = mAuth.getCurrentUser().getEmail();
+       final String ui = UI.getUid ();
+        if ( ui.isEmpty()){
+            Toast.makeText( this, "Sem usuario cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
             novaref = databaseReference.child( "users/");
-            Query query = novaref.orderByChild( "email" ).equalTo( email ).limitToFirst (1);
+            Query query = novaref.orderByChild ("user").equalTo( ui ).limitToFirst (1);
             query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
                 @Override
                 public void onDataChange ( @NonNull DataSnapshot snapshot ) {
@@ -165,28 +165,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             } );
 
         //carrega dados da igreja cadastrada
-        final String ui = UI.getUid ();
         novaref2 = databaseReference.child ("churchs/");
-        Query query3 = novaref2.orderByChild ("igrejaId").limitToFirst (1);
-        query3.addValueEventListener (new ValueEventListener ( ) {
+        Query query3 = novaref2.orderByChild ("igrejaID");
+        query3.addValueEventListener (new ValueEventListener () {
                  @Override
                 public void onDataChange ( @NonNull DataSnapshot datasnapshot ) {
                      for(DataSnapshot ds : datasnapshot.getChildren ()) {
                          for ( DataSnapshot sd : ds.getChildren ( ) ) {
                                 String key = sd.getKey ();
-                             if(!key.equalsIgnoreCase ( "members" )
+                             if(
+                                !key.equalsIgnoreCase ( "members" )
                                  && !key.equalsIgnoreCase ( "cells" )
                                  && !key.equalsIgnoreCase ( "reports" )
                                  && !key.equalsIgnoreCase ( "intercession" )
+                                 && !key.equalsIgnoreCase ( "Skedule" )
                              ) {
 
                                  Igreja ig = sd.getValue ( Igreja.class );
-
-                                 String members = ig.getMembers ( );
-                                 String user = ig.getUser ( );
-                                 igreja = ig.getNome ( );
-                                 group = ig.getGroup ( );
-                                 uidIgreja = ig.getIgrejaID ( );
+                                 if(ig.getUser ().equals (ui)) {
+                                     String members = ig.getMembers ( );
+                                     String user = ig.getUser ( );
+                                     igreja = ig.getNome ( );
+                                     group = ig.getGroup ( );
+                                     uidIgreja = ig.getIgrejaID ( );
+                                 }
                              }
                          }
                      }
@@ -198,9 +200,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
-
-
-
     }
 
     @Override
@@ -217,10 +216,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     //    initAlertDialogoUsuario();
     }
 
-
     @Override
     protected void onResume() {
-        pegarPadroes();
+     //   pegarPadroes();
         super.onResume();
     }
 
@@ -253,7 +251,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     .setNegativeButton( "cancelado", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
@@ -427,6 +425,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            finish();
             return true;
         }
         return super.onOptionsItemSelected ( item );

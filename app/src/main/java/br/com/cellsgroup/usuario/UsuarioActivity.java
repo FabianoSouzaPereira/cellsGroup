@@ -35,6 +35,8 @@ import br.com.cellsgroup.celulas.ReadCelulaActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.pessoas.User;
 
+import static br.com.cellsgroup.home.HomeActivity.UI;
+
 
 public class UsuarioActivity extends AppCompatActivity implements Serializable {
     private static final String TAG = "TAG";
@@ -78,8 +80,9 @@ public class UsuarioActivity extends AppCompatActivity implements Serializable {
     }
 
     private void readOnlyActive() {
+        final String ui = UI.getUid ();
         novaRef = databaseReference.child( "users/");
-        query = novaRef.orderByChild( "uid/" ).limitToLast(limitebusca);
+        query = novaRef.orderByChild( "userId").startAt(ui).endAt(ui).limitToLast(limitebusca);
         queryListener =  new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

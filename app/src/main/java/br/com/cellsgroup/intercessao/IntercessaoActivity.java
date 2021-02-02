@@ -114,8 +114,8 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     }
 
     private void readIntercessao() {
-        novaRef = Intercessao.child( "churchs/" + uidIgreja);
-        Query query = novaRef.child("/Intercession").orderByChild( "data" ).limitToFirst( limitebusca );
+        novaRef = Intercessao.child( "churchs/" + uidIgreja + "/Intercession/");
+        Query query = novaRef.orderByChild( "data" ).limitToLast( limitebusca );
         query.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

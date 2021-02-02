@@ -37,7 +37,7 @@
     <string name="prompt_password" translatable="true">Senha</string>
 
     <string name="action_sign_in" translatable="true">Entre</string>
-    <string name="action_sign_in_short" translatable="true">Entrar</string>
+    <string name="action_sign_in_short" translatable="true">Muito curto</string>
     <string name="welcome" translatable="true">"Bem vindo Welcome !"</string>
     <string name="invalid_username" translatable="true">Não é um usuário válido</string>
     <string name="invalid_password" translatable="true">Senha precisa ser  > 5 characteres</string>
@@ -84,7 +84,7 @@
     <string name="anfitriao" translatable="true">Anfitrião</string>
     <string name="colaborador" translatable="true">Colaborador</string>
     <string name="secretario" translatable="true">Secretário</string>
-    <string name="hora" translatable="true">Hora</string>
+    <string name="hora" translatable="true">Hora:</string>
     <string name="dataInicio" translatable="true">Data início</string>
 
     <string name="action_save">Salvar</string>
@@ -114,6 +114,8 @@
     <string name="Email_erro">Email inválido </string>
     <string name="Senha_vazia">Falta colocar a senha</string>
     <string name="obrigatorio">Obrigatório</string>
+    <string name="obrigatorio_email_valid">Obrigatório email válido</string>
+    <string name="obrigatorio_maior_5">Obrigatório com +5 dígitos</string>
     <string name="registrando">Realizando o registro…</string>
     <string name="iniciando_login">Iniciando Login…</string>
     <string name="registro_existe">Esse registro já existe.</string>
@@ -140,12 +142,12 @@
     <string name="c_lulas">Células</string>
     <string name="relat_rios">Relatórios</string>
 
-    <string name="data">Data</string>
-    <string name="motivo">Motivo</string>
+    <string name="data">Data:</string>
+    <string name="motivo">Motivo:</string>
     <string name="data_">/ /</string>
     <string name="fileNotFound">File: not found!</string>
-    <string name="evento">Evento</string>
-    <string name="data_evento">Data Evento</string>
+    <string name="evento">Evento:</string>
+    <string name="data_evento">Data Evento:</string>
     <string name="salvar">Salvar</string>
 
 
@@ -164,9 +166,11 @@
     <string name="telefone_required">Telefone*</string>
     <string name="celulas">Celulas</string>
     <string name="_00_00">00:00</string>
-    <string name="descri_o">Descrição</string>
-    <string name="local">Local</string>
+
+    <string name="descri_o">Descrição:</string>
+    <string name="local">Local:</string>
     <string name="barras">/ /</string>
+
     <string name="denominacao">Denominacao</string>
     <string name="_000000000000000000">000000000000000000</string>
     <string name="data_de_nascimento_required">data de nascimento*</string>
@@ -183,6 +187,7 @@
     <string name="item">Item</string>
     <string name="apagar_igreja_question">APAGAR IGREJA ?</string>
     <string name="apagar_igreja">APAGAR IGREJA</string>
+    <string name="apagar_igreja_min">Apagar Igreja</string>
     <string name="usu_rio">Usuário</string>
     <string name="nomeusuario">nomeUsuario</string>
     <string name="uidusuario">uidUsuario</string>
@@ -198,6 +203,10 @@
     <string name="Contact">Contato</string>
     <string name="Share">Compartilhar</string>
     <string name="Send">Enviar</string>
+    <string name="content_description_end_icon">icone email</string>
+    <string name="editar_igreja">Editar Igreja</string>
+    <string name="lideres">Lideres</string>
+    <string name="adiciona_l_der">Adiciona Líder</string>
 
 
 </resources>

@@ -16,12 +16,12 @@
     <item
         android:id="@+id/action_Usuario"
         android:orderInCategory="102"
-        android:title="@string/usu_rio"
+        android:title="@string/lideres"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_addUsuario"
         android:orderInCategory="103"
-        android:title="@string/action_addUsuario"
+        android:title="@string/adiciona_l_der"
         app:showAsAction="never" />
 
     <item

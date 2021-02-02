@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,23 +44,32 @@ public class AdapterListViewAgenda  extends RecyclerView.Adapter<AdapterListView
 
     public static class ViewholderAgenda extends  ViewHolder{
         TextView data;
-        TextView hora;
+        Spinner hora;
+        Spinner minuto;
         TextView  evento;
         TextView  local;
         TextView  descricao;
 
         public ViewholderAgenda(View view){
             super ( view );
-            data = view.findViewById ( R.id.text_input_Data);
-            hora = view.findViewById(  R.id.text_input_hora );
-            evento = view.findViewById(  R.id.text_input_DataEvento );
-            local = view.findViewById(  R.id.text_input_localAgenda);
-            descricao = view.findViewById( R.id.text_input_descricaoAgenda);
+            data = view.findViewById ( R.id.tvDataAgenda);
+            hora = view.findViewById(  R.id.spinnerhoraAg);
+            minuto = view.findViewById ( R.id.spinnerminAg );
+            evento = view.findViewById(  R.id.tveventoAgenda);
+            local = view.findViewById(  R.id.tvlocalAgenda);
+            descricao = view.findViewById( R.id.tvdescricaoAgenda);
         }
 
         public void bind(Agenda agenda){
+            String hi = agenda.getHora ();
+            String[] ho = hi.split (":");
+            int h = Integer.parseInt ( ho[0] );
+            int min = Integer.parseInt ( ho[1] );
+            hora.setSelection (h);
+            minuto.setSelection (min);
+
             data.setText( agenda.getData());
-            hora.setText( agenda.getHora() );
+
             evento.setText( agenda.getEvento() );
             local.setText( agenda.getLocal());
             descricao.setText( agenda.getDescricao() );

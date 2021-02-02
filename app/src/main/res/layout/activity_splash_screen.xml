@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android=
-    "http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_background" >
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ieq"
-        android:contentDescription="TODO" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/text11"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="230dp"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/ic_baseline_groups_24" />
 
     <TextView
+        android:id="@+id/text11"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textSize="12dp"
-        android:textColor="#454545"
-        android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:text="Quadrangular em células" />
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:text="Igreja em Células"
+        android:textColor="#454545"
+        android:textSize="18sp" />
 
 </RelativeLayout>

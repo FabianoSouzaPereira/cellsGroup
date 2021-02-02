@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:paddingBottom="10dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="40dp" />
+        app:layout_constraintGuide_begin="42dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="84dp" />
+        app:layout_constraintGuide_begin="103dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -25,30 +28,50 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="16dp" />
 
-    <TextView
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDataAgenda"-->
+    <!--        android:layout_width="91dp"-->
+    <!--        android:layout_height="20dp"-->
+    <!--        android:layout_marginStart="8dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_marginBottom="8dp"-->
+    <!--        android:text="@string/barras"-->
+    <!--        android:textColor="#E91E63"-->
+
+    <!--        app:layout_constraintBottom_toTopOf="@+id/guideline"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/lbdataAgenda_"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="1.0" />-->
+
+    <EditText
         android:id="@+id/tvDataAgenda"
-        android:layout_width="91dp"
-        android:layout_height="20dp"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/barras"
-        android:textColor="#E91E63"
-
+        android:background="@drawable/shape_edittext"
+        android:ems="10"
+        android:inputType="date"
+        android:text="Name"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/lbhoraAgenda"
         app:layout_constraintStart_toEndOf="@+id/lbdataAgenda_"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/tveventoAgenda"
         android:layout_width="249dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/shape_edittext"
         android:hint="@string/evento"
-        android:text="@string/evento"
+        android:text="Evento para marcar"
+        android:textColor="#000000"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -62,46 +85,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="131dp" />
+        app:layout_constraintGuide_begin="164dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvlocalAgenda"
         android:layout_width="247dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/shape_edittext"
         android:hint="@string/local"
-        android:text="@string/local"
+        android:text="Local que será feito o evento"
         android:textColor="#000000"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvdescricaoAgenda"
-        android:layout_width="256dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:hint="@string/descri_o"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_edittext"
+        android:gravity="start"
         android:inputType="textMultiLine"
         android:maxLines="15"
-        android:text="@string/descri_o"
+        android:minLines="8"
+        android:text="Descrição do evento marcado"
         android:textColor="#000000"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
@@ -110,23 +134,49 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="125dp" />
 
-    <TextView
-        android:id="@+id/tvhoraAgenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="8dp"
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvhoraAgenda"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="3dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_marginEnd="92dp"-->
+    <!--        android:layout_marginBottom="8dp"-->
 
-        android:text="@string/_00_00"
-        android:textColor="#E91E63"
+    <!--        android:text="@string/_00_00"-->
+    <!--        android:textColor="#E91E63"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/guideline"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/guideline7"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/lbhoraAgenda"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="1.0" />-->
+
+    <Spinner
+        android:id="@+id/spinnerhoraAg"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/txtMinuto"
         app:layout_constraintStart_toEndOf="@+id/lbhoraAgenda"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerminAg"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintStart_toEndOf="@+id/txtMinuto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"
@@ -139,10 +189,9 @@
         android:id="@+id/lbdataAgenda_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/data"
-        android:textColor="#000000"
+        android:textColor="#3949AB"
         android:textSize="@dimen/textsize10sp"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -151,11 +200,11 @@
         android:id="@+id/lbEventoAgenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="3dp"
         android:text="@string/evento"
-        android:textColor="#000000"
+        android:textColor="#3949AB"
         android:textSize="@dimen/textsize10sp"
         app:layout_constraintBottom_toTopOf="@+id/tveventoAgenda"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -166,17 +215,16 @@
 
     <TextView
         android:id="@+id/lbLocalAgenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="13dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="3dp"
         android:text="@string/local"
-        android:textColor="#000000"
+        android:textColor="#3949AB"
         android:textSize="@dimen/textsize10sp"
         app:layout_constraintBottom_toTopOf="@+id/tvlocalAgenda"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="1.0" />
@@ -185,12 +233,13 @@
         android:id="@+id/lbDescriacaoAgenda"
         android:layout_width="wrap_content"
         android:layout_height="13dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/descri_o"
-        android:textColor="#000000"
+        android:textColor="#3949AB"
         android:textSize="@dimen/textsize10sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvdescricaoAgenda"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -204,7 +253,7 @@
         android:layout_marginBottom="12dp"
         android:text="@string/hora"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#3949AB"
         android:textSize="@dimen/textsize10sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toEndOf="@+id/tvDataAgenda" />
@@ -220,5 +269,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvdescricaoAgenda" />
+
+    <TextView
+        android:id="@+id/txtMinuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Min:"
+        android:textColor="#3949AB"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerminAg"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toEndOf="@+id/spinnerhoraAg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

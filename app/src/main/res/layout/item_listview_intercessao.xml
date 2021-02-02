@@ -39,7 +39,7 @@
             android:longClickable="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/envelop"
+            app:srcCompat="@drawable/ic_baseline_email_24"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -82,7 +82,7 @@
 
         <TextView
             android:id="@+id/tvdataIntercessao"
-            android:layout_width="80dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="58dp"
             android:layout_marginTop="42dp"

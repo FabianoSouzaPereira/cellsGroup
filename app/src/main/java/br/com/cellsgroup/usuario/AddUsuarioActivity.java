@@ -165,7 +165,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
         if(cargoIgreja.equals ("")|| cargoIgreja.length() < 4){
             validate = false;
-            EditTextcargoIgreja.setError("Este campo é obrigatório,");
+            EditTextcargoIgreja.setError("Obrigatório +4 digitos.");
             EditTextcargoIgreja.setFocusable (true);
             EditTextcargoIgreja.requestFocus ();
         }

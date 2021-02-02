@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -33,9 +34,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth.AuthStateListener mAuthListener;
     private View login;
     private final EditText editNome = null;
-    private EditText editEmail = null;
-    private EditText editSenha = null;
+    private TextInputLayout editEmail = null;
+    private TextInputLayout editSenha = null;
     private Button btnRegistrar;
+    private Button btnCancelarLogin;
     private ProgressDialog progressDialog;
     private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
@@ -55,6 +57,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editSenha = findViewById( R.id.password );
         btnRegistrar = findViewById( R.id.btnEnviarRegistro );
         btnRegistrar.setOnClickListener(this);
+        btnCancelarLogin = findViewById (R.id.btnCancelarLogin );
+        btnCancelarLogin.setOnClickListener (this);
         progressDialog = new ProgressDialog( this );
 
 
@@ -70,8 +74,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void logarUsuario(){
-        final String email = editEmail.getText().toString().trim();
-        String senha = editSenha.getText().toString().trim();
+        final String email = editEmail.getEditText().getText().toString().trim();
+        String senha = editSenha.getEditText().getText().toString().trim();
 
         if (!validateForm()) {
             return;
@@ -105,8 +109,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
 
                         }
-                        editEmail.setText( "" );
-                        editSenha.setText( "" );
+                        editEmail.getEditText().setText("");
+                        editSenha.getEditText().setText("");
                         progressDialog.dismiss();
                     }
 
@@ -117,23 +121,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
-
-            case R.id.btnEnviarRegistro:
-                registrarUsuario();
-                break;
-
-            case R.id.btnEnviarLogin:
-                logarUsuario();
-                break;
+        int id = v.getId ( );
+        if ( id == R.id.btnEnviarRegistro ) {
+            registrarUsuario ( );
+        } else if ( id == R.id.btnEnviarLogin ) {
+            logarUsuario ( );
+        } else if ( id == R.id.btnCancelarLogin ) {
+            finishAffinity ( );
         }
-
-
     }
 
     private void registrarUsuario(){
-        String email = editEmail.getText().toString().trim();
-        String senha = editSenha.getText().toString().trim();
+        String email = editEmail.getEditText().getText().toString().trim();
+        String senha = editSenha.getEditText().getText().toString().trim();
 
         if (!validateForm()) {
             return;
@@ -165,8 +165,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
 
                         }
-                        editEmail.setText( "" );
-                        editSenha.setText( "" );
+                        editEmail.getEditText().setText("");
+                        editSenha.getEditText().setText("");
                         progressDialog.dismiss();
                     }
                 } );
@@ -242,20 +242,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean validateForm() {
         boolean valid = true;
-        String email = editEmail.getText().toString().trim();
+        String email = editEmail.getEditText().getText().toString().trim();
         if (TextUtils.isEmpty(email) || validateEmailFormat(email) == false) {
             Toast.makeText(this,getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
-            editEmail.setError(getString( R.string.obrigatorio));
+            editEmail.setError(getString( R.string.obrigatorio_email_valid));
+            editEmail.setFocusable ( true );
+            editEmail.requestFocus ( );
             valid = false;
         }else{
             editEmail.setError(null);
         }
 
-        String senha = editSenha.getText().toString().trim();
-        if (TextUtils.isEmpty(senha)) {
-            Toast.makeText( this,getString( R.string.Senha_vazia),Toast.LENGTH_LONG ).show();
-            editSenha.setError(getString( R.string.obrigatorio));
+        String senha = editSenha.getEditText().getText().toString().trim();
+        if(senha .equals ("")|| senha .length() < 6 ) {
             valid = false;
+            editSenha.setError (getString( R.string.obrigatorio_maior_5));
+            editSenha.setFocusable ( true );
+            editSenha.requestFocus ( );
         }else{
             editSenha.setError(null);
         }
@@ -298,6 +301,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
       }
 
     @Override
+    public void onBackPressed ( ) {
+        super.onBackPressed ( );
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mTokenReceiver);
@@ -306,7 +314,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStop() {
         super.onStop();
-
     }
 
     public void nav_header(){

@@ -244,7 +244,8 @@ public class EditUsuarioActivity extends AppCompatActivity {
 
     private void readOnlyActive() {
         Usuarios = databaseReference.child( "users/");
-        query = Usuarios.orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
+        query = Usuarios
+            .orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
         queryListener =  new ValueEventListener () {
 
             @Override
@@ -364,7 +365,6 @@ public class EditUsuarioActivity extends AppCompatActivity {
 
     public void initAlertDialogo(){
 
-
     }
 
     @Override
@@ -376,7 +376,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu( Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_delete_cancel, menu );
         return true;
     }
 

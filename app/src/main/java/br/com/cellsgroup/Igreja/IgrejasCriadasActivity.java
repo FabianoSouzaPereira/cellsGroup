@@ -87,45 +87,48 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     private void readIgrejaCadastrada() {
         final String ui = HomeActivity.UI.getUid ().toString ();
         novaRef = databaseReference.child( "churchs/");
-        Query query = novaRef.orderByChild ("igrejaId").limitToFirst (1);
+        Query query = novaRef.orderByChild ("igrejaID");
         listener =  new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ig.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     for(DataSnapshot sd : ds.getChildren ()) {
-                        String key = sd.getKey ();
+                        String key = sd.getKey();
                         if(!key.equalsIgnoreCase ( "members" )
                             && !key.equalsIgnoreCase ( "cells" )
                             && !key.equalsIgnoreCase ( "reports" )
                             && !key.equalsIgnoreCase ( "intercession" )
+                            && !key.equalsIgnoreCase ( "Skedule" )
                         ) {
 
                             Igreja igr = sd.getValue ( Igreja.class );
-                            uid = igr.getUid ();
-                            String user = igr.getUser ();
-                            String group = igr.getGroup ();
-                            nome = igr.getNome ();
-                            String endereco = igr.getEndereco ();
-                            String bairro = igr.getBairro ();
-                            String cidade = igr.getCidade ();
-                            String estado = igr.getEstado ();
-                            String pais = igr.getPais_ ();
-                            String cep = igr.getCep ();
-                            String codigopais = igr.getCodigopais ();
-                            String telefone = igr.getPhone ();
+                            if(igr.getUser ().equals (ui)) {
+                                uid = igr.getUid ( );
+                                String user = igr.getUser ( );
+                                String group = igr.getGroup ( );
+                                nome = igr.getNome ( );
+                                String endereco = igr.getEndereco ( );
+                                String bairro = igr.getBairro ( );
+                                String cidade = igr.getCidade ( );
+                                String estado = igr.getEstado ( );
+                                String pais = igr.getPais_ ( );
+                                String cep = igr.getCep ( );
+                                String codigopais = igr.getCodigopais ( );
+                                String telefone = igr.getPhone ( );
 
-                            ig.add ( uid );
-                            ig.add ( "Denominação: " + group );
-                            ig.add ( "Nome: " + nome );
-                            ig.add ( "Endereço: " + endereco );
-                            ig.add ( "Bairro: " + bairro );
-                            ig.add ( "Cidade: " + cidade );
-                            ig.add ( "Estado: " + estado );
-                            ig.add ( "País: " + pais );
-                            ig.add ( "Cep: " + cep );
-                            ig.add ( "Cod.Pais" + codigopais );
-                            ig.add ( "Fone: " + telefone );
+                                ig.add ( uid );
+                                ig.add ( "Denominação: " + group );
+                                ig.add ( "Nome: " + nome );
+                                ig.add ( "Endereço: " + endereco );
+                                ig.add ( "Bairro: " + bairro );
+                                ig.add ( "Cidade: " + cidade );
+                                ig.add ( "Estado: " + estado );
+                                ig.add ( "País: " + pais );
+                                ig.add ( "Cep: " + cep );
+                                ig.add ( "Cod.Pais" + codigopais );
+                                ig.add ( "Fone: " + telefone );
+                            }
                         }
                     }
                 }

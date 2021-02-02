@@ -1,5 +1,6 @@
 package br.com.cellsgroup.agenda;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -16,6 +17,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +36,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +54,7 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class AgendaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference novaRef;
@@ -64,24 +70,41 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
     private MaterialCalendarView calendarView;
     private String widgetdate;
 
+    public String DataTime;
+    public String DataT;
+    private String dia;
+    private String hh;
+    private String mm;
+    private Spinner sp;
+    private Spinner hr;
+    private Spinner min;
+    private String  hrs;
+
+    private final String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
+    private final String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+    private final String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
+        "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+        "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_agenda );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbarAgenda );
         setSupportActionBar( toolbar );
-        iniciaComponentes();
+
         inicializarFirebase();
+        addDataHora();
+        iniciaComponentes();
+
+
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration ( this, LinearLayoutManager.VERTICAL );
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration( dividerItemDecoration );
+
         readAgenda();
-
-
-
 
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
@@ -93,7 +116,7 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
             }
         } );
         DrawerLayout drawer = findViewById( R.id.drawer_activityAgenda );
-        NavigationView navigationView = findViewById( R.id.nav_view );
+        NavigationView navigationView = findViewById( R.id.nav_viewAgenda );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener( toggle );
         toggle.syncState();
@@ -111,6 +134,38 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         calendarView = findViewById( R.id.calendarViewAg );
         calendarView.setCurrentDate( new Date() );
         calendarView.setDateSelected( new Date(),true );
+        //SPINNERS
+        ArrayAdapter <String> adapterhora = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,hora );
+        hr = findViewById( R.id.spinnerhoraAg );
+        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        hr.setAdapter( adapterhora );
+        hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                hh = (String)hr.getSelectedItem();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                hh = "";
+            }
+        } );
+
+        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,minuto );
+        min = findViewById( R.id.spinnerminAg );
+        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        min.setAdapter( adaptermin );
+        min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mm = (String)min.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mm = "";
+            }
+        } );
+        //FIM SPINNERS
         calendarView.setOnDateChangedListener( new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -125,10 +180,11 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
                 Log.i( "Position - ",""+ position );
             }
         } );
+
     }
 
 
-public String formatCalendaryData(CalendarDay date){
+    public String formatCalendaryData(CalendarDay date){
         String dia = "";
         String mes = "";
         String ano = "";
@@ -150,8 +206,8 @@ public String formatCalendaryData(CalendarDay date){
     }
 
     private void readAgenda(){
-        novaRef = databaseReference.child( "Igrejas/" + igreja );
-        Query query = novaRef.child("Agenda").orderByChild( "data" ).limitToFirst( limitebusca );
+        novaRef = databaseReference.child( "churchs/" + uidIgreja + "/Skedule/" );
+        Query query = novaRef.orderByChild( "data" ).limitToFirst( limitebusca );
         query.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -184,8 +240,28 @@ public String formatCalendaryData(CalendarDay date){
     }
 
     @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onPause ( ) {
+        super.onPause ( );
+    }
+
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_drawer, menu );
+        getMenuInflater().inflate( R.menu.menu_config, menu );
         return true;
     }
 
@@ -198,7 +274,6 @@ public String formatCalendaryData(CalendarDay date){
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -235,5 +310,18 @@ public String formatCalendaryData(CalendarDay date){
         DrawerLayout drawer = findViewById( R.id.drawer_del_celula );
         drawer.closeDrawer( GravityCompat.START );
         return true;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public void addDataHora() {
+        Date dataHoraAtual = new Date();
+        String data = new SimpleDateFormat ("dd/MM/yyyy").format(dataHoraAtual);
+        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
+        DataTime = data + " "+ hora;
+        DataT = data;
+    }
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
     }
 }

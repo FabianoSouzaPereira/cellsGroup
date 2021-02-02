@@ -13,9 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,7 +65,7 @@ public class AddAgendaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_agenda );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar_addAgenda );
         setSupportActionBar( toolbar );
         inicializarFirebase();
         addDataHora();
@@ -71,8 +74,9 @@ public class AddAgendaActivity extends AppCompatActivity {
     }
 
     private void inicializarComponentes() {
-        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddAgendaActivity.this, android.R.layout.simple_spinner_dropdown_item,hora );
+        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddAgendaActivity.this, R.layout.spinner_layout,hora );
         hr = findViewById( R.id.spinnerhoraAgenda );
+        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
         hr.setAdapter( adapterhora );
         hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -86,8 +90,9 @@ public class AddAgendaActivity extends AppCompatActivity {
             }
         } );
 
-        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddAgendaActivity.this, android.R.layout.simple_spinner_dropdown_item,minuto );
+        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddAgendaActivity.this, R.layout.spinner_layout,minuto );
         min = findViewById( R.id.spinnerminAgenda );
+        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
         min.setAdapter( adaptermin );
         min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -109,7 +114,7 @@ public class AddAgendaActivity extends AppCompatActivity {
     }
 
     private void inicializarFirebase() {
-        FirebaseApp.initializeApp(AddAgendaActivity.this);  //inicializa  o SDK credenciais padrão do aplicativo do Google
+        FirebaseApp.initializeApp(AddAgendaActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
@@ -122,7 +127,7 @@ public class AddAgendaActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel , menu );
         return true;
     }
 
@@ -155,7 +160,7 @@ public class AddAgendaActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty( evento ) && !TextUtils.isEmpty( local ) && Logado && typeUserAdmin) {
             String uid = databaseReference.push().getKey();
             Agenda agenda = new Agenda( uid, data, hora, evento, local, descricao, status, userId );
-            databaseReference.child( "churchs/" + uidIgreja + "/\n" + "schedule").child( uid ).setValue( agenda );
+            databaseReference.child( "churchs/" + uidIgreja + "/Skedule/").child( uid ).setValue( agenda );
             Intent intent = new Intent( AddAgendaActivity.this, AgendaActivity.class );
             startActivity( intent );
             finish();

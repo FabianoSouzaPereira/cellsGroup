@@ -3,22 +3,37 @@ package br.com.cellsgroup.contato;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.MenuItem;
 
 import android.view.Menu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Adapters.AdapterListViewContato;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.EnviarActivity;
@@ -29,7 +44,27 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
-public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import br.com.cellsgroup.models.pessoas.User;
+
+import static br.com.cellsgroup.home.HomeActivity.UI;
+
+
+public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , AdapterListViewContato.OnContatoListener{
+    private static final String TAG = "TAG";
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private DatabaseReference novaRef;
+    private final int limitebusca = 200;
+
+    private RecyclerView recyclerView;
+    private final ArrayList < User > arrayUser = new ArrayList < User > ();
+    private AdapterListViewContato mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private Query querycontato;
+    private ValueEventListener queryContatoListener;
+    private String uid;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +72,56 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         setContentView( R.layout.activity_contato );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
+
+        initcomponents();
+        inicializarFirebase();
+
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager (this);
+        recyclerView.setLayoutManager(layoutManager);
+        final String ui = UI.getUid ();
+
+        novaRef = databaseReference.child( "users/");
+        querycontato = novaRef.orderByChild( "userId").startAt(ui).limitToLast(limitebusca);
+        queryContatoListener =  new ValueEventListener () {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                uid = "";
+                int count=0;
+                arrayUser.clear();
+                for(DataSnapshot dados : dataSnapshot.getChildren()) {
+                    try {
+                        User u = dados.getValue (User.class);
+                        if(u.getUserId ().equals (ui)) {
+                            count=1;
+                            arrayUser.add ( u );
+                        }else{
+                            if(count < 1) {
+                                count=2;
+                                User a = new User ( );
+                                a.setNome ( "Lista de usuários vazia" );
+                                arrayUser.add ( a );
+                            }
+                        }
+                    } catch ( Exception e ) {
+                        e.printStackTrace ( );
+                    }
+                }
+                List < User > usuarios = arrayUser;
+
+                mAdapter = new AdapterListViewContato(usuarios, ContatoActivity.this, ContatoActivity.this );
+                recyclerView.setAdapter( mAdapter);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG,"Erro Database"+ databaseError.toException() );
+            }
+        } ;
+
+        querycontato.addValueEventListener (queryContatoListener );
+
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -51,6 +136,17 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
     }
+
+    private void initcomponents ( ) {
+        recyclerView = findViewById( R.id.recyclerview_contato );
+    }
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp( ContatoActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        databaseReference.keepSynced(true);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -122,6 +218,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
 
     @Override
     protected void onStop ( ) {
+        querycontato.removeEventListener (queryContatoListener );
         super.onStop ( );
     }
 
@@ -143,5 +240,10 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onDestroy ( ) {
         super.onDestroy ( );
+    }
+
+    @Override
+    public void onContatoClick ( int position , String key ) {
+
     }
 }
