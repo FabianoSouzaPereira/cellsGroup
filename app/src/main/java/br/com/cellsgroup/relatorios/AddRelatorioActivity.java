@@ -354,7 +354,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel , menu );
         return true;
     }
 
@@ -362,14 +362,16 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
         if(id == R.id.action_save){
             addRelatorio(item);
             return true;
         }
-
+        if(id == R.id.action_Cancel){
+            AddRelatorioActivity.this.finish();
+            Intent intent = new Intent( AddRelatorioActivity.this,ReadRelatorioActivity.class );
+            startActivity(intent);
+            return true;
+        }
         return super.onOptionsItemSelected( item );
     }
 

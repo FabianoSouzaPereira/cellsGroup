@@ -27,36 +27,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".leader.ReadLeaderActivity"></activity>
         <activity
-            android:name=".usuario.EditUsuarioActivity"
-            android:label="Editar usuário"
+            android:name=".leader.EditLeaderActivity"
+            android:label="@string/editar_lider"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".usuario.UsuarioActivity"
-            android:label="@string/usu_rio"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".leader.LeaderActivity"
+            android:label="@string/lider"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Igreja.DeleteIgrejaActivity"
             android:label="@string/apagar_igreja_min"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Igreja.EditIgrejaActivity"
             android:label="@string/editar_igreja"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Igreja.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SobreActivity"
-            android:label="Sobre"
+            android:label="@string/Sobre"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".agenda.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".usuario.AddUsuarioActivity"
+            android:name=".leader.AddLeaderActivity"
             android:label="@string/title_activity_add_usuario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -145,11 +146,11 @@
         <activity
             android:name=".models.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".Activity_splash_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package br.com.cellsgroup.usuario;
+package br.com.cellsgroup.leader;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
@@ -37,7 +35,7 @@ import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
 
-public class AddUsuarioActivity extends AppCompatActivity {
+public class AddLeaderActivity extends AppCompatActivity {
 
     public String DataTime;
     public String DataT;
@@ -45,7 +43,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private DatabaseReference Usuarios;
+    private DatabaseReference Leaders;
     private DatabaseReference ref;
     private final int limitebusca = 1;
     private TextInputLayout EditTextnome;
@@ -57,7 +55,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private TextInputLayout EditTextnomemae;
     private TextInputLayout EditTextestadocivil;
     private TextInputLayout EditTexttelefone;
-    private TextInputLayout EdiTextCodigoPais;
+    private TextInputLayout EdiTextddi;
     private TextInputLayout EditTextemail;
     private TextInputLayout EditTextendereco;
     private TextInputLayout EditTextbairro;
@@ -75,8 +73,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_add_usuario );
-        Toolbar toolbar = findViewById( R.id.toolbarAdduser );
+        setContentView( R.layout.activity_add_leader );
+        Toolbar toolbar = findViewById( R.id.toolbarAddleader );
         setSupportActionBar( toolbar );
         mAuth = FirebaseAuth.getInstance();
 
@@ -93,7 +91,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
         EditTextnomepai = findViewById( R.id.text_input_editNomePai );
         EditTextnomemae = findViewById( R.id.text_input_editNomeMae );
         EditTextestadocivil = findViewById( R.id.text_input_editEstadoCivil );
-        EdiTextCodigoPais = findViewById (R.id.text_input_editCodigoPais );
+        EdiTextddi = findViewById (R.id.text_input_editddi );
         EditTexttelefone = findViewById( R.id.text_input_editTelefone );
         EditTextemail = findViewById( R.id.text_input_editEmail );
         EditTextendereco = findViewById( R.id.text_input_editEndereco );
@@ -106,11 +104,11 @@ public class AddUsuarioActivity extends AppCompatActivity {
     }
 
     private void inicializarFirebase() {
-        Usuarios = FirebaseDatabase.getInstance().getReference();
+        Leaders = FirebaseDatabase.getInstance().getReference();
         ref = FirebaseDatabase.getInstance().getReference();
     }
 
-    private void addUsuarioClick(MenuItem item){
+    private void addLeaderClick(MenuItem item){
         addDataHora();
         validate=true;
         String nome =  EditTextnome.getEditText().getText().toString().trim();
@@ -133,12 +131,12 @@ public class AddUsuarioActivity extends AppCompatActivity {
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
-        String codigoPais = EdiTextCodigoPais.getEditText().getText().toString().trim();
-        if( codigoPais.equals ( "" ) || codigoPais.length ( ) > 2 ){
+        String ddi = EdiTextddi.getEditText().getText().toString().trim();
+        if( ddi.equals ( "" ) || ddi.length ( ) > 2 ){
             validate = false;
-            EdiTextCodigoPais.setError("Este campo é obrigatório, dois dígitos");
-            EdiTextCodigoPais.setFocusable (true);
-            EdiTextCodigoPais.requestFocus ();
+            EdiTextddi.setError("Este campo é obrigatório, dois dígitos");
+            EdiTextddi.setFocusable (true);
+            EdiTextddi.requestFocus ();
         }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
 
@@ -174,34 +172,34 @@ public class AddUsuarioActivity extends AppCompatActivity {
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         if( emaildual ){
-            Toast.makeText( AddUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
+            Toast.makeText( AddLeaderActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
             return ;
         }
         if( validate ){
             if(!TextUtils.isEmpty( nome ) ) {
 
-                String uid = Usuarios.push ( ).getKey ( );
-                User usuario = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , codigoPais , telefone , email , endereco , bairro , cidade , estado, pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
+                String uid = Leaders.push ( ).getKey ( );
+                User Leader = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , ddi , telefone , email , endereco , bairro , cidade , estado, pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
 
                 if ( uid != null ) {
-                    //Cria usuario
-                    Usuarios.child ( "users/" ).child ( uid ).setValue ( usuario );
+                    //Cria leader
+                    Leaders.child ( "leaders/" ).child ( uid ).setValue ( Leader );
 
                     //atualiza membro na igreja
                     Map < String, Object > map = new HashMap <> ( );
                     map.put ( "/members/" + uid , telefone );
                     ref.child ( "churchs/" + uidIgreja ).updateChildren ( map );
 
-                    Toast.makeText ( this , "Criado usuario com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , "Criado leader com sucesso" , Toast.LENGTH_LONG ).show ( );
 
-                    Intent intent = new Intent ( AddUsuarioActivity.this , HomeActivity.class );
+                    Intent intent = new Intent ( AddLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );
                 }else {
-                    Toast.makeText ( this , "Erro ao tentar criar usuário !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , "Erro ao tentar criar leader !" , Toast.LENGTH_LONG ).show ( );
                     if ( !typeUserAdmin ) {
-                        Toast.makeText ( this , "Você não é um usuario administrador. \n Não pode criar usuario admin !" , Toast.LENGTH_LONG ).show ( );
+                        Toast.makeText ( this , "Você não é um leader administrador. \n Não pode criar leader admin !" , Toast.LENGTH_LONG ).show ( );
                     }
-                    Intent intent = new Intent ( AddUsuarioActivity.this , HomeActivity.class );
+                    Intent intent = new Intent ( AddLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );
                 }
             }
@@ -213,8 +211,8 @@ public class AddUsuarioActivity extends AppCompatActivity {
     private void readOnlyActive() {
 
         emailTest = EditTextemail.getEditText().getText().toString().trim();
-        Usuarios = databaseReference.child( "users/" );
-        Query query = Usuarios.orderByChild( "email" ).equalTo(email).limitToFirst(limitebusca);
+        Leaders = databaseReference.child( "Leaders/" );
+        Query query = Leaders.orderByChild( "email" ).equalTo(email).limitToFirst(limitebusca);
         query.addListenerForSingleValueEvent( new ValueEventListener() {
 
             @Override
@@ -241,7 +239,7 @@ public class AddUsuarioActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AddUsuarioActivity.this.finish();
+        AddLeaderActivity.this.finish();
     }
 
     @Override
@@ -255,12 +253,12 @@ public class AddUsuarioActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.action_save){
-            addUsuarioClick(item);
+            addLeaderClick(item);
             return true;
         }
         if(id == R.id.action_Cancel){
-            AddUsuarioActivity.this.finish();
-            Intent intent = new Intent( AddUsuarioActivity.this, UsuarioActivity.class );
+            AddLeaderActivity.this.finish();
+            Intent intent = new Intent( AddLeaderActivity.this, LeaderActivity.class );
             startActivity(intent);
             return true;
         }

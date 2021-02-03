@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.MenuItem;
 
 import android.view.Menu;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -44,7 +46,7 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
-import br.com.cellsgroup.models.pessoas.User;
+import br.com.cellsgroup.models.pessoas.Leader;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 
@@ -57,7 +59,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     private final int limitebusca = 200;
 
     private RecyclerView recyclerView;
-    private final ArrayList < User > arrayUser = new ArrayList < User > ();
+    private final ArrayList < Leader > arrayLeader = new ArrayList < Leader > ();
     private AdapterListViewContato mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
@@ -81,37 +83,38 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         recyclerView.setLayoutManager(layoutManager);
         final String ui = UI.getUid ();
 
-        novaRef = databaseReference.child( "users/");
+        novaRef = databaseReference.child( "leaders/");
         querycontato = novaRef.orderByChild( "userId").startAt(ui).limitToLast(limitebusca);
         queryContatoListener =  new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 uid = "";
                 int count=0;
-                arrayUser.clear();
+                arrayLeader.clear();
                 for(DataSnapshot dados : dataSnapshot.getChildren()) {
                     try {
-                        User u = dados.getValue (User.class);
+                        Leader u = dados.getValue (Leader.class);
                         if(u.getUserId ().equals (ui)) {
                             count=1;
-                            arrayUser.add ( u );
+                            arrayLeader.add ( u );
                         }else{
                             if(count < 1) {
                                 count=2;
-                                User a = new User ( );
-                                a.setNome ( "Lista de usuários vazia" );
-                                arrayUser.add ( a );
+                                Leader a = new Leader ( );
+                                a.setNome ( "Lista de Lideres está vazia" );
+                                arrayLeader.add ( a );
                             }
                         }
                     } catch ( Exception e ) {
                         e.printStackTrace ( );
                     }
                 }
-                List < User > usuarios = arrayUser;
+                List < Leader > leaders = arrayLeader;
 
-                mAdapter = new AdapterListViewContato(usuarios, ContatoActivity.this, ContatoActivity.this );
+                mAdapter = new AdapterListViewContato(leaders, ContatoActivity.this, ContatoActivity.this );
                 recyclerView.setAdapter( mAdapter);
                 mAdapter.notifyDataSetChanged();
+                hiddShowMessage();
             }
 
             @Override
@@ -121,6 +124,8 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         } ;
 
         querycontato.addValueEventListener (queryContatoListener );
+
+
 
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
@@ -137,7 +142,21 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener( this );
     }
 
-    private void initcomponents ( ) {
+    // Mostra memsagem se lista vir vazia
+    private void hiddShowMessage() {
+        // Mostra a mensagem em caso de lista fazia
+        ImageView image = findViewById (R.id.imageViewContato);
+        CardView carviewContato = findViewById (R.id.carviewContato );
+        if(arrayLeader.size() == 0){
+            recyclerView.setVisibility (View.GONE);
+            carviewContato.setVisibility (View.VISIBLE);
+        }else{
+            carviewContato.setVisibility (View.GONE);
+            recyclerView.setVisibility (View.VISIBLE);
+        }
+
+    }
+        private void initcomponents ( ) {
         recyclerView = findViewById( R.id.recyclerview_contato );
     }
     private void inicializarFirebase() {
@@ -157,7 +176,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.menu_config, menu );
         return true;
     }

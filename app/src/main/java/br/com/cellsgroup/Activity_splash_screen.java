@@ -11,7 +11,7 @@ import br.com.cellsgroup.home.HomeActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.tag;
 public final class Activity_splash_screen extends AppCompatActivity {
-    private static final int SPLASH_TIME_OUT = 3000;
+    private static final int SPLASH_TIME_OUT = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );

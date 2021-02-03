@@ -17,8 +17,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,7 +40,7 @@ import java.util.Date;
 import java.util.List;
 
 import Adapters.AdapterListViewAgenda;
-import agendas.Agenda;
+import br.com.cellsgroup.models.agendas.Agenda;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -53,7 +51,6 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class AgendaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -135,36 +132,36 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         calendarView.setCurrentDate( new Date() );
         calendarView.setDateSelected( new Date(),true );
         //SPINNERS
-        ArrayAdapter <String> adapterhora = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,hora );
-        hr = findViewById( R.id.spinnerhoraAg );
-        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        hr.setAdapter( adapterhora );
-        hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hh = (String)hr.getSelectedItem();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                hh = "";
-            }
-        } );
-
-        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,minuto );
-        min = findViewById( R.id.spinnerminAg );
-        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        min.setAdapter( adaptermin );
-        min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mm = (String)min.getSelectedItem();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mm = "";
-            }
-        } );
+//        ArrayAdapter <String> adapterhora = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,hora );
+//        hr = findViewById( R.id.spinnerhoraAg );
+//        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
+//        hr.setAdapter( adapterhora );
+//        hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                hh = (String)hr.getSelectedItem();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                hh = "";
+//            }
+//        } );
+//
+//        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AgendaActivity.this, R.layout.spinner_layout,minuto );
+//        min = findViewById( R.id.spinnerminAg );
+//        adapterhora.setDropDownViewResource(R.layout.spinner_dropdown_item);
+//        min.setAdapter( adaptermin );
+//        min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                mm = (String)min.getSelectedItem();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                mm = "";
+//            }
+//        } );
         //FIM SPINNERS
         calendarView.setOnDateChangedListener( new OnDateSelectedListener() {
             @Override

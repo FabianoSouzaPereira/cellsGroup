@@ -43,10 +43,9 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
-import br.com.cellsgroup.usuario.AddUsuarioActivity;
+import br.com.cellsgroup.leader.AddLeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -231,7 +230,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
                 startActivity( addigreja );
                 return true;
             case R.id.action_addUsuario:
-                Intent addusuario = new Intent( ReadRelatorioActivity.this, AddUsuarioActivity.class );
+                Intent addusuario = new Intent( ReadRelatorioActivity.this, AddLeaderActivity.class );
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity( addusuario );

@@ -1,8 +1,9 @@
-package br.com.cellsgroup.usuario;
+package br.com.cellsgroup.leader;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -12,7 +13,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -32,20 +33,13 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.celulas.AddCelulaActivity;
-import br.com.cellsgroup.celulas.CelulasActivity;
-import br.com.cellsgroup.celulas.EditCelulaActivity;
 import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.models.pessoas.User;
 
-import static br.com.cellsgroup.home.HomeActivity.cellPhone;
-import static br.com.cellsgroup.home.HomeActivity.group;
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
 
-public class EditUsuarioActivity extends AppCompatActivity {
+public class EditLeaderActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
     public String DataTime;
     public String DataT;
@@ -54,7 +48,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private DatabaseReference Usuarios;
+    private DatabaseReference leaders;
     private DatabaseReference ref;
     private DatabaseReference novaRef;
 
@@ -68,7 +62,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
     private TextInputLayout EditTextnomemae;
     private TextInputLayout EditTextestadocivil;
     private TextInputLayout EditTexttelefone;
-    private TextInputLayout EdiTextCodigoPais;
+    private TextInputLayout EdiTextddi;
     private TextInputLayout EditTextemail;
     private TextInputLayout EditTextendereco;
     private TextInputLayout EditTextbairro;
@@ -93,10 +87,13 @@ public class EditUsuarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
-        setContentView ( R.layout.activity_edit_usuario );
+        setContentView ( R.layout.activity_edit_leader );
+        Toolbar toolbar = findViewById( R.id.toolbarEditleader );
+        setSupportActionBar( toolbar );
         mAuth = FirebaseAuth.getInstance();
 
         inicializarComponentes();
+
         inicializarFirebase();
         Intent intent = getIntent();
         uid = intent.getStringExtra( "uid" );
@@ -114,7 +111,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
         EditTextnomepai = findViewById( R.id.text_input_editNomePai );
         EditTextnomemae = findViewById( R.id.text_input_editNomeMae );
         EditTextestadocivil = findViewById( R.id.text_input_editEstadoCivil );
-        EdiTextCodigoPais = findViewById (R.id.text_input_editCodigoPais );
+        EdiTextddi = findViewById (R.id.text_input_editddi );
         EditTexttelefone = findViewById( R.id.text_input_editTelefone );
         EditTextemail = findViewById( R.id.text_input_editEmail );
         EditTextendereco = findViewById( R.id.text_input_editEndereco );
@@ -127,7 +124,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
     }
 
     private void inicializarFirebase() {
-        FirebaseApp.initializeApp( EditUsuarioActivity.this);
+        FirebaseApp.initializeApp( EditLeaderActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
@@ -155,12 +152,12 @@ public class EditUsuarioActivity extends AppCompatActivity {
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
-        String codigoPais = EdiTextCodigoPais.getEditText().getText().toString().trim();
-        if( codigoPais.equals ( "" ) || codigoPais.length ( ) > 2 ){
+        String ddi = EdiTextddi.getEditText().getText().toString().trim();
+        if( ddi.equals ( "" ) || ddi.length ( ) > 2 ){
             validate = false;
-            EdiTextCodigoPais.setError("Este campo é obrigatório, dois dígitos");
-            EdiTextCodigoPais.setFocusable (true);
-            EdiTextCodigoPais.requestFocus ();
+            EdiTextddi.setError("Este campo é obrigatório, dois dígitos");
+            EdiTextddi.setFocusable (true);
+            EdiTextddi.requestFocus ();
         }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
         if( telefone.equals ( "" ) || telefone.length ( ) < 9 ){
@@ -195,7 +192,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         if( emaildual ){
-            Toast.makeText( EditUsuarioActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
+            Toast.makeText( EditLeaderActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
             return ;
         }
         if( validate ){
@@ -212,7 +209,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
                     userUpdates.put( "/nomepai", nomepai );
                     userUpdates.put( "/nomemae", nomemae );
                     userUpdates.put( "/estadocivil", estadocivil );
-                    userUpdates.put( "/codigopais", codigoPais );
+                    userUpdates.put( "/ddi", ddi );
                     userUpdates.put( "/telefone", telefone );
                     userUpdates.put( "/endereco", endereco );
                     userUpdates.put( "/bairro", bairro );
@@ -222,19 +219,19 @@ public class EditUsuarioActivity extends AppCompatActivity {
                     userUpdates.put( "/cep", cep );
                     userUpdates.put( "/email", email );
 
-                    Usuarios.child(uid).updateChildren( userUpdates);
+                    leaders.child(uid).updateChildren( userUpdates);
 
                     Toast.makeText(this,"Editado célula com sucesso", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent ( EditUsuarioActivity.this , UsuarioActivity.class );
+                    Intent intent = new Intent ( EditLeaderActivity.this , LeaderActivity.class );
                     startActivity ( intent );
 
                 }else {
                     Toast.makeText ( this , "Erro ao tentar criar usuário !" , Toast.LENGTH_LONG ).show ( );
                     if ( !typeUserAdmin ) {
-                        Toast.makeText ( this , "Você não é um usuario administrador. \n Não pode criar usuario admin !" , Toast.LENGTH_LONG ).show ( );
+                        Toast.makeText ( this , "Você não é um leader administrador. \n Não pode criar leader admin !" , Toast.LENGTH_LONG ).show ( );
                     }
-                    Intent intent = new Intent ( EditUsuarioActivity.this , HomeActivity.class );
+                    Intent intent = new Intent ( EditLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );
                 }
             }
@@ -243,8 +240,8 @@ public class EditUsuarioActivity extends AppCompatActivity {
     }
 
     private void readOnlyActive() {
-        Usuarios = databaseReference.child( "users/");
-        query = Usuarios
+        leaders = databaseReference.child( "leaders/");
+        query = leaders
             .orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
         queryListener =  new ValueEventListener () {
 
@@ -264,7 +261,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
                            Object nomepaiOb = dados.child ( "nomepai" ).getValue ( );
                            Object nomemaeOb = dados.child ( "nomemae" ).getValue ( );
                            Object estadocivilOb = dados.child ( "estadocivil" ).getValue ( );
-                           Object codigoPaisOb = dados.child ( "codigoPais" ).getValue ( );
+                           Object ddiOb = dados.child ( "ddi" ).getValue ( );
                            Object telefoneOb = dados.child ( "telefone" ).getValue ( );
                            Object emailOb = dados.child ( "email" ).getValue ( );
                            Object enderecoOb = dados.child ( "endereco" ).getValue ( );
@@ -284,7 +281,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
                            String nomepai = Objects.requireNonNull ( nomepaiOb , "" ).toString ( );
                            String nomemae = Objects.requireNonNull ( nomemaeOb , "" ).toString ( );
                            String estadocivil = Objects.requireNonNull ( estadocivilOb , "" ).toString ( );
-                           String codigoPais = Objects.requireNonNull ( codigoPaisOb , "" ).toString ( );
+                           String ddi = Objects.requireNonNull ( ddiOb , "" ).toString ( );
                            String telefone = Objects.requireNonNull ( telefoneOb , "" ).toString ( );
                            useremail = Objects.requireNonNull ( emailOb , "" ).toString ( );
                            String email = useremail;
@@ -304,7 +301,7 @@ public class EditUsuarioActivity extends AppCompatActivity {
                            Objects.requireNonNull ( EditTextnomepai.getEditText ( ) , "" ).setText ( nomepai );
                            Objects.requireNonNull ( EditTextnomemae.getEditText ( ) , "" ).setText ( nomemae );
                            Objects.requireNonNull ( EditTextestadocivil.getEditText ( ) , "" ).setText ( estadocivil );
-                           Objects.requireNonNull ( EdiTextCodigoPais.getEditText ( ) , "" ).setText ( codigoPais );
+                           Objects.requireNonNull ( EdiTextddi.getEditText ( ) , "" ).setText ( ddi );
                            Objects.requireNonNull ( EditTexttelefone.getEditText ( ) , "" ).setText ( telefone );
                            Objects.requireNonNull ( EditTextemail.getEditText ( ) , "" ).setText ( email );
                            Objects.requireNonNull ( EditTextendereco.getEditText ( ) , "" ).setText ( endereco );
@@ -332,9 +329,9 @@ public class EditUsuarioActivity extends AppCompatActivity {
     }
 
     private void deleteUsuario(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder( EditUsuarioActivity.this );
-        builder1 = builder1.setMessage( "Usuario "+ useremail);
-        builder1.setTitle( "Apagar Usuario ?" ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder( EditLeaderActivity.this );
+        builder1 = builder1.setMessage( "Lider "+ useremail);
+        builder1.setTitle( "Apagar Lider ?" ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
@@ -344,16 +341,16 @@ public class EditUsuarioActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 ref = databaseReference;
 
-                //apaga usuario de membros
+                //apaga leader de membros
                 ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
 
-                //Apaga usuario em users/
-                Usuarios.child ( uid ).removeValue ( );
+                //Apaga leader em users/
+                leaders.child ( uid ).removeValue ( );
 
-                Toast.makeText ( EditUsuarioActivity.this , "Usuário apagado com sucesso" , Toast.LENGTH_LONG ).show ( );
+                Toast.makeText ( EditLeaderActivity.this , "Lider apagado com sucesso" , Toast.LENGTH_LONG ).show ( );
 
-                EditUsuarioActivity.this.finish();
-                Intent intent = new Intent( EditUsuarioActivity.this, UsuarioActivity.class );
+                EditLeaderActivity.this.finish();
+                Intent intent = new Intent( EditLeaderActivity.this, LeaderActivity.class );
                 startActivity(intent);
             }
         } );
@@ -369,8 +366,8 @@ public class EditUsuarioActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        EditUsuarioActivity.this.finish();
-        Intent intent = new Intent( EditUsuarioActivity.this, UsuarioActivity.class );
+        EditLeaderActivity.this.finish();
+        Intent intent = new Intent( EditLeaderActivity.this, LeaderActivity.class );
         startActivity(intent);
     }
 
@@ -396,9 +393,9 @@ public class EditUsuarioActivity extends AppCompatActivity {
             return true;
         }
 
-        if(id == R.id.action_cancel){
-            EditUsuarioActivity.this.finish();
-            Intent intent = new Intent( EditUsuarioActivity.this, UsuarioActivity.class );
+        if(id == R.id.action_Cancel){
+            EditLeaderActivity.this.finish();
+            Intent intent = new Intent( EditLeaderActivity.this, LeaderActivity.class );
             startActivity(intent);
             return true;
         }

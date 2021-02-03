@@ -1,4 +1,4 @@
-package br.com.cellsgroup.models;
+package br.com.cellsgroup.models.intercessao;
 
 public final class Intercessao {
     private String uid = "";

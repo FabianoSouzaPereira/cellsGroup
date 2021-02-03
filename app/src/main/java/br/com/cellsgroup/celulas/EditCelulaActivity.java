@@ -238,7 +238,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             Map<String, Object> celulaUpdates = new HashMap<>();
             celulaUpdates.put( celula + "/"  + uid + "/rede" , rede);
             celulaUpdates.put( celula + "/"  + uid + "/supervisor", supervisor );
-            celulaUpdates.put( celula + "/"  + uid + "/lider", lider );
+            celulaUpdates.put( celula + "/"  + uid + "/leader", lider );
             celulaUpdates.put( celula + "/"  + uid + "/viceLider", viceLider );
             celulaUpdates.put( celula + "/"  + uid + "/anfitriao", anfitriao );
             celulaUpdates.put( celula + "/"  + uid + "/secretario", secretario );
@@ -296,7 +296,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel, menu );
         return true;
     }
 

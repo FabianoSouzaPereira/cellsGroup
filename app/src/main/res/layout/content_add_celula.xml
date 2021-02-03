@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
+    android:paddingBottom="30dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".celulas.AddCelulaActivity"
     tools:showIn="@layout/app_bar_add_celula">
@@ -145,7 +146,7 @@
 
             <Spinner
                 android:id="@+id/spinnerSemana"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
@@ -156,13 +157,13 @@
 
                 <Spinner
                     android:id="@+id/spinnerhora"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <Spinner
                     android:id="@+id/spinnermin"
-                    android:layout_width="100dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
             </LinearLayout>
@@ -171,13 +172,18 @@
                 android:id="@+id/text_input_DataInicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:clipChildren="false"
+                android:enabled="false"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:enabled="true"
                     android:hint="@string/dataInicio"
-                    android:inputType="text"
+                    android:inputType="date"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -12,8 +12,62 @@
         android:id="@+id/recyclerview_contato"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/carviewContato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewContato"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="70dp"
+            android:contentDescription="@string/sem_celula"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_baseline_groups_24_green" />
+
+        <TextView
+            android:id="@+id/textMensagemContato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:lines="2"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/messageContato"
+            android:textColor="#373737"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMensagemContato2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/messageContato2"
+            android:textColor="#373737"
+            android:textStyle="bold" />
+
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

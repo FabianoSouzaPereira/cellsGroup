@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -18,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -49,10 +52,9 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
-import br.com.cellsgroup.usuario.AddUsuarioActivity;
+import br.com.cellsgroup.leader.AddLeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -70,6 +72,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     public String DataT;
     private final int limitebusca = 500;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -80,6 +83,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         inicializarComponents();
         readRelOnlyActive();
         clickListaRelatorio();
+
         searchView = findViewById( R.id.searchViews );
         searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
             @Override
@@ -89,7 +93,9 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayAdapterRelatorio.getFilter().filter(newText);
+                if(ArrayAdapterRelatorio!=null) {
+                    ArrayAdapterRelatorio.getFilter ( ).filter ( newText );
+                }
                 return false;
             }
         } );
@@ -137,9 +143,11 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
                         rel.add( relatorio +": "+ datahora);
                     }
                 }
+
                 ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
                 relatorio.setAdapter( ArrayAdapterRelatorio );
                 ArrayAdapterRelatorio.notifyDataSetChanged();
+                hiddShowMessage();
 
             }
 
@@ -149,6 +157,21 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             }
 
         } );
+
+    }
+
+    // Mostra memsagem se lista vir vazia
+    private void hiddShowMessage() {
+        // Mostra a mensagem em caso de lista fazia
+        CardView cardView = findViewById (R.id.cardViewRelatorio );
+        if(rel.size() == 0){
+            relatorio.setVisibility (View.GONE);
+            cardView.setVisibility (View.VISIBLE);
+
+        }else{
+            cardView.setVisibility (View.GONE);
+            relatorio.setVisibility (View.VISIBLE);
+        }
     }
 
     private void inicializarFirebase() {
@@ -230,7 +253,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             startActivity ( addigreja );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( RelatorioActivityView.this , AddUsuarioActivity.class );
+            Intent addusuario = new Intent ( RelatorioActivityView.this , AddLeaderActivity.class );
             addusuario.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
             addusuario.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity ( addusuario );
@@ -300,5 +323,31 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
+    protected void onPause ( ) {
+        super.onPause ( );
+    }
+
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
     }
 }

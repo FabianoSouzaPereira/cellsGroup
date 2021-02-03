@@ -9,41 +9,40 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.cellsgroup.models.Intercessao;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.models.pessoas.User;
+import br.com.cellsgroup.models.pessoas.Leader;
 
 
-public class AdapterListViewUsuario extends RecyclerView.Adapter<AdapterListViewUsuario.ViewholderUsuario>
+
+public class AdapterListViewLeader extends RecyclerView.Adapter< AdapterListViewLeader.ViewholderLeader>
     implements  View.OnClickListener ,View.OnLongClickListener{
-    private final List<User> usuarios;
+    private final List<Leader> leaders;
     private Context context;
     private View.OnClickListener clicklistener;
     private View.OnLongClickListener longClickListener;
 
-    public AdapterListViewUsuario(List<User> usuarios) {
-        this.usuarios= usuarios;
+    public AdapterListViewLeader (List<Leader> leaders) {
+        this.leaders= leaders;
 
     }
 
     @NonNull
     @Override
-    public ViewholderUsuario onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.item_listview_usuario,  parent, false);
+    public ViewholderLeader onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate( R.layout.item_listview_leader ,  parent, false);
         view.setOnClickListener(this);
         view.setOnLongClickListener(this);
-        return new ViewholderUsuario( view );
+        return new ViewholderLeader( view );
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull final ViewholderUsuario viewholder, final int position) {
-        User usuario = usuarios.get( position );
+    public void onBindViewHolder(@NonNull final ViewholderLeader viewholder, final int position) {
+        Leader usuario = leaders.get( position );
 
         viewholder.nome.setText( usuario.getNome());
         viewholder.uid.setText( usuario.getUid() );
@@ -75,19 +74,19 @@ public class AdapterListViewUsuario extends RecyclerView.Adapter<AdapterListView
 
     @Override
     public int getItemCount() {
-        return usuarios.size();
+        return leaders.size();
     }
 
 
     /*  Classe interna Viewholder */
-    public class ViewholderUsuario  extends RecyclerView.ViewHolder{
+    public class ViewholderLeader  extends RecyclerView.ViewHolder{
         TextView uid;
         TextView nome;
 
-        public ViewholderUsuario(@NonNull View view) {
+        public ViewholderLeader(@NonNull View view) {
             super( view );
-            uid = (TextView) view.findViewById( R.id.uidUsuario);
-            nome = (TextView) view.findViewById( R.id.nomeUsuario);
+            uid = (TextView) view.findViewById( R.id.uidLeader);
+            nome = (TextView) view.findViewById( R.id.nomeLeader);
 
         }
     }

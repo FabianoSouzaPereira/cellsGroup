@@ -111,8 +111,9 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         textInputDataInicio.getEditText().setText( DataT );
         Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item, semana );
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout, semana );
         sp = findViewById( R.id.spinnerSemana );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         sp.setAdapter( adapter );
         sp.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -120,16 +121,15 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 dia = (String)sp.getSelectedItem();
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 dia = "";
             }
         } );
 
-
-        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,hora );
+        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout2,hora );
         hr = findViewById( R.id.spinnerhora );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         hr.setAdapter( adapterhora );
         hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -143,8 +143,9 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }
         } );
 
-        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,minuto );
+        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout2,minuto );
         min = findViewById( R.id.spinnermin );
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         min.setAdapter( adaptermin );
         min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -277,7 +278,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }else{
                 Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
                 if (!typeUserAdmin){
-                    Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Você não é um leader administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
                 }
             }
         } catch (Exception e) {

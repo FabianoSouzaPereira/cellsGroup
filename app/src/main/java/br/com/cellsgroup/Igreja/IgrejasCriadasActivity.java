@@ -69,9 +69,9 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager (this);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration ( this, layoutManager.VERTICAL);
+       // DividerItemDecoration dividerItemDecoration = new DividerItemDecoration ( this, layoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration( dividerItemDecoration );
+      //  recyclerView.addItemDecoration( dividerItemDecoration );
 
         readIgrejaCadastrada();
 
@@ -114,7 +114,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                                 String estado = igr.getEstado ( );
                                 String pais = igr.getPais_ ( );
                                 String cep = igr.getCep ( );
-                                String codigopais = igr.getCodigopais ( );
+                                String ddi = igr.getddi ( );
                                 String telefone = igr.getPhone ( );
 
                                 ig.add ( uid );
@@ -126,7 +126,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                                 ig.add ( "Estado: " + estado );
                                 ig.add ( "País: " + pais );
                                 ig.add ( "Cep: " + cep );
-                                ig.add ( "Cod.Pais" + codigopais );
+                                ig.add ( "DDI" + ddi );
                                 ig.add ( "Fone: " + telefone );
                             }
                         }

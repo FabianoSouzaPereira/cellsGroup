@@ -46,7 +46,7 @@ public class addIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editEstado;
     private TextInputLayout editPais;
     private TextInputLayout editCep;
-    private TextInputLayout editCodigopais;
+    private TextInputLayout editddi;
     private TextInputLayout editPhone;
     private FirebaseAuth mAuth;
 
@@ -78,7 +78,7 @@ public class addIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById( R.id.text_input_editEstado );
         editPais = findViewById( R.id.text_input_editPais_ );
         editCep = findViewById( R.id.text_input_editCep );
-        editCodigopais = findViewById( R.id.text_input_editCodigoPais);
+        editddi = findViewById( R.id.text_input_editddi);
         editPhone= findViewById (R.id.text_input_phone );
     }
 
@@ -94,7 +94,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String estado = editEstado.getEditText().getText().toString().trim();
             String pais = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
-            String codigopais = editCodigopais.getEditText().getText().toString().trim();
+            String ddi = editddi.getEditText().getText().toString().trim();
             String phone  = editPhone.getEditText().getText().toString().trim();
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String members = "";
@@ -103,7 +103,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = ref.push().getKey();
                 String igrejaID = uid;
-                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao,codigopais, phone, igrejaID, members);
+                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao,ddi, phone, igrejaID, members);
                 ref.child( "churchs/").child(uid + "/" + igreja).setValue( ig );
 
                 //insere no groups de igrejas
@@ -116,7 +116,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText( this, "Erro ao tentar criar célula !", Toast.LENGTH_LONG ).show();
+            Toast.makeText( this, "Erro ao tentar criar a igreja!", Toast.LENGTH_LONG ).show();
         } finally {
             Intent home = new Intent( addIgrejaActivity.this, HomeActivity.class);
             startActivity(home);

@@ -13,7 +13,7 @@ public final class Igreja {
     private String estado = "";
     private String pais_ = "";
     private String cep = "";
-    private String codigopais = "";
+    private String ddi = "";
     private String phone = "";
     private String datahora = "";
     private String user;
@@ -26,7 +26,7 @@ public final class Igreja {
     public Igreja ( ) {
     }
 
-    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status, String group, String codigopais,String phone,String igrejaID, String members) {
+    public Igreja(String uid, String nome, String endereco, String bairro, String cidade, String estado, String pais_, String cep, String datahora, String user, String status, String group, String ddi,String phone,String igrejaID, String members) {
         this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
@@ -40,7 +40,7 @@ public final class Igreja {
         this.status = status;
         this.group = group;
         this.phone = phone;
-        this.codigopais = codigopais;
+        this.ddi = ddi;
         this.igrejaID = igrejaID;
         this.members = members;
     }
@@ -113,12 +113,12 @@ public final class Igreja {
         this.group = group;
     }
 
-    public String getCodigopais() {
-        return codigopais;
+    public String getddi() {
+        return ddi;
     }
 
-    public void setCodigopais(String codigopais) {
-        this.phone= codigopais;
+    public void setddi(String ddi) {
+        this.phone= ddi;
     }
 
     public String getPhone() {

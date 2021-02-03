@@ -23,11 +23,75 @@
         <SearchView
             android:id="@+id/searchViews"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:visibility="visible" />
 
         <ListView
             android:id="@+id/listRelatorio"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewRelatorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/imageViewRelatorio"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="150dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_baseline_menu_book_24_green" />
+
+            <TextView
+                android:id="@+id/textMensagemRelatorio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="100dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/messageRelatorio"
+                android:textAlignment="center"
+                android:textColor="#373737"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textMensagemRelatorio2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="75dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/messageContato2"
+                android:textColor="#373737"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textMensagemRelatorio3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="35dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/messageRelatorio3"
+                android:textColor="#E53935"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

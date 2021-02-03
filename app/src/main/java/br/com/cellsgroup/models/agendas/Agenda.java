@@ -1,4 +1,4 @@
-package agendas;
+package br.com.cellsgroup.models.agendas;
 
 @SuppressWarnings( "ALL" )
 public final class Agenda {

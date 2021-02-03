@@ -130,8 +130,8 @@
     <string name="title_activity_add_igreja">Nova igreja</string>
     <string name="title_activity_add_usuario">Novo usuário</string>
 
-    <string name="action_addIgreja">Adicionar Igreja</string>
-    <string name="action_addUsuario">Adicionar usuário</string>
+    <string name="action_addIgreja">Nova Igreja</string>
+    <string name="action_addUsuario">Novo usuário</string>
     <string name="title_activity_add_intercessaoa">Nova intercessão</string>
     <string name="title_activity_add_agenda">Nova agenda</string>
 
@@ -161,9 +161,9 @@
     <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
     <string name="nomeigreja">NomeIgreja</string>
     <string name="procurar">Procurar</string>
-    <string name="c_digo_do_pa_s_required">Código do País ex. 55*</string>
+    <string name="c_digo_do_pa_s_required">DDD*  ex:. Brasil 55 </string>
     <string name="telefone">Telefone</string>
-    <string name="telefone_required">Telefone*</string>
+    <string name="telefone_required">(DDD) + número*</string>
     <string name="celulas">Celulas</string>
     <string name="_00_00">00:00</string>
 
@@ -207,6 +207,27 @@
     <string name="editar_igreja">Editar Igreja</string>
     <string name="lideres">Lideres</string>
     <string name="adiciona_l_der">Adiciona Líder</string>
+    <string name="editar_lider">Editar Lider</string>
+    <string name="Sobre">Sobre</string>
+    <string name="agenda">agenda</string>
+    <string name="DDI">DDI</string>
+    <string name="ddi_req">DDI*</string>
+
+    <!-- messages -->
+    <string name="messageRelatorio">Menhum relatório foi postado ainda.</string>
+    <string name="messageRelatorio2">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageRelatorio3">Click e segure o nome da célula para criar um Relátorio!</string>
+    <string name="messageCelula">Menhuma célula foi postado ainda.</string>
+    <string name="messageCelula2">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageLider">Menhum Líder foi postado ainda.</string>
+    <string name="messageLider2">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageContato">Menhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
+    <string name="messageContato2">Só aparecerá algo aqui se um Lider for criado!</string>
+    <string name="messageIgreja">A sua Igeja ainda não foi cirada, crie um Igreja e depois crie as células.</string>
+    <string name="sem_lider">Sem Lider</string>
+    <string name="sem_celula">Sem Celula</string>
+    <string name="Relatorio">Relatório</string>
+    <string name="relatorios">relatorios</string>
 
 
 </resources>

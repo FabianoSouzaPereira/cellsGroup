@@ -43,12 +43,11 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.models.Intercessao;
+import br.com.cellsgroup.models.intercessao.Intercessao;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
-public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterListViewIntercessao.OnIntercessaoListener {
+public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final String TAG = "ClickLista";
     private DatabaseReference Intercessao;
     private DatabaseReference novaRef;
@@ -58,9 +57,12 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     private final ArrayList< Intercessao > inter = new ArrayList<Intercessao>( );
     private String mUid;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private AdapterListViewIntercessao mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    private final boolean mItemPressed = false;
+    private final boolean itemReturned = false;
+    private String uid;
+    private String nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +73,10 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         iniciaComponentes();
         inicializarFirebase();
 
-        recyclerView.setHasFixedSize(true);
+      //  recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager (this);
+        layoutManager.getWidth ();
+        layoutManager.getHeight ();
         recyclerView.setLayoutManager(layoutManager);
 
         readIntercessao();
@@ -105,7 +109,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     }
 
     private void iniciaComponentes() {
-        recyclerView = findViewById(R.id.recycleViewAgenda );
+        recyclerView = findViewById(R.id.recycleViewIntercessao );
         recyclerView.setLongClickable( true );
     }
 
@@ -126,7 +130,23 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
                 }
                 List<Intercessao> intercessoes = inter;
 
-                mAdapter = new AdapterListViewIntercessao(intercessoes,IntercessaoActivity.this,IntercessaoActivity.this );
+                mAdapter = new AdapterListViewIntercessao(intercessoes );
+
+                // Não implementado no viewholder, por julgar desnecessário
+                mAdapter.setOnClickListener ( new View.OnClickListener ( ) {
+                    @Override
+                    public void onClick ( View v ) {
+                        Toast.makeText(IntercessaoActivity.this,"Clicado", Toast.LENGTH_LONG).show();
+                    }
+                } );
+                // Implementado no viewholder
+                mAdapter.setOnLongClickListener ( new View.OnLongClickListener ( ) {
+                    @Override
+                    public boolean onLongClick ( View v ) {
+                        Toast.makeText(IntercessaoActivity.this,"Clicado", Toast.LENGTH_LONG).show();
+                        return false;
+                    }
+                } );
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
             }

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import java.util.List;
-import agendas.Agenda;
+import br.com.cellsgroup.models.agendas.Agenda;
 import br.com.cellsgroup.R;
 
 public class AdapterListViewAgenda  extends RecyclerView.Adapter<AdapterListViewAgenda.ViewholderAgenda>{

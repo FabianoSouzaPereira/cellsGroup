@@ -10,7 +10,7 @@ public class Pessoa {
     private String nomepai = "";
     private String nomemae = "";
     private String estadocivil = "";
-    private String codigoPais = "+55";
+    private String ddi = "55";
     private String telefone = "";
     private String email = "";
     private String endereco = "";
@@ -28,7 +28,7 @@ public class Pessoa {
 
     public Pessoa( ) { }
 
-    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String codigoPais , String telefone , String email , String endereco , String bairro , String cidade ,String estado, String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
+    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String ddi , String telefone , String email , String endereco , String bairro , String cidade ,String estado, String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
         this.uid = uid;
         this.nome = nome;
         this.idade = idade;
@@ -38,7 +38,7 @@ public class Pessoa {
         this.nomepai = nomepai;
         this.nomemae = nomemae;
         this.estadocivil = estadocivil;
-        this.codigoPais = codigoPais;
+        this.ddi = ddi;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
@@ -128,12 +128,12 @@ public class Pessoa {
         this.estadocivil = estadocivil;
     }
 
-    public String getCodigoPais ( ) {
-        return codigoPais;
+    public String getDdi ( ) {
+        return ddi;
     }
 
-    public void setCodigoPais ( String codigoPais ) {
-        this.codigoPais = codigoPais;
+    public void setDdi ( String ddi ) {
+        this.ddi = ddi;
     }
 
     public String getTelefone ( ) {

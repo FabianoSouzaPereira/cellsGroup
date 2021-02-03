@@ -25,9 +25,8 @@ import java.util.Objects;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.models.Intercessao;
+import br.com.cellsgroup.models.intercessao.Intercessao;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class AddIntercessaoActivity extends AppCompatActivity {
@@ -70,7 +69,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
             }else{
                 Toast.makeText(this,"Erro ao tentar criar intercessão !", Toast.LENGTH_LONG).show();
                 // if (!typeUserAdmin){
-                //     Toast.makeText(this,"Você não é um usuario administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
+                //     Toast.makeText(this,"Você não é um leader administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
                 // }
             }
         } finally {
@@ -116,12 +115,21 @@ public class AddIntercessaoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if(id == R.id.action_save){
+            addIntercessaoClick( item );
+            return true;
+        }
+        if(id == R.id.action_Edit){
+            return true;
+        }
+        if(id == R.id.action_delete){
             return true;
         }
 
-        if(id == R.id.action_save){
-            addIntercessaoClick( item );
+        if(id == R.id.action_Cancel){
+            AddIntercessaoActivity.this.finish();
+            Intent intent = new Intent( AddIntercessaoActivity.this,IntercessaoActivity.class );
+            startActivity(intent);
             return true;
         }
 

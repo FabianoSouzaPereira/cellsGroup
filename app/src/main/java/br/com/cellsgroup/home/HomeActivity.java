@@ -36,7 +36,6 @@ import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,16 +50,15 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
-import br.com.cellsgroup.models.igreja.Members;
 import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
-import br.com.cellsgroup.usuario.AddUsuarioActivity;
-import br.com.cellsgroup.usuario.UsuarioActivity;
+import br.com.cellsgroup.leader.AddLeaderActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -102,7 +100,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         UI = FirebaseAuth.getInstance().getCurrentUser();
-        updateUI( UI ); //verifica se usuario está logado
+        updateUI( UI ); //verifica se leader está logado
         setContentView( R.layout.activity_home );
         splashScreean();
         if ( !Logado ){
@@ -130,14 +128,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void pegarPadroes() {
-      //  String email = mAuth.getCurrentUser().getEmail();
+      //  String email = mAuth.getCurrentLeader().getEmail();
        final String ui = UI.getUid ();
         if ( ui.isEmpty()){
-            Toast.makeText( this, "Sem usuario cadastrado", Toast.LENGTH_LONG ).show();
+            Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
-            novaref = databaseReference.child( "users/");
-            Query query = novaref.orderByChild ("user").equalTo( ui ).limitToFirst (1);
+            novaref = databaseReference.child( "liders/");
+            Query query = novaref.orderByChild ("userId").equalTo( ui ).limitToFirst (1);
             query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
                 @Override
                 public void onDataChange ( @NonNull DataSnapshot snapshot ) {
@@ -206,7 +204,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         UI = FirebaseAuth.getInstance().getCurrentUser();
-        updateUI( UI ); //verifica se usuario está logado
+        updateUI( UI ); //verifica se leader está logado
         if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
@@ -306,7 +304,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(useremail.equals ("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
             builder = builder.setMessage( "É necessário a criação de um usuário.\n Podemos proceguir ?" );
-            builder.setTitle( "Não existe usuario associado ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+            builder.setTitle( "Não existe leader associado ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Toast.makeText( getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT ).show();
@@ -315,7 +313,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent( HomeActivity.this, AddUsuarioActivity.class );
+                    Intent intent = new Intent( HomeActivity.this, AddLeaderActivity.class );
                     startActivity( intent);
                 }
             } );
@@ -410,11 +408,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity ( readigreja );
             return true;
         }else if ( itemId == R.id.action_Usuario ) {
-            Intent addusuario = new Intent ( HomeActivity.this , UsuarioActivity.class );
+            Intent addusuario = new Intent ( HomeActivity.this , LeaderActivity.class );
             startActivity ( addusuario );
             return true;
         }else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( HomeActivity.this , AddUsuarioActivity.class );
+            Intent addusuario = new Intent ( HomeActivity.this , AddLeaderActivity.class );
             startActivity ( addusuario );
             return true;
         } else if ( itemId == R.id.action_Login ) {
@@ -457,9 +455,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent agenda = new Intent( HomeActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( HomeActivity.this, VisaoActivity.class );
-            startActivity( visao );
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( HomeActivity.this, ReadRelatorioActivity.class );
+            startActivity( relatorio );
 
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( HomeActivity.this, ContatoActivity.class );
@@ -503,9 +501,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( agenda );
     }
 
-    public void cardvisaoClick(View view) throws Exception{
-        Intent visao = new Intent( HomeActivity.this,VisaoActivity.class );
-        startActivity( visao );
+    public void cardleaderClick(View view) throws Exception{
+        Intent leader = new Intent( HomeActivity.this,LeaderActivity.class );
+        startActivity( leader );
     }
 
     public void cardcontatoClick(View view) throws Exception {
@@ -513,18 +511,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( contato );
     }
 
-/*
-    public void cardcadastroemailClick(View view) throws Exception {
-        Intent cadastroemail = new Intent(HomeActivity.this,CadastroemailActivity.class);
-        startActivity( cadastroemail );
-
-    }
-
-    public void cardcadastroemailClick(MenuItem item) {
-        Intent cadastroemail = new Intent(HomeActivity.this,CadastroemailActivity.class);
-        startActivity( cadastroemail );
-    }
-*/
     public void cardrelatorioClick(View view) {
         Intent relatorio = new Intent( HomeActivity.this, RelatorioActivityView.class );
         startActivity( relatorio );

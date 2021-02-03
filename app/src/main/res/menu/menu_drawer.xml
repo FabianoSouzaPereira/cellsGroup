@@ -14,26 +14,32 @@
             android:title="@string/Cells" />
 
         <item
-            android:id="@+id/nav_intersession"
-            android:icon="@drawable/ic_baseline_sports_kabaddi_24_green"
-            android:title="@string/Intersession" />
-        <item
-            android:id="@+id/nav_view"
-            android:icon="@drawable/ic_baseline_visibility_24_green"
-            android:title="@string/View" />
-        <item
             android:id="@+id/nav_contact"
             android:icon="@drawable/ic_baseline_local_phone_24_green"
             android:title="@string/Contact" />
+
+        <item
+            android:id="@+id/nav_realatorio"
+            android:icon="@drawable/ic_baseline_menu_book_24_green"
+            android:title="@string/Relatorio" />
+
+        <item
+            android:id="@+id/nav_intersession"
+            android:enabled="false"
+            android:icon="@drawable/ic_baseline_sports_kabaddi_24_green"
+            android:visible="false"
+            android:title="@string/Intersession" />
         <item
             android:id="@+id/nav_schedule"
             android:enabled="false"
             android:icon="@drawable/ic_baseline_access_time_24_green"
+            android:visible="false"
             android:title="@string/Schedule" />
         <item
             android:id="@+id/nav_communication"
             android:enabled="false"
             android:icon="@drawable/ic_baseline_record_voice_over_24_green"
+            android:visible="false"
             android:title="@string/Communication" />
     </group>
 

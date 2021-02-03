@@ -9,23 +9,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.cellsgroup.models.Intercessao;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.models.pessoas.User;
+import br.com.cellsgroup.models.pessoas.Leader;
 
 @SuppressWarnings( "ALL" )
 public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListViewContato.ViewholderContato> {
-    private List< User > users;
+    private List< Leader > leaders;
     private Context context;
     private OnContatoListener mOnContatoListener;
 
-    public AdapterListViewContato(List<User> users,Context context, OnContatoListener onContatoListener) {
-        this.users = users;
+    public AdapterListViewContato(List< Leader > leaders,Context context, OnContatoListener onContatoListener) {
+        this.leaders = leaders;
         this.context = context;
         this.mOnContatoListener = onContatoListener;
 
@@ -42,16 +40,16 @@ public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListView
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewholderContato viewholder, final int position) {
-        User user = users.get( position );
+        Leader leader = leaders.get( position );
 
-        viewholder.nome.setText( user.getNome());
-        viewholder.email.setText(user.getEmail ());
-        viewholder.telefone.setText(user.getTelefone());
+        viewholder.nome.setText( leader.getNome());
+        viewholder.email.setText(leader.getEmail ());
+        viewholder.telefone.setText(leader.getTelefone());
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return leaders.size();
     }
 
 

@@ -1,14 +1,13 @@
 package br.com.cellsgroup.celulas;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.util.Log;
@@ -17,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,10 +49,9 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.login.LoginActivity;
-import br.com.cellsgroup.usuario.AddUsuarioActivity;
-import br.com.cellsgroup.usuario.UsuarioActivity;
+import br.com.cellsgroup.leader.AddLeaderActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -121,7 +121,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 arrayAdapterCelula = new ArrayAdapter<String>(CelulasActivity.this,android.R.layout.simple_selectable_list_item, cels );
                 celulaList.setAdapter( arrayAdapterCelula );
                 arrayAdapterCelula.notifyDataSetChanged();
-
+                hiddShowMessage();
             }
 
             @Override
@@ -130,7 +130,22 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             }
         } ;
 
-       query.addValueEventListener (queryListener );
+        query.addValueEventListener (queryListener );
+
+    }
+
+
+    // Mostra memsagem se lista vir vazia
+    private void hiddShowMessage(){
+
+        CardView cardView = findViewById (R.id.cardviewCells);
+        if(cels.size() == 0){
+            celulaList.setVisibility (View.GONE);
+            cardView.setVisibility (View.VISIBLE);
+        }else{
+            cardView.setVisibility (View.GONE);
+            celulaList.setVisibility (View.VISIBLE);
+        }
     }
 
     private void clickLista(){
@@ -216,11 +231,11 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             startActivity ( readigreja );
             return true;
         }else if ( itemId == R.id.action_Usuario ) {
-            Intent addusuario = new Intent ( CelulasActivity.this , UsuarioActivity.class );
+            Intent addusuario = new Intent ( CelulasActivity.this , LeaderActivity.class );
             startActivity ( addusuario );
             return true;
         } else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( CelulasActivity.this , AddUsuarioActivity.class );
+            Intent addusuario = new Intent ( CelulasActivity.this , AddLeaderActivity.class );
             startActivity ( addusuario );
             return true;
         } else if ( itemId == R.id.action_Login ) {

@@ -150,11 +150,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/cep"
-                    android:inputType="text"
+                    android:inputType="date"
                     android:maxLength="20" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_input_editCodigoPais"
+                android:id="@+id/text_input_editddi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -166,7 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/c_digo_do_pa_s_required"
-                    android:inputType="numberDecimal"
+                    android:inputType="phone"
                     android:maxLength="2" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -180,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/telefone_required"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage( getString( R.string.iniciando_login) );
         progressDialog.show();
 
-        //Consultar se usuario existe
+        //Consultar se leader existe
         mAuth.signInWithEmailAndPassword( email, senha )
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage( getString( R.string.registrando) );
         progressDialog.show();
 
-        //criando novo usuario
+        //criando novo leader
         mAuth.createUserWithEmailAndPassword( email, senha )
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
