@@ -242,8 +242,7 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     private void readOnlyActive() {
         leaders = databaseReference.child( "leaders/");
-        query = leaders
-            .orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
+        query = leaders.orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
         queryListener =  new ValueEventListener () {
 
             @Override

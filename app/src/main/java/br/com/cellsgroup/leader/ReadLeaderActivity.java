@@ -248,10 +248,6 @@ public class ReadLeaderActivity extends AppCompatActivity {
 
     }
 
-    public void initAlertDialogo(){
-
-    }
-
     @Override
     public void onBackPressed() {
         ReadLeaderActivity.this.finish();
@@ -271,7 +267,7 @@ public class ReadLeaderActivity extends AppCompatActivity {
 
         if(id == R.id.action_Edit){
             ReadLeaderActivity.this.finish();
-            Intent intent = new Intent(  ReadLeaderActivity.this, EditIgrejaActivity.class );
+            Intent intent = new Intent(  ReadLeaderActivity.this, EditLeaderActivity.class );
             intent.putExtra("uid", String.valueOf( uid) );
             startActivity(intent);
             return true;
