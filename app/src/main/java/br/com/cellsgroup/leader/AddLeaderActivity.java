@@ -76,6 +76,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         setContentView( R.layout.activity_add_leader );
         Toolbar toolbar = findViewById( R.id.toolbarAddleader );
         setSupportActionBar( toolbar );
+
         mAuth = FirebaseAuth.getInstance();
 
         inicializarComponentes();

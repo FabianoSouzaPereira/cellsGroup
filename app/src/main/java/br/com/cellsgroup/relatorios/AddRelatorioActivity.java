@@ -108,7 +108,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_relatorio );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar_add_relatorio );
         setSupportActionBar( toolbar );
 
         inicializarFirebase();

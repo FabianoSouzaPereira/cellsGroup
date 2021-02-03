@@ -27,7 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".leader.ReadLeaderActivity"></activity>
+        <activity android:name=".leader.ReadLeaderActivity"
+            android:label="@string/read_lider"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".leader.EditLeaderActivity"
             android:label="@string/editar_lider"

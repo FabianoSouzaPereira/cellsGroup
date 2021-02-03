@@ -90,6 +90,7 @@ public class EditLeaderActivity extends AppCompatActivity {
         setContentView ( R.layout.activity_edit_leader );
         Toolbar toolbar = findViewById( R.id.toolbarEditleader );
         setSupportActionBar( toolbar );
+
         mAuth = FirebaseAuth.getInstance();
 
         inicializarComponentes();

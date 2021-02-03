@@ -77,7 +77,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_relatorio_view );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar_relatorio );
         setSupportActionBar( toolbar );
         inicializarFirebase();
         inicializarComponents();
