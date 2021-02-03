@@ -36,7 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".leader.LeaderActivity"
-            android:label="@string/lider"
+            android:label="@string/lideres"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Igreja.DeleteIgrejaActivity"

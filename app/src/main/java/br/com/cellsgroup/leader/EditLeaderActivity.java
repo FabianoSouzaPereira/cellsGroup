@@ -374,7 +374,7 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu( Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_delete_cancel, menu );
+        getMenuInflater().inflate( R.menu.menu_save_cancel, menu );
         return true;
     }
 

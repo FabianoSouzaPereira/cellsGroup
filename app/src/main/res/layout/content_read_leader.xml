@@ -36,7 +36,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_required"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,7 +54,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/idade"
-                    android:inputType="numberDecimal"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +70,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sexo"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +88,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/data_de_nascimento_required"
-                    android:inputType="date"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +104,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/data_de_batismo"
-                    android:inputType="date"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +120,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_do_pai"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +136,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nome_da_m_e"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +153,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/estado_civil"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +172,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/ddi_req"
-                    android:inputType="numberDecimal"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="2" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,7 +189,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/telefone_required"
-                    android:inputType="numberDecimal"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -186,7 +206,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email_required"
-                    android:inputType="textEmailAddress"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -201,7 +223,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/endere_o"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,7 +240,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/bairro"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -231,7 +257,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/cidade"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,7 +274,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/estado"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -261,7 +291,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/pa_s"
-                    android:inputType="text"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -278,7 +310,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/cep"
-                    android:inputType="numberDecimal"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:inputType="none"
                     android:maxLength="25" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -308,10 +342,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#D5C5C5"
-                    android:enabled="false"
+                    android:clickable="false"
                     android:focusable="false"
+                    android:inputType="none"
                     android:hint="@string/grupo_padr_o"
-                    android:inputType="text"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
