@@ -30,8 +30,13 @@
         android:title="@string/action_login"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_Logout"
+        android:id="@+id/action_Sair"
         android:orderInCategory="105"
+        android:title="@string/action_Sair"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Logout"
+        android:orderInCategory="106"
         android:title="@string/action_logout"
         app:showAsAction="never" />
 

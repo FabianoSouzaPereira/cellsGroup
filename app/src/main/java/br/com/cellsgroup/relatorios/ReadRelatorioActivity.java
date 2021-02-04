@@ -221,38 +221,39 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-
-            case R.id.action_settings:
-                Intent config = new Intent( ReadRelatorioActivity.this, Configuracao.class );
-                startActivity( config );
-                return true;
-            case R.id.action_addIgreja:
-                Intent addigreja = new Intent( ReadRelatorioActivity.this, addIgrejaActivity.class );
-                addigreja.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                addigreja.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( addigreja );
-                return true;
-            case R.id.action_addUsuario:
-                Intent addusuario = new Intent( ReadRelatorioActivity.this, AddLeaderActivity.class );
-                addusuario.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                addusuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( addusuario );
-                return true;
-            case R.id.action_Login:
-                Intent login = new Intent( ReadRelatorioActivity.this, LoginActivity.class);
-                login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity( login );
-                return true;
-            case R.id.action_Logout:
-                FirebaseAuth.getInstance().signOut();
-                updateUI(null);
-                Toast.makeText(this,getString( R.string.Logout_sucesso), Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( ReadRelatorioActivity.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( ReadRelatorioActivity.this , addIgrejaActivity.class );
+            addigreja.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            addigreja.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_addUsuario ) {
+            Intent addusuario = new Intent ( ReadRelatorioActivity.this , AddLeaderActivity.class );
+            addusuario.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            addusuario.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( addusuario );
+            return true;
+        } else if ( itemId == R.id.action_Login ) {
+            Intent login = new Intent ( ReadRelatorioActivity.this , LoginActivity.class );
+            login.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+            login.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            return true;
         }
+        return super.onOptionsItemSelected ( item );
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

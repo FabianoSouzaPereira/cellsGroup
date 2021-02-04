@@ -3,10 +3,12 @@ package br.com.cellsgroup.leader;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,17 +39,24 @@ import java.util.List;
 
 import Adapters.AdapterListViewLeader;
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class LeaderActivity extends AppCompatActivity implements Serializable ,NavigationView.OnNavigationItemSelectedListener {
@@ -175,7 +185,68 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate( R.menu.home, menu );
+        return true;
+    }
 
+    @Override
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+        MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+            addIgreja.setVisible ( false );
+            igreja.setVisible (true );
+        }else{
+            addIgreja.setVisible ( true );
+            igreja.setVisible (false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( LeaderActivity.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( LeaderActivity.this  , addIgrejaActivity.class );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( LeaderActivity.this , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_Usuario ) {
+            Intent addusuario = new Intent ( LeaderActivity.this , LeaderActivity.class );
+            startActivity ( addusuario );
+            return true;
+        }else if ( itemId == R.id.action_addUsuario ) {
+            Intent addusuario = new Intent ( LeaderActivity.this , AddLeaderActivity.class );
+            startActivity ( addusuario );
+            return true;
+        } else if ( itemId == R.id.action_Login ) {
+            Intent login = new Intent ( LeaderActivity.this , LoginActivity.class );
+            startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected ( item );
+
+    }
     private void inicializarFirebase() {
         FirebaseApp.initializeApp( LeaderActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();

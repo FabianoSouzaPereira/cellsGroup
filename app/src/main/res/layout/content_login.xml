@@ -59,13 +59,14 @@
             app:errorEnabled="true"
             app:startIconContentDescription="@string/content_description_end_icon"
             app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
-            app:startIconTint="#3056FF">
+            app:startIconTint="#3056FF"
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:maxLength="65" />
         </com.google.android.material.textfield.TextInputLayout>
 

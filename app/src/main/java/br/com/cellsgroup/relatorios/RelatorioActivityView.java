@@ -267,6 +267,9 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             login.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity ( login );
             return true;
+        } else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
+            return true;
         } else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );

@@ -108,11 +108,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         UI = FirebaseAuth.getInstance().getCurrentUser();
         updateUI( UI ); //verifica se leader está logado
         setContentView( R.layout.activity_home );
-        splashScreean();
         if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
             finish();
+            return;
         }
         mAuth = FirebaseAuth.getInstance();
         mFunctions = FirebaseFunctions.getInstance();
@@ -123,7 +123,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         init();
         addDataHora();
         mAuth.getUid ();
-        useremailAuth = mAuth.getCurrentUser ().getEmail ();
+        try {
+            if ( mAuth != null ) {
+                useremailAuth = mAuth.getCurrentUser ().getEmail ();
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
+        }
 
         DrawerLayout drawer = findViewById( R.id.drawer_activityHome);
         NavigationView navigationView = findViewById( R.id.nav_view_home );
@@ -432,6 +438,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if ( itemId == R.id.action_Login ) {
             Intent login = new Intent ( HomeActivity.this , LoginActivity.class );
             startActivity ( login );
+            return true;
+        } else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
             return true;
         } else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );

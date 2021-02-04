@@ -48,9 +48,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
-       // Toolbar toolbar = findViewById( R.id.toolbar );
-      //  setSupportActionBar( toolbar );
-
 
         mAuth = FirebaseAuth.getInstance();
         editEmail = findViewById( R.id.email );
@@ -60,7 +57,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnCancelarLogin = findViewById (R.id.btnCancelarLogin );
         btnCancelarLogin.setOnClickListener (this);
         progressDialog = new ProgressDialog( this );
-
 
         // Create token receiver (for demo purposes only)
         mTokenReceiver = new TokenBroadcastReceiver() {
@@ -302,7 +298,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed ( ) {
-        super.onBackPressed ( );
+        finishAffinity ( );
     }
 
     @Override
