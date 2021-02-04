@@ -147,7 +147,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void pegarPadroes() {
 
-
        final String ui = UI.getUid ();
         if ( ui.isEmpty()){
             Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
@@ -401,12 +400,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        MenuItem addLeader = menu.findItem (R.id.action_addLider);
         if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
+            addLeader.setVisible (true);
         }else{
             addIgreja.setVisible ( true );
             igreja.setVisible (false);
+            addLeader.setVisible (false);
         }
         return true;
     }
@@ -420,20 +422,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity ( config );
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
-            Intent addigreja = new Intent ( HomeActivity.this , addIgrejaActivity.class );
+            Intent addigreja = new Intent ( HomeActivity.this  , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
         } else if ( itemId == R.id.action_readIgreja ) {
             Intent readigreja = new Intent ( HomeActivity.this , IgrejasCriadasActivity.class );
             startActivity ( readigreja );
             return true;
-        }else if ( itemId == R.id.action_Usuario ) {
-            Intent addusuario = new Intent ( HomeActivity.this , LeaderActivity.class );
-            startActivity ( addusuario );
+        }else if ( itemId == R.id.action_lideres) {
+            Intent addlideres = new Intent ( HomeActivity.this , LeaderActivity.class );
+            startActivity ( addlideres);
             return true;
-        }else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( HomeActivity.this , AddLeaderActivity.class );
-            startActivity ( addusuario );
+        }else if ( itemId == R.id.action_addLider ) {
+            Intent addlider= new Intent ( HomeActivity.this , AddLeaderActivity.class );
+            startActivity ( addlider );
             return true;
         } else if ( itemId == R.id.action_Login ) {
             Intent login = new Intent ( HomeActivity.this , LoginActivity.class );

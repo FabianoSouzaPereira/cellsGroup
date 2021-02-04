@@ -52,6 +52,7 @@ import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 
+import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
@@ -104,8 +105,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     }
 
     private void readOnlyActive() {
+        final String ui = UI.getUid ();
         novaRef = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
-        query = novaRef.orderByChild( "celula" ).limitToFirst(limitebusca);
+        query = novaRef.orderByChild ("celula").limitToLast (limitebusca);
          queryListener =  new ValueEventListener() {
 
             @Override
@@ -114,8 +116,12 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     for(DataSnapshot dados : ds.getChildren()) {
                         Celula c = dados.getValue( Celula.class );
-                        String celula = c.getCelula();
-                        cels.add( celula );
+                        if ( c != null ) {
+                            if( c.getUserId ( ).equals ( ui ) ) {
+                                String celula = c.getCelula ( );
+                                cels.add ( celula );
+                            }
+                        }
                     }
                 }
                 arrayAdapterCelula = new ArrayAdapter<String>(CelulasActivity.this,android.R.layout.simple_selectable_list_item, cels );
@@ -230,11 +236,11 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             Intent readigreja = new Intent ( CelulasActivity.this , IgrejasCriadasActivity.class );
             startActivity ( readigreja );
             return true;
-        }else if ( itemId == R.id.action_Usuario ) {
+        }else if ( itemId == R.id.action_lideres) {
             Intent addusuario = new Intent ( CelulasActivity.this , LeaderActivity.class );
             startActivity ( addusuario );
             return true;
-        } else if ( itemId == R.id.action_addUsuario ) {
+        } else if ( itemId == R.id.action_addLider) {
             Intent addusuario = new Intent ( CelulasActivity.this , AddLeaderActivity.class );
             startActivity ( addusuario );
             return true;

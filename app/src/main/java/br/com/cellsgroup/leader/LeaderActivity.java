@@ -171,7 +171,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
                 recyclerView.setAdapter( mAdapter);
                 mAdapter.notifyDataSetChanged();
-
+                hiddShowMessage();
             }
 
             @Override
@@ -185,6 +185,19 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
     }
 
+    // Mostra memsagem se lista vir vazia
+    private void hiddShowMessage(){
+
+        CardView cardView = findViewById (R.id.cardViewLeaders);
+        if( arrayLeader.size() == 0){
+            recyclerView.setVisibility (View.GONE);
+            cardView.setVisibility (View.VISIBLE);
+        }else{
+            cardView.setVisibility (View.GONE);
+            recyclerView.setVisibility (View.VISIBLE);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu( Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -196,12 +209,15 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        MenuItem addLeader = menu.findItem (R.id.action_addLider);
         if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
+            addLeader.setVisible (true);
         }else{
             addIgreja.setVisible ( true );
             igreja.setVisible (false);
+            addLeader.setVisible (false);
         }
         return true;
     }
@@ -222,13 +238,13 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
             Intent readigreja = new Intent ( LeaderActivity.this , IgrejasCriadasActivity.class );
             startActivity ( readigreja );
             return true;
-        }else if ( itemId == R.id.action_Usuario ) {
-            Intent addusuario = new Intent ( LeaderActivity.this , LeaderActivity.class );
-            startActivity ( addusuario );
+        }else if ( itemId == R.id.action_lideres) {
+            Intent addlideres = new Intent ( LeaderActivity.this , LeaderActivity.class );
+            startActivity ( addlideres);
             return true;
-        }else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( LeaderActivity.this , AddLeaderActivity.class );
-            startActivity ( addusuario );
+        }else if ( itemId == R.id.action_addLider ) {
+            Intent addlider= new Intent ( LeaderActivity.this , AddLeaderActivity.class );
+            startActivity ( addlider );
             return true;
         } else if ( itemId == R.id.action_Login ) {
             Intent login = new Intent ( LeaderActivity.this , LoginActivity.class );
@@ -247,6 +263,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         return super.onOptionsItemSelected ( item );
 
     }
+
     private void inicializarFirebase() {
         FirebaseApp.initializeApp( LeaderActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();

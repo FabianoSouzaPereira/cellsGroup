@@ -14,12 +14,12 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_Usuario"
+        android:id="@+id/action_lideres"
         android:orderInCategory="102"
         android:title="@string/lideres"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_addUsuario"
+        android:id="@+id/action_addLider"
         android:orderInCategory="103"
         android:title="@string/adiciona_l_der"
         app:showAsAction="never" />
@@ -35,9 +35,16 @@
         android:title="@string/action_Sair"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_Logout"
+        android:id="@+id/Desconectar"
         android:orderInCategory="106"
-        android:title="@string/action_logout"
-        app:showAsAction="never" />
+        android:title="@string/desconectar">
+        <menu>
+            <item
+                android:id="@+id/action_Logout"
+                android:orderInCategory="107"
+                android:title="@string/action_logout"
+                app:showAsAction="never" />
+        </menu>
 
+    </item>
 </menu>

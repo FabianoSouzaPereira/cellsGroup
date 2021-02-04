@@ -126,7 +126,8 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
                 inter.clear();
                 for(DataSnapshot ds:dataSnapshot.getChildren()) {
                     Intercessao intercessao = ds.getValue( Intercessao.class );
-                    inter.add( intercessao);
+                        inter.add ( intercessao );
+                        //todo Implemetar userId para usar no filtro
                 }
                 List<Intercessao> intercessoes = inter;
 

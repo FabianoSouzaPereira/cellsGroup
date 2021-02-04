@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -42,6 +43,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.leader.AddLeaderActivity;
@@ -136,7 +138,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     private void mostraRelatorio() {
         final String ui = UI.getUid ();
         novaRef6 = databaseReference.child( "churchs/" + uidIgreja + "/Reports/" + cel_1 );
-        novaRef6.orderByChild( "user" ).equalTo(ui).limitToLast(1);
+        novaRef6.orderByChild ("userId" ).equalTo (ui).limitToLast(1);
         novaRef6.addValueEventListener( new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -214,8 +216,31 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_drawer, menu );
+        getMenuInflater().inflate( R.menu.home, menu );
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        try {
+            MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+            MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+            MenuItem addLeader = menu.findItem (R.id.action_addLider);
+            if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+                addIgreja.setVisible ( false );
+                igreja.setVisible (true );
+                addLeader.setVisible (true);
+            }else{
+                addIgreja.setVisible ( true );
+                igreja.setVisible (false);
+                addLeader.setVisible (false);
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
+        } finally {
+            return true;
+        }
+
     }
 
     @Override
@@ -227,21 +252,23 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             startActivity ( config );
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
-            Intent addigreja = new Intent ( ReadRelatorioActivity.this , addIgrejaActivity.class );
-            addigreja.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            addigreja.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+            Intent addigreja = new Intent ( ReadRelatorioActivity.this  , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
-        } else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( ReadRelatorioActivity.this , AddLeaderActivity.class );
-            addusuario.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            addusuario.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
-            startActivity ( addusuario );
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( ReadRelatorioActivity.this , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_lideres) {
+            Intent addlideres = new Intent ( ReadRelatorioActivity.this , LeaderActivity.class );
+            startActivity ( addlideres);
+            return true;
+        }else if ( itemId == R.id.action_addLider ) {
+            Intent addlider= new Intent ( ReadRelatorioActivity.this , AddLeaderActivity.class );
+            startActivity ( addlider );
             return true;
         } else if ( itemId == R.id.action_Login ) {
             Intent login = new Intent ( ReadRelatorioActivity.this , LoginActivity.class );
-            login.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            login.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Sair ) {
@@ -251,9 +278,11 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            finish();
             return true;
         }
         return super.onOptionsItemSelected ( item );
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

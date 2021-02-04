@@ -25,11 +25,12 @@ public class Relatorio {
     private String testemunho = "";
     private String datahora = "";
     private String status = "1";
+    private String userId;
 
     public Relatorio() {
     }
 
-    public Relatorio(String uid, String celula, String rede, String supervisor, String lider, String viceLider, String anfitriao, String secretario, String colaborador, String dia, String hora, String  baseCelula, String  membrosIEQ, String  convidados, String  criancas, String  total, String estudo, String quebragelo, String lanche, String aceitacao, String reconciliacao, String testemunho, String status, String datahora) {
+    public Relatorio(String uid,String celula, String rede, String supervisor, String lider, String viceLider, String anfitriao, String secretario, String colaborador, String dia, String hora, String  baseCelula, String  membrosIEQ, String  convidados, String  criancas, String  total, String estudo, String quebragelo, String lanche, String aceitacao, String reconciliacao, String testemunho, String status, String datahora,String userId ) {
         this.uid = uid;
         this.celula = celula;
         this.rede = rede;
@@ -54,6 +55,7 @@ public class Relatorio {
         this.testemunho = testemunho;
         this.datahora = datahora;
         this.status = status;
+        this.userId  = userId ;
 
     }
 
@@ -63,6 +65,14 @@ public class Relatorio {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getUserId ( ) {
+        return userId ;
+    }
+
+    public void setUserId ( String userId  ) {
+        this.userId  = userId ;
     }
 
     public String getCelula() {

@@ -231,6 +231,8 @@
     <string name="read_lider">Lider</string>
     <string name="deus_bom">Deus é bom!</string>
     <string name="action_Sair">Sair</string>
+    <string name="divider_horizontal_textfield">divider_horizontal_textfield</string>
+    <string name="desconectar">Desconectar</string>
 
 
 </resources>

@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -50,6 +51,8 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
+import br.com.cellsgroup.leader.ReadLeaderActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.leader.AddLeaderActivity;
@@ -233,12 +236,15 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        MenuItem addLeader = menu.findItem (R.id.action_addLider);
         if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
+            addLeader.setVisible (true);
         }else{
             addIgreja.setVisible ( true );
             igreja.setVisible (false);
+            addLeader.setVisible (false);
         }
         return true;
     }
@@ -252,19 +258,23 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             startActivity ( config );
             return true;
         } else if ( itemId == R.id.action_addIgreja ) {
-            Intent addigreja = new Intent ( RelatorioActivityView.this , addIgrejaActivity.class );
+            Intent addigreja = new Intent ( RelatorioActivityView.this  , addIgrejaActivity.class );
             startActivity ( addigreja );
             return true;
-        } else if ( itemId == R.id.action_addUsuario ) {
-            Intent addusuario = new Intent ( RelatorioActivityView.this , AddLeaderActivity.class );
-            addusuario.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            addusuario.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
-            startActivity ( addusuario );
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( RelatorioActivityView.this , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_lideres) {
+            Intent addlideres = new Intent ( RelatorioActivityView.this , LeaderActivity.class );
+            startActivity ( addlideres);
+            return true;
+        }else if ( itemId == R.id.action_addLider ) {
+            Intent addlider= new Intent ( RelatorioActivityView.this , AddLeaderActivity.class );
+            startActivity ( addlider );
             return true;
         } else if ( itemId == R.id.action_Login ) {
             Intent login = new Intent ( RelatorioActivityView.this , LoginActivity.class );
-            login.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
-            login.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
             startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Sair ) {
@@ -274,10 +284,13 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            finish();
             return true;
         }
         return super.onOptionsItemSelected ( item );
+
     }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

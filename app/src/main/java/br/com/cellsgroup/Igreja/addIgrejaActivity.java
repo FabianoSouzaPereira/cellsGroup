@@ -92,7 +92,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String bairro = editBairro.getEditText().getText().toString().trim();
             String cidade = editCidade.getEditText().getText().toString().trim();
             String estado = editEstado.getEditText().getText().toString().trim();
-            String pais = editPais.getEditText().getText().toString().trim();
+            String pais_ = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
             String ddi = editddi.getEditText().getText().toString().trim();
             String phone  = editPhone.getEditText().getText().toString().trim();
@@ -103,7 +103,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
                 String uid = ref.push().getKey();
                 String igrejaID = uid;
-                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais, cep, DataTime, userId, status, denominacao,ddi, phone, igrejaID, members);
+                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais_, cep, ddi, phone,DataTime, userId,status,denominacao,igrejaID, members);
                 ref.child( "churchs/").child(uid + "/" + igreja).setValue( ig );
 
                 //insere no groups de igrejas

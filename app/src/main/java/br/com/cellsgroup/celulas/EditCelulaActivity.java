@@ -82,7 +82,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     private Spinner hr;
     private Spinner min;
     private String  hrs;
-
+    private static boolean validate = true;
     private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
     private String[] hora = new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
@@ -222,45 +222,100 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     }
 
     public void editCelulaClick(MenuItem item) {
-        String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
-        String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
-        String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
-        String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
-        String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
-        String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
-        String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
-        String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-        String hora = hh + ":" + mm;
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        novaRef2.child( celula ).child(  uid  );
-        addDataHora();
-        if(!TextUtils.isEmpty( celula )){
-            Map<String, Object> celulaUpdates = new HashMap<>();
-            celulaUpdates.put( celula + "/"  + uid + "/rede" , rede);
-            celulaUpdates.put( celula + "/"  + uid + "/supervisor", supervisor );
-            celulaUpdates.put( celula + "/"  + uid + "/leader", lider );
-            celulaUpdates.put( celula + "/"  + uid + "/viceLider", viceLider );
-            celulaUpdates.put( celula + "/"  + uid + "/anfitriao", anfitriao );
-            celulaUpdates.put( celula + "/"  + uid + "/secretario", secretario );
-            celulaUpdates.put( celula + "/"  + uid + "/colaborador", colaborador );
-            celulaUpdates.put( celula + "/"  + uid + "/dia", dia );
-            celulaUpdates.put( celula + "/"  + uid + "/hora", hora );
-            celulaUpdates.put( celula + "/"  + uid + "/datahora", DataTime );
-            celulaUpdates.put( celula + "/"  + uid + "/userId", userId );
+        validate=true;
+        try {
+            String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
+            if(celula.equals ("")){
+                validate = false;
+                textInputCelula.setError("Este campo é obrigatório");
+                textInputCelula.setFocusable (true);
+                textInputCelula.requestFocus ();
+            }
+            String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
+            if(rede.equals ("")){
+                validate = false;
+                textInputRede.setError("Este campo é obrigatório");
+                textInputRede.setFocusable (true);
+                textInputRede.requestFocus ();
+            }
+            String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
+            if(supervisor.equals ("")){
+                validate = false;
+                textInputSupervisor.setError("Este campo é obrigatório");
+                textInputSupervisor.setFocusable (true);
+                textInputSupervisor.requestFocus ();
+            }
+            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            if(lider.equals ("")){
+                validate = false;
+                textInputLider.setError("Este campo é obrigatório");
+                textInputLider.setFocusable (true);
+                textInputLider.requestFocus ();
+            }
+            String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
+            if(viceLider.equals ("")){
+                validate = false;
+                textInputViceLider.setError("Este campo é obrigatório");
+                textInputViceLider.setFocusable (true);
+                textInputViceLider.requestFocus ();
+            }
+            String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
+            if(anfitriao.equals ("")){
+                validate = false;
+                textInputAnfitriao.setError("Este campo é obrigatório");
+                textInputAnfitriao.setFocusable (true);
+                textInputAnfitriao.requestFocus ();
+            }
+            String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
+            if(secretario.equals ("")){
+                validate = false;
+                textInputSecretario.setError("Este campo é obrigatório");
+                textInputSecretario.setFocusable (true);
+                textInputSecretario.requestFocus ();
+            }
+            String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
+            if(colaborador.equals ("")){
+                validate = false;
+                textInputColaborador.setError("Este campo é obrigatório");
+                textInputColaborador.setFocusable (true);
+                textInputColaborador.requestFocus ();
+            }
+            String hora = hh + ":" + mm;
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            novaRef2.child( celula ).child(  uid  );
+            addDataHora();
 
-            novaRef2.updateChildren( celulaUpdates );
+            if(validate) {
+                if ( !TextUtils.isEmpty ( celula ) ) {
+                    Map < String, Object > celulaUpdates = new HashMap <> ( );
+                    celulaUpdates.put ( celula + "/" + uid + "/rede" , rede );
+                    celulaUpdates.put ( celula + "/" + uid + "/supervisor" , supervisor );
+                    celulaUpdates.put ( celula + "/" + uid + "/lider" , lider );
+                    celulaUpdates.put ( celula + "/" + uid + "/viceLider" , viceLider );
+                    celulaUpdates.put ( celula + "/" + uid + "/anfitriao" , anfitriao );
+                    celulaUpdates.put ( celula + "/" + uid + "/secretario" , secretario );
+                    celulaUpdates.put ( celula + "/" + uid + "/colaborador" , colaborador );
+                    celulaUpdates.put ( celula + "/" + uid + "/dia" , dia );
+                    celulaUpdates.put ( celula + "/" + uid + "/hora" , hora );
+                    celulaUpdates.put ( celula + "/" + uid + "/datahora" , DataTime );
+                    celulaUpdates.put ( celula + "/" + uid + "/userId" , userId );
 
-            Toast.makeText(this,"Editado célula com sucesso", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"Erro ao tentar Editar célula !", Toast.LENGTH_LONG).show();
+                    novaRef2.updateChildren ( celulaUpdates );
+
+                    Toast.makeText ( this , "Editado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+                } else {
+                    Toast.makeText ( this , "Erro ao tentar Editar célula !" , Toast.LENGTH_LONG ).show ( );
+                }
+
+                Intent intent = new Intent ( EditCelulaActivity.this , CelulasActivity.class );
+                intent.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+                intent.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                startActivity ( intent );
+                finish ( );
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
         }
-
-        Intent intent = new Intent( EditCelulaActivity.this, CelulasActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity( intent );
-        finish();
-
     }
 
     private void inicializarFirebase() {

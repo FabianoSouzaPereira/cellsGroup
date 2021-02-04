@@ -68,7 +68,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputDia;
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
-
+    private static boolean validate = true;
     private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
     private String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
@@ -251,44 +251,91 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void addCelulaClick(MenuItem item) {
-        addDataHora();
-
+        validate=true;
         try {
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
+            if(celula.equals ("")){
+                validate = false;
+                textInputCelula.setError("Este campo é obrigatório");
+                textInputCelula.setFocusable (true);
+                textInputCelula.requestFocus ();
+            }
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
+            if(rede.equals ("")){
+                validate = false;
+                textInputRede.setError("Este campo é obrigatório");
+                textInputRede.setFocusable (true);
+                textInputRede.requestFocus ();
+            }
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
+            if(supervisor.equals ("")){
+                validate = false;
+                textInputSupervisor.setError("Este campo é obrigatório");
+                textInputSupervisor.setFocusable (true);
+                textInputSupervisor.requestFocus ();
+            }
             String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            if(lider.equals ("")){
+                validate = false;
+                textInputLider.setError("Este campo é obrigatório");
+                textInputLider.setFocusable (true);
+                textInputLider.requestFocus ();
+            }
             String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
+            if(viceLider.equals ("")){
+                validate = false;
+                textInputViceLider.setError("Este campo é obrigatório");
+                textInputViceLider.setFocusable (true);
+                textInputViceLider.requestFocus ();
+            }
             String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
+            if(anfitriao.equals ("")){
+                validate = false;
+                textInputAnfitriao.setError("Este campo é obrigatório");
+                textInputAnfitriao.setFocusable (true);
+                textInputAnfitriao.requestFocus ();
+            }
             String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
+            if(secretario.equals ("")){
+                validate = false;
+                textInputSecretario.setError("Este campo é obrigatório");
+                textInputSecretario.setFocusable (true);
+                textInputSecretario.requestFocus ();
+            }
             String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
+            if(colaborador.equals ("")){
+                validate = false;
+                textInputColaborador.setError("Este campo é obrigatório");
+                textInputColaborador.setFocusable (true);
+                textInputColaborador.requestFocus ();
+            }
             String hora = hh+":"+mm;
             String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();
             String status = "1";
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            addDataHora();
+            if(validate) {
+                if ( !TextUtils.isEmpty ( celula ) && Logado && typeUserAdmin ) {
+                    String uid = Cells.push ( ).getKey ( );
+                    Celula cel = new Celula ( uid , celula , rede , supervisor , lider , viceLider , anfitriao , secretario , colaborador , dia , hora , datainicio , DataTime , status , userId , igreja );
+                    if ( uid == null ) throw new AssertionError ( );
+                    Cells.child ( "churchs/" + uidIgreja + "/cells/" ).child ( celula ).child ( uid ).setValue ( cel );
 
-
-            if(!TextUtils.isEmpty( celula ) && Logado && typeUserAdmin){
-                String uid = Cells.push().getKey();
-                Celula cel = new Celula(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, datainicio, DataTime, status, userId, igreja);
-                if (uid == null) throw new AssertionError();
-                Cells.child( "churchs/" + uidIgreja + "/cells/").child( celula ).child( uid ).setValue( cel );
-
-                Toast.makeText(this,"Criado célula com sucesso", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this,"Erro ao tentar criar célula !", Toast.LENGTH_LONG).show();
-                if (!typeUserAdmin){
-                    Toast.makeText(this,"Você não é um leader administrador. \n Não pode criar br.com.cellsgroup.models.celulas !", Toast.LENGTH_LONG).show();
+                    Toast.makeText ( this , "Criado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+                } else {
+                    Toast.makeText ( this , "Erro ao tentar criar célula !" , Toast.LENGTH_LONG ).show ( );
+                    if ( !typeUserAdmin ) {
+                        Toast.makeText ( this , "Você não é um lider administrador. \n Não pode criar celulas !" , Toast.LENGTH_LONG ).show ( );
+                    }
                 }
+
+                Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
+                startActivity( celulas );
+                finish();
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            Intent celulas = new Intent( AddCelulaActivity.this,CelulasActivity.class);
-            startActivity( celulas );
-            finish();
         }
-
     }
 
     public void  testNullvariable(String var){

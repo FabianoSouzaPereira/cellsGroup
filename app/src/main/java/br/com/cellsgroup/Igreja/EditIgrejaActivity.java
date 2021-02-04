@@ -2,6 +2,7 @@ package br.com.cellsgroup.Igreja;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -56,13 +57,16 @@ public class EditIgrejaActivity extends AppCompatActivity {
     TextInputLayout editEstado;
     TextInputLayout editPais;
     TextInputLayout editCep;
-    TextInputLayout editddi;
+    TextInputLayout editDdi;
     TextInputLayout editPhone;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_edit_igreja );
+        Toolbar toolbar = findViewById( R.id.toolbarEdit_igreja );
+        setSupportActionBar( toolbar );
+
         inicializaFirebase();
         inicializarComponentes();
         Intent intent = getIntent();
@@ -81,7 +85,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById (R.id.text_input_editEstado );
         editPais = findViewById (R.id.text_input_editPais_);
         editCep = findViewById (R.id.text_input_editCep);
-        editddi = findViewById (R.id.text_input_editddi);
+        editDdi = findViewById (R.id.text_input_editddi);
         editPhone = findViewById (R.id.text_input_phone);
     }
 
@@ -111,7 +115,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
                             Objects.requireNonNull ( editEstado.getEditText ( ), "" ).setText (igr.getEstado ());
                             Objects.requireNonNull ( editPais.getEditText ( ), "" ).setText (igr.getPais_ ());
                             Objects.requireNonNull ( editCep.getEditText ( ), "" ).setText (igr.getCep ());
-                            Objects.requireNonNull ( editddi.getEditText ( ), "" ).setText (igr.getddi ());
+                            Objects.requireNonNull ( editDdi.getEditText ( ), "" ).setText (igr.getDdi ());
                             Objects.requireNonNull ( editPhone.getEditText ( ), "" ).setText (igr.getPhone ());
 
                         }
@@ -139,7 +143,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
         String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
         String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
         String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
-        String ddi = Objects.requireNonNull ( editddi.getEditText ( ), "" ).getText ().toString().trim();
+        String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
         String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
       //  String hora = hh + ":" + mm;
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -153,7 +157,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             IgrejaUpdates.put( nome_extra  + "/bairro", bairro );
             IgrejaUpdates.put( nome_extra  + "/cidade", cidade );
             IgrejaUpdates.put( nome_extra  + "/estado", estado );
-            IgrejaUpdates.put( nome_extra  + "/pais", pais );
+            IgrejaUpdates.put( nome_extra  + "/pais_", pais );
             IgrejaUpdates.put( nome_extra  + "/cep", cep);
             IgrejaUpdates.put( nome_extra  + "/ddi ", ddi  );
             IgrejaUpdates.put( nome_extra  + "/phone", fone);

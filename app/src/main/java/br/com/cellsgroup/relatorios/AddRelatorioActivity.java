@@ -45,6 +45,7 @@ import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
@@ -303,6 +304,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
     public void addRelatorio(MenuItem menu) {
         try {
+            final String userId = UI.getUid ();
             relatorios = databaseReference.child( "churchs/" + uidIgreja + "/Reports/" );
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
@@ -323,7 +325,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             addDataHora();
             if(!TextUtils.isEmpty( celula ) && Logado == true && typeUserAdmin == true){
                 String uid = relatorios.push().getKey();
-                Relatorio relatorio = new Relatorio(uid, celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime);
+                Relatorio relatorio = new Relatorio(uid,celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime, userId );
                 if (uid != null) {
                     relatorios.child( celula ).child( uid ).setValue( relatorio );
 
