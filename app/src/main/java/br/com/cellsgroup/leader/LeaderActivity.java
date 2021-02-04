@@ -3,18 +3,23 @@ package br.com.cellsgroup.leader;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,13 +35,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Adapters.AdapterListViewLeader;
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 
 
-public class LeaderActivity extends AppCompatActivity implements Serializable {
+public class LeaderActivity extends AppCompatActivity implements Serializable ,NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TAG";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -56,6 +69,9 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
     private ValueEventListener queryListener;
     private String uid;
     private String nome;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -83,6 +99,13 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
             }
         } );
 
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_leader);
+        NavigationView navigationView = findViewById( R.id.nav_view_leader);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawer.addDrawerListener( toggle );
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener( this );
+
     }
 
     private void iniciaComponentes ( ) {
@@ -107,6 +130,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
                           e.printStackTrace ( );
                       }
                   }
+
                 List < Leader > leaders = arrayLeader;
 
                 mAdapter = new AdapterListViewLeader ( leaders );
@@ -137,7 +161,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
 
                 recyclerView.setAdapter( mAdapter);
                 mAdapter.notifyDataSetChanged();
-                hiddShowMessage();
+
             }
 
             @Override
@@ -151,20 +175,6 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
 
     }
 
-    // Mostra memsagem se lista vir vazia
-    private void hiddShowMessage() {
-        // Mostra a mensagem em caso de lista fazia
-        CardView cardView = findViewById (R.id.cardViewLeaders);
-        ImageView image = findViewById (R.id.imageViewLeader);
-        TextView text = findViewById (R.id.textMensagemLeader);
-        if(arrayLeader.size() == 0){
-            recyclerView.setVisibility (View.GONE);
-            cardView.setVisibility (View.VISIBLE);
-        }else{
-            cardView.setVisibility (View.GONE);
-            recyclerView.setVisibility (View.VISIBLE);
-        }
-    }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp( LeaderActivity.this);
@@ -172,6 +182,55 @@ public class LeaderActivity extends AppCompatActivity implements Serializable {
         databaseReference = firebaseDatabase.getReference();
         databaseReference.keepSynced(true);
     }
+
+    @Override
+    public boolean onNavigationItemSelected( MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            Intent home = new Intent( this, ReadLeaderActivity.class );
+            startActivity( home );
+
+        } else if (id == R.id.nav_cells) {
+            Intent celulas = new Intent( LeaderActivity.this, CelulasActivity.class );
+            celulas.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity( celulas );
+
+        } else if (id == R.id.nav_communication) {
+            Intent comunidados = new Intent( LeaderActivity.this, ComunicadosActivity.class );
+            startActivity( comunidados );
+
+        } else if (id == R.id.nav_intersession) {
+            Intent intercessao = new Intent( LeaderActivity.this, IntercessaoActivity.class );
+            startActivity( intercessao );
+
+        } else if (id == R.id.nav_schedule) {
+            Intent agenda = new Intent( LeaderActivity.this, AgendaActivity.class );
+            startActivity( agenda );
+
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( LeaderActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+
+        } else if (id == R.id.nav_contact) {
+            Intent contato = new Intent( LeaderActivity.this, ContatoActivity.class );
+            startActivity( contato );
+
+        } else if (id == R.id.nav_share) {
+            Intent compartilhar = new Intent( LeaderActivity.this, CompartilharActivity.class );
+            startActivity( compartilhar );
+
+        } else if (id == R.id.nav_send) {
+            Intent Enviar = new Intent( LeaderActivity.this, EnviarActivity.class );
+            startActivity( Enviar );
+
+        }
+
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_leader);
+        drawer.closeDrawer( GravityCompat.START );
+        return true;
+    }
+
 
     @Override
     public void onBackPressed() {

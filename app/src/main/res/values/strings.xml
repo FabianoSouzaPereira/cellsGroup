@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CellsGroup</string>
-    <string name="nav_header_title" translatable="true">Quadrangular em Células</string>
+    <string name="nav_header_title" translatable="true">Sua Igreja em Células</string>
     <string name="nav_header_subtitle">jeovajire2003@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings" translatable="true">Configurações</string>
@@ -229,6 +229,7 @@
     <string name="Relatorio">Relatório</string>
     <string name="relatorios">relatorios</string>
     <string name="read_lider">Lider</string>
+    <string name="deus_bom">Deus é bom!</string>
 
 
 </resources>

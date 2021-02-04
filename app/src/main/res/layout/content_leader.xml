@@ -19,7 +19,7 @@
             android:id="@+id/listviewLeader"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="visible">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -27,6 +27,7 @@
             android:id="@+id/cardViewLeaders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             app:cardElevation="0dp">
 
             <ImageView

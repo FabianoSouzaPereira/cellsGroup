@@ -1,9 +1,12 @@
 package br.com.cellsgroup.leader;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -12,8 +15,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,14 +34,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.Igreja.EditIgrejaActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
-public class ReadLeaderActivity extends AppCompatActivity {
+public class ReadLeaderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TAG";
     public String DataTime;
     public String DataT;
@@ -74,20 +89,22 @@ public class ReadLeaderActivity extends AppCompatActivity {
     private static final boolean validate = true;
     private String uid;
     private String user;
-
-
     private Query query;
     private ValueEventListener queryListener;
     private static final boolean DeletePermission = false;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_read_leader );
-        Toolbar toolbar = findViewById( R.id.toolbarReadleader );
+        Toolbar toolbar = findViewById( R.id.toolbar_read_leader );
         setSupportActionBar( toolbar );
 
         mAuth = FirebaseAuth.getInstance();
+        useremailAuth = mAuth.getCurrentUser ().getEmail ();
 
         inicializarComponentes();
 
@@ -96,6 +113,19 @@ public class ReadLeaderActivity extends AppCompatActivity {
         uid = intent.getStringExtra( "uid" );
         user  = intent.getStringExtra( "user" );
         readOnlyActive();
+
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_read_leader);
+        NavigationView navigationView = findViewById( R.id.nav_view_read_leader);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle ( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawer.addDrawerListener( toggle );
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = headerView.findViewById (R.id.nhTitle);
+        nhName = headerView.findViewById (R.id.nhName);
+        nhEmail = headerView.findViewById (R.id.nhEmail);
+        nhEmail.setText (useremailAuth);
 
     }
 
@@ -287,6 +317,54 @@ public class ReadLeaderActivity extends AppCompatActivity {
         return super.onOptionsItemSelected( item );
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            Intent home = new Intent( this, ReadLeaderActivity.class );
+            startActivity( home );
+
+        } else if (id == R.id.nav_cells) {
+            Intent celulas = new Intent( ReadLeaderActivity.this, CelulasActivity.class );
+            celulas.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity( celulas );
+
+        } else if (id == R.id.nav_communication) {
+            Intent comunidados = new Intent( ReadLeaderActivity.this, ComunicadosActivity.class );
+            startActivity( comunidados );
+
+        } else if (id == R.id.nav_intersession) {
+            Intent intercessao = new Intent( ReadLeaderActivity.this, IntercessaoActivity.class );
+            startActivity( intercessao );
+
+        } else if (id == R.id.nav_schedule) {
+            Intent agenda = new Intent( ReadLeaderActivity.this, AgendaActivity.class );
+            startActivity( agenda );
+
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( ReadLeaderActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+
+        } else if (id == R.id.nav_contact) {
+            Intent contato = new Intent( ReadLeaderActivity.this, ContatoActivity.class );
+            startActivity( contato );
+
+        } else if (id == R.id.nav_share) {
+            Intent compartilhar = new Intent( ReadLeaderActivity.this, CompartilharActivity.class );
+            startActivity( compartilhar );
+
+        } else if (id == R.id.nav_send) {
+            Intent Enviar = new Intent( ReadLeaderActivity.this, EnviarActivity.class );
+            startActivity( Enviar );
+
+        }
+
+        DrawerLayout drawer = findViewById( R.id.drawer_activity_read_leader );
+        drawer.closeDrawer( GravityCompat.START );
+        return true;
+    }
+
 
     @SuppressLint("SimpleDateFormat")
     public void addDataHora() {
@@ -296,9 +374,6 @@ public class ReadLeaderActivity extends AppCompatActivity {
         DataTime = data + " "+ hora;
         DataT = data;
     }
-
-
-
 
     @Override
     protected void onResume ( ) {

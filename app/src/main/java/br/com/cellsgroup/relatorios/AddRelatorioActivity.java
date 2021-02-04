@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -103,6 +104,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     public String DataTime;
     public String DataT;
     public  String celulas_;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -394,6 +398,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( AddRelatorioActivity.this, AgendaActivity.class );
             startActivity( agenda );
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( AddRelatorioActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( AddRelatorioActivity.this, VisaoActivity.class );
             startActivity( visao );
@@ -408,7 +415,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             startActivity( Enviar );
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_del_celula );
+        DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_add_relatorio);
         drawer.closeDrawer( GravityCompat.START );
         return true;
 

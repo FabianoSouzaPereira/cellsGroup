@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -69,9 +70,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public static Object groups;
     public static String group="";
     public static String igreja = "";
+    public static String username = "";
     public static String useremail = "";
-    public  static String cellPhone = "";
+    public static String cellPhone = "";
     public static String uidIgreja = "";
+    public static String useremailAuth = "";
 
     public static boolean typeUserAdmin = true;
     public static boolean typeUserNormal = false;
@@ -95,6 +98,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     //Variaveis de MENU
     int addigreja;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,9 +120,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById( R.id.toolbarhome );
         setSupportActionBar( toolbar );
         inicializarFirebase();
+        init();
         addDataHora();
         mAuth.getUid ();
-
+        useremailAuth = mAuth.getCurrentUser ().getEmail ();
 
         DrawerLayout drawer = findViewById( R.id.drawer_activityHome);
         NavigationView navigationView = findViewById( R.id.nav_view_home );
@@ -125,10 +132,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
 
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = (TextView) headerView.findViewById (R.id.nhTitle);
+        nhName = (TextView) headerView.findViewById (R.id.nhName);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail);
+        nhEmail.setText (useremailAuth);
     }
 
     public void pegarPadroes() {
-      //  String email = mAuth.getCurrentLeader().getEmail();
+
+
        final String ui = UI.getUid ();
         if ( ui.isEmpty()){
             Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
@@ -191,6 +204,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                          }
                      }
                     Log.d( "uidIgreja------------> ",""+ uidIgreja);
+                    nhTitle.setText (group);
+                    nhName.setText(igreja);
                 }
 
                 @Override
@@ -198,6 +213,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
+
     }
 
     @Override
@@ -210,8 +226,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity( intent );
         }
         pegarPadroes();
-    //    initAlertDialogoIgreja();  //verifica se tem br.com.cellsgroup.models.igreja cadastrada
-    //    initAlertDialogoUsuario();
     }
 
     @Override
@@ -456,7 +470,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity( agenda );
 
         } else if (id == R.id.nav_realatorio) {
-            Intent relatorio = new Intent( HomeActivity.this, ReadRelatorioActivity.class );
+            Intent relatorio = new Intent( HomeActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
 
         } else if (id == R.id.nav_contact) {

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -80,6 +81,9 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
     private TextInputLayout textInputreconciliacao;
     private TextInputLayout textInputtestemunho;
     private TextInputLayout textInputdataHora;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,18 +263,27 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         if (id == R.id.nav_home) {
             Intent home = new Intent( this, HomeActivity.class );
             startActivity( home );
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent( ReadRelatorioActivity.this, CelulasActivity.class );
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent( ReadRelatorioActivity.this, ComunicadosActivity.class );
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( ReadRelatorioActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( ReadRelatorioActivity.this, AgendaActivity.class );
             startActivity( agenda );
+
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( ReadRelatorioActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( ReadRelatorioActivity.this, VisaoActivity.class );
             startActivity( visao );
@@ -294,5 +307,30 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         FirebaseApp.initializeApp(ReadRelatorioActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+    }
+
+    @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+    }
+
+    @Override
+    protected void onStop ( ) {
+        super.onStop ( );
+    }
+
+    @Override
+    protected void onResume ( ) {
+        super.onResume ( );
+    }
+
+    @Override
+    protected void onPause ( ) {
+        super.onPause ( );
+    }
+
+    @Override
+    protected void onDestroy ( ) {
+        super.onDestroy ( );
     }
 }

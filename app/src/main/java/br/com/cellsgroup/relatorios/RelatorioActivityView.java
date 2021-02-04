@@ -71,6 +71,9 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     public String DataTime;
     public String DataT;
     private final int limitebusca = 500;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
 
     @Override

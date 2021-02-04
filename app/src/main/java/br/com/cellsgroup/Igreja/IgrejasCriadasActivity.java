@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +58,9 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     private String nome;
     private Query query;
     private ValueEventListener listener;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
