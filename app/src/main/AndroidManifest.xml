@@ -60,7 +60,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".leader.AddLeaderActivity"
-            android:label="@string/title_activity_add_usuario"
+            android:label="@string/title_activity_add_leader"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".intercessao.AddIntercessaoActivity"

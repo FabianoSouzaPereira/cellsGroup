@@ -6,28 +6,26 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_above="@+id/text11"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="107dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="TODO"
         app:srcCompat="@drawable/ic_baseline_groups_24" />
 
     <TextView
         android:id="@+id/text11"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/imgLogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="7dp"
         android:gravity="center_horizontal"
         android:text="Igreja em Células"
         android:textColor="#454545"
-        android:textSize="18sp" />
+        android:textSize="38sp" />
 
 </RelativeLayout>

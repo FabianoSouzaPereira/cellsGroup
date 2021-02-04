@@ -206,7 +206,7 @@
     <string name="content_description_end_icon">icone email</string>
     <string name="editar_igreja">Editar Igreja</string>
     <string name="lideres">Lideres</string>
-    <string name="adiciona_l_der">Adiciona Líder</string>
+    <string name="adiciona_l_der">Adicionar Líder</string>
     <string name="editar_lider">Editar Lider</string>
     <string name="Sobre">Sobre</string>
     <string name="agenda">agenda</string>
@@ -233,6 +233,7 @@
     <string name="action_Sair">Sair</string>
     <string name="divider_horizontal_textfield">divider_horizontal_textfield</string>
     <string name="desconectar">Desconectar</string>
+    <string name="title_activity_add_leader">Novo Lider</string>
 
 
 </resources>
