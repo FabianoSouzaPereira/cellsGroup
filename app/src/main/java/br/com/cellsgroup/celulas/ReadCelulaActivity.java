@@ -7,6 +7,8 @@ import android.os.Bundle;
 import com.google.android.material.navigation.NavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,8 +41,10 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
+import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
 @SuppressWarnings("ALL")
 public class ReadCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -63,6 +67,9 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
 
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
 
     @Override
@@ -84,6 +91,14 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = (TextView) headerView.findViewById (R.id.nhTitle_read_celula);
+        nhName = (TextView) headerView.findViewById (R.id.nhName_read_celula);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_read_celula);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
 
@@ -159,7 +174,7 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_save_edit_delete , menu );
+        getMenuInflater().inflate( R.menu.menu_edit_delete , menu );
         return super.onCreateOptionsMenu( menu );
     }
 

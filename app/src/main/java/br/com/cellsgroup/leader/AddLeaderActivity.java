@@ -7,6 +7,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +26,19 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.celulas.AddCelulaActivity;
+import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.pessoas.User;
 
+import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
@@ -45,6 +54,7 @@ public class AddLeaderActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DatabaseReference Leaders;
     private DatabaseReference ref;
+    private DatabaseReference novaRef;
     private final int limitebusca = 1;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
@@ -78,9 +88,9 @@ public class AddLeaderActivity extends AppCompatActivity {
         setSupportActionBar( toolbar );
 
         mAuth = FirebaseAuth.getInstance();
-
-        inicializarComponentes();
         inicializarFirebase();
+        inicializarComponentes();
+
     }
 
     private void inicializarComponentes() {
@@ -104,14 +114,17 @@ public class AddLeaderActivity extends AppCompatActivity {
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
     }
 
+
     private void inicializarFirebase() {
         Leaders = FirebaseDatabase.getInstance().getReference();
         ref = FirebaseDatabase.getInstance().getReference();
+        novaRef = FirebaseDatabase.getInstance().getReference();
     }
 
     private void addLeaderClick(MenuItem item){
         addDataHora();
         validate=true;
+        String celula = ""; // mudar depois para spinner
         String nome =  EditTextnome.getEditText().getText().toString().trim();
         if(nome.equals ("")|| nome.length() < 4){
             validate = false;
@@ -180,7 +193,7 @@ public class AddLeaderActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty( nome ) ) {
 
                 String uid = Leaders.push ( ).getKey ( );
-                User Leader = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , ddi , telefone , email , endereco , bairro , cidade , estado, pais , cep , cargoIgreja , status , DataTime , igreja , userId , group );
+                User Leader = new User ( uid , nome , idade , sexo , dataNascimento , dataBastismo , nomepai , nomemae , estadocivil , ddi , telefone , email , endereco , bairro , cidade , estado, pais , cep , cargoIgreja , status , DataTime , igreja , userId , group,celula );
 
                 if ( uid != null ) {
                     //Cria leader
@@ -207,7 +220,6 @@ public class AddLeaderActivity extends AppCompatActivity {
         }
 
     }
-
 
     private void readOnlyActive() {
 
@@ -289,7 +301,6 @@ public class AddLeaderActivity extends AppCompatActivity {
 
     @Override
     protected void onStop ( ) {
-
         super.onStop ( );
     }
 

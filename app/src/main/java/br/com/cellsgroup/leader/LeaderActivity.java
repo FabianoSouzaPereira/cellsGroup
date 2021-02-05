@@ -55,7 +55,10 @@ import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -115,6 +118,14 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = headerView.findViewById (R.id.nhTitle_leaders);
+        nhName = headerView.findViewById (R.id.nhName_leaders);
+        nhEmail = headerView.findViewById (R.id.nhEmail_leaders);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
 
     }
 
@@ -245,10 +256,6 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         }else if ( itemId == R.id.action_addLider ) {
             Intent addlider= new Intent ( LeaderActivity.this , AddLeaderActivity.class );
             startActivity ( addlider );
-            return true;
-        } else if ( itemId == R.id.action_Login ) {
-            Intent login = new Intent ( LeaderActivity.this , LoginActivity.class );
-            startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();

@@ -58,7 +58,10 @@ import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.leader.AddLeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -112,6 +115,14 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = headerView.findViewById (R.id.nhTitle_relatorio_view);
+        nhName = headerView.findViewById (R.id.nhName_realtorio_view);
+        nhEmail = headerView.findViewById (R.id.nhEmail_relatorio_view);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
 
@@ -272,10 +283,6 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         }else if ( itemId == R.id.action_addLider ) {
             Intent addlider= new Intent ( RelatorioActivityView.this , AddLeaderActivity.class );
             startActivity ( addlider );
-            return true;
-        } else if ( itemId == R.id.action_Login ) {
-            Intent login = new Intent ( RelatorioActivityView.this , LoginActivity.class );
-            startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();

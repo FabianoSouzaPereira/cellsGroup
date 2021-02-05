@@ -25,10 +25,11 @@ public class Pessoa {
     private String igrejaPadrao = "";
     private String userId = "";
     private Object group = null;
+    private String celula = "";
 
     public Pessoa( ) { }
 
-    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String ddi , String telefone , String email , String endereco , String bairro , String cidade ,String estado, String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group ) {
+    public Pessoa ( String uid , String nome , String idade , String sexo , String dataNascimento , String dataBastismo , String nomepai , String nomemae , String estadocivil , String ddi , String telefone , String email , String endereco , String bairro , String cidade ,String estado, String pais , String cep , String cargoIgreja , String status , String datahora , String igrejaPadrao , String userId , Object group, String celula ) {
         this.uid = uid;
         this.nome = nome;
         this.idade = idade;
@@ -53,6 +54,7 @@ public class Pessoa {
         this.igrejaPadrao = igrejaPadrao;
         this.userId = userId;
         this.group = group;
+        this.celula = celula;
     }
 
 
@@ -246,5 +248,13 @@ public class Pessoa {
 
     public void setGroup ( Object group ) {
         this.group = group;
+    }
+
+    public String getCelula ( ) {
+        return celula;
+    }
+
+    public void setCelula ( String celula ) {
+        this.celula = celula;
     }
 }

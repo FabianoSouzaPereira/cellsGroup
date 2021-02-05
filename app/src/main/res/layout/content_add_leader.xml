@@ -26,6 +26,13 @@
             android:paddingEnd="8dp"
             android:paddingBottom="30dp">
 
+            <Spinner
+                android:id="@+id/spinnercelula"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editNome"
                 android:layout_width="match_parent"

@@ -42,6 +42,7 @@ public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListView
     public void onBindViewHolder(@NonNull final ViewholderContato viewholder, final int position) {
         Leader leader = leaders.get( position );
 
+        viewholder.celula.setText( leader.getNome());
         viewholder.nome.setText( leader.getNome());
         viewholder.email.setText(leader.getEmail ());
         viewholder.telefone.setText(leader.getTelefone());
@@ -55,6 +56,7 @@ public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListView
 
     /*  Classe interna Viewholder */
     public class ViewholderContato  extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView celula;
         TextView nome;
         TextView email;
         TextView telefone;
@@ -62,6 +64,7 @@ public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListView
 
         public ViewholderContato(@NonNull View view, OnContatoListener onContatoListener) {
             super( view );
+            celula = (TextView) view.findViewById( R.id.txtNome_Celula);
             nome = (TextView) view.findViewById( R.id.txtNome_contato);
             email = (TextView) view.findViewById(R.id.txtEmail_contato);
             telefone  = (TextView) view.findViewById(R.id.txtTelefone_contato);

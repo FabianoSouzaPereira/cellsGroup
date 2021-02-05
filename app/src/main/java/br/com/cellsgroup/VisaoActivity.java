@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,9 +27,13 @@ import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
+
 public class VisaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private EditText editTextVisao;
-
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,12 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = ( TextView ) headerView.findViewById (R.id.nhTitle_relatorio);
+        nhName = (TextView) headerView.findViewById (R.id.nhName_relatorio);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_relatorio);
+        nhEmail.setText (useremailAuth);
     }
 
     private void inicilaizarComponentes() {

@@ -53,7 +53,10 @@ import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
@@ -71,7 +74,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     private final int limitebusca = 500;
     Query query;
     ValueEventListener queryListener;
-
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
 
     @Override
@@ -102,6 +107,14 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         toggle.syncState();
         NavigationView navigationView = findViewById( R.id.nav_view_celula );
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = headerView.findViewById (R.id.nhTitle_celula);
+        nhName = headerView.findViewById (R.id.nhName_celula);
+        nhEmail = headerView.findViewById (R.id.nhEmail_celula);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
     private void readOnlyActive() {
@@ -243,10 +256,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         } else if ( itemId == R.id.action_addLider) {
             Intent addusuario = new Intent ( CelulasActivity.this , AddLeaderActivity.class );
             startActivity ( addusuario );
-            return true;
-        } else if ( itemId == R.id.action_Login ) {
-            Intent login = new Intent ( CelulasActivity.this , LoginActivity.class );
-            startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );

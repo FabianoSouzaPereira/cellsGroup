@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,7 +50,10 @@ import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.leader.AddLeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 @SuppressWarnings("ALL")
@@ -107,6 +111,15 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = (TextView) headerView.findViewById (R.id.nhTitle_relatorio);
+        nhName = (TextView) headerView.findViewById (R.id.nhName_relatorio);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_relatorio);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
     private void inicializarComponentes() {
@@ -266,10 +279,6 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         }else if ( itemId == R.id.action_addLider ) {
             Intent addlider= new Intent ( ReadRelatorioActivity.this , AddLeaderActivity.class );
             startActivity ( addlider );
-            return true;
-        } else if ( itemId == R.id.action_Login ) {
-            Intent login = new Intent ( ReadRelatorioActivity.this , LoginActivity.class );
-            startActivity ( login );
             return true;
         } else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();

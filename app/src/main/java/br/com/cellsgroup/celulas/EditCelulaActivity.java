@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,8 +50,10 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
+import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
 @SuppressWarnings("ALL")
 public class EditCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,6 +91,9 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
             "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,8 +103,10 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         setSupportActionBar( toolbar );
         Intent intent = getIntent();
         celula_extra = intent.getStringExtra( "Celula" );
+
         inicializarComponentes();
         inicializarFirebase();
+
         novaRef2 = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
         pegandoConteudoCelula();
 
@@ -156,6 +164,14 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = ( TextView ) headerView.findViewById (R.id.nhTitle_edit_celula);
+        nhName = (TextView) headerView.findViewById (R.id.nhName_edit_celula);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_edit_celula);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
     private void pegandoConteudoCelula() {

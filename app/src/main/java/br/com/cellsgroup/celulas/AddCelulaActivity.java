@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,9 +42,11 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
+import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -74,17 +77,29 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
             "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_celula );
-        Toolbar toolbar = findViewById( R.id.toolbar );
+        Toolbar toolbar = findViewById( R.id.toolbar_add_celula );
         setSupportActionBar( toolbar );
         inicializarFirebase();
         addDataHora();
         inicializarComponentes();
+
+        NavigationView navigationView = findViewById( R.id.nav_view_add_celula );
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = ( TextView ) headerView.findViewById (R.id.nhTitle_add_celula);
+        nhName = (TextView) headerView.findViewById (R.id.nhName_add_celula);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_add_celula);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
 
     }
 
@@ -111,9 +126,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         textInputDataInicio.getEditText().setText( DataT );
         Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout, semana );
+        ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item, semana );
         sp = findViewById( R.id.spinnerSemana );
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         sp.setAdapter( adapter );
         sp.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -127,9 +141,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }
         } );
 
-        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout2,hora );
+        ArrayAdapter<String> adapterhora = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,hora );
         hr = findViewById( R.id.spinnerhora );
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         hr.setAdapter( adapterhora );
         hr.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
@@ -143,9 +156,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             }
         } );
 
-        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddCelulaActivity.this, R.layout.spinner_layout2,minuto );
+        ArrayAdapter<String> adaptermin = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item,minuto );
         min = findViewById( R.id.spinnermin );
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item2);
         min.setAdapter( adaptermin );
         min.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override

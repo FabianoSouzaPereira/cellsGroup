@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -49,6 +50,9 @@ import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
+import static br.com.cellsgroup.home.HomeActivity.group;
 
 
 public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , AdapterListViewContato.OnContatoListener{
@@ -67,6 +71,9 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     private ValueEventListener queryContatoListener;
     private String uid;
     private String nome;
+    TextView nhTitle;
+    TextView nhEmail;
+    TextView nhName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +122,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
                 recyclerView.setAdapter( mAdapter);
                 mAdapter.notifyDataSetChanged();
                 hiddShowMessage();
+
             }
 
             @Override
@@ -124,8 +132,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         } ;
 
         querycontato.addValueEventListener (queryContatoListener );
-
-
 
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
@@ -140,11 +146,18 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         drawer.addDrawerListener( toggle );
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener( this );
+
+        View headerView = navigationView.getHeaderView(0);
+        nhTitle = ( TextView ) headerView.findViewById (R.id.nhTitleContato);
+        nhName = (TextView) headerView.findViewById (R.id.nhNameContato);
+        nhEmail = (TextView) headerView.findViewById (R.id.nhEmailContato);
+        nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
     }
 
     // Mostra memsagem se lista vir vazia
     private void hiddShowMessage() {
-        // Mostra a mensagem em caso de lista fazia
         ImageView image = findViewById (R.id.imageViewContato);
         CardView carviewContato = findViewById (R.id.carviewContato );
         if(arrayLeader.size() == 0){
@@ -176,7 +189,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate( R.menu.menu_config, menu );
+        getMenuInflater().inflate( R.menu.home, menu );
         return true;
     }
 

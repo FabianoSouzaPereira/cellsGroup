@@ -46,6 +46,8 @@ import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
+import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
 import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
@@ -64,6 +66,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
     private DatabaseReference novaRef;
 
     private final int limitebusca = 1;
+    private TextInputLayout EditTextCelula;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
     private TextInputLayout EditTextsexo;
@@ -122,14 +125,17 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener( this );
 
         View headerView = navigationView.getHeaderView(0);
-        nhTitle = headerView.findViewById (R.id.nhTitle);
-        nhName = headerView.findViewById (R.id.nhName);
-        nhEmail = headerView.findViewById (R.id.nhEmail);
+        nhTitle = headerView.findViewById (R.id.nhTitle_read_leader);
+        nhName = headerView.findViewById (R.id.nhName_read_leader);
+        nhEmail = headerView.findViewById (R.id.nhEmail_read_leader);
         nhEmail.setText (useremailAuth);
+        nhTitle.setText (group);
+        nhName.setText(igreja);
 
     }
 
     private void inicializarComponentes() {
+        EditTextCelula = findViewById (R.id.text_input_readCelula );
         EditTextnome = findViewById( R.id.text_input_readNome);
         EditTextidade = findViewById( R.id.text_input_readIdade);
         EditTextsexo = findViewById( R.id.text_input_readSexo );

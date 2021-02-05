@@ -234,6 +234,7 @@
     <string name="divider_horizontal_textfield">divider_horizontal_textfield</string>
     <string name="desconectar">Desconectar</string>
     <string name="title_activity_add_leader">Novo Lider</string>
+    <string name="futuras_melhorias">Futuras melhorias</string>
 
 
 </resources>

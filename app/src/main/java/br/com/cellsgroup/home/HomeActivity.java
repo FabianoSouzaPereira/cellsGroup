@@ -167,11 +167,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         group = valuegroup.toString ();
                         cellPhone = valuePhone.toString ();
                     }
-                    Log.d( "email-------------> ",""+ useremail );
-                    Log.d( "igreja------------> ",""+ igreja );
-                    Log.d( "group------------> ",""+ group );
-                    Log.d( "cellPhone------------> ",""+ cellPhone );
-                  //  count = 1;
                 }
 
                 @Override
@@ -296,52 +291,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void initAlertDialogoIgreja(){
-        if(igreja.equals ("")) {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder( HomeActivity.this );
-            builder1 = builder1.setMessage( "Deseja criar e associar uma br.com.cellsgroup.models.igreja ?" );
-            builder1.setTitle( "Não existe Igreja associada ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
-                }
-            } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent( HomeActivity.this, addIgrejaActivity.class );
-                    startActivity( intent);
-                }
-            } );
-
-            AlertDialog alertDialog1 = builder1.create();
-            alertDialog1.show();
-        }
-    }
-
-    public void initAlertDialogoUsuario(){
-        if(useremail.equals ("")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder( HomeActivity.this );
-            builder = builder.setMessage( "É necessário a criação de um usuário.\n Podemos proceguir ?" );
-            builder.setTitle( "Não existe leader associado ao seu app..." ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText( getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT ).show();
-                }
-            } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //Toast.makeText(getApplicationContext(), "Ok escolhido", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent( HomeActivity.this, AddLeaderActivity.class );
-                    startActivity( intent);
-                }
-            } );
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        }
-    }
-
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HomeActivity.this);  //inicializa  o SDK credenciais padrão do aplicativo do Google
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -362,9 +311,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .continueWith(new Continuation<HttpsCallableResult, String>() {
                     @Override
                     public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                        // This continuation runs on either success or failure, but if the task
-                        // has failed then getResult() will throw an Exception which will be
-                        // propagated down.
                         String result = (String) task.getResult().getData();
                         return result;
                     }
@@ -391,7 +337,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.home, menu );
         return true;
     }
@@ -437,11 +382,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent addlider= new Intent ( HomeActivity.this , AddLeaderActivity.class );
             startActivity ( addlider );
             return true;
-        } else if ( itemId == R.id.action_Login ) {
-            Intent login = new Intent ( HomeActivity.this , LoginActivity.class );
-            startActivity ( login );
-            return true;
-        } else if ( itemId == R.id.action_Sair ) {
+        }else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();
             return true;
         } else if ( itemId == R.id.action_Logout ) {
