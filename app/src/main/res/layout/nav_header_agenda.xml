@@ -23,7 +23,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#000000"
+        android:background="@color/side_nav_bar_color"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/deus_bom"
-        android:textColor="#020202" />
+        android:textColor="@color/nav_header_text_color" />
 
     <TextView
         android:id="@+id/nhEmail"
@@ -42,6 +42,6 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="@string/nav_header_subtitle"
-        android:textColor="#020202" />
+        android:textColor="@color/nav_header_text_color"/>
 
 </LinearLayout>

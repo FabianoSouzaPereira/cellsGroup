@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/celula1"
                     android:inputType="text"
-                    android:maxLength="65" />
+                    android:maxLength="65"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

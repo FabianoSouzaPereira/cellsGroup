@@ -29,115 +29,115 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".leader.ReadLeaderActivity"
             android:label="@string/read_lider"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".leader.EditLeaderActivity"
             android:label="@string/editar_lider"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".leader.LeaderActivity"
             android:label="@string/lideres"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Igreja.DeleteIgrejaActivity"
             android:label="@string/apagar_igreja_min"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Igreja.EditIgrejaActivity"
             android:label="@string/editar_igreja"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Igreja.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SobreActivity"
             android:label="@string/Sobre"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".agenda.AddAgendaActivity"
             android:label="@string/title_activity_add_agenda"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".leader.AddLeaderActivity"
             android:label="@string/title_activity_add_leader"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".intercessao.AddIntercessaoActivity"
             android:label="@string/title_activity_add_intercessaoa"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Igreja.addIgrejaActivity"
             android:label="@string/title_activity_add_igreja"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Configuracao"
             android:label="@string/title_activity_configuracao"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".celulas.EditCelulaActivity"
             android:label="@string/title_activity_edit_celula"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".celulas.DeleteCelulaActivity"
             android:label="@string/title_activity_delete_celula"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".relatorios.AddRelatorioActivity"
             android:label="@string/title_activity_add_relatorio"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".celulas.ReadCelulaActivity"
             android:label="@string/title_activity_read_celula"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".celulas.AddCelulaActivity"
             android:label="@string/title_activity_add_celula"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".relatorios.RelatorioActivityView"
             android:label="@string/title_activity_relatorio_view"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".relatorios.ReadRelatorioActivity"
             android:label="@string/title_activity_read_relatorio"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".EnviarActivity"
             android:label="@string/title_activity_enviar"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CompartilharActivity"
             android:label="@string/title_activity_compartilhar"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".contato.ContatoActivity"
             android:label="@string/title_activity_contato"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".VisaoActivity"
             android:label="@string/title_activity_visao"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".agenda.AgendaActivity"
             android:label="@string/title_activity_agenda"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".intercessao.IntercessaoActivity"
             android:label="@string/title_activity_intercessao"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".comunicados.ComunicadosActivity"
             android:label="@string/title_activity_comunicados"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".celulas.CelulasActivity"
             android:label="@string/title_activity_celulas"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".home.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme"/>
         <activity android:name=".models.login.WellcomeActivity" />
         <activity
             android:name=".models.login.LoginActivity"

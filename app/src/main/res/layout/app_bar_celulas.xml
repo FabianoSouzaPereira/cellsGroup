@@ -40,11 +40,11 @@
         android:layout_height="56dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="100dp"
+        android:contentDescription="@string/celulas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/celulas"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

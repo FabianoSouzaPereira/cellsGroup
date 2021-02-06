@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CellsGroup</string>
     <string name="nav_header_title" translatable="true">Sua Igreja em Células</string>
-    <string name="nav_header_subtitle">jeovajire2003@gmail.com</string>
+    <string name="nav_header_subtitle">email@email.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings" translatable="true">Configurações</string>
 
@@ -235,6 +235,7 @@
     <string name="desconectar">Desconectar</string>
     <string name="title_activity_add_leader">Novo Lider</string>
     <string name="futuras_melhorias">Futuras melhorias</string>
+    <string name="Icone_floatBottom">\@drawable/ic_baseline_add_24</string>
 
 
 </resources>

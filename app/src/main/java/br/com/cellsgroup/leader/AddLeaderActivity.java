@@ -36,6 +36,7 @@ import br.com.cellsgroup.celulas.AddCelulaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.models.pessoas.User;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
@@ -81,7 +82,7 @@ public class AddLeaderActivity extends AppCompatActivity {
     private static boolean validate = true;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_leader );
         Toolbar toolbar = findViewById( R.id.toolbarAddleader );
@@ -233,7 +234,7 @@ public class AddLeaderActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         for (DataSnapshot dados : ds.getChildren()) {
-                            User u = dados.getValue( User.class );
+                            Leader u = dados.getValue( Leader.class );
                             email = u.getEmail();
                         }
                     }
@@ -296,6 +297,7 @@ public class AddLeaderActivity extends AppCompatActivity {
 
     @Override
     protected void onStart ( ) {
+
         super.onStart ( );
     }
 

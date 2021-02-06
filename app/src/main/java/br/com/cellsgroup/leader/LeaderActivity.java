@@ -145,8 +145,8 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
                 arrayLeader.clear();
                   for(DataSnapshot dados : dataSnapshot.getChildren()) {
                       try {
-                          Leader u = dados.getValue (Leader.class);
-                          arrayLeader.add(u);
+                          Leader leader = dados.getValue (Leader.class);
+                          arrayLeader.add(leader);
                       } catch ( Exception e ) {
                           e.printStackTrace ( );
                       }

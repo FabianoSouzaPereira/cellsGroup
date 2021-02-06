@@ -2,35 +2,68 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorYellow</item>
-        <item name="colorPrimaryDark">@color/colorYellow</item>
-        <item name="colorAccent">@color/bluesoft</item>
-        <item name="android:navigationBarColor">@color/colorYellow</item>
-        <item name="android:windowBackground">@color/colorWhite</item>
-        <!-- statusbar text color fica cinza -->
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/bluesoft</item>
-        <item name="colorSecondaryVariant">@color/bluesoft</item>
-        <item name="colorOnSecondary">@color/greensoft</item>
-        <item name="titleTextColor">@color/Browncolor</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorblack</item>
+        <item name="colorPrimaryDark">@color/colorblack</item>
+
+        <!-- Muda a cor do floating buttom  -->
+        <item name="colorAccent">@color/colorblack</item>
+        <item name="android:navigationBarColor">@color/colorblack</item>
+        <item name="android:windowBackground">@color/WhiteSmoke</item>
+
+        <!-- statusbar text color fica cinza se true e false branco-->
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/bluesoft</item>
+        <item name="colorSecondaryVariant">@color/colorPrimary</item>
+        <item name="colorOnSecondary">@color/greensoft</item>
+        <item name="titleTextColor">@color/colorWhite</item>
+
+        <!-- É a cor dos textos das listas -->
+        <item name="android:textColor">@color/colorblack</item>
+
+        <!-- Muda a cor somente os 3 pontos -->
+        <item name="actionOverflowButtonStyle">@style/DotsDarkTheme</item>
+
+        <!-- Change color menu sandwich-->
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="colorPrimaryVariant">@color/greensoft</item>
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+            <!-- Muda a cor somente os 3 pontos -->
+            <style name="DotsDarkTheme" parent="@style/Widget.AppCompat.ActionButton.Overflow" >
+                <item name="android:tint">@color/colorWhite</item>
+            </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+            <!-- Change color menu sandwich-->
+            <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+                <item name="spinBars">true</item>
+                <item name="android:textColorSecondary">@color/Browncolor</item>
+                <!-- sandwich icon color -->
+                <item name="color">@color/colorWhite</item>
+            </style>
 
+    <!--  usado na tela de login -->
     <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
+    <!-- Tudo a cima compoe o tema principal -->
 
-</resources>
+    <!-- Não usados -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    </style>
+
+
+    </resources>
