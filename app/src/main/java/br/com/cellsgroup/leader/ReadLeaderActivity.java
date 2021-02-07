@@ -177,6 +177,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                         Object ui =  dados.child ("uid").getValue ();
                         String id = Objects.requireNonNull ( ui,"" ).toString ();
                         if(id.equalsIgnoreCase (uid) ) {
+                            Object celulaOb = dados.child ( "celula" ).getValue ( );
                             Object userOb = dados.child ( "nome" ).getValue ( );
                             Object idadeOb = dados.child ( "idade" ).getValue ( );
                             Object sexoOb = dados.child ( "sexo" ).getValue ( );
@@ -196,7 +197,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                             Object cepOb = dados.child ( "cep" ).getValue ( );
                             Object cargoIgrejaOb = dados.child ( "cargoIgreja" ).getValue ( );
 
-
+                            String celula = Objects.requireNonNull ( celulaOb , "" ).toString ( );
                             String nome = Objects.requireNonNull ( userOb , "" ).toString ( );
                             String idade = Objects.requireNonNull ( idadeOb , "" ).toString ( );
                             String sexo = Objects.requireNonNull ( sexoOb , "" ).toString ( );
@@ -217,6 +218,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                             String cep = Objects.requireNonNull ( cepOb , "" ).toString ( );
                             String cargoIgreja = Objects.requireNonNull ( cargoIgrejaOb , "" ).toString ( );
 
+                            Objects.requireNonNull ( EditTextCelula.getEditText ( ) , "" ).setText ( celula );
                             Objects.requireNonNull ( EditTextnome.getEditText ( ) , "" ).setText ( nome );
                             Objects.requireNonNull ( EditTextidade.getEditText ( ) , "" ).setText ( idade );
                             Objects.requireNonNull ( EditTextsexo.getEditText ( ) , "" ).setText ( sexo );

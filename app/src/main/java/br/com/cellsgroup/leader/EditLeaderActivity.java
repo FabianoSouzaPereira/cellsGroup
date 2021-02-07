@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,14 +30,18 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.models.celulas.Celula;
 
+import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
@@ -53,6 +60,7 @@ public class EditLeaderActivity extends AppCompatActivity {
     private DatabaseReference novaRef;
 
     private final int limitebusca = 1;
+    private Spinner spCelula;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
     private TextInputLayout EditTextsexo;
@@ -79,10 +87,14 @@ public class EditLeaderActivity extends AppCompatActivity {
     private String uid;
     private String user;
 
-
     private Query query;
     private ValueEventListener queryListener;
     private static final boolean DeletePermission = false;
+    private String cel;
+    private String celula;
+    private final ArrayList<String> cels = new ArrayList<String>();
+    private ArrayAdapter<String> arrayAdapterCelula;
+    private String celulaName;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -122,6 +134,7 @@ public class EditLeaderActivity extends AppCompatActivity {
         EditTextpais = findViewById( R.id.text_input_editPais );
         EditTextcep = findViewById( R.id.text_input_editCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
+
     }
 
     private void inicializarFirebase() {
@@ -202,6 +215,7 @@ public class EditLeaderActivity extends AppCompatActivity {
                 if ( uid != null ) {
 
                     Map<String, Object> userUpdates = new HashMap<>();
+                    userUpdates.put( "/celula" , cel);
                     userUpdates.put( "/nome" , nome);
                     userUpdates.put( "/idade", idade );
                     userUpdates.put( "/sexo", sexo );
@@ -253,6 +267,7 @@ public class EditLeaderActivity extends AppCompatActivity {
                        Object ui =  dados.child ("uid").getValue ();
                        String id = Objects.requireNonNull ( ui,"" ).toString ();
                        if(id.equalsIgnoreCase (uid) ) {
+                           Object celulaOb = dados.child ( "celula" ).getValue ( );
                            Object userOb = dados.child ( "nome" ).getValue ( );
                            Object idadeOb = dados.child ( "idade" ).getValue ( );
                            Object sexoOb = dados.child ( "sexo" ).getValue ( );
@@ -272,7 +287,7 @@ public class EditLeaderActivity extends AppCompatActivity {
                            Object cepOb = dados.child ( "cep" ).getValue ( );
                            Object cargoIgrejaOb = dados.child ( "cargoIgreja" ).getValue ( );
 
-
+                           celulaName = Objects.requireNonNull ( celulaOb , "" ).toString ( );
                            String nome = Objects.requireNonNull ( userOb , "" ).toString ( );
                            String idade = Objects.requireNonNull ( idadeOb , "" ).toString ( );
                            String sexo = Objects.requireNonNull ( sexoOb , "" ).toString ( );
@@ -311,11 +326,13 @@ public class EditLeaderActivity extends AppCompatActivity {
                            Objects.requireNonNull ( EditTextpais.getEditText ( ) , "" ).setText ( pais );
                            Objects.requireNonNull ( EditTextcep.getEditText ( ) , "" ).setText ( cep );
                            Objects.requireNonNull ( EditTextcargoIgreja.getEditText ( ) , "" ).setText ( cargoIgreja );
+                           loadSpinner(celulaName);
+
                        }
                     } catch ( Exception e ) {
                         e.printStackTrace ( );
                     }
-                }
+                  }
             }
 
             @Override
@@ -326,6 +343,72 @@ public class EditLeaderActivity extends AppCompatActivity {
 
         query.addValueEventListener (queryListener );
 
+    }
+
+    public void loadSpinner( final String celulaName){
+        final String ui = UI.getUid ();
+        novaRef = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
+        query = novaRef.orderByChild ("celula").limitToLast (200);
+        queryListener =  new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cels.clear();
+                cels.add("Escolha uma célula");
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    for(DataSnapshot dados : ds.getChildren()) {
+                        if ( dados.hasChild ( "celula" ) ) {
+                            Celula c = dados.getValue ( Celula.class );
+                            if ( !c.getCelula ( ).equals ( "" ) ) {
+                                if ( c.getUserId ( ).equals ( ui ) ) {
+                                    String celula = c.getCelula ( );
+                                    cels.add ( celula );
+                                }
+                            }
+                        }
+                    }
+                }
+                ArrayAdapter <String> adapter = new ArrayAdapter<String>( EditLeaderActivity.this, android.R.layout.simple_spinner_dropdown_item, cels);
+                spCelula = findViewById( R.id.spinnerEditcelula );
+                int pos = spinnerPosition (cels,celulaName);
+                spCelula.setSelection(pos);
+                spCelula.setAdapter( adapter );
+                spCelula.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if(spCelula.getSelectedItem().equals (0) ){ return; }
+                        cel= (String)spCelula.getSelectedItem();
+
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        cel = "";
+                    }
+                } );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("TAG","Erro Database"+ databaseError.toException() );
+            }
+        } ;
+
+        query.addValueEventListener (queryListener );
+
+    }
+
+    private int spinnerPosition(ArrayList<String> array, String position){
+        int posicaoArray = 0;
+
+        for(int i=0; (i <= array.size()-1) ; i++){
+            if(array.get(i).equals(position)){
+
+             posicaoArray = i;
+            }else{
+             posicaoArray = 0;
+            }
+        }
+        return posicaoArray;
     }
 
     private void deleteUsuario(){
