@@ -2,7 +2,7 @@ package br.com.cellsgroup.models.celulas;
 
 public final class Celula {
     private String uid;
-    private String celula;
+    private String celula = "";
     private String rede = "";
     private String supervisor = "";
     private String lider = "";

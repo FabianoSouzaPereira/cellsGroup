@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +58,7 @@ public class AddLeaderActivity extends AppCompatActivity {
     private DatabaseReference ref;
     private DatabaseReference novaRef;
     private final int limitebusca = 1;
+    private Spinner spCelula;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
     private TextInputLayout EditTextsexo;
@@ -80,6 +82,12 @@ public class AddLeaderActivity extends AppCompatActivity {
     private String emailTest = "";
     private String key;
     private static boolean validate = true;
+    private final ArrayList<String> cels = new ArrayList<String>();
+    private ArrayAdapter<String> arrayAdapterCelula;
+    Query query;
+    ValueEventListener queryListener;
+    private String celula;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,19 +121,70 @@ public class AddLeaderActivity extends AppCompatActivity {
         EditTextpais = findViewById( R.id.text_input_editPais );
         EditTextcep = findViewById( R.id.text_input_editCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
+        loadSpinner();
     }
+    public void loadSpinner(){
+        final String ui = UI.getUid ();
+        novaRef = databaseReference.child( "churchs/" + uidIgreja + "/cells/");
+        query = novaRef.orderByChild ("celula").limitToLast (200);
+        queryListener =  new ValueEventListener() {
 
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cels.clear();
+                cels.add("Escolha uma célula");
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    for(DataSnapshot dados : ds.getChildren()) {
+                        if ( dados.hasChild ( "celula" ) ) {
+                        Celula c = dados.getValue ( Celula.class );
+                            if ( !c.getCelula ( ).equals ( "" ) ) {
+                                if ( c.getUserId ( ).equals ( ui ) ) {
+                                    String celula = c.getCelula ( );
+                                    cels.add ( celula );
+                                }
+                            }
+                        }
+                    }
+                }
+                ArrayAdapter <String> adapter = new ArrayAdapter<String>( AddLeaderActivity.this, android.R.layout.simple_spinner_dropdown_item, cels);
+                spCelula = findViewById( R.id.spinnercelula );
+                spCelula.setAdapter( adapter );
+                spCelula.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if(spCelula.getSelectedItem().equals (0) ){ return; }
+                        celula = (String)spCelula.getSelectedItem();
+
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        celula = "";
+                    }
+                } );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("TAG","Erro Database"+ databaseError.toException() );
+            }
+        } ;
+
+        query.addValueEventListener (queryListener );
+
+    }
 
     private void inicializarFirebase() {
         Leaders = FirebaseDatabase.getInstance().getReference();
         ref = FirebaseDatabase.getInstance().getReference();
-        novaRef = FirebaseDatabase.getInstance().getReference();
+        FirebaseApp.initializeApp(AddLeaderActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        databaseReference.keepSynced(true);
     }
 
     private void addLeaderClick(MenuItem item){
         addDataHora();
         validate=true;
-        String celula = ""; // mudar depois para spinner
         String nome =  EditTextnome.getEditText().getText().toString().trim();
         if(nome.equals ("")|| nome.length() < 4){
             validate = false;
@@ -291,13 +350,18 @@ public class AddLeaderActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause ( ) {
+        query.removeEventListener(queryListener );
+        super.onPause ( );
+    }
+
+    @Override
     protected void onResume ( ) {
         super.onResume ( );
     }
 
     @Override
     protected void onStart ( ) {
-
         super.onStart ( );
     }
 

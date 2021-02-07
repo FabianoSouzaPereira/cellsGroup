@@ -42,7 +42,7 @@ public class AdapterListViewContato extends RecyclerView.Adapter<AdapterListView
     public void onBindViewHolder(@NonNull final ViewholderContato viewholder, final int position) {
         Leader leader = leaders.get( position );
 
-        viewholder.celula.setText( leader.getNome());
+        viewholder.celula.setText( leader.getCelula ());
         viewholder.nome.setText( leader.getNome());
         viewholder.email.setText(leader.getEmail ());
         viewholder.telefone.setText(leader.getTelefone());
