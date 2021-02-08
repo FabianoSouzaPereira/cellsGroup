@@ -40,6 +40,7 @@ import java.util.Objects;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.utils.MaskEditUtil;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
@@ -120,18 +121,22 @@ public class EditLeaderActivity extends AppCompatActivity {
         EditTextidade = findViewById( R.id.text_input_editIdade);
         EditTextsexo = findViewById( R.id.text_input_editSexo );
         EditTextdataNascimento = findViewById( R.id.text_input_editDataNascimento);
+        Objects.requireNonNull ( EditTextdataNascimento.getEditText ( ), "//" ).addTextChangedListener ( MaskEditUtil.mask ( EditTextdataNascimento, MaskEditUtil.FORMAT_DATE));
         EditTextdataBastismo = findViewById( R.id.text_input_editDataBatismo );
+        Objects.requireNonNull ( EditTextdataBastismo.getEditText ( ),"//" ).addTextChangedListener ( MaskEditUtil.mask ( EditTextdataBastismo, MaskEditUtil.FORMAT_DATE));
         EditTextnomepai = findViewById( R.id.text_input_editNomePai );
         EditTextnomemae = findViewById( R.id.text_input_editNomeMae );
         EditTextestadocivil = findViewById( R.id.text_input_editEstadoCivil );
         EdiTextddi = findViewById (R.id.text_input_editddi );
         EditTexttelefone = findViewById( R.id.text_input_editTelefone );
+        Objects.requireNonNull ( EditTexttelefone.getEditText ( ),"00000-0000" ).addTextChangedListener ( MaskEditUtil.mask (EditTexttelefone, MaskEditUtil.FORMAT_FONE ) );
         EditTextemail = findViewById( R.id.text_input_editEmail );
         EditTextendereco = findViewById( R.id.text_input_editEndereco );
         EditTextbairro = findViewById( R.id.text_input_editBairro );
         EditTextcidade = findViewById( R.id.text_input_editCidade );
         EditTextestado = findViewById ( R.id.text_input_editEstado );
         EditTextpais = findViewById( R.id.text_input_editPais );
+        Objects.requireNonNull ( EditTextcep.getEditText ( ), "00000-000" ).addTextChangedListener ( MaskEditUtil.mask (EditTextcep, MaskEditUtil.FORMAT_CEP));
         EditTextcep = findViewById( R.id.text_input_editCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
 
@@ -167,7 +172,7 @@ public class EditLeaderActivity extends AppCompatActivity {
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
-        if( ddi.equals ( "" ) || ddi.length ( ) > 2 ){
+        if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
             validate = false;
             EdiTextddi.setError("Este campo é obrigatório, dois dígitos");
             EdiTextddi.setFocusable (true);

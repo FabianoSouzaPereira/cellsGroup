@@ -2,12 +2,8 @@ package br.com.cellsgroup.intercessao;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.View;
-
 import android.view.MenuItem;
-
 import android.view.Menu;
 import android.widget.Toast;
 
@@ -154,7 +150,6 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.i("Msg","Erro readIntercessão");
             }
         } );
     }
@@ -240,7 +235,6 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
     }
 
    public void onIntercessaoClick(int position, String uid){
-       Log.d( TAG, "" + position);
        mUid = uid;
 
    }

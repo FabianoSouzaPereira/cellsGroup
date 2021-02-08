@@ -10,13 +10,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +47,7 @@ import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
-import br.com.cellsgroup.models.login.LoginActivity;
+
 import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 
@@ -145,7 +144,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
         } ;
 

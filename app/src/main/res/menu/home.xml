@@ -23,20 +23,25 @@
         android:orderInCategory="103"
         android:title="@string/adiciona_l_der"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Sobre"
+        android:orderInCategory="104"
+        android:title="@string/Sobre"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_Sair"
-        android:orderInCategory="104"
+        android:orderInCategory="105"
         android:title="@string/action_Sair"
         app:showAsAction="never" />
     <item
         android:id="@+id/Desconectar"
-        android:orderInCategory="105"
+        android:orderInCategory="106"
         android:title="@string/desconectar">
         <menu>
             <item
                 android:id="@+id/action_Logout"
-                android:orderInCategory="106"
+                android:orderInCategory="107"
                 android:title="@string/action_logout"
                 app:showAsAction="never" />
         </menu>

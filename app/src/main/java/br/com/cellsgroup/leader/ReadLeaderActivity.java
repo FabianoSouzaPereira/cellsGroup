@@ -12,7 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -246,7 +246,6 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
         } ;
 

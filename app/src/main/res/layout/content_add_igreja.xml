@@ -159,15 +159,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="2"
+                app:counterMaxLength="3"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/c_digo_do_pa_s_required"
+                    android:text="@string/_55"
                     android:inputType="phone"
-                    android:maxLength="2" />
+                    android:maxLength="3" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_phone"

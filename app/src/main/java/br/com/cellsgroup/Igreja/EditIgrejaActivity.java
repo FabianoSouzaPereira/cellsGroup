@@ -3,13 +3,10 @@ package br.com.cellsgroup.Igreja;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -126,7 +123,6 @@ public class EditIgrejaActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.i("Msg","Erro readIntercessão");
             }
         };
         query.addListenerForSingleValueEvent (listener);

@@ -5,31 +5,42 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import Adapters.AdapterListViewIgreja;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.igreja.Igreja;
+import br.com.cellsgroup.utils.MaskEditUtil;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.cellPhone;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static java.lang.System.currentTimeMillis;
 
 public class addIgrejaActivity extends AppCompatActivity {
@@ -49,6 +60,14 @@ public class addIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editddi;
     private TextInputLayout editPhone;
     private FirebaseAuth mAuth;
+    private static boolean validate = true;
+    private Query query;
+    private ValueEventListener listener;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private DatabaseReference novaRef;
+    private String denominacao ="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +76,9 @@ public class addIgrejaActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
         addDataHora();
-        inicializarComponentes();
         inicializarFirebase();
+        inicializarComponentes();
+
         mAuth = FirebaseAuth.getInstance();
 
     }
@@ -66,7 +86,9 @@ public class addIgrejaActivity extends AppCompatActivity {
     private void inicializarFirebase() {
         ref = FirebaseDatabase.getInstance().getReference();
         ref2 = FirebaseDatabase.getInstance().getReference();
-
+        FirebaseApp.initializeApp(addIgrejaActivity.this);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     private void inicializarComponentes() {
@@ -78,16 +100,34 @@ public class addIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById( R.id.text_input_editEstado );
         editPais = findViewById( R.id.text_input_editPais_ );
         editCep = findViewById( R.id.text_input_editCep );
+        editCep.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editCep, MaskEditUtil.FORMAT_CEP));
         editddi = findViewById( R.id.text_input_editddi);
         editPhone= findViewById (R.id.text_input_phone );
+        editPhone.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhone, MaskEditUtil.FORMAT_FONE));
     }
 
 
     private void addIgrejaClick(MenuItem item) {
         addDataHora();
+        igreja = "";
+        validate=true;
+;
         try {
-            String denominacao = editDenominacao.getEditText().getText().toString().trim();
-            igreja = editIgreja.getEditText().getText().toString().trim();
+            denominacao = editDenominacao.getEditText().getText().toString().trim();
+            if(denominacao .equals ("")|| denominacao.length() < 4){
+                validate = false;
+                editDenominacao.setError("Este campo é obrigatório");
+                editDenominacao.setFocusable (true);
+                editDenominacao.requestFocus ();
+            }
+             String igrejaName = editIgreja.getEditText().getText().toString().trim();
+            igreja = igrejaName;
+            if(igreja .equals ("")|| igreja.length() < 4){
+                validate = false;
+                editIgreja.setError("Este campo é obrigatório");
+                editIgreja.setFocusable (true);
+                editIgreja.requestFocus ();
+            }
             String endereco = editEndereco.getEditText().getText().toString().trim();
             String bairro = editBairro.getEditText().getText().toString().trim();
             String cidade = editCidade.getEditText().getText().toString().trim();
@@ -96,30 +136,37 @@ public class addIgrejaActivity extends AppCompatActivity {
             String cep = editCep.getEditText().getText().toString().trim();
             String ddi = editddi.getEditText().getText().toString().trim();
             String phone  = editPhone.getEditText().getText().toString().trim();
+            if( phone.equals ( "" ) || phone.length ( ) < 9 ){
+                validate = false;
+                editPhone.setError("Este campo é obrigatório, min. 9 dígitos.");
+                editPhone.setFocusable (true);
+                editPhone.requestFocus ();
+            }
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String members = "";
 
-            //insere igreja
-            if (!TextUtils.isEmpty( igreja  ) && Logado == true && typeUserAdmin == true) {
-                String uid = ref.push().getKey();
-                String igrejaID = uid;
-                Igreja ig = new Igreja( uid, igreja, endereco, bairro, cidade, estado, pais_, cep, ddi, phone,DataTime, userId,status,denominacao,igrejaID, members);
-                ref.child( "churchs/").child(uid + "/" + igreja).setValue( ig );
+            if(validate) {
+                //insere igreja
+                if ( !TextUtils.isEmpty ( igreja ) && Logado == true && typeUserAdmin == true ) {
+                    String uid = ref.push ( ).getKey ( );
+                    String igrejaID = uid;
+                    Igreja ig = new Igreja ( uid , igreja , endereco , bairro , cidade , estado , pais_ , cep , ddi , phone , DataTime , userId , status , denominacao , igrejaID , members );
+                    ref.child ( "churchs/" ).child ( uid + "/" + igreja ).setValue ( ig );
 
-                //insere no groups de igrejas
-                Map<String, Object> map1 = new HashMap<>();
-                map1.put("members/"+ currentTimeMillis(), igreja);
-                ref2.child("groups/").child(denominacao).updateChildren (map1);
+                    //insere no groups de igrejas
+                    Map < String, Object > map1 = new HashMap <> ( );
+                    map1.put ( "members/" + currentTimeMillis ( ) , igreja );
+                    ref2.child ( "groups/" ).child ( denominacao ).updateChildren ( map1 );
 
-                clearEditTexts();
-                Toast.makeText( this, "Criado Igreja com sucesso", Toast.LENGTH_LONG ).show();
+                    clearEditTexts ( );
+                    Toast.makeText ( this , "Criado Igreja com sucesso" , Toast.LENGTH_LONG ).show ( );
+                }
+                Intent home = new Intent( addIgrejaActivity.this, HomeActivity.class);
+                startActivity(home);
             }
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText( this, "Erro ao tentar criar a igreja!", Toast.LENGTH_LONG ).show();
-        } finally {
-            Intent home = new Intent( addIgrejaActivity.this, HomeActivity.class);
-            startActivity(home);
         }
     }
 
@@ -136,12 +183,10 @@ public class addIgrejaActivity extends AppCompatActivity {
 
             databaseReference.updateChildren( usuarioUpdates );
 
-            Log.i("Updated", "Updated br.com.cellsgroup.models.igreja padrão de usuário novo. ");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void onBackPressed() {

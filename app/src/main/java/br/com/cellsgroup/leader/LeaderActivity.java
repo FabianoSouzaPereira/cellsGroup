@@ -2,11 +2,11 @@ package br.com.cellsgroup.leader;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,9 +48,9 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.home.HomeActivity;
+
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-import br.com.cellsgroup.models.login.LoginActivity;
+
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
@@ -187,7 +187,6 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
         } ;
 

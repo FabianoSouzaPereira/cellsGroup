@@ -38,7 +38,7 @@
 
     <string name="action_sign_in" translatable="true">Entre</string>
     <string name="action_sign_in_short" translatable="true">Muito curto</string>
-    <string name="welcome" translatable="true">"Bem vindo Welcome !"</string>
+    <string name="welcome" translatable="true">"Bem vindo !"</string>
     <string name="invalid_username" translatable="true">Não é um usuário válido</string>
     <string name="invalid_password" translatable="true">Senha precisa ser  > 5 characteres</string>
     <string name="login_failed" translatable="true">"Falha no login"</string>
@@ -53,25 +53,25 @@
     <string name="supervisor1" translatable="true">Supervisor</string>
     <string name="lider1" translatable="true">Lider</string>
     <string name="anfitriao1" translatable="true">Anfitrião</string>
-    <string name="vice_lider1" translatable="true">Vice - Lider</string>
+    <string name="vice_lider1" translatable="true">Vice-líder</string>
     <string name="secretario1" translatable="true">Secretário</string>
     <string name="colaborador1" translatable="true">Colaborador</string>
-    <string name="dia_da_semana1" translatable="true">Dia da semana</string>
+    <string name="dia_da_semana1" translatable="true">Dia da emana</string>
     <string name="horario1" translatable="true">Horário</string>
-    <string name="base_celula1" translatable="true">Base celula</string>
+    <string name="base_celula1" translatable="true">Base célula</string>
     <string name="membros_ieq1" translatable="true">Membros IEQ</string>
     <string name="convidados1" translatable="true">Convidados</string>
     <string name="criancas1" translatable="true">Crianças</string>
     <string name="total1" translatable="true">Total</string>
-    <string name="houve_estudo1" translatable="true">Houve estudo?</string>
-    <string name="houve_quebra_gelo1" translatable="true">Houve Quebra-gelo?</string>
-    <string name="teve_lanche1" translatable="true">Teve lanche?</string>
-    <string name="algu_m_aceitou_jesus1" translatable="true">Alguém aceitou Jesus?</string>
-    <string name="reconciliacao1" translatable="true">Reconciliação?</string>
-    <string name="houve_testemunho1" translatable="true">Houve testemunho?</string>
+    <string name="houve_estudo1" translatable="true">Houve estudo ?</string>
+    <string name="houve_quebra_gelo1" translatable="true">Houve quebra-gelo ?</string>
+    <string name="teve_lanche1" translatable="true">Teve lanche ?</string>
+    <string name="algu_m_aceitou_jesus1" translatable="true">Alguém aceitou Jesus ?</string>
+    <string name="reconciliacao1" translatable="true">Reconciliação ?</string>
+    <string name="houve_testemunho1" translatable="true">Houve testemunho ?</string>
     <string name="sim" translatable="true">Sim</string>
     <string name="nao" translatable="true">Não</string>
-    <string name="houve_estudo" translatable="true">Houve estudo?</string>
+    <string name="houve_estudo" translatable="true">Houve estudo ?</string>
     <string name="foi_ministrado_o_estudo" translatable="true"><u>Foi ministrado o estudo ?</u></string>
     <string name="foi_realizado_o_quebra_gelo" translatable="true">Foi realizado o quebra gelo ?</string>
     <string name="algu_m_se_reconcilhou_com_cristo" translatable="true">Alguém se reconcilhou com Cristo ?</string>
@@ -87,155 +87,164 @@
     <string name="hora" translatable="true">Hora:</string>
     <string name="dataInicio" translatable="true">Data início</string>
 
-    <string name="action_save">Salvar</string>
-    <string name="action_cancel">Cancelar</string>
-    <string name="action_edit">Editar</string>
-    <string name="action_delete">Apagar</string>
-    <string name="action_settings_edit_celula">Configurações</string>
-    <string name="title_activity_edit_celula">Editar Célula</string>
-    <string name="title_activity_read_relatorio">Relatorio</string>
-    <string name="apagar_a_c_lula">APAGAR A CÉLULA ?</string>
-    <string name="apagar_c_lula">Apagar Célula</string>
-    <string name="title_activity_relatorio_view">Relatórios</string>
-    <string name="title_activity_read_celula">Celulas</string>
-    <string name="batismo">Batismo</string>
-    <string name="title_activity_add_relatorio">Adiciona Relatório</string>
-    <string name="title_activity_delete_celula">Apaga Celula</string>
-    <string name="Bem_Vindo">Bem Vindo :</string>
-    <string name="title_activity_configuracao">Configuracao</string>
-    <string name="igreja">Igreja</string>
-    <string name="endere_o">endereço</string>
-    <string name="bairro">Bairro</string>
-    <string name="cidade">Cidade</string>
-    <string name="estado">Estado</string>
-    <string name="pa_s">País</string>
+    <string name="action_save" translatable="true">Salvar</string>
+    <string name="action_cancel" translatable="true">Cancelar</string>
+    <string name="action_edit" translatable="true">Editar</string>
+    <string name="action_delete" translatable="true">Apagar</string>
+    <string name="action_settings_edit_celula" translatable="true">Configurações</string>
+    <string name="title_activity_edit_celula" translatable="true">Editar Célula</string>
+    <string name="title_activity_read_relatorio" translatable="true">Relatorio</string>
+    <string name="apagar_a_c_lula" translatable="true">APAGAR A CÉLULA ?</string>
+    <string name="apagar_c_lula" translatable="true">Apagar Célula</string>
+    <string name="title_activity_relatorio_view" translatable="true">Relatórios</string>
+    <string name="title_activity_read_celula" translatable="true">Celulas</string>
+    <string name="batismo" translatable="true">Batismo</string>
+    <string name="title_activity_add_relatorio" translatable="true">Adiciona Relatório</string>
+    <string name="title_activity_delete_celula" translatable="true">Apaga Celula</string>
+    <string name="Bem_Vindo" translatable="true">Bem Vindo :</string>
+    <string name="title_activity_configuracao" translatable="true">Configuracao</string>
+    <string name="igreja" translatable="true">Igreja</string>
+    <string name="endere_o" translatable="true">Endereço</string>
+    <string name="bairro" translatable="true">Bairro</string>
+    <string name="cidade" translatable="true">Cidade</string>
+    <string name="estado" translatable="true">Estado</string>
+    <string name="pa_s" translatable="true">País</string>
     <!-- Login -->
-    <string name="login">Login</string>
-    <string name="Email_erro">Email inválido </string>
-    <string name="Senha_vazia">Falta colocar a senha</string>
-    <string name="obrigatorio">Obrigatório</string>
-    <string name="obrigatorio_email_valid">Obrigatório email válido</string>
-    <string name="obrigatorio_maior_5">Obrigatório com +5 dígitos</string>
-    <string name="registrando">Realizando o registro…</string>
-    <string name="iniciando_login">Iniciando Login…</string>
-    <string name="registro_existe">Esse registro já existe.</string>
-    <string name="usuario_existe">Usuário já logado</string>
-    <string name="Falha_registro">Falha ao registrar usuário</string>
-    <string name="Registro_sucesso">Usuário registrado com sucesso.</string>
-    <string name="logado_sucesso">Login logado com sucesso.</string>
-    <string name="falha_login">Falha ao logar usuário.</string>
-    <string name="action_logout">logout</string>
-    <string name="Logout_sucesso">Logout realizado com sucesso.</string>
+    <string name="login" translatable="true">Login</string>
+    <string name="Email_erro" translatable="true">Email inválido </string>
+    <string name="Senha_vazia" translatable="true">Falta colocar a senha</string>
+    <string name="obrigatorio" translatable="true">Obrigatório</string>
+    <string name="obrigatorio_email_valid" translatable="true">Obrigatório email válido</string>
+    <string name="obrigatorio_maior_5" translatable="true">Obrigatório com +5 dígitos</string>
+    <string name="registrando" translatable="true">Realizando o registro…</string>
+    <string name="iniciando_login" translatable="true">Iniciando Login…</string>
+    <string name="registro_existe" translatable="true">Esse registro já existe.</string>
+    <string name="usuario_existe" translatable="true">Usuário já logado</string>
+    <string name="Falha_registro" translatable="true">Falha ao registrar usuário</string>
+    <string name="Registro_sucesso" translatable="true">Usuário registrado com sucesso.</string>
+    <string name="logado_sucesso" translatable="true">Login logado com sucesso.</string>
+    <string name="falha_login" translatable="true">Falha ao logar usuário.</string>
+    <string name="action_logout" translatable="true">logout</string>
+    <string name="Logout_sucesso" translatable="true">Logout realizado com sucesso.</string>
 
-    <string name="title_activity_add_igreja">Nova igreja</string>
-    <string name="title_activity_add_usuario">Novo usuário</string>
+    <string name="title_activity_add_igreja" translatable="true">Nova igreja</string>
+    <string name="title_activity_add_usuario" translatable="true">Novo usuário</string>
 
-    <string name="action_addIgreja">Nova Igreja</string>
-    <string name="action_addUsuario">Novo usuário</string>
-    <string name="title_activity_add_intercessaoa">Nova intercessão</string>
-    <string name="title_activity_add_agenda">Nova agenda</string>
-
-
-    <string name="configura_o">configuração</string>
-    <string name="cep">Cep</string>
-    <string name="title_activity_conexao">Conexão</string>
-    <string name="c_lulas">Células</string>
-    <string name="relat_rios">Relatórios</string>
-
-    <string name="data">Data:</string>
-    <string name="motivo">Motivo:</string>
-    <string name="data_">/ /</string>
-    <string name="fileNotFound">File: not found!</string>
-    <string name="evento">Evento:</string>
-    <string name="data_evento">Data Evento:</string>
-    <string name="salvar">Salvar</string>
+    <string name="action_addIgreja" translatable="true">Nova Igreja</string>
+    <string name="action_addUsuario" translatable="true">Novo usuário</string>
+    <string name="title_activity_add_intercessaoa" translatable="true">Nova intercessão</string>
+    <string name="title_activity_add_agenda" translatable="true">Nova agenda</string>
 
 
-    <string name="informacaoAPP">Este aplicativo destina-se ao uso das igrejas evangélicas organizadas em células. Disponibiliza a criação de relatórios. E pedidos de oração e recados.</string>
-    <string name="sobre">Sobre</string>
-    <string name="aplicativoNome">Aplicativo: </string>
-    <string name="conex_o">Conexão</string>
-    <string name="android_developed_email">Android developed email :</string>
-    <string name="slim">Slim</string>
-    <string name="contato">Contato</string>
+    <string name="configura_o" translatable="true">configuração</string>
+    <string name="cep" translatable="true">Cep</string>
+    <string name="title_activity_conexao" translatable="true">Conexão</string>
+    <string name="c_lulas" translatable="true">Células</string>
+    <string name="relat_rios" translatable="true">Relatórios</string>
+
+    <string name="data" translatable="true">Data:</string>
+    <string name="motivo" translatable="true">Motivo:</string>
+
+    <string name="fileNotFound" translatable="true">Arquivo: não encontrado !</string>
+    <string name="evento" translatable="true">Evento:</string>
+    <string name="data_evento" translatable="true">Data Evento:</string>
+    <string name="salvar" translatable="true">Salvar</string>
+
+
+    <string name="informacaoAPP" translatable="true">Este aplicativo destina-se ao gerenciamento de células em igrejas.</string>
+    <string name="sobre" translatable="true">Sobre</string>
+    <string name="aplicativoNome" translatable="true">Aplicativo: </string>
+    <string name="conex_o" translatable="true">Conexão</string>
+    <string name="android_developed_email" translatable="true">Android developed email :</string>
+    <string name="contato" translatable="true">Contato</string>
     <string name="title_activity_igrejas_criadas">IgrejasCriadasActivity</string>
     <string name="nomeigreja">NomeIgreja</string>
     <string name="procurar">Procurar</string>
     <string name="c_digo_do_pa_s_required">DDD*  ex:. Brasil 55 </string>
     <string name="telefone">Telefone</string>
     <string name="telefone_required">(DDD) + número*</string>
-    <string name="celulas">Celulas</string>
-    <string name="_00_00">00:00</string>
+    <string name="celulas">Células</string>
+
 
     <string name="descri_o">Descrição:</string>
     <string name="local">Local:</string>
-    <string name="barras">/ /</string>
 
-    <string name="denominacao">Denominacao</string>
+
+    <string name="denominacao" translatable="true">Denominação</string>
     <string name="_000000000000000000">000000000000000000</string>
-    <string name="data_de_nascimento_required">data de nascimento*</string>
-    <string name="data_de_batismo">data de batismo</string>
-    <string name="nome_do_pai">Nome do Pai</string>
-    <string name="nome_da_m_e">Nome da Mãe</string>
-    <string name="estado_civil">estado civil</string>
-    <string name="sexo">Sexo</string>
-    <string name="idade">idade</string>
-    <string name="nome_required">Nome*</string>
-    <string name="email_required">Email*</string>
-    <string name="cargo_igreja">Cargo Igreja*</string>
-    <string name="grupo_padr_o">Grupo Padrão</string>
-    <string name="item">Item</string>
-    <string name="apagar_igreja_question">APAGAR IGREJA ?</string>
-    <string name="apagar_igreja">APAGAR IGREJA</string>
-    <string name="apagar_igreja_min">Apagar Igreja</string>
-    <string name="usu_rio">Usuário</string>
-    <string name="nomeusuario">nomeUsuario</string>
-    <string name="uidusuario">uidUsuario</string>
+    <string name="data_de_nascimento_required" translatable="true">Data de Nascimento*</string>
+    <string name="data_de_batismo" translatable="true">Data de Batismo</string>
+    <string name="nome_do_pai" translatable="true">Nome do Pai</string>
+    <string name="nome_da_m_e" translatable="true">Nome da Mãe</string>
+    <string name="estado_civil" translatable="true">Estado Civil</string>
+    <string name="sexo" translatable="true">Sexo</string>
+    <string name="idade" translatable="true">Idade</string>
+    <string name="nome_required" translatable="true">Nome*</string>
+    <string name="email_required" translatable="true">Email*</string>
+    <string name="cargo_igreja" translatable="true">Cargo Igreja*</string>
+    <string name="grupo_padr_o" translatable="true">Grupo Padrão</string>
+    <string name="item" translatable="true">Item</string>
+    <string name="apagar_igreja_question" translatable="true">APAGAR IGREJA ?</string>
+    <string name="apagar_igreja" translatable="true">APAGAR IGREJA</string>
+    <string name="apagar_igreja_min" translatable="true">Apagar Igreja</string>
+    <string name="usu_rio" translatable="true">Usuário</string>
 
-    <string name="entrar">Entrar</string>
-    <string name="Intersession">intercessão</string>
-    <string name="Schedule">Horário</string>
-    <string name="View">Visão</string>
 
-    <string name="Home">Inicio</string>
-    <string name="Cells">Células</string>
-    <string name="Communication">Comunicação</string>
-    <string name="Contact">Contato</string>
-    <string name="Share">Compartilhar</string>
-    <string name="Send">Enviar</string>
-    <string name="content_description_end_icon">icone email</string>
-    <string name="editar_igreja">Editar Igreja</string>
-    <string name="lideres">Lideres</string>
-    <string name="adiciona_l_der">Adicionar Líder</string>
-    <string name="editar_lider">Editar Lider</string>
-    <string name="Sobre">Sobre</string>
-    <string name="agenda">agenda</string>
-    <string name="DDI">DDI</string>
-    <string name="ddi_req">DDI*</string>
+    <string name="entrar" translatable="true">Entrar</string>
+    <string name="Intersession" translatable="true">Intercessão</string>
+    <string name="Schedule" translatable="true">Horário</string>
+    <string name="View" translatable="true">Visão</string>
+
+    <string name="Home" translatable="true">Inicio</string>
+    <string name="Cells" translatable="true">Células</string>
+    <string name="Communication" translatable="true">Comunicação</string>
+    <string name="Contact" translatable="true">Contato</string>
+    <string name="Share" translatable="true">Compartilhar</string>
+    <string name="Send" translatable="true">Enviar</string>
+    <string name="content_description_end_icon" translatable="true">Icone email</string>
+    <string name="editar_igreja" translatable="true">Editar Igreja</string>
+    <string name="lideres" translatable="true">Lideres</string>
+    <string name="adiciona_l_der" translatable="true">Adicionar Líder</string>
+    <string name="editar_lider" translatable="true">Editar Lider</string>
+    <string name="Sobre" translatable="true">Sobre</string>
+    <string name="agenda" translatable="true">Agenda</string>
+    <string name="DDI" translatable="true">DDI</string>
+    <string name="ddi_req" translatable="true">DDI*</string>
 
     <!-- messages -->
-    <string name="messageRelatorio">Menhum relatório foi postado ainda.</string>
-    <string name="messageRelatorio2">Crie um Célula e depois crie os relatórios para ela.</string>
-    <string name="messageRelatorio3">Click e segure o nome da célula para criar um Relátorio!</string>
-    <string name="messageCelula">Menhuma célula foi postado ainda.</string>
-    <string name="messageCelula2">Crie um Célula e depois crie os relatórios para ela.</string>
-    <string name="messageLider">Menhum Líder foi postado ainda.</string>
-    <string name="messageLider2">Crie um Célula e depois crie os relatórios para ela.</string>
-    <string name="messageContato">Menhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
-    <string name="messageContato2">Só aparecerá algo aqui se um Lider for criado!</string>
-    <string name="messageIgreja">A sua Igeja ainda não foi cirada, crie um Igreja e depois crie as células.</string>
-    <string name="sem_lider">Sem Lider</string>
-    <string name="sem_celula">Sem Celula</string>
-    <string name="Relatorio">Relatório</string>
-    <string name="relatorios">relatorios</string>
-    <string name="read_lider">Lider</string>
-    <string name="deus_bom">Deus é bom!</string>
-    <string name="action_Sair">Sair</string>
-    <string name="divider_horizontal_textfield">divider_horizontal_textfield</string>
-    <string name="desconectar">Desconectar</string>
-    <string name="title_activity_add_leader">Novo Lider</string>
-    <string name="futuras_melhorias">Futuras melhorias</string>
+    <string name="messageRelatorio" translatable="true">Menhum relatório foi postado ainda.</string>
+    <string name="messageRelatorio2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageRelatorio3" translatable="true">Click e segure o nome da célula para criar um Relátorio!</string>
+    <string name="messageCelula" translatable="true">Menhuma célula foi postado ainda.</string>
+    <string name="messageCelula2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageLider" translatable="true">Menhum Líder foi postado ainda.</string>
+    <string name="messageLider2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
+    <string name="messageContato" translatable="true">Menhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
+    <string name="messageContato2" translatable="true">Só aparecerá algo aqui se um Líder for criado!</string>
+    <string name="messageIgreja" translatable="true">A sua Igeja ainda não foi cirada, crie um Igreja e depois crie as células.</string>
+    <string name="sem_lider" translatable="true">Sem Lider</string>
+    <string name="sem_celula" translatable="true">Sem Célula</string>
+    <string name="Relatorio" translatable="true">Relatório</string>
+    <string name="relatorios" translatable="true">Relatórios</string>
+    <string name="read_lider" translatable="true">Líder</string>
+    <string name="deus_bom" translatable="true">Deus é bom!</string>
+    <string name="action_Sair" translatable="true">Sair</string>
+    <string name="divider_horizontal_textfield" translatable="true">divider_horizontal_textfield</string>
+    <string name="desconectar" translatable="true">Desconectar</string>
+    <string name="title_activity_add_leader" translatable="true">Novo Líder</string>
+    <string name="futuras_melhorias" translatable="true">Futuras melhorias</string>
+
+    // nome internos
+    <string name="nomeusuario">nomeUsuario</string>
+    <string name="uidusuario">uidUsuario</string>
     <string name="Icone_floatBottom">\@drawable/ic_baseline_add_24</string>
-
-
+    <string name="_55">+55</string>
+    <string name="barras">/ /</string>
+    <string name="data_">/ /</string>
+    <string name="_00_00">00:00</string>
+    <string name="ver_1_0_2">ver 1.0.2</string>
+    <string name="fabianodspereira_outlook_com" translatable="true">fabianodspereira@outlook.com</string>
+    <string name="cria_o_pr_tica_de_relat_rios" translatable="true">Criação prática de relatórios</string>
+    <string name="lista_din_mica_de_contato_dos_l_deres" translatable="true">Lista dinâmica de contato dos líderes</string>
+    <string name="organiza_o_e_rapidez_de_informa_es" translatable="true">Organização e rapidez de informações</string>
 </resources>

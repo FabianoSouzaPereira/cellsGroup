@@ -46,6 +46,7 @@ import java.util.Map;
 import br.com.cellsgroup.Activity_splash_screen;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -205,7 +206,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                              }
                          }
                      }
-                    Log.d( "uidIgreja------------> ",""+ uidIgreja);
                     nhTitle.setText (group);
                     nhName.setText(igreja);
                 }
@@ -383,6 +383,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else if ( itemId == R.id.action_addLider ) {
             Intent addlider= new Intent ( HomeActivity.this , AddLeaderActivity.class );
             startActivity ( addlider );
+            return true;
+        }else if ( itemId == R.id.action_Sobre) {
+            Intent sobre= new Intent ( HomeActivity.this , SobreActivity.class );
+            startActivity ( sobre);
             return true;
         }else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();

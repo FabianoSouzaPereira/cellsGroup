@@ -147,7 +147,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.i("Msg","Erro readIntercessão");
             }
         };
         query.addListenerForSingleValueEvent (listener);
@@ -175,7 +174,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     @Override
     public void onIgrejaClick(int position) {
-        Log.d( TAG, "Clicado lista: na posição -> " + position);
     }
 
     @Override

@@ -2,10 +2,7 @@ package br.com.cellsgroup.contato;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.View;
-
 import android.view.MenuItem;
 
 import android.view.Menu;
@@ -127,7 +124,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
             }
         } ;
 

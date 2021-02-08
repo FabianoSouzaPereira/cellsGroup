@@ -166,20 +166,13 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         calendarView.setOnDateChangedListener( new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                Log.i( "LOG.i = ","" + widget.getSelectedDate() );
                 widgetdate =formatCalendaryData(date);
-
-                Log.i( "LOG.i = ","" + widgetdate );
-
                 int position = findAgArray( agendas, widgetdate );
                 recyclerView.scrollToPosition( position );
-
-                Log.i( "Position - ",""+ position );
             }
         } );
 
     }
-
 
     public String formatCalendaryData(CalendarDay date){
         String dia = "";
@@ -221,8 +214,7 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
-            }
+             }
         });
     }
 
