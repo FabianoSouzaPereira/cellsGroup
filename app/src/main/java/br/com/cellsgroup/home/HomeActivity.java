@@ -289,10 +289,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
      AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
-            builder  = builder.setMessage( "Deseja encerrar o aplicativo mesmo ?" );
+            builder  = builder.setMessage( "Deseja encerrar o aplicativo ?" );
             builder.setTitle( "Encerrando o aplicativo..." )
                     .setCancelable( false )
-                    .setNegativeButton( "cancelado", new DialogInterface.OnClickListener() {
+                    .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                           //  Toast.makeText(getApplicationContext(), "Cancelado", Toast.LENGTH_SHORT).show();
