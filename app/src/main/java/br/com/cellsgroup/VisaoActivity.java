@@ -26,6 +26,7 @@ import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
@@ -120,6 +121,10 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( VisaoActivity.this, AgendaActivity.class );
             startActivity( agenda );
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( VisaoActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( VisaoActivity.this, VisaoActivity.class );
             startActivity( visao );

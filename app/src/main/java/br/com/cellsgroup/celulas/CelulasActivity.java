@@ -1,10 +1,12 @@
 package br.com.cellsgroup.celulas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -34,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.relatorios.AddRelatorioActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
@@ -94,9 +97,13 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addCelula = new Intent(CelulasActivity.this, AddCelulaActivity.class);
-                startActivity( addCelula );
-                finish();
+                if(!igreja.equals("") && !igreja.equals (null)) {
+                    Intent addCelula = new Intent ( CelulasActivity.this , AddCelulaActivity.class );
+                    startActivity ( addCelula );
+                    finish ( );
+                }else{
+                    aviso();
+                }
             }
         } );
         DrawerLayout drawer = findViewById ( R.id.drawer_activityCelulas );
@@ -114,6 +121,34 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         nhEmail.setText (useremailAuth);
         nhTitle.setText (group);
         nhName.setText(igreja);
+    }
+
+    private void aviso(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CelulasActivity.this);
+        builder  = builder.setMessage( "Primeiro crie a sua Igreja." );
+        builder.setTitle( "Igreja não encontrada!" )
+            .setCancelable( false )
+            .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            })
+            .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    try {
+                        Intent addIgreja = new Intent ( CelulasActivity.this , addIgrejaActivity.class );
+                        startActivity ( addIgreja );
+                        finish ( );
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                }
+            });
+
+        AlertDialog alertDialog = builder . create () ;
+        alertDialog.show();
     }
 
     private void readOnlyActive() {
@@ -185,7 +220,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                 String celula = arrayAdapterCelula.getItem( Id );
                 Intent intent = new Intent(CelulasActivity.this, AddRelatorioActivity.class);
                 intent.putExtra("Celula", String.valueOf( celula ) );
-
                 startActivity(intent);
                 return true;
             }
@@ -251,11 +285,14 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             Intent addusuario = new Intent ( CelulasActivity.this , LeaderActivity.class );
             startActivity ( addusuario );
             return true;
-        } else if ( itemId == R.id.action_addLider) {
-            Intent addusuario = new Intent ( CelulasActivity.this , AddLeaderActivity.class );
-            startActivity ( addusuario );
+        } else if ( itemId == R.id.action_Sobre) {
+            Intent sobre= new Intent ( CelulasActivity.this , SobreActivity.class );
+            startActivity ( sobre);
             return true;
-        } else if ( itemId == R.id.action_Logout ) {
+        }else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
+            return true;
+        }  else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
@@ -283,6 +320,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
             startActivity( intercessao );
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( CelulasActivity.this, AgendaActivity.class );
+            startActivity( agenda );
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( CelulasActivity.this, LeaderActivity.class );
             startActivity( agenda );
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( CelulasActivity.this, VisaoActivity.class );

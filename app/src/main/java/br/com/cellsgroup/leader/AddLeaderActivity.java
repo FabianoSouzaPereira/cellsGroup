@@ -152,7 +152,7 @@ public class AddLeaderActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ArrayAdapter <String> adapter = new ArrayAdapter<String>( AddLeaderActivity.this, android.R.layout.simple_spinner_dropdown_item, cels);
+                ArrayAdapter <String> adapter = new ArrayAdapter<String>( AddLeaderActivity.this, R.layout.spinner_dropdown_item, cels);
                 spCelula = findViewById( R.id.spinnercelula );
                 spCelula.setAdapter( adapter );
                 spCelula.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -46,13 +48,12 @@ import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.UI;
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
 @SuppressWarnings("ALL")
-public final class AddRelatorioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public final class AddRelatorioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference relatorios;
@@ -105,9 +106,20 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     public String DataTime;
     public String DataT;
     public  String celulas_;
+    private static boolean validate = true;
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    private int total;
+    private int base;
+    private int membros;
+    private int convidados;
+    private int crianca;
+    View.OnFocusChangeListener listenerBase;
+    View.OnFocusChangeListener listenerMembros;
+    View.OnFocusChangeListener listenerConvidados;
+    View.OnFocusChangeListener listenerCrianca;
+    View.OnFocusChangeListener listenerTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,18 +149,77 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         textInputColaborador = findViewById(R.id.text_input_colaborador);
         textInputDia = findViewById(R.id.text_input_dia);
         textInputHora = findViewById(R.id.text_input_hora);
+
         textInputBaseCelula = findViewById(R.id.text_input_basecelula);
+        textInputBaseCelula.getEditText ().setFocusable(true);
         textInputMembrosIEQ = findViewById(R.id.text_input_membrosieq);
+        textInputMembrosIEQ.getEditText ().setFocusable(true);
         textInputConvidados = findViewById(R.id.text_input_convidados);
+        textInputConvidados.getEditText ().setFocusable(true);
         textInputCriancas = findViewById(R.id.text_input_criancas);
-        textInputTotal = findViewById(R.id.text_input_total);
+        textInputCriancas.getEditText ().setFocusable(true);
+        textInputTotal= findViewById(R.id.text_input_total);
+        textInputTotal.getEditText ().setFocusable(true);
+
+        listenerBase =  new View.OnFocusChangeListener ( ) {
+            @Override
+            public void onFocusChange ( View v , boolean hasFocus ) {
+                if (!hasFocus) {
+                    base = Integer.parseInt ( textInputBaseCelula.getEditText ( ).getText ( ).toString ( ) );
+                    total += base;
+                }
+            }
+        } ;
+        listenerMembros =  new View.OnFocusChangeListener ( ) {
+            @Override
+            public void onFocusChange ( View v , boolean hasFocus ) {
+                if (!hasFocus) {
+                    membros = Integer.parseInt ( textInputMembrosIEQ.getEditText ( ).getText ( ).toString ( ) );
+                    total += membros;
+                }
+            }
+        };
+
+        listenerConvidados =  new View.OnFocusChangeListener ( ) {
+            @Override
+            public void onFocusChange ( View v , boolean hasFocus ) {
+                if (!hasFocus) {
+                    convidados = Integer.parseInt ( textInputConvidados.getEditText ( ).getText ( ).toString ( ) );
+                    total += convidados;
+                }
+            }
+        };
+        listenerCrianca = new View.OnFocusChangeListener ( ) {
+            @Override
+            public void onFocusChange ( View v , boolean hasFocus ) {
+                if (!hasFocus) {
+                    crianca = Integer.parseInt ( textInputCriancas.getEditText ( ).getText ( ).toString ( ) );
+                    total += crianca;
+                }
+            }
+        } ;
+
+        listenerTotal = new View.OnFocusChangeListener ( ) {
+            @Override
+            public void onFocusChange ( View v , boolean hasFocus ) {
+                if (hasFocus) {
+                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
+                }
+            }
+        };
+
+        textInputBaseCelula.getEditText ().setOnFocusChangeListener(listenerBase );
+        textInputMembrosIEQ.getEditText () .setOnFocusChangeListener(listenerMembros);
+        textInputConvidados.getEditText ().setOnFocusChangeListener(listenerConvidados);
+        textInputCriancas.getEditText ().setOnFocusChangeListener(listenerCrianca);
+        textInputTotal.getEditText ().setOnFocusChangeListener(listenerTotal);
+
         textInputDataInicio = findViewById( R.id.txt_dataInicio );
+
         /* Listeners dos radiobuttons */
         radioGroupEstudo = findViewById( R.id.rgEstudo );
         rbEstudoSim = findViewById(R.id.rbEstudoSim);
         rbEstudoNao = findViewById(R.id.rbEstudoNao);
-
-
 
         radioGroupQuebraGelo = findViewById(R.id.rgQuebragelo);
         rbQuebrageloSim = findViewById( R.id.rbQuebrageloSim );
@@ -303,24 +374,58 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
 
 
     public void addRelatorio(MenuItem menu) {
+        addDataHora();
+        validate=true;
         try {
             final String userId = UI.getUid ();
             relatorios = databaseReference.child( "churchs/" + uidIgreja + "/Reports/" );
-            String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
-            String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
-            String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
-            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
-            String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
-            String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
-            String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
-            String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
-            String dia = Objects.requireNonNull( textInputDia.getEditText() ).getText().toString().trim();
-            String hora = Objects.requireNonNull( textInputHora.getEditText() ).getText().toString().trim();
-            String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText() ).getText().toString().trim();
-            String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText() ).getText().toString().trim();
-            String convidados = Objects.requireNonNull( textInputConvidados.getEditText() ).getText().toString().trim();
-            String criancas = Objects.requireNonNull( textInputCriancas.getEditText() ).getText().toString().trim();
-            String total =  Objects.requireNonNull( textInputTotal.getEditText() ).getText().toString().trim();
+            String celula = Objects.requireNonNull( textInputCelula.getEditText(), "" ).getText().toString().trim();
+            String rede = Objects.requireNonNull( textInputRede.getEditText(), ""  ).getText().toString().trim();
+            String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText(), ""  ).getText().toString().trim();
+            String lider = Objects.requireNonNull( textInputLider.getEditText(), ""  ).getText().toString().trim();
+            String viceLider = Objects.requireNonNull( textInputViceLider.getEditText(), ""  ).getText().toString().trim();
+            String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText(), ""  ).getText().toString().trim();
+            String secretario = Objects.requireNonNull( textInputSecretario.getEditText(), ""  ).getText().toString().trim();
+            String colaborador = Objects.requireNonNull( textInputColaborador.getEditText(), ""  ).getText().toString().trim();
+            String dia = Objects.requireNonNull( textInputDia.getEditText(), ""  ).getText().toString().trim();
+            String hora = Objects.requireNonNull( textInputHora.getEditText(), ""  ).getText().toString().trim();
+
+            String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText(), "" ).getText().toString().trim();
+            if(baseCelula.equals ("")){
+                validate = false;
+                textInputBaseCelula.setError("Este campo é obrigatório");
+                textInputBaseCelula.setFocusable (true);
+                textInputBaseCelula.requestFocus ();
+            }
+            String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText(), ""  ).getText().toString().trim();
+            if(baseCelula.equals ("")){
+                validate = false;
+                textInputMembrosIEQ.setError("Este campo é obrigatório");
+                textInputMembrosIEQ.setFocusable (true);
+                textInputMembrosIEQ.requestFocus ();
+            }
+            String convidados = Objects.requireNonNull( textInputConvidados.getEditText(), ""  ).getText().toString().trim();
+            if(convidados.equals ("")){
+                validate = false;
+                textInputConvidados.setError("Este campo é obrigatório");
+                textInputConvidados.setFocusable (true);
+                textInputConvidados.requestFocus ();
+            }
+            String criancas = Objects.requireNonNull( textInputCriancas.getEditText(), ""  ).getText().toString().trim();
+            if(criancas .equals ("")){
+                validate = false;
+                textInputCriancas.setError("Este campo é obrigatório");
+                textInputCriancas.setFocusable (true);
+                textInputCriancas.requestFocus ();
+            }
+            String total =  Objects.requireNonNull( textInputTotal.getEditText(), ""  ).getText().toString().trim();
+            if(total.equals ("")){
+                validate = false;
+                textInputTotal.setError("Este campo é obrigatório");
+                textInputTotal.setFocusable (true);
+                textInputTotal.requestFocus ();
+            }
+
             String status = "1";
             addDataHora();
             if(!TextUtils.isEmpty( celula ) && Logado == true && typeUserAdmin == true){

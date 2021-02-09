@@ -320,7 +320,7 @@
                 android:id="@+id/text_input_readCep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="25"
                 app:errorEnabled="true">
@@ -328,9 +328,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/cep"
                     android:clickable="false"
                     android:focusable="false"
+                    android:hint="@string/cep"
                     android:inputType="none"
                     android:maxLength="25" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -340,6 +340,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -355,6 +356,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -363,8 +365,8 @@
                     android:background="#D5C5C5"
                     android:clickable="false"
                     android:focusable="false"
-                    android:inputType="none"
                     android:hint="@string/grupo_padr_o"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

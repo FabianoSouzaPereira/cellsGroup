@@ -10,5 +10,5 @@
     android:scrollIndicators="end"
     android:scrollbars="vertical"
     android:singleLine="true"
-    android:textColor="#475DDC"
+    android:textColor="#D32F2F"
     android:textSize="18sp" />

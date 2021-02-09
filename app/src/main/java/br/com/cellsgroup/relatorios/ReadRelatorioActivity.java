@@ -33,6 +33,7 @@ import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -45,6 +46,7 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
+import br.com.cellsgroup.leader.ReadLeaderActivity;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.leader.AddLeaderActivity;
@@ -238,15 +240,12 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         try {
             MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
             MenuItem igreja = menu.findItem(R.id.action_readIgreja);
-            MenuItem addLeader = menu.findItem (R.id.action_addLider);
             if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
                 addIgreja.setVisible ( false );
                 igreja.setVisible (true );
-                addLeader.setVisible (true);
             }else{
                 addIgreja.setVisible ( true );
                 igreja.setVisible (false);
-                addLeader.setVisible (false);
             }
         } catch ( Exception e ) {
             e.printStackTrace ( );
@@ -276,14 +275,14 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             Intent addlideres = new Intent ( ReadRelatorioActivity.this , LeaderActivity.class );
             startActivity ( addlideres);
             return true;
-        }else if ( itemId == R.id.action_addLider ) {
-            Intent addlider= new Intent ( ReadRelatorioActivity.this , AddLeaderActivity.class );
-            startActivity ( addlider );
+        }else if ( itemId == R.id.action_Sobre) {
+            Intent sobre= new Intent ( ReadRelatorioActivity.this , SobreActivity.class );
+            startActivity ( sobre);
             return true;
-        } else if ( itemId == R.id.action_Sair ) {
+        }else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();
             return true;
-        } else if ( itemId == R.id.action_Logout ) {
+        }  else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
@@ -317,6 +316,10 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
 
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( ReadRelatorioActivity.this, AgendaActivity.class );
+            startActivity( agenda );
+
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( ReadRelatorioActivity.this, LeaderActivity.class );
             startActivity( agenda );
 
         } else if (id == R.id.nav_realatorio) {

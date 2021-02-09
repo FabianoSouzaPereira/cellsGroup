@@ -10,18 +10,23 @@
             android:title="@string/Home" />
         <item
             android:id="@+id/nav_cells"
-            android:icon="@drawable/ic_baseline_social_distance_24_green"
+            android:icon="@drawable/ic_baseline_groups_24_green"
             android:title="@string/Cells" />
 
         <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_baseline_local_phone_24_green"
-            android:title="@string/Contact" />
+            android:id="@+id/nav_leader"
+            android:icon="@drawable/ic_baseline_social_distance_24_green"
+            android:title="@string/lideres" />
 
         <item
             android:id="@+id/nav_realatorio"
             android:icon="@drawable/ic_baseline_menu_book_24_green"
             android:title="@string/Relatorio" />
+
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_baseline_local_phone_24_green"
+            android:title="@string/Contact" />
 
         <item
             android:id="@+id/nav_intersession"

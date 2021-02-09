@@ -31,9 +31,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_000000000000000000"
-                android:textColor="#5871F6"
+                android:textAlignment="center"
+                android:textColor="#4D8DAF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_celula"
@@ -147,7 +149,7 @@
             <Spinner
                 android:id="@+id/spinnerUpdateSemana"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1" />
 
             <LinearLayout

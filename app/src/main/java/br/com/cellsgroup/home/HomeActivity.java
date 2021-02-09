@@ -1,8 +1,11 @@
 package br.com.cellsgroup.home;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -19,6 +22,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -59,6 +63,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.models.login.LoginActivity;
+import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 import br.com.cellsgroup.leader.AddLeaderActivity;
@@ -89,7 +94,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference novaref = null;
     private DatabaseReference novaref2 = null;
     private FirebaseFunctions mFunctions;
-
+    public static final int  Permission_All = 1;
+    public static final int PERMISSION_CODE = 3;
+    public static final String[] Permissions = new String[]{
+        // Any permision is necessary
+    };
     public static boolean Logado = false;
     public static String tag = "0";
     public String DataTime;
@@ -161,14 +170,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onDataChange ( @NonNull DataSnapshot snapshot ) {
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        Object valuegroup = ds.child("group").getValue ();
-                        Object valueEmail = ds.child("email").getValue ();
-                        Object valueIgreja = ds.child("igrejaPadrao").getValue();
-                        Object valuePhone = ds.child ("telefone").getValue ();
-                        useremail = valueEmail.toString ();
-                        igreja = valueIgreja.toString ();
-                        group = valuegroup.toString ();
-                        cellPhone = valuePhone.toString ();
+                        Leader leader = ds.getValue ( Leader.class );
+                        useremail = leader.getEmail ();
+                        group =leader.getGroup ().toString ();
+                        igreja = leader.getIgrejaPadrao ();
+                        cellPhone = leader.getTelefone ();
                     }
                 }
 
@@ -232,8 +238,32 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onResume() {
-     //   pegarPadroes();
         super.onResume();
+        if (!hasPhonePermissions( this, Permissions )) {
+            ActivityCompat.requestPermissions( this,Permissions,Permission_All );
+        }
+    }
+
+    private static boolean hasPhonePermissions( Context context, String... permissions) {
+        if(context != null && permissions != null){
+            for(String permission: permissions){
+                if(ActivityCompat.checkSelfPermission( context, permission ) != PackageManager.PERMISSION_GRANTED){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == PERMISSION_CODE){
+            if(grantResults.length > 0  && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText( HomeActivity.this, "Permission allowed" , Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText( HomeActivity.this, "Permission denied" , Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -347,15 +377,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
-        MenuItem addLeader = menu.findItem (R.id.action_addLider);
         if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
-            addLeader.setVisible (true);
-        }else{
+         }else{
             addIgreja.setVisible ( true );
             igreja.setVisible (false);
-            addLeader.setVisible (false);
         }
         return true;
     }
@@ -379,10 +406,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else if ( itemId == R.id.action_lideres) {
             Intent addlideres = new Intent ( HomeActivity.this , LeaderActivity.class );
             startActivity ( addlideres);
-            return true;
-        }else if ( itemId == R.id.action_addLider ) {
-            Intent addlider= new Intent ( HomeActivity.this , AddLeaderActivity.class );
-            startActivity ( addlider );
             return true;
         }else if ( itemId == R.id.action_Sobre) {
             Intent sobre= new Intent ( HomeActivity.this , SobreActivity.class );
@@ -427,7 +450,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent agenda = new Intent( HomeActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        } else if (id == R.id.nav_realatorio) {
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( HomeActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
+        }else if (id == R.id.nav_realatorio) {
             Intent relatorio = new Intent( HomeActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
 

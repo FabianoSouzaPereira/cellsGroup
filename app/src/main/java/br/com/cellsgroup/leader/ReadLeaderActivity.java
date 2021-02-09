@@ -42,6 +42,7 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
@@ -349,7 +350,11 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
             Intent agenda = new Intent( ReadLeaderActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        } else if (id == R.id.nav_realatorio) {
+        }  else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( ReadLeaderActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
+        }else if (id == R.id.nav_realatorio) {
             Intent relatorio = new Intent( ReadLeaderActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
 

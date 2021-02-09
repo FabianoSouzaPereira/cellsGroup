@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,6 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,10 @@ import java.util.List;
 
 import Adapters.AdapterListViewContato;
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.Configuracao;
+import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.R;
@@ -44,12 +50,17 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
+import br.com.cellsgroup.leader.AddLeaderActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.home.HomeActivity.group;
+import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , AdapterListViewContato.OnContatoListener{
@@ -190,14 +201,55 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
+    public boolean onPrepareOptionsMenu ( Menu menu ) {
+        MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
+        MenuItem igreja = menu.findItem(R.id.action_readIgreja);
+        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+            addIgreja.setVisible ( false );
+            igreja.setVisible (true );
+        }else{
+            addIgreja.setVisible ( true );
+            igreja.setVisible (false);
+        }
+        return true;
+    }
 
-        if (id == R.id.action_settings) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId ( );
+        if ( itemId == R.id.action_settings ) {
+            Intent config = new Intent ( ContatoActivity.this , Configuracao.class );
+            startActivity ( config );
+            return true;
+        } else if ( itemId == R.id.action_addIgreja ) {
+            Intent addigreja = new Intent ( ContatoActivity.this  , addIgrejaActivity.class );
+            startActivity ( addigreja );
+            return true;
+        } else if ( itemId == R.id.action_readIgreja ) {
+            Intent readigreja = new Intent ( ContatoActivity.this  , IgrejasCriadasActivity.class );
+            startActivity ( readigreja );
+            return true;
+        }else if ( itemId == R.id.action_lideres) {
+            Intent addlideres = new Intent ( ContatoActivity.this , LeaderActivity.class );
+            startActivity ( addlideres);
+            return true;
+        }else if ( itemId == R.id.action_Sobre) {
+            Intent sobre= new Intent ( ContatoActivity.this  , SobreActivity.class );
+            startActivity ( sobre);
+            return true;
+        }else if ( itemId == R.id.action_Sair ) {
+            finishAffinity ();
+            return true;
+        } else if ( itemId == R.id.action_Logout ) {
+            FirebaseAuth.getInstance ( ).signOut ( );
+            updateUI ( null );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            finish();
             return true;
         }
+        return super.onOptionsItemSelected ( item );
 
-        return super.onOptionsItemSelected( item );
     }
 
     @Override
@@ -222,13 +274,18 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( ContatoActivity.this, VisaoActivity.class );
             startActivity( visao );
-        } else if (id == R.id.nav_contact) {
-            Intent contato = new Intent( ContatoActivity.this, ContatoActivity.class );
-            startActivity( contato );
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( ContatoActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( ContatoActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( ContatoActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+
+        }  else if (id == R.id.nav_send) {
             Intent Enviar = new Intent( ContatoActivity.this, EnviarActivity.class );
             startActivity( Enviar );
         }

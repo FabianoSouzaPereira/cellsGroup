@@ -131,7 +131,7 @@
 
     <TextView
         android:id="@+id/tvItem1"
-        android:layout_width="177dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"

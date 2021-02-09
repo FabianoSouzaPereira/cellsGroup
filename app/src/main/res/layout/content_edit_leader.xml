@@ -278,7 +278,7 @@
                 android:id="@+id/text_input_editCep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="25"
                 app:errorEnabled="true">
@@ -296,6 +296,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -311,6 +312,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText

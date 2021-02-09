@@ -48,10 +48,10 @@
     <string name="celula" translatable="true">Célula</string>
     <string name="lider" translatable="true">Líder</string>
 
-    <string name="celula1" translatable="true">célula</string>
+    <string name="celula1" translatable="true">Célula</string>
     <string name="rede1" translatable="true">Rede</string>
     <string name="supervisor1" translatable="true">Supervisor</string>
-    <string name="lider1" translatable="true">Lider</string>
+    <string name="lider1" translatable="true">Líder</string>
     <string name="anfitriao1" translatable="true">Anfitrião</string>
     <string name="vice_lider1" translatable="true">Vice-líder</string>
     <string name="secretario1" translatable="true">Secretário</string>
@@ -93,28 +93,29 @@
     <string name="action_delete" translatable="true">Apagar</string>
     <string name="action_settings_edit_celula" translatable="true">Configurações</string>
     <string name="title_activity_edit_celula" translatable="true">Editar Célula</string>
-    <string name="title_activity_read_relatorio" translatable="true">Relatorio</string>
+    <string name="title_activity_read_relatorio" translatable="true">Relatório</string>
     <string name="apagar_a_c_lula" translatable="true">APAGAR A CÉLULA ?</string>
     <string name="apagar_c_lula" translatable="true">Apagar Célula</string>
     <string name="title_activity_relatorio_view" translatable="true">Relatórios</string>
-    <string name="title_activity_read_celula" translatable="true">Celulas</string>
+    <string name="title_activity_read_celula" translatable="true">Células</string>
     <string name="batismo" translatable="true">Batismo</string>
     <string name="title_activity_add_relatorio" translatable="true">Adiciona Relatório</string>
-    <string name="title_activity_delete_celula" translatable="true">Apaga Celula</string>
+    <string name="title_activity_delete_celula" translatable="true">Apaga Célula</string>
     <string name="Bem_Vindo" translatable="true">Bem Vindo :</string>
-    <string name="title_activity_configuracao" translatable="true">Configuracao</string>
+    <string name="title_activity_configuracao" translatable="true">Configuração</string>
     <string name="igreja" translatable="true">Igreja</string>
     <string name="endere_o" translatable="true">Endereço</string>
     <string name="bairro" translatable="true">Bairro</string>
     <string name="cidade" translatable="true">Cidade</string>
     <string name="estado" translatable="true">Estado</string>
     <string name="pa_s" translatable="true">País</string>
+
     <!-- Login -->
     <string name="login" translatable="true">Login</string>
     <string name="Email_erro" translatable="true">Email inválido </string>
     <string name="Senha_vazia" translatable="true">Falta colocar a senha</string>
     <string name="obrigatorio" translatable="true">Obrigatório</string>
-    <string name="obrigatorio_email_valid" translatable="true">Obrigatório email válido</string>
+    <string name="obrigatorio_email_valid" translatable="true">Obrigatório e-mail válido</string>
     <string name="obrigatorio_maior_5" translatable="true">Obrigatório com +5 dígitos</string>
     <string name="registrando" translatable="true">Realizando o registro…</string>
     <string name="iniciando_login" translatable="true">Iniciando Login…</string>
@@ -150,7 +151,6 @@
     <string name="data_evento" translatable="true">Data Evento:</string>
     <string name="salvar" translatable="true">Salvar</string>
 
-
     <string name="informacaoAPP" translatable="true">Este aplicativo destina-se ao gerenciamento de células em igrejas.</string>
     <string name="sobre" translatable="true">Sobre</string>
     <string name="aplicativoNome" translatable="true">Aplicativo: </string>
@@ -165,10 +165,8 @@
     <string name="telefone_required">(DDD) + número*</string>
     <string name="celulas">Células</string>
 
-
     <string name="descri_o">Descrição:</string>
     <string name="local">Local:</string>
-
 
     <string name="denominacao" translatable="true">Denominação</string>
     <string name="_000000000000000000">000000000000000000</string>
@@ -195,33 +193,33 @@
     <string name="Schedule" translatable="true">Horário</string>
     <string name="View" translatable="true">Visão</string>
 
-    <string name="Home" translatable="true">Inicio</string>
+    <string name="Home" translatable="true">Início</string>
     <string name="Cells" translatable="true">Células</string>
     <string name="Communication" translatable="true">Comunicação</string>
     <string name="Contact" translatable="true">Contato</string>
     <string name="Share" translatable="true">Compartilhar</string>
     <string name="Send" translatable="true">Enviar</string>
-    <string name="content_description_end_icon" translatable="true">Icone email</string>
+    <string name="content_description_end_icon" translatable="true">Icone e-mail</string>
     <string name="editar_igreja" translatable="true">Editar Igreja</string>
     <string name="lideres" translatable="true">Lideres</string>
     <string name="adiciona_l_der" translatable="true">Adicionar Líder</string>
-    <string name="editar_lider" translatable="true">Editar Lider</string>
+    <string name="editar_lider" translatable="true">Editar Líder</string>
     <string name="Sobre" translatable="true">Sobre</string>
     <string name="agenda" translatable="true">Agenda</string>
     <string name="DDI" translatable="true">DDI</string>
     <string name="ddi_req" translatable="true">DDI*</string>
 
     <!-- messages -->
-    <string name="messageRelatorio" translatable="true">Menhum relatório foi postado ainda.</string>
+    <string name="messageRelatorio" translatable="true">Nenhum relatório foi postado ainda.</string>
     <string name="messageRelatorio2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
     <string name="messageRelatorio3" translatable="true">Click e segure o nome da célula para criar um Relátorio!</string>
-    <string name="messageCelula" translatable="true">Menhuma célula foi postado ainda.</string>
+    <string name="messageCelula" translatable="true">Nenhuma célula foi postada ainda.</string>
     <string name="messageCelula2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
-    <string name="messageLider" translatable="true">Menhum Líder foi postado ainda.</string>
+    <string name="messageLider" translatable="true">Nenhum Líder foi postado ainda.</string>
     <string name="messageLider2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
-    <string name="messageContato" translatable="true">Menhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
+    <string name="messageContato" translatable="true">Nenhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
     <string name="messageContato2" translatable="true">Só aparecerá algo aqui se um Líder for criado!</string>
-    <string name="messageIgreja" translatable="true">A sua Igeja ainda não foi cirada, crie um Igreja e depois crie as células.</string>
+    <string name="messageIgreja" translatable="true">A sua Igeja ainda não foi criada, crie um Igreja e depois crie as células.</string>
     <string name="sem_lider" translatable="true">Sem Lider</string>
     <string name="sem_celula" translatable="true">Sem Célula</string>
     <string name="Relatorio" translatable="true">Relatório</string>
@@ -234,7 +232,7 @@
     <string name="title_activity_add_leader" translatable="true">Novo Líder</string>
     <string name="futuras_melhorias" translatable="true">Futuras melhorias</string>
 
-    // nome internos
+    <!--  nome internos-->
     <string name="nomeusuario">nomeUsuario</string>
     <string name="uidusuario">uidUsuario</string>
     <string name="Icone_floatBottom">\@drawable/ic_baseline_add_24</string>
@@ -243,6 +241,8 @@
     <string name="data_">/ /</string>
     <string name="_00_00">00:00</string>
     <string name="ver_1_0_2">ver 1.0.2</string>
+
+    <!-- Sobre -->
     <string name="fabianodspereira_outlook_com" translatable="true">fabianodspereira@outlook.com</string>
     <string name="cria_o_pr_tica_de_relat_rios" translatable="true">Criação prática de relatórios</string>
     <string name="lista_din_mica_de_contato_dos_l_deres" translatable="true">Lista dinâmica de contato dos líderes</string>

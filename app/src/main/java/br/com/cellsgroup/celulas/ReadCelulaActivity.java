@@ -39,6 +39,7 @@ import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.group;
@@ -223,6 +224,10 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( ReadCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
+        } else if (id == R.id.nav_view_leader) {
+            Intent agenda = new Intent( ReadCelulaActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
         } else if (id == R.id.nav_view) {
             Intent visao = new Intent( ReadCelulaActivity.this, VisaoActivity.class );
             startActivity( visao );

@@ -1,5 +1,6 @@
 package br.com.cellsgroup.leader;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -44,11 +46,14 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.celulas.AddCelulaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
 
+import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
 import br.com.cellsgroup.models.pessoas.Leader;
@@ -106,9 +111,13 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addCelula = new Intent(LeaderActivity.this, AddLeaderActivity.class);
-                startActivity( addCelula );
-                finish();
+                if(!igreja.equals("") && !igreja.equals (null)) {
+                    Intent addCelula = new Intent ( LeaderActivity.this , AddLeaderActivity.class );
+                    startActivity ( addCelula );
+                    finish ( );
+                }else{
+                    aviso();
+                }
             }
         } );
 
@@ -132,6 +141,33 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     private void iniciaComponentes ( ) {
         recyclerView = findViewById( R.id.listviewLeader );
         recyclerView.setLongClickable(true);
+    }
+
+    private void aviso(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LeaderActivity.this);
+        builder  = builder.setMessage( "Primeiro crie a sua Igreja. \n Depois as célula \n Por último os Lideres." );
+        builder.setTitle( "Igreja não encontrada!" )
+            .setCancelable( false )
+            .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            })
+            .setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    try {
+                        Intent addIgreja = new Intent ( LeaderActivity.this , addIgrejaActivity.class );
+                        startActivity ( addIgreja );
+                        finish ( );
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                }
+            });
+
+        AlertDialog alertDialog = builder . create () ;
+        alertDialog.show();
     }
 
     private void readOnlyActive() {
@@ -219,15 +255,12 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
-        MenuItem addLeader = menu.findItem (R.id.action_addLider);
         if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
-            addLeader.setVisible (true);
         }else{
             addIgreja.setVisible ( true );
             igreja.setVisible (false);
-            addLeader.setVisible (false);
         }
         return true;
     }
@@ -252,14 +285,14 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
             Intent addlideres = new Intent ( LeaderActivity.this , LeaderActivity.class );
             startActivity ( addlideres);
             return true;
-        }else if ( itemId == R.id.action_addLider ) {
-            Intent addlider= new Intent ( LeaderActivity.this , AddLeaderActivity.class );
-            startActivity ( addlider );
+        } else if ( itemId == R.id.action_Sobre) {
+            Intent sobre= new Intent ( LeaderActivity.this , SobreActivity.class );
+            startActivity ( sobre);
             return true;
-        } else if ( itemId == R.id.action_Sair ) {
+        }else if ( itemId == R.id.action_Sair ) {
             finishAffinity ();
             return true;
-        } else if ( itemId == R.id.action_Logout ) {
+        }  else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
@@ -325,10 +358,11 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         return true;
     }
 
-
     @Override
     public void onBackPressed() {
         LeaderActivity.this.finish();
+        Intent intent = new Intent( LeaderActivity.this, HomeActivity.class );
+        startActivity(intent);
     }
 
     @Override

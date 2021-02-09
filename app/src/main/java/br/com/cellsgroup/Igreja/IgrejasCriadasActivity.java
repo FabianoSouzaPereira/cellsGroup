@@ -121,7 +121,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                                 String igrejaID = igr.getIgrejaID ();
                                 String members = igr.getMembers ();
 
-                                ig.add ( uid );
                                 ig.add ( "Denominação: " + group );
                                 ig.add ( "Nome: " + nome );
                                 ig.add ( "Endereço: " + endereco );

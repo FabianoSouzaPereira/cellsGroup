@@ -136,8 +136,8 @@ public class EditLeaderActivity extends AppCompatActivity {
         EditTextcidade = findViewById( R.id.text_input_editCidade );
         EditTextestado = findViewById ( R.id.text_input_editEstado );
         EditTextpais = findViewById( R.id.text_input_editPais );
-        Objects.requireNonNull ( EditTextcep.getEditText ( ), "00000-000" ).addTextChangedListener ( MaskEditUtil.mask (EditTextcep, MaskEditUtil.FORMAT_CEP));
         EditTextcep = findViewById( R.id.text_input_editCep );
+        Objects.requireNonNull ( EditTextcep.getEditText ( ), "00000-000" ).addTextChangedListener ( MaskEditUtil.mask (EditTextcep, MaskEditUtil.FORMAT_CEP));
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
 
     }
@@ -241,7 +241,7 @@ public class EditLeaderActivity extends AppCompatActivity {
 
                     leaders.child(uid).updateChildren( userUpdates);
 
-                    Toast.makeText(this,"Editado célula com sucesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,"Editado célula com sucesso", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent ( EditLeaderActivity.this , LeaderActivity.class );
                     startActivity ( intent );
@@ -373,11 +373,14 @@ public class EditLeaderActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ArrayAdapter <String> adapter = new ArrayAdapter<String>( EditLeaderActivity.this, android.R.layout.simple_spinner_dropdown_item, cels);
+                ArrayAdapter <String> adapter = new ArrayAdapter<String>( EditLeaderActivity.this, R.layout.spinner_dropdown_item, cels);
                 spCelula = findViewById( R.id.spinnerEditcelula );
-                int pos = spinnerPosition (cels,celulaName);
-                spCelula.setSelection(pos);
                 spCelula.setAdapter( adapter );
+
+                spCelula = findViewById( R.id.spinnerEditcelula );
+                int poAd = adapter.getPosition(celulaName);
+                spCelula.setSelection (poAd);
+
                 spCelula.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -402,18 +405,15 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     }
 
-    private int spinnerPosition(ArrayList<String> array, String position){
-        int posicaoArray = 0;
-
-        for(int i=0; (i <= array.size()-1) ; i++){
-            if(array.get(i).equals(position)){
-
-             posicaoArray = i;
-            }else{
-             posicaoArray = 0;
+    //private method of your class
+    private int getIndex(Spinner sp, String pos){
+        for (int i=0;i<sp.getCount();i++){
+            if (sp.getItemAtPosition(i).toString().equalsIgnoreCase(pos)){
+                return i;
             }
         }
-        return posicaoArray;
+
+        return 0;
     }
 
     private void deleteUsuario(){

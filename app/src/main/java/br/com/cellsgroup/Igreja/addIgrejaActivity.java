@@ -135,6 +135,12 @@ public class addIgrejaActivity extends AppCompatActivity {
             String pais_ = editPais.getEditText().getText().toString().trim();
             String cep = editCep.getEditText().getText().toString().trim();
             String ddi = editddi.getEditText().getText().toString().trim();
+            if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
+                validate = false;
+                editddi.setError("Este campo é obrigatório, 3 dígitos.");
+                editddi.setFocusable (true);
+                editddi.requestFocus ();
+            }
             String phone  = editPhone.getEditText().getText().toString().trim();
             if( phone.equals ( "" ) || phone.length ( ) < 9 ){
                 validate = false;

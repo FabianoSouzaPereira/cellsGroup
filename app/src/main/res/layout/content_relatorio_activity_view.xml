@@ -74,7 +74,7 @@
                 android:layout_marginBottom="75dp"
                 android:fontFamily="casual"
                 android:gravity="center"
-                android:text="@string/messageContato2"
+                android:text="@string/messageLider2"
                 android:textColor="#373737"
                 android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="35dp"
                 android:fontFamily="casual"
                 android:gravity="center"
