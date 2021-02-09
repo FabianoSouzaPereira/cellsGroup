@@ -64,9 +64,9 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         navigationView.setNavigationItemSelectedListener( this );
 
         View headerView = navigationView.getHeaderView(0);
-        nhTitle = ( TextView ) headerView.findViewById (R.id.nhTitle_relatorio);
-        nhName = (TextView) headerView.findViewById (R.id.nhName_relatorio);
-        nhEmail = (TextView) headerView.findViewById (R.id.nhEmail_relatorio);
+        nhTitle = headerView.findViewById (R.id.nhTitle_relatorio);
+        nhName = headerView.findViewById (R.id.nhName_relatorio);
+        nhEmail = headerView.findViewById (R.id.nhEmail_relatorio);
         nhEmail.setText (useremailAuth);
     }
 

@@ -286,7 +286,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputSupervisor.setFocusable (true);
                 textInputSupervisor.requestFocus ();
             }
-            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            String lider = Objects.requireNonNull( textInputLider.getEditText(),"" ).getText().toString().trim();
             if(lider.equals ("")){
                 validate = false;
                 textInputLider.setError("Este campo é obrigatório");

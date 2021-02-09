@@ -164,7 +164,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    base = Integer.parseInt ( textInputBaseCelula.getEditText ( ).getText ( ).toString ( ) );
+                    base = convertToint( textInputBaseCelula.getEditText().getText().toString ()  );
                     total += base;
                 }
             }
@@ -173,7 +173,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    membros = Integer.parseInt ( textInputMembrosIEQ.getEditText ( ).getText ( ).toString ( ) );
+                    membros = convertToint(textInputMembrosIEQ.getEditText().getText().toString().trim());
                     total += membros;
                 }
             }
@@ -183,7 +183,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    convidados = Integer.parseInt ( textInputConvidados.getEditText ( ).getText ( ).toString ( ) );
+                    convidados = convertToint ( textInputConvidados.getEditText ( ).getText ( ).toString ( ) );
                     total += convidados;
                 }
             }
@@ -192,7 +192,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    crianca = Integer.parseInt ( textInputCriancas.getEditText ( ).getText ( ).toString ( ) );
+                    crianca = convertToint ( textInputCriancas.getEditText ( ).getText ( ).toString ( ) );
                     total += crianca;
                 }
             }
@@ -301,22 +301,15 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 }
             }
         } );
+    }
 
-/*        textInputTotal.setOnFocusChangeListener( new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                int var1 = (Integer.parseInt)textInputBaseCelula.getEditText().getText().toString();
-                int var2 = (Integer.parseInt)textInputConvidados.getEditText().getText().toString();
-                int var3 = (Integer.parseInt)textInputCriancas.getEditText().getText().toString();
-                if ( var1=== null || var2 === null || var3  != null  ){
-                    return;
-                } else{
-
-                }
-            }
-        } );*/
-
-
+    public int convertToint(String valor){
+        if(valor.equals("")){
+            int var = 0;
+            return var;
+        }else{
+            return Integer.parseInt ( valor );
+        }
     }
 
     /** Inicia Firebase   */
@@ -389,7 +382,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String dia = Objects.requireNonNull( textInputDia.getEditText(), ""  ).getText().toString().trim();
             String hora = Objects.requireNonNull( textInputHora.getEditText(), ""  ).getText().toString().trim();
 
-            String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText(), "" ).getText().toString().trim();
+            String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText(), "0" ).getText().toString().trim();
             if(baseCelula.equals ("")){
                 validate = false;
                 textInputBaseCelula.setError("Este campo é obrigatório");

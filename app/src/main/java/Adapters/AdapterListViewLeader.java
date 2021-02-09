@@ -85,8 +85,8 @@ public class AdapterListViewLeader extends RecyclerView.Adapter< AdapterListView
 
         public ViewholderLeader(@NonNull View view) {
             super( view );
-            uid = (TextView) view.findViewById( R.id.uidLeader);
-            nome = (TextView) view.findViewById( R.id.nomeLeader);
+            uid = view.findViewById( R.id.uidLeader);
+            nome = view.findViewById( R.id.nomeLeader);
 
         }
     }
