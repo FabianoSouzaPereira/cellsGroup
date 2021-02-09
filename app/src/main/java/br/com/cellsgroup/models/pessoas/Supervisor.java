@@ -1,9 +1,5 @@
 package br.com.cellsgroup.models.pessoas;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 public final class Supervisor extends Pessoa {
 
     public Supervisor() {

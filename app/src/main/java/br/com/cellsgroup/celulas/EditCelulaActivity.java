@@ -39,7 +39,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Igreja.EditIgrejaActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;

@@ -46,10 +46,7 @@ import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
-import br.com.cellsgroup.leader.ReadLeaderActivity;
-import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
-import br.com.cellsgroup.leader.AddLeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.group;

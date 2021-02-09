@@ -36,15 +36,12 @@ import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.Igreja.EditIgrejaActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.group;

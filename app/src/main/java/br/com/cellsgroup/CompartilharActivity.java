@@ -76,7 +76,6 @@ public class CompartilharActivity extends AppCompatActivity implements Navigatio
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();

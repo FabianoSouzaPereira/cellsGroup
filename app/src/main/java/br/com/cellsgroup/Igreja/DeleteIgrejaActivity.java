@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;

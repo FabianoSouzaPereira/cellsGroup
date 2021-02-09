@@ -33,8 +33,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +46,6 @@ import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.SobreActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
-import br.com.cellsgroup.celulas.AddCelulaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;

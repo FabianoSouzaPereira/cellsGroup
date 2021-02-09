@@ -34,8 +34,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.celulas.AddCelulaActivity;
-import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.pessoas.Leader;

@@ -9,15 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -26,21 +23,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-import Adapters.AdapterListViewIgreja;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.utils.MaskEditUtil;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
-import static br.com.cellsgroup.home.HomeActivity.cellPhone;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static java.lang.System.currentTimeMillis;
 
 public class addIgrejaActivity extends AppCompatActivity {

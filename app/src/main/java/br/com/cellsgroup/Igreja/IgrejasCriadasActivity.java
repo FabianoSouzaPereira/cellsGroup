@@ -3,7 +3,6 @@ package br.com.cellsgroup.Igreja;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,17 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import Adapters.AdapterListViewIgreja;
-import br.com.cellsgroup.Configuracao;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
-
-import static br.com.cellsgroup.home.HomeActivity.igreja;
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
 @SuppressWarnings( "ALL" )

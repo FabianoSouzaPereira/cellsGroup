@@ -101,7 +101,6 @@ public class VisaoActivity extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected( item );
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();

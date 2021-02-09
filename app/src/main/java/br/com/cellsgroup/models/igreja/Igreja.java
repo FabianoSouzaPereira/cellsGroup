@@ -1,9 +1,5 @@
 package br.com.cellsgroup.models.igreja;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 
 public final class Igreja {
     private String uid = "";

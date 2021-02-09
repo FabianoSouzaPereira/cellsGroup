@@ -51,7 +51,6 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
-import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;

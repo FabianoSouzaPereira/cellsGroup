@@ -50,7 +50,6 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 
-import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;

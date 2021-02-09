@@ -3,8 +3,6 @@ package br.com.cellsgroup.comunicados;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.View;
-
 import android.view.MenuItem;
 
 import android.view.Menu;
@@ -15,9 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.EnviarActivity;
@@ -28,8 +24,6 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class ComunicadosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -22,18 +22,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import Adapters.AdapterListViewIgreja;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.celulas.CelulasActivity;
-import br.com.cellsgroup.celulas.EditCelulaActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
-
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 
 public class EditIgrejaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;

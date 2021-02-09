@@ -1,16 +1,12 @@
 package br.com.cellsgroup.home;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,15 +54,12 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
-import br.com.cellsgroup.relatorios.ReadRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
-import br.com.cellsgroup.leader.AddLeaderActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;

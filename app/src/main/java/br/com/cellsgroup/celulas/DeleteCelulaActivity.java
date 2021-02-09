@@ -34,7 +34,6 @@ import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.VisaoActivity;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings("ALL")
