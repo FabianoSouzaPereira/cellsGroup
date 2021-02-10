@@ -96,7 +96,6 @@ public class RegisterFragment extends Fragment {
               @Override
               public void onClick ( View v ) {
                   registrarUsuario( );
-                  (( LoginActivity)getActivity ()).onBackPressed();
               }
           });
 
@@ -107,6 +106,7 @@ public class RegisterFragment extends Fragment {
                 (( LoginActivity)getActivity ()).onBackPressed();
             }
         } );
+        progressDialog = new ProgressDialog( getActivity () );
         // Inflate the layout for this fragment
         return view;
     }
@@ -118,8 +118,8 @@ public class RegisterFragment extends Fragment {
         if (!validateForm()) {
             return;
         }
-//        progressDialog.setMessage( getString( R.string.registrando) );
-//        progressDialog.show();
+        progressDialog.setMessage( getString( R.string.registrando) );
+        progressDialog.show();
 
         //criando novo leader
         mAuth.createUserWithEmailAndPassword( email, senha )
@@ -128,35 +128,38 @@ public class RegisterFragment extends Fragment {
                 public void onComplete(@NonNull Task <AuthResult> task) {
                     //checando sucesso
                     if(task.isSuccessful()){
-                        Toast.makeText( getActivity (),getString( R.string.Registro_sucesso), Toast.LENGTH_LONG ).show();
+                        Toast.makeText(getActivity (),getString( R.string.Registro_sucesso), Toast.LENGTH_LONG ).show();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         updateUI( currentUser );
-                        Intent home = new Intent( getActivity (), HomeActivity.class );
-                        startActivity( home );
+                        (( LoginActivity)getActivity ()).onBackPressed();
                         //  createToken();
                     }else{  //se houver colisão de mesmo usuário
                         if (task.getException() instanceof FirebaseAuthUserCollisionException ){
                             Toast.makeText( getActivity (),getString( R.string.registro_existe), Toast.LENGTH_LONG ).show();
                             updateUI( null );
+                            editEmail.setError ("Esse registro já existe!");
+                            editEmail.setFocusable (true);
+                            editEmail.requestFocus ();
                         }else{
                             Toast.makeText( getActivity (),getString( R.string.Falha_registro), Toast.LENGTH_LONG ).show();
                             updateUI( null );
+                            editEmail.setError ("Esse registro já existe!");
+                            editEmail.setFocusable (true);
+                            editEmail.requestFocus ();
                         }
-
                     }
                     editEmail.getEditText().setText("");
                     editSenha.getEditText().setText("");
-//                    progressDialog.dismiss();
+                    progressDialog.dismiss();
                 }
             } );
-
     }
 
     private boolean validateForm() {
         boolean valid = true;
         String email = editEmail.getEditText().getText().toString().trim();
         if ( TextUtils.isEmpty(email) || validateEmailFormat(email) == false) {
-            Toast.makeText(getActivity (),getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity ().getApplicationContext(),getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
             editEmail.setError(getString( R.string.obrigatorio_email_valid));
             editEmail.setFocusable ( true );
             editEmail.requestFocus ( );
@@ -200,7 +203,6 @@ public class RegisterFragment extends Fragment {
 
     private boolean validateEmailFormat(final String email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher( email ).matches();
-        //  Toast.makeText( LoginActivity.this,"Email inválido", Toast.LENGTH_LONG ).show();
     }
 
     @Override
