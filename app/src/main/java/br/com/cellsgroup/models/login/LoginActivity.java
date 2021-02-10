@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
+import br.com.cellsgroup.RegisterFragment;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
@@ -41,12 +44,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
     private TokenBroadcastReceiver mTokenReceiver;
+    private Object savedInstanceState;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
+        this.savedInstanceState = savedInstanceState;
 
         mAuth = FirebaseAuth.getInstance();
         editEmail = findViewById( R.id.email );
@@ -118,7 +123,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         int id = v.getId ( );
         if ( id == R.id.btnEnviarRegistro ) {
-            registrarUsuario ( );
+           // registrarUsuario ( );
+
+            if ( savedInstanceState == null ) {
+                getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.content_login, new RegisterFragment ())
+                    .addToBackStack (null)
+                    .commit ();
+            }
+
         } else if ( id == R.id.btnEnviarLogin ) {
             logarUsuario ( );
         } else if ( id == R.id.btnCancelarLogin ) {
@@ -126,7 +140,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void registrarUsuario(){
+    public void registrarUsuario(){
         String email = editEmail.getEditText().getText().toString().trim();
         String senha = editSenha.getEditText().getText().toString().trim();
 
@@ -297,7 +311,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed ( ) {
-        finishAffinity ( );
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            finishAffinity ( );
+        } else {
+            getSupportFragmentManager().popBackStack ();
+        }
+
     }
 
     @Override

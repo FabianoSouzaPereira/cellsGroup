@@ -35,3 +35,7 @@
 # the package com.yourcompany.models. Modify to fit the structure
 # of your app.
 -keepclassmembers class br.com.cellsgroup.models.** { *;}
+
+# Para garantir que os novos rastreamentos de stack traces não sejam ambíguos, a regra a seguir
+# precisa ser adicionada ao arquivo proguard-rules.pro
+-keepattributes LineNumberTable,SourceFile
