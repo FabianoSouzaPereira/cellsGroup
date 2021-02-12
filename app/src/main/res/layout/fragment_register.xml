@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_frament"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/content_login"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".models.login.LoginActivity"
-    tools:layout_editor_absoluteY="25dp"
-    tools:showIn="@layout/activity_login">
+    android:background="#FFFFFF"
+    tools:context=".RegisterFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,14 +19,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView3"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_baseline_menu_book_24_green" />
+            app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
+            android:id="@+id/emailReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -49,7 +48,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+            android:id="@+id/passwordReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -87,7 +86,7 @@
             android:paddingEnd="40dp">
 
             <Button
-                android:id="@+id/btnCancelarLogin"
+                android:id="@+id/btnCancelarLoginReg"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
@@ -95,6 +94,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="10"
+                android:onClick="onClick"
                 android:background="@drawable/buttom_round_shape2"
                 android:enabled="true"
                 android:gravity="center_horizontal|center_vertical"
@@ -102,7 +102,7 @@
                 android:textColor="#0541F4" />
 
             <Button
-                android:id="@+id/btnEnviarLogin"
+                android:id="@+id/btnEnviarRegistroReg"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -114,10 +114,10 @@
                 android:ellipsize="start"
                 android:enabled="true"
                 android:gravity="center"
+                android:onClick="onClick"
                 android:minWidth="20dp"
                 android:minHeight="20dp"
-                android:onClick="onClick"
-                android:text="@string/entrar"
+                android:text="@string/registrar"
                 android:textColor="#0541F4"
                 android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtregistro"
+                android:id="@+id/txtregistroReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -137,37 +137,13 @@
                 android:paddingStart="15dp"
                 android:paddingTop="30dp"
                 android:paddingEnd="15dp"
-                android:text="Caso ainda não seja registrado?\nPreencha o email e senha e click em registrar!"
+                android:text="@string/preencha_o_email_e_senha_e_click_em_registrar"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/btnEnviarRegistro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginTop="4dp"
-                android:padding="10dp"
-                android:background="@drawable/buttom_round_shape3"
-                android:enabled="true"
-                android:gravity="center"
-                android:onClick="onClick"
-                android:text="@string/registrar"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

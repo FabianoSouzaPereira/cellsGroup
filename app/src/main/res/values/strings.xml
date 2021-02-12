@@ -123,7 +123,7 @@
     <string name="Falha_registro" translatable="true">Falha ao registrar usuário</string>
     <string name="Registro_sucesso" translatable="true">Usuário registrado com sucesso.</string>
     <string name="logado_sucesso" translatable="true">Login logado com sucesso.</string>
-    <string name="falha_login" translatable="true">Falha ao logar usuário.</string>
+    <string name="falha_login" translatable="true">Usuário ou senha incorretos. Já é registrado?</string>
     <string name="action_logout" translatable="true">logout</string>
     <string name="Logout_sucesso" translatable="true">Logout realizado com sucesso.</string>
 
@@ -247,4 +247,7 @@
     <string name="cria_o_pr_tica_de_relat_rios" translatable="true">Criação prática de relatórios</string>
     <string name="lista_din_mica_de_contato_dos_l_deres" translatable="true">Lista dinâmica de contato dos líderes</string>
     <string name="organiza_o_e_rapidez_de_informa_es" translatable="true">Organização e rapidez de informações</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="preencha_o_email_e_senha_e_click_em_registrar">Preencha o email e senha e click em registrar!</string>
 </resources>

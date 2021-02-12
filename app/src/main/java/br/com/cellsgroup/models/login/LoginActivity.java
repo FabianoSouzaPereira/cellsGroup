@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
+import br.com.cellsgroup.RegisterFragment;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
@@ -42,14 +44,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
     private TokenBroadcastReceiver mTokenReceiver;
-
+    private Object savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
-
+        this.savedInstanceState = savedInstanceState;
         mAuth = FirebaseAuth.getInstance();
+
         editEmail = findViewById( R.id.email );
         editSenha = findViewById( R.id.password );
         btnRegistrar = findViewById( R.id.btnEnviarRegistro );
@@ -77,40 +80,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        progressDialog.setMessage( getString( R.string.iniciando_login) );
-        progressDialog.show();
+        try {
+            progressDialog.setMessage( getString( R.string.iniciando_login) );
+            progressDialog.show();
 
-        //Consultar se leader existe
-        mAuth.signInWithEmailAndPassword( email, senha )
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checando sucesso
-                        if(task.isSuccessful()){
-                            int pos = email.indexOf("@");
-                            String user = email.substring(0,pos);
-                            Toast.makeText( LoginActivity.this, getString( R.string.logado_sucesso),Toast.LENGTH_SHORT).show();
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            updateUI(currentUser);
-                            Intent home = new Intent( LoginActivity.this, HomeActivity.class );
-                            startActivity( home );
-                          //  startSignIn();
-                        }else{  //se houver colisão de mesmo usuário
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText( LoginActivity.this, getString( R.string.usuario_existe),Toast.LENGTH_SHORT).show();
-                                HomeActivity.Logado = false;
-                            }else{
-                                Toast.makeText( LoginActivity.this,getString( R.string.falha_login), Toast.LENGTH_LONG ).show();
-                                HomeActivity.Logado = false;
+            //Consultar se leader existe
+            mAuth.signInWithEmailAndPassword( email, senha )
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //checando sucesso
+                            if(task.isSuccessful()){
+                                int pos = email.indexOf("@");
+                                String user = email.substring(0,pos);
+                                Toast.makeText( LoginActivity.this, getString( R.string.logado_sucesso),Toast.LENGTH_SHORT).show();
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                updateUI(currentUser);
+                                Intent home = new Intent( LoginActivity.this, HomeActivity.class );
+                                startActivity( home );
+                              //  startSignIn();
+                            }else{  //se houver colisão de mesmo usuário
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                                    Toast.makeText( LoginActivity.this, getString( R.string.usuario_existe),Toast.LENGTH_SHORT).show();
+                                    HomeActivity.Logado = false;
+                                }else{
+                                    Toast.makeText( LoginActivity.this,getString( R.string.falha_login), Toast.LENGTH_LONG ).show();
+                                    HomeActivity.Logado = false;
+                                }
+
                             }
-
+                            editEmail.getEditText().setText("");
+                            editSenha.getEditText().setText("");
+                            progressDialog.dismiss();
                         }
-                        editEmail.getEditText().setText("");
-                        editSenha.getEditText().setText("");
-                        progressDialog.dismiss();
-                    }
 
-                } );
+                    } );
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
+        } finally {
+            if(  progressDialog != null ){
+                progressDialog.dismiss();
+            }
+        }
 
     }
 
@@ -119,7 +130,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         int id = v.getId ( );
         if ( id == R.id.btnEnviarRegistro ) {
-            registrarUsuario ( );
+             registrarUsuario ( );
+
+//            if ( savedInstanceState == null ) {
+//                getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .add(R.id.content_login, new RegisterFragment ())
+//                    .addToBackStack (null)
+//                    .commit ();
+//            }
+
         } else if ( id == R.id.btnEnviarLogin ) {
             logarUsuario ( );
         } else if ( id == R.id.btnCancelarLogin ) {
@@ -127,7 +147,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void registrarUsuario(){
+    public void registrarUsuario(){
         String email = editEmail.getEditText().getText().toString().trim();
         String senha = editSenha.getEditText().getText().toString().trim();
 
@@ -212,13 +232,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCustomToken:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
