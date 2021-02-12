@@ -83,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this,getString( R.string.Registro_sucesso), Toast.LENGTH_SHORT ).show();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
                         updateUI( currentUser );
+                        sendEmailVerification();
                         RegisterActivity.this.onBackPressed();
                         //  createToken();
                     }else{  //se houver colisão de mesmo usuário
@@ -160,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void sendEmailVerification(){
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
-        auth.setLanguageCode("br");
+        auth.setLanguageCode("pt-br");
         user.sendEmailVerification()
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
