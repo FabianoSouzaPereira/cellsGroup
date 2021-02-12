@@ -172,18 +172,17 @@
                 android:id="@+id/text_input_DataInicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:clipChildren="false"
-                android:enabled="false"
                 app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:enabled="true"
+                    android:longClickable="false"
                     android:hint="@string/dataInicio"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
