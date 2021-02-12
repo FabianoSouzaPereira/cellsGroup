@@ -116,7 +116,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
-            finish();
             return;
         }
         mAuth = FirebaseAuth.getInstance();
@@ -150,9 +149,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         nhEmail.setText (useremailAuth);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        UI = FirebaseAuth.getInstance().getCurrentUser();
+        updateUI( UI ); //verifica se leader está logado
+        if ( !Logado ){
+            Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
+            startActivity( intent );
+        }
+        pegarPadroes();
+    }
+
     public void pegarPadroes() {
 
-       final String ui = UI.getUid ();
+        final String ui;
+        if (  UI == null ) {
+           return;
+        }
+        ui = UI.getUid ();
         if ( ui.isEmpty()){
             Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
             return;
@@ -217,17 +232,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        UI = FirebaseAuth.getInstance().getCurrentUser();
-        updateUI( UI ); //verifica se leader está logado
-        if ( !Logado ){
-            Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
-            startActivity( intent );
-        }
-        pegarPadroes();
-    }
+
 
     @Override
     protected void onResume() {
