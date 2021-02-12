@@ -149,7 +149,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             IgrejaUpdates.put( nome_extra  + "/estado", estado );
             IgrejaUpdates.put( nome_extra  + "/pais_", pais );
             IgrejaUpdates.put( nome_extra  + "/cep", cep);
-            IgrejaUpdates.put( nome_extra  + "/ddi ", ddi  );
+            IgrejaUpdates.put( nome_extra  + "/ddi", ddi  );
             IgrejaUpdates.put( nome_extra  + "/phone", fone);
 
             novaRef2.updateChildren( IgrejaUpdates );

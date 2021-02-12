@@ -8,7 +8,6 @@
     android:background="#FFFFFF"
     tools:context=".RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +25,7 @@
             app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailReg"
+            android:id="@+id/emailRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -48,7 +47,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordReg"
+            android:id="@+id/passwordRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -86,7 +85,7 @@
             android:paddingEnd="40dp">
 
             <Button
-                android:id="@+id/btnCancelarLoginReg"
+                android:id="@+id/btnCancelarLoginRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
@@ -94,7 +93,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="10"
-                android:onClick="onClick"
                 android:background="@drawable/buttom_round_shape2"
                 android:enabled="true"
                 android:gravity="center_horizontal|center_vertical"
@@ -102,7 +100,7 @@
                 android:textColor="#0541F4" />
 
             <Button
-                android:id="@+id/btnEnviarRegistroReg"
+                android:id="@+id/btnEnviarRegistroRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -114,7 +112,6 @@
                 android:ellipsize="start"
                 android:enabled="true"
                 android:gravity="center"
-                android:onClick="onClick"
                 android:minWidth="20dp"
                 android:minHeight="20dp"
                 android:text="@string/registrar"
@@ -129,7 +126,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtregistroReg"
+                android:id="@+id/txtregistroRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -144,6 +141,17 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loading3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </FrameLayout>

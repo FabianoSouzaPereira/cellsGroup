@@ -1,6 +1,5 @@
 package br.com.cellsgroup.models.login;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,8 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.com.cellsgroup.RegisterFragment;
+import br.com.cellsgroup.RegisterActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
@@ -130,8 +128,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         int id = v.getId ( );
         if ( id == R.id.btnEnviarRegistro ) {
-             registrarUsuario ( );
-
+          //   registrarUsuario ( );
+            Intent register = new Intent( LoginActivity.this, RegisterActivity.class );
+            startActivity( register );
+            finish();
 //            if ( savedInstanceState == null ) {
 //                getSupportFragmentManager()
 //                    .beginTransaction()
@@ -314,7 +314,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onBackPressed ( ) {
-        finishAffinity ( );
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            finishAffinity ( );
+        } else {
+            getSupportFragmentManager().popBackStack ();
+        }
     }
 
     @Override
