@@ -2,11 +2,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_frament"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".RegisterActivity">
+    tools:context=".RememberActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +23,7 @@
             app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailRegister"
+            android:id="@+id/emailRemember"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -46,29 +44,6 @@
                 android:maxLength="90" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="30dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="65"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="true"
-            app:startIconContentDescription="@string/content_description_end_icon"
-            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
-            app:startIconTint="#3056FF">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                android:maxLength="65" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <View
             android:id="@+id/divider3"
             android:layout_width="150dp"
@@ -85,7 +60,7 @@
             android:paddingEnd="40dp">
 
             <Button
-                android:id="@+id/btnCancelarLoginRegister"
+                android:id="@+id/btnCancelarLoginRemember"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
@@ -100,7 +75,7 @@
                 android:textColor="#0541F4" />
 
             <Button
-                android:id="@+id/btnEnviarRegistroRegister"
+                android:id="@+id/btnEnviarEmailRemember"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -114,7 +89,7 @@
                 android:gravity="center"
                 android:minWidth="20dp"
                 android:minHeight="20dp"
-                android:text="@string/registrar"
+                android:text="@string/enviar"
                 android:textColor="#0541F4"
                 android:textStyle="bold" />
 
@@ -126,7 +101,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtregistroRegister"
+                android:id="@+id/txtregistroRemember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -134,7 +109,7 @@
                 android:paddingStart="15dp"
                 android:paddingTop="30dp"
                 android:paddingEnd="15dp"
-                android:text="@string/preencha_o_email_e_senha_e_click_em_registrar"
+                android:text="@string/preencha_o_email_e_click_em_registrar"
                 android:textAlignment="center"
                 android:textSize="12sp" />
 
@@ -143,7 +118,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/loading3"
+        android:id="@+id/loading4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

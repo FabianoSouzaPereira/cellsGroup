@@ -22,7 +22,8 @@
         android:versionCode="2"
         android:versionName="1.0.3"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RememberActivity"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity
             android:name=".leader.ReadLeaderActivity"
             android:label="@string/read_lider"

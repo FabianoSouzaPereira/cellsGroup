@@ -128,6 +128,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/btnEsqueci_Senha"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:onClick="onClick"
+                android:background="#FFFFFF"
+                android:text="Esqueci a senha"
+                android:textColor="#1976D2"
+                android:textSize="10sp" />
+
             <TextView
                 android:id="@+id/txtregistro"
                 android:layout_width="match_parent"
@@ -135,7 +148,7 @@
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:paddingStart="15dp"
-                android:paddingTop="30dp"
+                android:paddingTop="15dp"
                 android:paddingEnd="15dp"
                 android:text="Caso ainda não seja registrado?\nPreencha o email e senha e click em registrar!"
                 android:textAlignment="center"
@@ -155,6 +168,7 @@
                 android:text="@string/registrar"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
+
         </LinearLayout>
 
     </LinearLayout>

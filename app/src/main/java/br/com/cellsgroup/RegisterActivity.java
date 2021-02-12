@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -155,6 +156,37 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validateEmailFormat(final String email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher( email ).matches();
     }
+
+    private void sendEmailVerification(){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        auth.setLanguageCode("br");
+        user.sendEmailVerification()
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("Email sent ", "Email sent.");
+                    }
+                }
+            });
+    }
+
+    private void updateEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user.updateEmail("user@example.com")
+            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Log.d("Email Update ", "User email address updated.");
+                    }
+                }
+            });
+    }
+
+
 
     @Override
     public void onPause ( ) {

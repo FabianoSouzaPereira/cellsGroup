@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.com.cellsgroup.RegisterActivity;
+import br.com.cellsgroup.RememberActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.R;
 
@@ -38,11 +39,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextInputLayout editSenha = null;
     private Button btnRegistrar;
     private Button btnCancelarLogin;
+    private Button btnForgotPassword;
     private ProgressDialog progressDialog;
     private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
     private TokenBroadcastReceiver mTokenReceiver;
     private Object savedInstanceState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnRegistrar.setOnClickListener(this);
         btnCancelarLogin = findViewById (R.id.btnCancelarLogin );
         btnCancelarLogin.setOnClickListener (this);
+        btnForgotPassword = findViewById (R.id.btnEsqueci_Senha );
         progressDialog = new ProgressDialog( this );
 
         // Create token receiver (for demo purposes only)
@@ -128,22 +132,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         int id = v.getId ( );
         if ( id == R.id.btnEnviarRegistro ) {
-          //   registrarUsuario ( );
             Intent register = new Intent( LoginActivity.this, RegisterActivity.class );
             startActivity( register );
             finish();
-//            if ( savedInstanceState == null ) {
-//                getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .add(R.id.content_login, new RegisterFragment ())
-//                    .addToBackStack (null)
-//                    .commit ();
-//            }
-
         } else if ( id == R.id.btnEnviarLogin ) {
             logarUsuario ( );
         } else if ( id == R.id.btnCancelarLogin ) {
             finishAffinity ( );
+        }else if ( id == R.id.btnEsqueci_Senha){
+            Intent remember = new Intent( LoginActivity.this, RememberActivity.class );
+            startActivity( remember );
+            finish();
         }
     }
 
