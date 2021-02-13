@@ -32,7 +32,6 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
@@ -160,9 +159,6 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( DeleteCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( DeleteCelulaActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( DeleteCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );

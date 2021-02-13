@@ -48,7 +48,6 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import br.com.cellsgroup.leader.LeaderActivity;
@@ -323,9 +322,6 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         } else if (id == R.id.nav_view_leader) {
             Intent agenda = new Intent( CelulasActivity.this, LeaderActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( CelulasActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( CelulasActivity.this, ContatoActivity.class );
             startActivity( contato );

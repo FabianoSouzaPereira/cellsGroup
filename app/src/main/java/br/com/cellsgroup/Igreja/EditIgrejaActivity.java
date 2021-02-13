@@ -29,6 +29,8 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+
 public class EditIgrejaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -82,13 +84,13 @@ public class EditIgrejaActivity extends AppCompatActivity {
 
     private void readIgrejaCadastrada() {
         final String ui = HomeActivity.UI.getUid ();
-        novaRef = databaseReference.child( "churchs/");
-        Query query = novaRef.orderByChild (uid_extra).limitToFirst (1);
+        novaRef = databaseReference.child( "churchs/" + uid_extra);
+        Query query = novaRef.orderByChild ("user").equalTo (ui);
         listener =  new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                  for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    for(DataSnapshot sd : ds.getChildren ()) {
+                //  for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    for(DataSnapshot sd : dataSnapshot.getChildren()) {
                         String key = sd.getKey ();
                         if(!key.equalsIgnoreCase ( "members" )
                             && !key.equalsIgnoreCase ( "cells" )
@@ -97,21 +99,22 @@ public class EditIgrejaActivity extends AppCompatActivity {
                         ) {
 
                             Igreja igr = sd.getValue ( Igreja.class );
-                            String group = Objects.requireNonNull ( igr ).getGroup ();
-                            Objects.requireNonNull ( denominacao.getEditText ( ), "" ).setText (group);
-                            Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).setText (igr.getNome ());
-                            Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).setText (igr.getEndereco ());
-                            Objects.requireNonNull ( editBairro.getEditText ( ), "" ).setText (igr.getBairro ());
-                            Objects.requireNonNull ( editCidade.getEditText ( ), "" ).setText (igr.getCidade ());
-                            Objects.requireNonNull ( editEstado.getEditText ( ), "" ).setText (igr.getEstado ());
-                            Objects.requireNonNull ( editPais.getEditText ( ), "" ).setText (igr.getPais_ ());
-                            Objects.requireNonNull ( editCep.getEditText ( ), "" ).setText (igr.getCep ());
-                            Objects.requireNonNull ( editDdi.getEditText ( ), "" ).setText (igr.getDdi ());
-                            Objects.requireNonNull ( editPhone.getEditText ( ), "" ).setText (igr.getPhone ());
-
+                            if(igr.getUser ().equals (ui)) {
+                                String group = Objects.requireNonNull ( igr ).getGroup ( );
+                                Objects.requireNonNull ( denominacao.getEditText ( ) , "" ).setText ( group );
+                                Objects.requireNonNull ( editIgreja.getEditText ( ) , "" ).setText ( igr.getNome ( ) );
+                                Objects.requireNonNull ( editEndereco.getEditText ( ) , "" ).setText ( igr.getEndereco ( ) );
+                                Objects.requireNonNull ( editBairro.getEditText ( ) , "" ).setText ( igr.getBairro ( ) );
+                                Objects.requireNonNull ( editCidade.getEditText ( ) , "" ).setText ( igr.getCidade ( ) );
+                                Objects.requireNonNull ( editEstado.getEditText ( ) , "" ).setText ( igr.getEstado ( ) );
+                                Objects.requireNonNull ( editPais.getEditText ( ) , "" ).setText ( igr.getPais_ ( ) );
+                                Objects.requireNonNull ( editCep.getEditText ( ) , "" ).setText ( igr.getCep ( ) );
+                                Objects.requireNonNull ( editDdi.getEditText ( ) , "" ).setText ( igr.getDdi ( ) );
+                                Objects.requireNonNull ( editPhone.getEditText ( ) , "" ).setText ( igr.getPhone ( ) );
+                            }
                         }
                     }
-                }
+               // }
 
             }
 

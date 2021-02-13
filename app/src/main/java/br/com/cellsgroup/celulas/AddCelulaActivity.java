@@ -38,7 +38,6 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
@@ -243,9 +242,6 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( AddCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( AddCelulaActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( AddCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );

@@ -100,9 +100,6 @@ public class EnviarActivity extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( EnviarActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( EnviarActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( EnviarActivity.this, ContatoActivity.class );
             startActivity( contato );

@@ -95,9 +95,6 @@ public class CompartilharActivity extends AppCompatActivity implements Navigatio
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( CompartilharActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( CompartilharActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( CompartilharActivity.this, ContatoActivity.class );
             startActivity( contato );

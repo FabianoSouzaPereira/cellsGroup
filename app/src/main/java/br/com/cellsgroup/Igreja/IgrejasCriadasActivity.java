@@ -111,16 +111,16 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                                 String igrejaID = igr.getIgrejaID ();
                                 String members = igr.getMembers ();
 
-                                ig.add ( "Denominação: " + group );
-                                ig.add ( "Nome: " + nome );
-                                ig.add ( "Endereço: " + endereco );
-                                ig.add ( "Bairro: " + bairro );
-                                ig.add ( "Cidade: " + cidade );
-                                ig.add ( "Estado: " + estado );
-                                ig.add ( "País: " + pais );
-                                ig.add ( "Cep: " + cep );
-                                ig.add ( "DDI: " + ddi );
-                                ig.add ( "Fone: " + telefone );
+                                ig.add ( "Denominação:  " + group );
+                                ig.add ( "Nome:  " + nome );
+                                ig.add ( "Endereço:  " + endereco );
+                                ig.add ( "Bairro:  " + bairro );
+                                ig.add ( "Cidade:  " + cidade );
+                                ig.add ( "Estado:  " + estado );
+                                ig.add ( "País:  " + pais );
+                                ig.add ( "Cep:  " + cep );
+                                ig.add ( "DDI:  " + ddi );
+                                ig.add ( "Fone:  " + telefone );
                             }
                         }
                     }

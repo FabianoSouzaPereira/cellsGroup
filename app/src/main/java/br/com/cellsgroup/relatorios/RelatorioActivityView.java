@@ -48,7 +48,6 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
@@ -319,9 +318,6 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         } else if (id == R.id.nav_realatorio) {
             Intent relatorio = new Intent( RelatorioActivityView.this, RelatorioActivityView.class );
             startActivity( relatorio );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( RelatorioActivityView.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( RelatorioActivityView.this, ContatoActivity.class );
             startActivity( contato );

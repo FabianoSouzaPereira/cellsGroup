@@ -113,10 +113,6 @@
             android:label="@string/title_activity_contato"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".VisaoActivity"
-            android:label="@string/title_activity_visao"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".agenda.AgendaActivity"
             android:label="@string/title_activity_agenda"
             android:theme="@style/AppTheme" />

@@ -42,7 +42,6 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.Igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
@@ -323,9 +322,6 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             Intent relatorio = new Intent( ReadRelatorioActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
 
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( ReadRelatorioActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( ReadRelatorioActivity.this, ContatoActivity.class );
             startActivity( contato );

@@ -40,7 +40,6 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.VisaoActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.models.celulas.Celula;
@@ -500,9 +499,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         } else if (id == R.id.nav_realatorio) {
             Intent relatorio = new Intent( AddRelatorioActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
-        } else if (id == R.id.nav_view) {
-            Intent visao = new Intent( AddRelatorioActivity.this, VisaoActivity.class );
-            startActivity( visao );
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( AddRelatorioActivity.this, ContatoActivity.class );
             startActivity( contato );
