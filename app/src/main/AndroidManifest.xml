@@ -128,11 +128,11 @@
             android:name=".celulas.CelulasActivity"
             android:label="@string/title_activity_celulas"
             android:theme="@style/AppTheme" />
+        <activity android:name=".models.login.WellcomeActivity" />
         <activity
             android:name=".home.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-        <activity android:name=".models.login.WellcomeActivity" />
         <activity
             android:name=".models.login.LoginActivity"
             android:screenOrientation="portrait"

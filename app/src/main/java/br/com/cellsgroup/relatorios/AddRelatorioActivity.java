@@ -418,24 +418,25 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             }
 
             String status = "1";
-            addDataHora();
-            if(!TextUtils.isEmpty( celula ) && Logado == true && typeUserAdmin == true){
-                String uid = relatorios.push().getKey();
-                Relatorio relatorio = new Relatorio(uid,celula, rede, supervisor, lider, viceLider, anfitriao, secretario, colaborador, dia, hora, baseCelula, membrosIEQ, convidados, criancas, total, estudo, quebragelo, lanche, aceitacao, reconciliacao, testemunho, status, DataTime, userId );
-                if (uid != null) {
-                    relatorios.child( celula ).child( uid ).setValue( relatorio );
+            if( validate ) {
+                addDataHora ( );
+                if ( !TextUtils.isEmpty ( celula ) && Logado == true && typeUserAdmin == true ) {
+                    String uid = relatorios.push ( ).getKey ( );
+                    Relatorio relatorio = new Relatorio ( uid , celula , rede , supervisor , lider , viceLider , anfitriao , secretario , colaborador , dia , hora , baseCelula , membrosIEQ , convidados , criancas , total , estudo , quebragelo , lanche , aceitacao , reconciliacao , testemunho , status , DataTime , userId );
+                    if ( uid != null ) {
+                        relatorios.child ( celula ).child ( uid ).setValue ( relatorio );
 
-                    Toast.makeText( this, "Relatório enviado com sucesso", Toast.LENGTH_LONG ).show();
+                        Toast.makeText ( this , "Relatório enviado com sucesso" , Toast.LENGTH_LONG ).show ( );
+                        Intent intent = new Intent ( AddRelatorioActivity.this , RelatorioActivityView.class );
+                        startActivity ( intent );
+                        finish ( );
+                    }
+                } else {
+                    Toast.makeText ( this , "Erro ao menu_config o relatório !" , Toast.LENGTH_LONG ).show ( );
                 }
-            }else{
-                Toast.makeText(this,"Erro ao menu_config o relatório !", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            Intent intent = new Intent( AddRelatorioActivity.this, RelatorioActivityView.class);
-            startActivity( intent );
-            finish();
         }
 
     }

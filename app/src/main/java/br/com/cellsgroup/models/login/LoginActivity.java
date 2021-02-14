@@ -14,9 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -44,20 +46,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "CustomAuthActivity";
     private String mCustomToken;
     private TokenBroadcastReceiver mTokenReceiver;
-    private Object savedInstanceState;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
-        this.savedInstanceState = savedInstanceState;
         mAuth = FirebaseAuth.getInstance();
+        mAuth.getUid ();
+        try {
+            if ( mAuth != null ) {
+               String  uid = mAuth.getUid ();
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
+        }
 
         editEmail = findViewById( R.id.email );
         editSenha = findViewById( R.id.password );
-        btnRegistrar = findViewById( R.id.btnEnviarRegistro );
-        btnRegistrar.setOnClickListener(this);
         btnCancelarLogin = findViewById (R.id.btnCancelarLogin );
         btnCancelarLogin.setOnClickListener (this);
         btnForgotPassword = findViewById (R.id.btnEsqueci_Senha );
@@ -88,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             //Consultar se leader existe
             mAuth.signInWithEmailAndPassword( email, senha )
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener <AuthResult> () {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //checando sucesso
@@ -119,10 +126,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } );
         } catch ( Exception e ) {
             e.printStackTrace ( );
-        } finally {
-            if(  progressDialog != null ){
-                progressDialog.dismiss();
-            }
         }
 
     }
@@ -131,11 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         int id = v.getId ( );
-        if ( id == R.id.btnEnviarRegistro ) {
-            Intent register = new Intent( LoginActivity.this, RegisterActivity.class );
-            startActivity( register );
-            finish();
-        } else if ( id == R.id.btnEnviarLogin ) {
+        if ( id == R.id.btnEnviarLogin ) {
             logarUsuario ( );
         } else if ( id == R.id.btnCancelarLogin ) {
             finishAffinity ( );

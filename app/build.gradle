@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        release {
+        }
+    }
     compileSdkVersion 30
     defaultConfig {
         applicationId "br.com.cellsgroup"
@@ -55,7 +59,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database:19.6.0'
-    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
     implementation 'com.github.prolificinteractive:material-calendarview:1.4.3'
 
     //glide

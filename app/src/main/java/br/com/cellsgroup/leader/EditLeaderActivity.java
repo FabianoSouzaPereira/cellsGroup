@@ -167,8 +167,26 @@ public class EditLeaderActivity extends AppCompatActivity {
             EditTextdataNascimento.requestFocus ();
         }
         String dataBastismo = EditTextdataBastismo.getEditText().getText().toString().trim();
+        if( dataBastismo.equals ( "" ) || dataBastismo.length ( ) < 8 ){
+            validate = false;
+            EditTextdataBastismo.setError("Este campo é obrigatório");
+            EditTextdataBastismo.setFocusable (true);
+            EditTextdataBastismo.requestFocus ();
+        }
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
+        if(nomepai .equals ("")){
+            validate = false;
+            EditTextnomepai.setError("Este campo é obrigatório");
+            EditTextnomepai.setFocusable (true);
+            EditTextnomepai.requestFocus ();
+        }
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
+        if(nomemae.equals ("")|| nome.length() < 4){
+            validate = false;
+            EditTextnomemae.setError("Este campo é obrigatório");
+            EditTextnomemae.setFocusable (true);
+            EditTextnomemae.requestFocus ();
+        }
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
         if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
@@ -178,6 +196,7 @@ public class EditLeaderActivity extends AppCompatActivity {
             EdiTextddi.requestFocus ();
         }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
+
         if( telefone.equals ( "" ) || telefone.length ( ) < 9 ){
             validate = false;
             EditTexttelefone.setError("Este campo é obrigatório, min. 9 dígitos.");
@@ -193,15 +212,51 @@ public class EditLeaderActivity extends AppCompatActivity {
             EditTextemail.requestFocus ();
         }
         String endereco =  EditTextendereco.getEditText().getText().toString().trim();
+        if(endereco.equals ("")){
+            validate = false;
+            EditTextendereco.setError("Este campo é obrigatório");
+            EditTextendereco.setFocusable (true);
+            EditTextendereco.requestFocus ();
+        }
         String bairro = EditTextbairro.getEditText().getText().toString().trim();
+        if(bairro.equals ("")){
+            validate = false;
+            EditTextbairro.setError("Este campo é obrigatório");
+            EditTextbairro.setFocusable (true);
+            EditTextbairro.requestFocus ();
+        }
         String cidade =  EditTextcidade.getEditText().getText().toString().trim();
+        if(cidade.equals ("")){
+            validate = false;
+            EditTextcidade.setError("Este campo é obrigatório");
+            EditTextcidade.setFocusable (true);
+            EditTextcidade.requestFocus ();
+        }
         String estado =  EditTextestado.getEditText().getText().toString().trim();
+        if(estado.equals ("")){
+            validate = false;
+            EditTextestado.setError("Este campo é obrigatório");
+            EditTextestado.setFocusable (true);
+            EditTextestado.requestFocus ();
+        }
         String pais =  EditTextpais.getEditText().getText().toString().trim();
+        if(pais.equals ("")){
+            validate = false;
+            EditTextpais.setError("Este campo é obrigatório");
+            EditTextpais.setFocusable (true);
+            EditTextpais.requestFocus ();
+        }
         String cep = EditTextcep.getEditText().getText().toString().trim();
+        if(cep.equals ("")){
+            validate = false;
+            EditTextcep.setError("Este campo é obrigatório");
+            EditTextcep.setFocusable (true);
+            EditTextcep.requestFocus ();
+        }
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
         if(cargoIgreja.equals ("")|| cargoIgreja.length() < 4){
             validate = false;
-            EditTextcargoIgreja.setError("Este campo é obrigatório,");
+            EditTextcargoIgreja.setError("Obrigatório +4 digitos.");
             EditTextcargoIgreja.setFocusable (true);
             EditTextcargoIgreja.requestFocus ();
         }

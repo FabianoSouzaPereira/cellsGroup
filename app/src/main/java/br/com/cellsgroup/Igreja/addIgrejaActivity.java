@@ -103,7 +103,7 @@ public class addIgrejaActivity extends AppCompatActivity {
         addDataHora();
         igreja = "";
         validate=true;
-;
+
         try {
             denominacao = editDenominacao.getEditText().getText().toString().trim();
             if(denominacao .equals ("")|| denominacao.length() < 4){
@@ -121,11 +121,47 @@ public class addIgrejaActivity extends AppCompatActivity {
                 editIgreja.requestFocus ();
             }
             String endereco = editEndereco.getEditText().getText().toString().trim();
+            if(endereco.equals ("")){
+                validate = false;
+                editEndereco.setError("Este campo é obrigatório");
+                editEndereco.setFocusable (true);
+                editEndereco.requestFocus ();
+            }
             String bairro = editBairro.getEditText().getText().toString().trim();
+            if(bairro.equals ("")){
+                validate = false;
+                editBairro.setError("Este campo é obrigatório");
+                editBairro.setFocusable (true);
+                editBairro.requestFocus ();
+            }
             String cidade = editCidade.getEditText().getText().toString().trim();
+            if(cidade.equals ("")){
+                validate = false;
+                editCidade.setError("Este campo é obrigatório");
+                editCidade.setFocusable (true);
+                editCidade.requestFocus ();
+            }
             String estado = editEstado.getEditText().getText().toString().trim();
+            if(estado.equals ("")){
+                validate = false;
+                editEstado.setError("Este campo é obrigatório");
+                editEstado.setFocusable (true);
+                editEstado.requestFocus ();
+            }
             String pais_ = editPais.getEditText().getText().toString().trim();
+            if(pais_.equals ("")){
+                validate = false;
+                editPais.setError("Este campo é obrigatório");
+                editPais.setFocusable (true);
+                editPais.requestFocus ();
+            }
             String cep = editCep.getEditText().getText().toString().trim();
+            if(cep.equals ("")){
+                validate = false;
+                editCep.setError("Este campo é obrigatório");
+                editCep.setFocusable (true);
+                editCep.requestFocus ();
+            }
             String ddi = editddi.getEditText().getText().toString().trim();
             if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
                 validate = false;

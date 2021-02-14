@@ -28,7 +28,9 @@ import java.util.Objects;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
+import br.com.cellsgroup.utils.MaskEditUtil;
 
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class EditIgrejaActivity extends AppCompatActivity {
@@ -41,6 +43,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
     private ValueEventListener listener;
     private String uid_extra;
     private String nome_extra;
+    private static boolean validate = true;
 
     TextInputLayout denominacao;
     TextInputLayout editIgreja;
@@ -78,8 +81,10 @@ public class EditIgrejaActivity extends AppCompatActivity {
         editEstado = findViewById (R.id.text_input_editEstado );
         editPais = findViewById (R.id.text_input_editPais_);
         editCep = findViewById (R.id.text_input_editCep);
+        editCep.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editCep, MaskEditUtil.FORMAT_CEP));
         editDdi = findViewById (R.id.text_input_editddi);
         editPhone = findViewById (R.id.text_input_phone);
+        editPhone.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhone, MaskEditUtil.FORMAT_FONE));
     }
 
     private void readIgrejaCadastrada() {
@@ -128,15 +133,59 @@ public class EditIgrejaActivity extends AppCompatActivity {
 
 
     private void saveIgrejaClick ( MenuItem item ) {
+        igreja = "";
+        validate=true;
         String denom = Objects.requireNonNull ( denominacao.getEditText ( ), "" ).getText ().toString().trim();
         String igrejanome = Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).getText ().toString().trim();
         String endereco = Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).getText ().toString().trim();
+        if(endereco.equals ("")){
+            validate = false;
+            editEndereco.setError("Este campo é obrigatório");
+            editEndereco.setFocusable (true);
+            editEndereco.requestFocus ();
+        }
         String bairro = Objects.requireNonNull ( editBairro.getEditText ( ), "" ).getText ().toString().trim();
+        if(bairro.equals ("")){
+            validate = false;
+            editBairro.setError("Este campo é obrigatório");
+            editBairro.setFocusable (true);
+            editBairro.requestFocus ();
+        }
         String cidade = Objects.requireNonNull ( editCidade.getEditText ( ), "" ).getText ().toString().trim();
+        if(cidade.equals ("")){
+            validate = false;
+            editCidade.setError("Este campo é obrigatório");
+            editCidade.setFocusable (true);
+            editCidade.requestFocus ();
+        }
         String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
+        if(estado.equals ("")){
+            validate = false;
+            editEstado.setError("Este campo é obrigatório");
+            editEstado.setFocusable (true);
+            editEstado.requestFocus ();
+        }
         String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
+        if(pais.equals ("")){
+            validate = false;
+            editPais.setError("Este campo é obrigatório");
+            editPais.setFocusable (true);
+            editPais.requestFocus ();
+        }
         String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
+        if(cep.equals ("")){
+            validate = false;
+            editCep.setError("Este campo é obrigatório");
+            editCep.setFocusable (true);
+            editCep.requestFocus ();
+        }
         String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
+        if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
+            validate = false;
+            editDdi.setError("Este campo é obrigatório, 3 dígitos.");
+            editDdi.setFocusable (true);
+            editDdi.requestFocus ();
+        }
         String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
       //  String hora = hh + ":" + mm;
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
