@@ -172,25 +172,25 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
-            novaref = databaseReference.child( "liders/");
-            Query query = novaref.orderByChild ("userId").equalTo( ui ).limitToFirst (1);
-            query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
-                @Override
-                public void onDataChange ( @NonNull DataSnapshot snapshot ) {
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        Leader leader = ds.getValue ( Leader.class );
-                        useremail = leader.getEmail ();
-                        group =leader.getGroup ().toString ();
-                        igreja = leader.getIgrejaPadrao ();
-                        cellPhone = leader.getTelefone ();
-                    }
-                }
-
-                @Override
-                public void onCancelled ( @NonNull DatabaseError error ) {
-
-                }
-            } );
+//            novaref = databaseReference.child("church/"+ "liders/");
+//            Query query = novaref.orderByChild ("userId").equalTo( ui ).limitToFirst (1);
+//            query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
+//                @Override
+//                public void onDataChange ( @NonNull DataSnapshot snapshot ) {
+//                    for (DataSnapshot ds : snapshot.getChildren()) {
+//                        Leader leader = ds.getValue ( Leader.class );
+//                        useremail = leader.getEmail ();
+//                        group =leader.getGroup ().toString ();
+//                        igreja = leader.getIgrejaPadrao ();
+//                        cellPhone = leader.getTelefone ();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled ( @NonNull DatabaseError error ) {
+//
+//                }
+//            } );
 
         //carrega dados da igreja cadastrada
         novaref2 = databaseReference.child ("churchs/");
@@ -203,6 +203,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 String key = sd.getKey ();
                              if(
                                 !key.equalsIgnoreCase ( "members" )
+                                 && !key.equalsIgnoreCase ( "leaders" )
                                  && !key.equalsIgnoreCase ( "cells" )
                                  && !key.equalsIgnoreCase ( "reports" )
                                  && !key.equalsIgnoreCase ( "intercession" )
@@ -210,12 +211,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                              ) {
 
                                  Igreja ig = sd.getValue ( Igreja.class );
-                                 if(ig.getUser ().equals (ui)) {
-                                     String members = ig.getMembers ( );
-                                     String user = ig.getUser ( );
-                                     igreja = ig.getNome ( );
-                                     group = ig.getGroup ( );
-                                     uidIgreja = ig.getIgrejaID ( );
+                                 if (ig.getUser() != null) {
+                                     if(ig.getUser ().equals (ui)) {
+                                         String members = ig.getMembers ( );
+                                         String user = ig.getUser ( );
+                                         igreja = ig.getNome ( );
+                                         group = ig.getGroup ( );
+                                         uidIgreja = ig.getIgrejaID ( );
+                                     }
                                  }
                              }
                          }
@@ -231,8 +234,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             });
 
     }
-
-
 
     @Override
     protected void onResume() {
@@ -448,7 +449,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Intent agenda = new Intent( HomeActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        } else if (id == R.id.nav_view_leader) {
+        } else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( HomeActivity.this, LeaderActivity.class );
             startActivity( agenda );
 

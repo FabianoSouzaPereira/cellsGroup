@@ -94,10 +94,10 @@ public class EditIgrejaActivity extends AppCompatActivity {
         listener =  new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //  for (DataSnapshot ds : dataSnapshot.getChildren()){
                     for(DataSnapshot sd : dataSnapshot.getChildren()) {
                         String key = sd.getKey ();
                         if(!key.equalsIgnoreCase ( "members" )
+                            && !key.equalsIgnoreCase ( "leaders" )
                             && !key.equalsIgnoreCase ( "cells" )
                             && !key.equalsIgnoreCase ( "reports" )
                             && !key.equalsIgnoreCase ( "intercession" )
@@ -119,7 +119,6 @@ public class EditIgrejaActivity extends AppCompatActivity {
                             }
                         }
                     }
-               // }
 
             }
 
@@ -135,87 +134,95 @@ public class EditIgrejaActivity extends AppCompatActivity {
     private void saveIgrejaClick ( MenuItem item ) {
         igreja = "";
         validate=true;
-        String denom = Objects.requireNonNull ( denominacao.getEditText ( ), "" ).getText ().toString().trim();
-        String igrejanome = Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).getText ().toString().trim();
-        String endereco = Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).getText ().toString().trim();
-        if(endereco.equals ("")){
-            validate = false;
-            editEndereco.setError("Este campo é obrigatório");
-            editEndereco.setFocusable (true);
-            editEndereco.requestFocus ();
-        }
-        String bairro = Objects.requireNonNull ( editBairro.getEditText ( ), "" ).getText ().toString().trim();
-        if(bairro.equals ("")){
-            validate = false;
-            editBairro.setError("Este campo é obrigatório");
-            editBairro.setFocusable (true);
-            editBairro.requestFocus ();
-        }
-        String cidade = Objects.requireNonNull ( editCidade.getEditText ( ), "" ).getText ().toString().trim();
-        if(cidade.equals ("")){
-            validate = false;
-            editCidade.setError("Este campo é obrigatório");
-            editCidade.setFocusable (true);
-            editCidade.requestFocus ();
-        }
-        String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
-        if(estado.equals ("")){
-            validate = false;
-            editEstado.setError("Este campo é obrigatório");
-            editEstado.setFocusable (true);
-            editEstado.requestFocus ();
-        }
-        String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
-        if(pais.equals ("")){
-            validate = false;
-            editPais.setError("Este campo é obrigatório");
-            editPais.setFocusable (true);
-            editPais.requestFocus ();
-        }
-        String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
-        if(cep.equals ("")){
-            validate = false;
-            editCep.setError("Este campo é obrigatório");
-            editCep.setFocusable (true);
-            editCep.requestFocus ();
-        }
-        String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
-        if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
-            validate = false;
-            editDdi.setError("Este campo é obrigatório, 3 dígitos.");
-            editDdi.setFocusable (true);
-            editDdi.requestFocus ();
-        }
-        String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
-      //  String hora = hh + ":" + mm;
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        novaRef2 =databaseReference.child( "churchs/").child( uid_extra );
 
-        if(!TextUtils.isEmpty(igrejanome)){
-            Map <String, Object> IgrejaUpdates = new HashMap <> ();
-            IgrejaUpdates.put( nome_extra  + "/group" , denom);
-            IgrejaUpdates.put( nome_extra  + "/nome", igrejanome);
-            IgrejaUpdates.put( nome_extra  + "/endereco", endereco );
-            IgrejaUpdates.put( nome_extra  + "/bairro", bairro );
-            IgrejaUpdates.put( nome_extra  + "/cidade", cidade );
-            IgrejaUpdates.put( nome_extra  + "/estado", estado );
-            IgrejaUpdates.put( nome_extra  + "/pais_", pais );
-            IgrejaUpdates.put( nome_extra  + "/cep", cep);
-            IgrejaUpdates.put( nome_extra  + "/ddi", ddi  );
-            IgrejaUpdates.put( nome_extra  + "/phone", fone);
+        try {
+            String denom = Objects.requireNonNull ( denominacao.getEditText ( ), "" ).getText ().toString().trim();
+            String igrejanome = Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).getText ().toString().trim();
+            String endereco = Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).getText ().toString().trim();
+            if(endereco.equals ("")){
+                validate = false;
+                editEndereco.setError("Este campo é obrigatório");
+                editEndereco.setFocusable (true);
+                editEndereco.requestFocus ();
+            }
+            String bairro = Objects.requireNonNull ( editBairro.getEditText ( ), "" ).getText ().toString().trim();
+            if(bairro.equals ("")){
+                validate = false;
+                editBairro.setError("Este campo é obrigatório");
+                editBairro.setFocusable (true);
+                editBairro.requestFocus ();
+            }
+            String cidade = Objects.requireNonNull ( editCidade.getEditText ( ), "" ).getText ().toString().trim();
+            if(cidade.equals ("")){
+                validate = false;
+                editCidade.setError("Este campo é obrigatório");
+                editCidade.setFocusable (true);
+                editCidade.requestFocus ();
+            }
+            String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
+            if(estado.equals ("")){
+                validate = false;
+                editEstado.setError("Este campo é obrigatório");
+                editEstado.setFocusable (true);
+                editEstado.requestFocus ();
+            }
+            String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
+            if(pais.equals ("")){
+                validate = false;
+                editPais.setError("Este campo é obrigatório");
+                editPais.setFocusable (true);
+                editPais.requestFocus ();
+            }
+            String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
+            if(cep.equals ("")){
+                validate = false;
+                editCep.setError("Este campo é obrigatório");
+                editCep.setFocusable (true);
+                editCep.requestFocus ();
+            }
+            String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
+            if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
+                validate = false;
+                editDdi.setError("Este campo é obrigatório, 3 dígitos.");
+                editDdi.setFocusable (true);
+                editDdi.requestFocus ();
+            }
+            String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
+            //  String hora = hh + ":" + mm;
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            novaRef2 =databaseReference.child( "churchs/").child( uid_extra );
+            if(validate) {
+                if ( !TextUtils.isEmpty ( igrejanome ) ) {
+                    Map < String, Object > IgrejaUpdates = new HashMap <> ( );
+                    IgrejaUpdates.put ( nome_extra + "/group" , denom );
+                    IgrejaUpdates.put ( nome_extra + "/nome" , igrejanome );
+                    IgrejaUpdates.put ( nome_extra + "/endereco" , endereco );
+                    IgrejaUpdates.put ( nome_extra + "/bairro" , bairro );
+                    IgrejaUpdates.put ( nome_extra + "/cidade" , cidade );
+                    IgrejaUpdates.put ( nome_extra + "/estado" , estado );
+                    IgrejaUpdates.put ( nome_extra + "/pais_" , pais );
+                    IgrejaUpdates.put ( nome_extra + "/cep" , cep );
+                    IgrejaUpdates.put ( nome_extra + "/ddi" , ddi );
+                    IgrejaUpdates.put ( nome_extra + "/phone" , fone );
 
-            novaRef2.updateChildren( IgrejaUpdates );
+                    novaRef2.updateChildren ( IgrejaUpdates );
 
-            Toast.makeText(this,"Editado célula com sucesso", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"Erro ao tentar Editar célula !", Toast.LENGTH_LONG).show();
+                    Toast.makeText ( this , "Editado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+
+                    Intent intent = new Intent ( EditIgrejaActivity.this , IgrejasCriadasActivity.class );
+                    intent.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
+                    intent.addFlags ( Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                    startActivity ( intent );
+                    finish ( );
+
+                } else {
+                    Toast.makeText ( this , "Erro ao tentar Editar célula !" , Toast.LENGTH_LONG ).show ( );
+                }
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
         }
 
-        Intent intent = new Intent( EditIgrejaActivity.this, IgrejasCriadasActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity( intent );
-        finish();
     }
 
     @Override

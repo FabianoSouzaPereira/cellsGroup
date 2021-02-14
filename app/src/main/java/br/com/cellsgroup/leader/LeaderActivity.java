@@ -168,8 +168,9 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     }
 
     private void readOnlyActive() {
+        UI = FirebaseAuth.getInstance().getCurrentUser();
         final String ui = UI.getUid ();
-        novaRef = databaseReference.child( "leaders/");
+        novaRef = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
         query = novaRef.orderByChild( "userId").startAt(ui).endAt(ui).limitToLast(limitebusca);
         queryListener =  new ValueEventListener () {
             @Override
@@ -312,7 +313,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Intent home = new Intent( this, ReadLeaderActivity.class );
+            Intent home = new Intent( LeaderActivity.this, HomeActivity.class );
             startActivity( home );
 
         } else if (id == R.id.nav_cells) {

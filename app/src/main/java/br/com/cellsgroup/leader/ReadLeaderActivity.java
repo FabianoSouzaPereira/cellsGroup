@@ -162,7 +162,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
 
     private void readOnlyActive() {
-        leaders = databaseReference.child( "leaders/");
+        leaders = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
         query = leaders
             .orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
         queryListener =  new ValueEventListener () {
@@ -347,7 +347,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
             Intent agenda = new Intent( ReadLeaderActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        }  else if (id == R.id.nav_view_leader) {
+        }  else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( ReadLeaderActivity.this, LeaderActivity.class );
             startActivity( agenda );
 

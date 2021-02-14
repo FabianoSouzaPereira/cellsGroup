@@ -32,6 +32,8 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 
+import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
+
 
 @SuppressWarnings( "ALL" )
 public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity implements AdapterListViewIgreja.OnIgrejaListener {
@@ -78,16 +80,16 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     private void readIgrejaCadastrada() {
         final String ui = HomeActivity.UI.getUid ().toString ();
-        novaRef = databaseReference.child( "churchs/");
-        Query query = novaRef.orderByChild ("igrejaID");
+        novaRef = databaseReference.child( "churchs/"  + uidIgreja);
+        Query query = novaRef.orderByChild ("user").equalTo (ui);
         listener =  new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ig.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    for(DataSnapshot sd : ds.getChildren ()) {
+                    for(DataSnapshot sd : dataSnapshot.getChildren ()) {
                         String key = sd.getKey();
                         if(!key.equalsIgnoreCase ( "members" )
+                            && !key.equalsIgnoreCase ( "leaders" )
                             && !key.equalsIgnoreCase ( "cells" )
                             && !key.equalsIgnoreCase ( "reports" )
                             && !key.equalsIgnoreCase ( "intercession" )
@@ -95,36 +97,37 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                         ) {
 
                             Igreja igr = sd.getValue ( Igreja.class );
-                            if(igr.getUser ().equals (ui)) {
-                                uid = igr.getUid ( );
-                                String user = igr.getUser ( );
-                                String group = igr.getGroup ( );
-                                nome = igr.getNome ( );
-                                String endereco = igr.getEndereco ( );
-                                String bairro = igr.getBairro ( );
-                                String cidade = igr.getCidade ( );
-                                String estado = igr.getEstado ( );
-                                String pais = igr.getPais_ ( );
-                                String cep = igr.getCep ( );
-                                String ddi = igr.getDdi ( );
-                                String telefone = igr.getPhone ( );
-                                String igrejaID = igr.getIgrejaID ();
-                                String members = igr.getMembers ();
+                            if (igr.getUser() != null) {
+                                if(igr.getUser ().equals (ui)) {
+                                    uid = igr.getUid ( );
+                                    String user = igr.getUser ( );
+                                    String group = igr.getGroup ( );
+                                    nome = igr.getNome ( );
+                                    String endereco = igr.getEndereco ( );
+                                    String bairro = igr.getBairro ( );
+                                    String cidade = igr.getCidade ( );
+                                    String estado = igr.getEstado ( );
+                                    String pais = igr.getPais_ ( );
+                                    String cep = igr.getCep ( );
+                                    String ddi = igr.getDdi ( );
+                                    String telefone = igr.getPhone ( );
+                                    String igrejaID = igr.getIgrejaID ();
+                                    String members = igr.getMembers ();
 
-                                ig.add ( "Denominação:  " + group );
-                                ig.add ( "Nome:  " + nome );
-                                ig.add ( "Endereço:  " + endereco );
-                                ig.add ( "Bairro:  " + bairro );
-                                ig.add ( "Cidade:  " + cidade );
-                                ig.add ( "Estado:  " + estado );
-                                ig.add ( "País:  " + pais );
-                                ig.add ( "Cep:  " + cep );
-                                ig.add ( "DDI:  " + ddi );
-                                ig.add ( "Fone:  " + telefone );
+                                    ig.add ( "Denominação:  " + group );
+                                    ig.add ( "Nome:  " + nome );
+                                    ig.add ( "Endereço:  " + endereco );
+                                    ig.add ( "Bairro:  " + bairro );
+                                    ig.add ( "Cidade:  " + cidade );
+                                    ig.add ( "Estado:  " + estado );
+                                    ig.add ( "País:  " + pais );
+                                    ig.add ( "Cep:  " + cep );
+                                    ig.add ( "DDI:  " + ddi );
+                                    ig.add ( "Fone:  " + telefone );
+                                }
                             }
                         }
                     }
-                }
 
                 List<String> igrejas = ig;
 

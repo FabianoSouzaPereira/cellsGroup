@@ -39,12 +39,15 @@ public class DeleteIgrejaActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef4;
     private DatabaseReference novaRef5;
+    private DatabaseReference ref;
     private String uid_extra;
     private String nome_extra;
     private TextInputLayout igrejaParaApagar;
     private TextInputLayout apagarIgreja;
     private Button btnApagarIgreja;
     private FirebaseAuth mAuth;
+    private String uid;
+    private DatabaseReference leaders;
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -60,6 +63,7 @@ public class DeleteIgrejaActivity extends AppCompatActivity {
         nome_extra = intent.getStringExtra( "Nome" );
         final String ui = HomeActivity.UI.getUid ();
         novaRef4 = databaseReference.child( "churchs/");
+
         inicializarComponentes();
         igrejaParaApagar.getEditText().setText( nome_extra );
         btnApagarIgreja.setOnClickListener( new View.OnClickListener() {
@@ -77,6 +81,14 @@ public class DeleteIgrejaActivity extends AppCompatActivity {
 
         if(!TextUtils.isEmpty( uid_extra )){
             novaRef4.child( uid_extra ).removeValue();
+
+            ref = databaseReference;
+
+            //apaga leader de membros
+            ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
+
+            //Apaga leader em users/
+            leaders.child ( uid ).removeValue ( );
 
             Toast.makeText(this,"Igreja Apagada com sucesso", Toast.LENGTH_LONG).show();
         }else{

@@ -46,7 +46,9 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
@@ -410,7 +412,13 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( EditCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_contact) {
+        }else if (id == R.id.nav_leader) {
+            Intent agenda = new Intent( EditCelulaActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+        }else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( EditCelulaActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+        }else if (id == R.id.nav_contact) {
             Intent contato = new Intent( EditCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );
         } else if (id == R.id.nav_share) {

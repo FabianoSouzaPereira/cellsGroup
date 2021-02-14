@@ -211,28 +211,35 @@ public class ReadCelulaActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.nav_home) {
             Intent home = new Intent( this, HomeActivity.class );
             startActivity( home );
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent( ReadCelulaActivity.this, CelulasActivity.class );
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent( ReadCelulaActivity.this, ComunicadosActivity.class );
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( ReadCelulaActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( ReadCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view_leader) {
+
+        } else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( ReadCelulaActivity.this, LeaderActivity.class );
             startActivity( agenda );
 
         }else if (id == R.id.nav_contact) {
             Intent contato = new Intent( ReadCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( ReadCelulaActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
+
         } else if (id == R.id.nav_send) {
             Intent Enviar = new Intent( ReadCelulaActivity.this, EnviarActivity.class );
             startActivity( Enviar );

@@ -196,7 +196,19 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextnome.requestFocus ();
         }
         String idade =  EditTextidade.getEditText ( ).getText().toString().trim();
+        if( idade.equals ( "" )){
+            validate = false;
+            EditTextidade.setError("Este campo é obrigatório");
+            EditTextidade.setFocusable (true);
+            EditTextidade.requestFocus ();
+        }
         String sexo = EditTextsexo.getEditText ( ).getText().toString().trim();
+        if( sexo.equals ( "" )){
+            validate = false;
+            EditTextsexo.setError("Este campo é obrigatório");
+            EditTextsexo.setFocusable (true);
+            EditTextsexo.requestFocus ();
+        }
         String dataNascimento = EditTextdataNascimento.getEditText().getText().toString().trim();
         if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 ){
             validate = false;
@@ -219,13 +231,19 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextnomepai.requestFocus ();
         }
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
-        if(nomemae.equals ("")|| nome.length() < 4){
+        if(nomemae.equals ("")){
             validate = false;
             EditTextnomemae.setError("Este campo é obrigatório");
             EditTextnomemae.setFocusable (true);
             EditTextnomemae.requestFocus ();
         }
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
+        if( estadocivil.equals ( "" )){
+            validate = false;
+            EditTextestadocivil.setError("Este campo é obrigatório, dois dígitos");
+            EditTextestadocivil.setFocusable (true);
+            EditTextestadocivil.requestFocus ();
+        }
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
         if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
             validate = false;
@@ -314,7 +332,7 @@ public class AddLeaderActivity extends AppCompatActivity {
 
                 if ( uid != null ) {
                     //Cria leader
-                    Leaders.child ( "leaders/" ).child ( uid ).setValue ( Leader );
+                    Leaders.child ("churchs/" + uidIgreja + "/leaders/" ).child ( uid ).setValue ( Leader );
 
                     //atualiza membro na igreja
                     Map < String, Object > map = new HashMap <> ( );

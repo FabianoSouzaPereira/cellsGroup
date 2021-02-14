@@ -51,6 +51,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.models.celulas.Celula;
 
 import br.com.cellsgroup.leader.LeaderActivity;
+import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.group;
@@ -307,27 +308,39 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         if (id == R.id.nav_home) {
             Intent home = new Intent(this,HomeActivity.class);
             startActivity(home);
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent(CelulasActivity.this,CelulasActivity.class);
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent(CelulasActivity.this, ComunicadosActivity.class);
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( CelulasActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( CelulasActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view_leader) {
+
+        } else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( CelulasActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
+
+        }else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( CelulasActivity.this, LeaderActivity.class );
             startActivity( agenda );
+
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( CelulasActivity.this, ContatoActivity.class );
             startActivity( contato );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( CelulasActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
+
         } else if (id == R.id.nav_send) {
             Intent Enviar = new Intent( CelulasActivity.this, EnviarActivity.class );
             startActivity( Enviar );

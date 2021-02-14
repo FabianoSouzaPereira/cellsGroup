@@ -83,6 +83,8 @@ public class RememberActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Log.d("reset", "Email sent.");
+                        Toast.makeText( RememberActivity.this, "Email enviado",
+                            Toast.LENGTH_SHORT).show();
                     }
                 }
             });

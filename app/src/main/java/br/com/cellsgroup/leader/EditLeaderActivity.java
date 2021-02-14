@@ -39,6 +39,7 @@ import java.util.Objects;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.utils.MaskEditUtil;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
@@ -158,7 +159,19 @@ public class EditLeaderActivity extends AppCompatActivity {
             EditTextnome.requestFocus ();
         }
         String idade =  EditTextidade.getEditText ( ).getText().toString().trim();
+        if( idade.equals ( "" )){
+            validate = false;
+            EditTextidade.setError("Este campo é obrigatório");
+            EditTextidade.setFocusable (true);
+            EditTextidade.requestFocus ();
+        }
         String sexo = EditTextsexo.getEditText ( ).getText().toString().trim();
+        if( sexo.equals ( "" )){
+            validate = false;
+            EditTextsexo.setError("Este campo é obrigatório");
+            EditTextsexo.setFocusable (true);
+            EditTextsexo.requestFocus ();
+        }
         String dataNascimento = EditTextdataNascimento.getEditText().getText().toString().trim();
         if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 ){
             validate = false;
@@ -181,13 +194,19 @@ public class EditLeaderActivity extends AppCompatActivity {
             EditTextnomepai.requestFocus ();
         }
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
-        if(nomemae.equals ("")|| nome.length() < 4){
+        if(nomemae.equals ("")){
             validate = false;
             EditTextnomemae.setError("Este campo é obrigatório");
             EditTextnomemae.setFocusable (true);
             EditTextnomemae.requestFocus ();
         }
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
+        if( estadocivil.equals ( "" )){
+            validate = false;
+            EditTextestadocivil.setError("Este campo é obrigatório, dois dígitos");
+            EditTextestadocivil.setFocusable (true);
+            EditTextestadocivil.requestFocus ();
+        }
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
         if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
             validate = false;
@@ -270,7 +289,7 @@ public class EditLeaderActivity extends AppCompatActivity {
         }
         if( validate ){
             if(!TextUtils.isEmpty( nome ) ) {
-
+                leaders = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
                 if ( uid != null ) {
 
                     Map<String, Object> userUpdates = new HashMap<>();
@@ -314,7 +333,7 @@ public class EditLeaderActivity extends AppCompatActivity {
     }
 
     private void readOnlyActive() {
-        leaders = databaseReference.child( "leaders/");
+        leaders = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
         query = leaders.orderByChild( "uid" ).equalTo (uid).limitToFirst(1);
         queryListener =  new ValueEventListener () {
 
@@ -322,72 +341,51 @@ public class EditLeaderActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                   for(DataSnapshot dados : dataSnapshot.getChildren()) {
                     try {
-                        //  User u = dados.getValue( User.class );
-                       Object ui =  dados.child ("uid").getValue ();
-                       String id = Objects.requireNonNull ( ui,"" ).toString ();
-                       if(id.equalsIgnoreCase (uid) ) {
-                           Object celulaOb = dados.child ( "celula" ).getValue ( );
-                           Object userOb = dados.child ( "nome" ).getValue ( );
-                           Object idadeOb = dados.child ( "idade" ).getValue ( );
-                           Object sexoOb = dados.child ( "sexo" ).getValue ( );
-                           Object dataNascimentoOb = dados.child ( "dataNascimento" ).getValue ( );
-                           Object dataBastismoOb = dados.child ( "dataBastismo" ).getValue ( );
-                           Object nomepaiOb = dados.child ( "nomepai" ).getValue ( );
-                           Object nomemaeOb = dados.child ( "nomemae" ).getValue ( );
-                           Object estadocivilOb = dados.child ( "estadocivil" ).getValue ( );
-                           Object ddiOb = dados.child ( "ddi" ).getValue ( );
-                           Object telefoneOb = dados.child ( "telefone" ).getValue ( );
-                           Object emailOb = dados.child ( "email" ).getValue ( );
-                           Object enderecoOb = dados.child ( "endereco" ).getValue ( );
-                           Object bairroOb = dados.child ( "bairro" ).getValue ( );
-                           Object cidadeOb = dados.child ( "cidade" ).getValue ( );
-                           Object estadoOb = dados.child ( "estado" ).getValue ( );
-                           Object paisOb = dados.child ( "pais" ).getValue ( );
-                           Object cepOb = dados.child ( "cep" ).getValue ( );
-                           Object cargoIgrejaOb = dados.child ( "cargoIgreja" ).getValue ( );
+                       Leader l = dados.getValue (Leader.class);
+                        if (l.getUid() != null && l.getUid() != null) {
+                            if(l.getUid().equalsIgnoreCase (l.getUid()) ) {
+                                String celula = l.getCelula().trim();
+                                String nome = l.getNome().trim();
+                                String idade = l.getIdade().trim ();
+                                String sexo = l.getSexo ().trim ();
+                                String dataNascimento = l.getDataNascimento ().trim ();
+                                String dataBastismo = l.getDataBastismo ().trim ();
+                                String nomepai = l.getNomepai ().trim ();
+                                String nomemae = l.getNomemae ().trim ();
+                                String estadocivil = l.getEstadocivil ().trim ();
+                                String ddi = l.getDdi ().trim ();
+                                String telefone = l.getTelefone ().trim ();
+                                String email = l.getEmail ().trim ();
+                                String endereco = l.getEndereco ().trim ();
+                                String bairro = l.getBairro ().trim ();
+                                String cidade = l.getCidade ().trim ();
+                                String estado = l.getEstado ().trim ();
+                                String pais = l.getPais ().trim ();
+                                String cep = l.getCep ().trim ();
+                                String cargoIgreja = l.getCargoIgreja ().trim ();
 
-                           celulaName = Objects.requireNonNull ( celulaOb , "" ).toString ( );
-                           String nome = Objects.requireNonNull ( userOb , "" ).toString ( );
-                           String idade = Objects.requireNonNull ( idadeOb , "" ).toString ( );
-                           String sexo = Objects.requireNonNull ( sexoOb , "" ).toString ( );
-                           String dataNascimento = Objects.requireNonNull ( dataNascimentoOb , "" ).toString ( );
-                           String dataBastismo = Objects.requireNonNull ( dataBastismoOb , "" ).toString ( );
-                           String nomepai = Objects.requireNonNull ( nomepaiOb , "" ).toString ( );
-                           String nomemae = Objects.requireNonNull ( nomemaeOb , "" ).toString ( );
-                           String estadocivil = Objects.requireNonNull ( estadocivilOb , "" ).toString ( );
-                           String ddi = Objects.requireNonNull ( ddiOb , "" ).toString ( );
-                           String telefone = Objects.requireNonNull ( telefoneOb , "" ).toString ( );
-                           useremail = Objects.requireNonNull ( emailOb , "" ).toString ( );
-                           String email = useremail;
-                           String endereco = Objects.requireNonNull ( enderecoOb , "" ).toString ( );
-                           String bairro = Objects.requireNonNull ( bairroOb , "" ).toString ( );
-                           String cidade = Objects.requireNonNull ( cidadeOb , "" ).toString ( );
-                           String estado = Objects.requireNonNull ( estadoOb , "" ).toString ( );
-                           String pais = Objects.requireNonNull ( paisOb , "" ).toString ( );
-                           String cep = Objects.requireNonNull ( cepOb , "" ).toString ( );
-                           String cargoIgreja = Objects.requireNonNull ( cargoIgrejaOb , "" ).toString ( );
+                                Objects.requireNonNull ( EditTextnome.getEditText ( ) , "" ).setText ( nome );
+                                Objects.requireNonNull ( EditTextidade.getEditText ( ) , "" ).setText ( idade );
+                                Objects.requireNonNull ( EditTextsexo.getEditText ( ) , "" ).setText ( sexo );
+                                Objects.requireNonNull ( EditTextdataNascimento.getEditText ( ) , "" ).setText ( dataNascimento );
+                                Objects.requireNonNull ( EditTextdataBastismo.getEditText ( ) , "" ).setText ( dataBastismo );
+                                Objects.requireNonNull ( EditTextnomepai.getEditText ( ) , "" ).setText ( nomepai );
+                                Objects.requireNonNull ( EditTextnomemae.getEditText ( ) , "" ).setText ( nomemae );
+                                Objects.requireNonNull ( EditTextestadocivil.getEditText ( ) , "" ).setText ( estadocivil );
+                                Objects.requireNonNull ( EdiTextddi.getEditText ( ) , "" ).setText ( ddi );
+                                Objects.requireNonNull ( EditTexttelefone.getEditText ( ) , "" ).setText ( telefone );
+                                Objects.requireNonNull ( EditTextemail.getEditText ( ) , "" ).setText ( email );
+                                Objects.requireNonNull ( EditTextendereco.getEditText ( ) , "" ).setText ( endereco );
+                                Objects.requireNonNull ( EditTextbairro.getEditText ( ) , "" ).setText ( bairro );
+                                Objects.requireNonNull ( EditTextcidade.getEditText ( ) , "" ).setText ( cidade );
+                                Objects.requireNonNull ( EditTextestado.getEditText ( ) , "" ).setText ( estado );
+                                Objects.requireNonNull ( EditTextpais.getEditText ( ) , "" ).setText ( pais );
+                                Objects.requireNonNull ( EditTextcep.getEditText ( ) , "" ).setText ( cep );
+                                Objects.requireNonNull ( EditTextcargoIgreja.getEditText ( ) , "" ).setText ( cargoIgreja );
+                                loadSpinner(celula);
 
-                           Objects.requireNonNull ( EditTextnome.getEditText ( ) , "" ).setText ( nome );
-                           Objects.requireNonNull ( EditTextidade.getEditText ( ) , "" ).setText ( idade );
-                           Objects.requireNonNull ( EditTextsexo.getEditText ( ) , "" ).setText ( sexo );
-                           Objects.requireNonNull ( EditTextdataNascimento.getEditText ( ) , "" ).setText ( dataNascimento );
-                           Objects.requireNonNull ( EditTextdataBastismo.getEditText ( ) , "" ).setText ( dataBastismo );
-                           Objects.requireNonNull ( EditTextnomepai.getEditText ( ) , "" ).setText ( nomepai );
-                           Objects.requireNonNull ( EditTextnomemae.getEditText ( ) , "" ).setText ( nomemae );
-                           Objects.requireNonNull ( EditTextestadocivil.getEditText ( ) , "" ).setText ( estadocivil );
-                           Objects.requireNonNull ( EdiTextddi.getEditText ( ) , "" ).setText ( ddi );
-                           Objects.requireNonNull ( EditTexttelefone.getEditText ( ) , "" ).setText ( telefone );
-                           Objects.requireNonNull ( EditTextemail.getEditText ( ) , "" ).setText ( email );
-                           Objects.requireNonNull ( EditTextendereco.getEditText ( ) , "" ).setText ( endereco );
-                           Objects.requireNonNull ( EditTextbairro.getEditText ( ) , "" ).setText ( bairro );
-                           Objects.requireNonNull ( EditTextcidade.getEditText ( ) , "" ).setText ( cidade );
-                           Objects.requireNonNull ( EditTextestado.getEditText ( ) , "" ).setText ( estado );
-                           Objects.requireNonNull ( EditTextpais.getEditText ( ) , "" ).setText ( pais );
-                           Objects.requireNonNull ( EditTextcep.getEditText ( ) , "" ).setText ( cep );
-                           Objects.requireNonNull ( EditTextcargoIgreja.getEditText ( ) , "" ).setText ( cargoIgreja );
-                           loadSpinner(celulaName);
-
-                       }
+                            }
+                        }
                     } catch ( Exception e ) {
                         e.printStackTrace ( );
                     }
@@ -482,7 +480,7 @@ public class EditLeaderActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 ref = databaseReference;
-
+                leaders = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
                 //apaga leader de membros
                 ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
 

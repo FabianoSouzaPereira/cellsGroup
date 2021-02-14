@@ -314,7 +314,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             Intent agenda = new Intent( ReadRelatorioActivity.this, AgendaActivity.class );
             startActivity( agenda );
 
-        } else if (id == R.id.nav_view_leader) {
+        } else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( ReadRelatorioActivity.this, LeaderActivity.class );
             startActivity( agenda );
 
@@ -325,6 +325,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( ReadRelatorioActivity.this, ContatoActivity.class );
             startActivity( contato );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( ReadRelatorioActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );

@@ -105,6 +105,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText( LoginActivity.this, getString( R.string.logado_sucesso),Toast.LENGTH_SHORT).show();
                                 FirebaseUser currentUser = mAuth.getCurrentUser();
                                 updateUI(currentUser);
+                                editEmail.getEditText().setText("");
+                                editSenha.getEditText().setText("");
+
+                                
                                 Intent home = new Intent( LoginActivity.this, HomeActivity.class );
                                 startActivity( home );
                               //  startSignIn();
@@ -118,12 +122,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 }
 
                             }
-                            editEmail.getEditText().setText("");
-                            editSenha.getEditText().setText("");
-                            progressDialog.dismiss();
+
                         }
 
                     } );
+            progressDialog.dismiss();
         } catch ( Exception e ) {
             e.printStackTrace ( );
         }
@@ -141,7 +144,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }else if ( id == R.id.btnEsqueci_Senha){
             Intent remember = new Intent( LoginActivity.this, RememberActivity.class );
             startActivity( remember );
-            finish();
+        }else if (id == R.id.btnRegistro){
+            Intent register= new Intent( LoginActivity.this, RegisterActivity.class );
+            startActivity( register );
         }
     }
 
@@ -338,6 +343,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void signOut() {
+        HomeActivity.igreja = "";
+        HomeActivity.uidIgreja = "";
         mAuth.signOut();
         updateUI(null);
     }

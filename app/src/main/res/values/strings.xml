@@ -162,7 +162,7 @@
     <string name="procurar">Procurar</string>
     <string name="c_digo_do_pa_s_required">DDD*  ex:. Brasil 55 </string>
     <string name="telefone">Telefone</string>
-    <string name="telefone_required">(DDD) + número*</string>
+    <string name="telefone_required">(DDD) + celular*</string>
     <string name="celulas">Células</string>
 
     <string name="descri_o">Descrição:</string>

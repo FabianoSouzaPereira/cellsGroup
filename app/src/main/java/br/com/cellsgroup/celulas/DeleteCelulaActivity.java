@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
+import br.com.cellsgroup.Igreja.DeleteIgrejaActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
@@ -32,6 +33,7 @@ import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
@@ -147,24 +149,39 @@ public class DeleteCelulaActivity extends AppCompatActivity implements Navigatio
         if (id == R.id.nav_home) {
             Intent home = new Intent(this, HomeActivity.class);
             startActivity(home);
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent(DeleteCelulaActivity.this,CelulasActivity.class);
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent(DeleteCelulaActivity.this, ComunicadosActivity.class);
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( DeleteCelulaActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( DeleteCelulaActivity.this, AgendaActivity.class );
             startActivity( agenda );
+
+        } else if (id == R.id.nav_leader) {
+            Intent agenda = new Intent( DeleteCelulaActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( DeleteCelulaActivity.this, ContatoActivity.class );
             startActivity( contato );
+
+        }else if (id == R.id.nav_contact) {
+            Intent contato = new Intent( DeleteCelulaActivity.this, ContatoActivity.class );
+            startActivity( contato );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( DeleteCelulaActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
+
         } else if (id == R.id.nav_send) {
             Intent Enviar = new Intent( DeleteCelulaActivity.this, EnviarActivity.class );
             startActivity( Enviar );

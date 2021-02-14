@@ -25,6 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +54,6 @@ import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
-import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
@@ -67,7 +67,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
     private final int limitebusca = 200;
-
+    public static FirebaseUser UI;
     private RecyclerView recyclerView;
     private final ArrayList < Leader > arrayLeader = new ArrayList < Leader > ();
     private AdapterListViewContato mAdapter;
@@ -87,7 +87,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         setContentView( R.layout.activity_contato );
         Toolbar toolbar = findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
-
+        UI = FirebaseAuth.getInstance().getCurrentUser();
         initcomponents();
         inicializarFirebase();
 
@@ -96,7 +96,7 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         recyclerView.setLayoutManager(layoutManager);
         final String ui = UI.getUid ();
 
-        novaRef = databaseReference.child( "leaders/");
+        novaRef = databaseReference.child("churchs/" + uidIgreja + "/leaders/");
         querycontato = novaRef.orderByChild( "userId").startAt(ui).limitToLast(limitebusca);
         queryContatoListener =  new ValueEventListener () {
             @Override
@@ -257,21 +257,30 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         if (id == R.id.nav_home) {
             Intent home = new Intent( this, HomeActivity.class );
             startActivity( home );
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent( ContatoActivity.this, CelulasActivity.class );
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent( ContatoActivity.this, ComunicadosActivity.class );
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( ContatoActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( ContatoActivity.this, AgendaActivity.class );
             startActivity( agenda );
-        } else if (id == R.id.nav_view_leader) {
+
+        }else if (id == R.id.nav_leader) {
             Intent agenda = new Intent( ContatoActivity.this, LeaderActivity.class );
             startActivity( agenda );
+
+        }else if (id == R.id.nav_realatorio) {
+            Intent relatorio = new Intent( ContatoActivity.this, RelatorioActivityView.class );
+            startActivity( relatorio );
 
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( ContatoActivity.this, CompartilharActivity.class );

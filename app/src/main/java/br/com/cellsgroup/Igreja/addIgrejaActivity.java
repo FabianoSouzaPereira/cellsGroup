@@ -189,7 +189,7 @@ public class addIgrejaActivity extends AppCompatActivity {
 
                     //insere no groups de igrejas
                     Map < String, Object > map1 = new HashMap <> ( );
-                    map1.put ( "members/" + currentTimeMillis ( ) , igreja );
+                    map1.put ( "members/" + uid , igreja );
                     ref2.child ( "groups/" ).child ( denominacao ).updateChildren ( map1 );
 
                     clearEditTexts ( );

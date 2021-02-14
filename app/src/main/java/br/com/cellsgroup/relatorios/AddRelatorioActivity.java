@@ -41,6 +41,7 @@ import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 import br.com.cellsgroup.models.celulas.Celula;
 
@@ -485,27 +486,39 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         if (id == R.id.nav_home) {
             Intent home = new Intent( this, HomeActivity.class );
             startActivity( home );
+
         } else if (id == R.id.nav_cells) {
             Intent celulas = new Intent( AddRelatorioActivity.this, CelulasActivity.class );
             startActivity( celulas );
+
         } else if (id == R.id.nav_communication) {
             Intent comunidados = new Intent( AddRelatorioActivity.this, ComunicadosActivity.class );
             startActivity( comunidados );
+
         } else if (id == R.id.nav_intersession) {
             Intent intercessao = new Intent( AddRelatorioActivity.this, IntercessaoActivity.class );
             startActivity( intercessao );
+
         } else if (id == R.id.nav_schedule) {
             Intent agenda = new Intent( AddRelatorioActivity.this, AgendaActivity.class );
             startActivity( agenda );
+
+        } else if (id == R.id.nav_leader) {
+            Intent agenda = new Intent( AddRelatorioActivity.this, LeaderActivity.class );
+            startActivity( agenda );
+
         } else if (id == R.id.nav_realatorio) {
             Intent relatorio = new Intent( AddRelatorioActivity.this, RelatorioActivityView.class );
             startActivity( relatorio );
+
         } else if (id == R.id.nav_contact) {
             Intent contato = new Intent( AddRelatorioActivity.this, ContatoActivity.class );
             startActivity( contato );
+
         } else if (id == R.id.nav_share) {
             Intent compartilhar = new Intent( AddRelatorioActivity.this, CompartilharActivity.class );
             startActivity( compartilhar );
+
         } else if (id == R.id.nav_send) {
             Intent Enviar = new Intent( AddRelatorioActivity.this, EnviarActivity.class );
             startActivity( Enviar );
