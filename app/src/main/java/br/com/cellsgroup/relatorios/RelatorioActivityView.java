@@ -283,8 +283,8 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         }  else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
-            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
-            finish();
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_SHORT ).show ( );
+            finishAffinity ();
             return true;
         }
         return super.onOptionsItemSelected ( item );

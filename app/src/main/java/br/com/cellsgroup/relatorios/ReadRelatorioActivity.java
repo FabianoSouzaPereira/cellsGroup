@@ -282,7 +282,7 @@ public class ReadRelatorioActivity extends AppCompatActivity implements Navigati
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
             Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
-            finish();
+            finishAffinity ();
             return true;
         }
         return super.onOptionsItemSelected ( item );

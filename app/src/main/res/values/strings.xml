@@ -265,4 +265,8 @@ Nesse contexto, célula é simplesmente uma miniatura da igreja reunindo-se nas 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="preencha_o_email_e_senha_e_click_em_registrar">Preencha o email e senha e click em registrar!</string>
     <string name="preencha_o_email_e_click_em_registrar">Preencha o email e click em enviar!</string>
+    <string name="google">Google</string>
+    <string name="google_login">Google login</string>
+    <string name="ou_use_o_google_se_quiser">Ou use o google se quiser</string>
+    <string name="caso_ainda_n_o_seja_registrado_npreencha_o_email_e_senha_e_click_em_registrar">Caso ainda não seja registrado?\nPreencha o email e senha e click em registrar!</string>
 </resources>

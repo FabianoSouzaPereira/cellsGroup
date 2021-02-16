@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "688027091228",
+    "firebase_url": "https://cellsgroup-383d5-default-rtdb.firebaseio.com",
     "project_id": "cellsgroup-383d5",
     "storage_bucket": "cellsgroup-383d5.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "688027091228-11522rpojrlrrisvjgdk49hcrp0egt9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.cellsgroup",
+            "certificate_hash": "3763a573c094ab1037efa61ed72ed9b9e6314bdd"
+          }
+        },
+        {
+          "client_id": "688027091228-e3s31ollla8cm32r3sr38cblkl9d4jfc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.cellsgroup",
+            "certificate_hash": "4178d4466953e34d4cc5edd721a7417eb2b57b47"
+          }
+        },
         {
           "client_id": "688027091228-fc9381otlqsbirooaf5oobpmv095dnne.apps.googleusercontent.com",
           "client_type": 3

@@ -111,7 +111,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         UI = FirebaseAuth.getInstance().getCurrentUser();
-        updateUI( UI ); //verifica se leader está logado
+        if(UI != null) {
+            updateUI ( UI ); //verifica se leader está logado
+        }
         setContentView( R.layout.activity_home );
         if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
@@ -152,8 +154,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        UI = FirebaseAuth.getInstance().getCurrentUser();
-        updateUI( UI ); //verifica se leader está logado
+        if(UI != null) {
+            updateUI ( UI ); //verifica se leader está logado
+        }
         if ( !Logado ){
             Intent intent = new Intent( HomeActivity.this, LoginActivity.class );
             startActivity( intent );
@@ -172,25 +175,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText( this, "Sem leader cadastrado", Toast.LENGTH_LONG ).show();
             return;
         }
-//            novaref = databaseReference.child("church/"+ "liders/");
-//            Query query = novaref.orderByChild ("userId").equalTo( ui ).limitToFirst (1);
-//            query.addListenerForSingleValueEvent ( new ValueEventListener ( ) {
-//                @Override
-//                public void onDataChange ( @NonNull DataSnapshot snapshot ) {
-//                    for (DataSnapshot ds : snapshot.getChildren()) {
-//                        Leader leader = ds.getValue ( Leader.class );
-//                        useremail = leader.getEmail ();
-//                        group =leader.getGroup ().toString ();
-//                        igreja = leader.getIgrejaPadrao ();
-//                        cellPhone = leader.getTelefone ();
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled ( @NonNull DatabaseError error ) {
-//
-//                }
-//            } );
 
         //carrega dados da igreja cadastrada
         novaref2 = databaseReference.child ("churchs/");
@@ -416,8 +400,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
-            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
-            finish();
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_SHORT ).show ( );
+            finishAffinity ();
             return true;
         }
         return super.onOptionsItemSelected ( item );

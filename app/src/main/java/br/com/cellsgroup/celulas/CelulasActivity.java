@@ -294,7 +294,8 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         }  else if ( itemId == R.id.action_Logout ) {
             FirebaseAuth.getInstance ( ).signOut ( );
             updateUI ( null );
-            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_LONG ).show ( );
+            Toast.makeText ( this , getString ( R.string.Logout_sucesso ) , Toast.LENGTH_SHORT ).show ( );
+            finishAffinity ();
             return true;
         }
         return super.onOptionsItemSelected ( item );
