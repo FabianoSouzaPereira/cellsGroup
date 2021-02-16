@@ -473,6 +473,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( comunidados );
     }
 
+    public void cardigrejaClick(View view) throws Exception {
+        Intent igrejas = new Intent(HomeActivity.this,IgrejasCriadasActivity.class);
+        startActivity( igrejas );
+    }
+
     public void cardintercessaoClick(View view) throws Exception {
         Intent intercessao = new Intent( HomeActivity.this,IntercessaoActivity.class );
         startActivity( intercessao );

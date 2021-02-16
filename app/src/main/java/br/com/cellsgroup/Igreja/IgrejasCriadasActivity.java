@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,6 +55,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    private Button btnIgreja;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,14 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager (this);
         recyclerView.setLayoutManager(layoutManager);
+        btnIgreja = findViewById (R.id.btnIgreja );
+        btnIgreja.setOnClickListener ( new View.OnClickListener ( ) {
+            @Override
+            public void onClick ( View v ) {
+                Intent addigreja = new Intent ( IgrejasCriadasActivity.this  , addIgrejaActivity.class );
+                startActivity ( addigreja );
+            }
+        } );
 
         readIgrejaCadastrada();
 
@@ -134,6 +145,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                 mAdapter = new AdapterListViewIgreja(igrejas, IgrejasCriadasActivity.this, IgrejasCriadasActivity.this );
                 recyclerView.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+                hiddShowMessage();
 
             }
 
@@ -144,7 +156,18 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         query.addListenerForSingleValueEvent (listener);
         query.removeEventListener (listener);
     }
+    // Mostra memsagem se lista vir vazia
+    private void hiddShowMessage(){
 
+        CardView cardView = findViewById (R.id.cardViewIgrejas);
+        if( ig.size() == 0){
+            recyclerView.setVisibility (View.GONE);
+            cardView.setVisibility (View.VISIBLE);
+        }else{
+            cardView.setVisibility (View.GONE);
+            recyclerView.setVisibility (View.VISIBLE);
+        }
+    }
 
     private void inicializaComponentes() {
         recyclerView = findViewById(R.id.recyclerViewIgreja );

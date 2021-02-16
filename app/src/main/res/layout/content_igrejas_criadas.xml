@@ -17,8 +17,63 @@
         android:paddingTop="15dp"
         android:paddingEnd="5dp"
         android:paddingBottom="15dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewIgrejas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051">
+
+        <ImageView
+            android:id="@+id/imageViewIgreja"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/sem_lider"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_baseline_account_balance_24_green" />
+
+        <TextView
+            android:id="@+id/textMensagemIgreja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="220dp"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="casual"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="@string/messageIgreja"
+            android:textAlignment="center"
+            android:textColor="#373737"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnIgreja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/criar_nova_igreja"
+            android:textColor="#1976D2"
+            android:textColorLink="#1976D2"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
