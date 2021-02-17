@@ -146,7 +146,6 @@ public class EditLeaderActivity extends AppCompatActivity {
         EditTextcep = findViewById( R.id.text_input_editCep );
         Objects.requireNonNull ( EditTextcep.getEditText ( ), "00000-000" ).addTextChangedListener ( MaskEditUtil.mask (EditTextcep, MaskEditUtil.FORMAT_CEP));
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
-
     }
 
     private void inicializarFirebase() {
@@ -340,7 +339,7 @@ public class EditLeaderActivity extends AppCompatActivity {
                 if ( uid != null ) {
 
                     Map<String, Object> userUpdates = new HashMap<>();
-                    userUpdates.put( "/celula" , cel);
+                    userUpdates.put( "/celula" , celula);
                     userUpdates.put( "/nome" , nome);
                     userUpdates.put( "/idade", idade );
                     userUpdates.put( "/sexo", sexo );
@@ -580,10 +579,6 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     }
 
-    public void initAlertDialogo(){
-
-    }
-
     @Override
     public void onBackPressed() {
         EditLeaderActivity.this.finish();
@@ -631,7 +626,6 @@ public class EditLeaderActivity extends AppCompatActivity {
         DataTime = data + " "+ hora;
         DataT = data;
     }
-
 
     @Override
     protected void onResume ( ) {
