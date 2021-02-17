@@ -137,13 +137,31 @@ public class EditIgrejaActivity extends AppCompatActivity {
 
         try {
             String denom = Objects.requireNonNull ( denominacao.getEditText ( ), "" ).getText ().toString().trim();
+            if(denom .equals ("")|| denom.length() < 4){
+                validate = false;
+                denominacao.setError("Este campo é obrigatório");
+                denominacao.setFocusable (true);
+                denominacao.requestFocus ();
+            }else{
+                denominacao.setError(null);
+            }
             String igrejanome = Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).getText ().toString().trim();
+            if(igreja .equals ("")|| igreja.length() < 4){
+                validate = false;
+                editIgreja.setError("Este campo é obrigatório");
+                editIgreja.setFocusable (true);
+                editIgreja.requestFocus ();
+            }else{
+                editIgreja.setError(null);
+            }
             String endereco = Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).getText ().toString().trim();
             if(endereco.equals ("")){
                 validate = false;
                 editEndereco.setError("Este campo é obrigatório");
                 editEndereco.setFocusable (true);
                 editEndereco.requestFocus ();
+            }else{
+                editEndereco.setError(null);
             }
             String bairro = Objects.requireNonNull ( editBairro.getEditText ( ), "" ).getText ().toString().trim();
             if(bairro.equals ("")){
@@ -151,6 +169,8 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editBairro.setError("Este campo é obrigatório");
                 editBairro.setFocusable (true);
                 editBairro.requestFocus ();
+            }else{
+                editBairro.setError(null);
             }
             String cidade = Objects.requireNonNull ( editCidade.getEditText ( ), "" ).getText ().toString().trim();
             if(cidade.equals ("")){
@@ -158,6 +178,8 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editCidade.setError("Este campo é obrigatório");
                 editCidade.setFocusable (true);
                 editCidade.requestFocus ();
+            }else{
+                editCidade.setError(null);
             }
             String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
             if(estado.equals ("")){
@@ -165,6 +187,8 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editEstado.setError("Este campo é obrigatório");
                 editEstado.setFocusable (true);
                 editEstado.requestFocus ();
+            }else{
+                editEstado.setError(null);
             }
             String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
             if(pais.equals ("")){
@@ -172,6 +196,8 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editPais.setError("Este campo é obrigatório");
                 editPais.setFocusable (true);
                 editPais.requestFocus ();
+            }else{
+                editPais.setError(null);
             }
             String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
             if(cep.equals ("")){
@@ -179,6 +205,8 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editCep.setError("Este campo é obrigatório");
                 editCep.setFocusable (true);
                 editCep.requestFocus ();
+            }else{
+                editCep.setError(null);
             }
             String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
             if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
@@ -186,8 +214,18 @@ public class EditIgrejaActivity extends AppCompatActivity {
                 editDdi.setError("Este campo é obrigatório, 3 dígitos.");
                 editDdi.setFocusable (true);
                 editDdi.requestFocus ();
+            }else{
+                editDdi.setError(null);
             }
             String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
+            if( fone.equals ( "" ) || fone.length ( ) < 9 ){
+                validate = false;
+                editPhone.setError("Este campo é obrigatório, min. 9 dígitos.");
+                editPhone.setFocusable (true);
+                editPhone.requestFocus ();
+            }else{
+                editPhone.setError(null);
+            }
             //  String hora = hh + ":" + mm;
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             novaRef2 =databaseReference.child( "churchs/").child( uid_extra );

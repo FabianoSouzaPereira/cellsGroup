@@ -246,6 +246,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputCelula.setError("Este campo é obrigatório");
                 textInputCelula.setFocusable (true);
                 textInputCelula.requestFocus ();
+            }else{
+                textInputCelula.setError(null);
             }
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             if(rede.equals ("")){
@@ -253,6 +255,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputRede.setError("Este campo é obrigatório");
                 textInputRede.setFocusable (true);
                 textInputRede.requestFocus ();
+            }else{
+                textInputRede.setError(null);
             }
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
             if(supervisor.equals ("")){
@@ -260,13 +264,17 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputSupervisor.setError("Este campo é obrigatório");
                 textInputSupervisor.setFocusable (true);
                 textInputSupervisor.requestFocus ();
+            }else{
+                textInputSupervisor.setError(null);
             }
-            String lider = Objects.requireNonNull( textInputLider.getEditText() ).getText().toString().trim();
+            String lider = Objects.requireNonNull( textInputLider.getEditText(),"" ).getText().toString().trim();
             if(lider.equals ("")){
                 validate = false;
                 textInputLider.setError("Este campo é obrigatório");
                 textInputLider.setFocusable (true);
                 textInputLider.requestFocus ();
+            }else{
+                textInputLider.setError(null);
             }
             String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
             if(viceLider.equals ("")){
@@ -274,6 +282,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputViceLider.setError("Este campo é obrigatório");
                 textInputViceLider.setFocusable (true);
                 textInputViceLider.requestFocus ();
+            }else{
+                textInputViceLider.setError(null);
             }
             String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
             if(anfitriao.equals ("")){
@@ -281,6 +291,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputAnfitriao.setError("Este campo é obrigatório");
                 textInputAnfitriao.setFocusable (true);
                 textInputAnfitriao.requestFocus ();
+            }else{
+                textInputAnfitriao.setError(null);
             }
             String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
             if(secretario.equals ("")){
@@ -288,6 +300,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputSecretario.setError("Este campo é obrigatório");
                 textInputSecretario.setFocusable (true);
                 textInputSecretario.requestFocus ();
+            }else{
+                textInputSecretario.setError(null);
             }
             String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
             if(colaborador.equals ("")){
@@ -295,6 +309,8 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
                 textInputColaborador.setError("Este campo é obrigatório");
                 textInputColaborador.setFocusable (true);
                 textInputColaborador.requestFocus ();
+            }else{
+                textInputColaborador.setError(null);
             }
             String hora = hh + ":" + mm;
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();

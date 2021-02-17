@@ -272,6 +272,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputCelula.setError("Este campo é obrigatório");
                 textInputCelula.setFocusable (true);
                 textInputCelula.requestFocus ();
+            }else{
+                textInputCelula.setError(null);
             }
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             if(rede.equals ("")){
@@ -279,6 +281,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputRede.setError("Este campo é obrigatório");
                 textInputRede.setFocusable (true);
                 textInputRede.requestFocus ();
+            }else{
+                textInputRede.setError(null);
             }
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
             if(supervisor.equals ("")){
@@ -286,6 +290,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputSupervisor.setError("Este campo é obrigatório");
                 textInputSupervisor.setFocusable (true);
                 textInputSupervisor.requestFocus ();
+            }else{
+                textInputSupervisor.setError(null);
             }
             String lider = Objects.requireNonNull( textInputLider.getEditText(),"" ).getText().toString().trim();
             if(lider.equals ("")){
@@ -293,6 +299,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputLider.setError("Este campo é obrigatório");
                 textInputLider.setFocusable (true);
                 textInputLider.requestFocus ();
+            }else{
+                textInputLider.setError(null);
             }
             String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
             if(viceLider.equals ("")){
@@ -300,6 +308,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputViceLider.setError("Este campo é obrigatório");
                 textInputViceLider.setFocusable (true);
                 textInputViceLider.requestFocus ();
+            }else{
+                textInputViceLider.setError(null);
             }
             String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
             if(anfitriao.equals ("")){
@@ -307,6 +317,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputAnfitriao.setError("Este campo é obrigatório");
                 textInputAnfitriao.setFocusable (true);
                 textInputAnfitriao.requestFocus ();
+            }else{
+                textInputAnfitriao.setError(null);
             }
             String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
             if(secretario.equals ("")){
@@ -314,6 +326,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputSecretario.setError("Este campo é obrigatório");
                 textInputSecretario.setFocusable (true);
                 textInputSecretario.requestFocus ();
+            }else{
+                textInputSecretario.setError(null);
             }
             String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
             if(colaborador.equals ("")){
@@ -321,6 +335,8 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                 textInputColaborador.setError("Este campo é obrigatório");
                 textInputColaborador.setFocusable (true);
                 textInputColaborador.requestFocus ();
+            }else{
+                textInputColaborador.setError(null);
             }
             String hora = hh+":"+mm;
             String datainicio = Objects.requireNonNull( textInputDataInicio.getEditText() ).getText().toString().trim();

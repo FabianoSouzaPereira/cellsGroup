@@ -15,7 +15,7 @@
 
         <item
             android:id="@+id/nav_leader"
-            android:icon="@drawable/ic_baseline_social_distance_24_green"
+            android:icon="@drawable/ic_baseline_engineering_24_green"
             android:title="@string/lideres" />
 
         <item

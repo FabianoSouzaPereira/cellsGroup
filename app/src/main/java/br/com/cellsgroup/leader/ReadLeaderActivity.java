@@ -107,9 +107,9 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         mAuth = FirebaseAuth.getInstance();
         useremailAuth = mAuth.getCurrentUser ().getEmail ();
 
+        inicializarFirebase();
         inicializarComponentes();
 
-        inicializarFirebase();
         Intent intent = getIntent();
         uid = intent.getStringExtra( "uid" );
         user  = intent.getStringExtra( "user" );
@@ -152,6 +152,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         EditTextpais = findViewById( R.id.text_input_readPais );
         EditTextcep = findViewById( R.id.text_input_readCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_readCargoIgreja);
+        readOnlyActive();
     }
 
     private void inicializarFirebase() {

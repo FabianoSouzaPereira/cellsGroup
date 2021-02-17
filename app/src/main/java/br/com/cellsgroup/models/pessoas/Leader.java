@@ -1,5 +1,7 @@
 package br.com.cellsgroup.models.pessoas;
 
+import org.jetbrains.annotations.Contract;
+
 public final class Leader extends Pessoa {
 
     public Leader () {

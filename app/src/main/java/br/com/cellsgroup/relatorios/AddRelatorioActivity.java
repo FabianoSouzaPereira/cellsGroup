@@ -388,6 +388,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputBaseCelula.setError("Este campo é obrigatório");
                 textInputBaseCelula.setFocusable (true);
                 textInputBaseCelula.requestFocus ();
+            }else {
+                textInputBaseCelula.setError(null);
             }
             String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText(), ""  ).getText().toString().trim();
             if(baseCelula.equals ("")){
@@ -395,6 +397,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputMembrosIEQ.setError("Este campo é obrigatório");
                 textInputMembrosIEQ.setFocusable (true);
                 textInputMembrosIEQ.requestFocus ();
+            }else {
+                textInputMembrosIEQ.setError(null);
             }
             String convidados = Objects.requireNonNull( textInputConvidados.getEditText(), ""  ).getText().toString().trim();
             if(convidados.equals ("")){
@@ -402,6 +406,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputConvidados.setError("Este campo é obrigatório");
                 textInputConvidados.setFocusable (true);
                 textInputConvidados.requestFocus ();
+            }else {
+                textInputConvidados.setError(null);
             }
             String criancas = Objects.requireNonNull( textInputCriancas.getEditText(), ""  ).getText().toString().trim();
             if(criancas .equals ("")){
@@ -409,6 +415,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputCriancas.setError("Este campo é obrigatório");
                 textInputCriancas.setFocusable (true);
                 textInputCriancas.requestFocus ();
+            }else {
+                textInputCriancas.setError(null);
             }
             String total =  Objects.requireNonNull( textInputTotal.getEditText(), ""  ).getText().toString().trim();
             if(total.equals ("")){
@@ -416,6 +424,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputTotal.setError("Este campo é obrigatório");
                 textInputTotal.setFocusable (true);
                 textInputTotal.requestFocus ();
+            }else {
+                textInputTotal.setError(null);
             }
 
             String status = "1";

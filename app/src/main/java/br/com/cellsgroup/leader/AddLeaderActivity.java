@@ -10,12 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,12 +42,14 @@ import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.models.pessoas.User;
 import br.com.cellsgroup.utils.MaskEditUtil;
+import br.com.cellsgroup.utils.ResolveDate;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
+import static br.com.cellsgroup.utils.ResolveDate.*;
 
 public class AddLeaderActivity extends AppCompatActivity {
 
@@ -57,6 +62,8 @@ public class AddLeaderActivity extends AppCompatActivity {
     private DatabaseReference Leaders;
     private DatabaseReference ref;
     private DatabaseReference novaRef;
+    private DatabaseReference novaRef6;
+    private DatabaseReference novaRef7;
     private final int limitebusca = 1;
     private Spinner spCelula;
     private TextInputLayout EditTextnome;
@@ -82,11 +89,16 @@ public class AddLeaderActivity extends AppCompatActivity {
     private String emailTest = "";
     private String key;
     private static boolean validate = true;
+    private static Boolean res = false;
     private final ArrayList<String> cels = new ArrayList<String>();
+
     private ArrayAdapter<String> arrayAdapterCelula;
     Query query;
+    Query queryCelula;
     ValueEventListener queryListener;
-    private String celula;
+    ValueEventListener listenerCelula;
+    private String celula = "";
+    private String uidCelula = "";
 
 
     @Override
@@ -144,12 +156,14 @@ public class AddLeaderActivity extends AppCompatActivity {
                             if ( !c.getCelula ( ).equals ( "" ) ) {
                                 if ( c.getUserId ( ).equals ( ui ) ) {
                                     String celula = c.getCelula ( );
-                                    cels.add ( celula );
+                                    String uid = c.getUid ();
+                                    cels.add( celula );
                                 }
                             }
                         }
                     }
                 }
+
                 ArrayAdapter <String> adapter = new ArrayAdapter<String>( AddLeaderActivity.this, R.layout.spinner_dropdown_item, cels);
                 spCelula = findViewById( R.id.spinnercelula );
                 spCelula.setAdapter( adapter );
@@ -158,7 +172,7 @@ public class AddLeaderActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         if(spCelula.getSelectedItem().equals (0) ){ return; }
                         celula = (String)spCelula.getSelectedItem();
-
+                        pegandoConteudoCelula(celula);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -187,20 +201,26 @@ public class AddLeaderActivity extends AppCompatActivity {
 
     private void addLeaderClick(MenuItem item){
         addDataHora();
-        validate=true;
+        validate = true;
+        res = false;
+
         String nome =  EditTextnome.getEditText().getText().toString().trim();
         if(nome.equals ("")|| nome.length() < 4){
             validate = false;
             EditTextnome.setError("Este campo é obrigatório");
             EditTextnome.setFocusable (true);
             EditTextnome.requestFocus ();
+        }else{
+            EditTextnome.setError(null);
         }
         String idade =  EditTextidade.getEditText ( ).getText().toString().trim();
-        if( idade.equals ( "" )){
+        if( idade.equals ( "" ) || Integer.parseInt (idade) > 122){
             validate = false;
             EditTextidade.setError("Este campo é obrigatório");
             EditTextidade.setFocusable (true);
             EditTextidade.requestFocus ();
+        }else{
+            EditTextidade.setError(null);
         }
         String sexo = EditTextsexo.getEditText ( ).getText().toString().trim();
         if( sexo.equals ( "" )){
@@ -208,20 +228,28 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextsexo.setError("Este campo é obrigatório");
             EditTextsexo.setFocusable (true);
             EditTextsexo.requestFocus ();
+        }else{
+            EditTextsexo.setError(null);
         }
         String dataNascimento = EditTextdataNascimento.getEditText().getText().toString().trim();
-        if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 ){
+        res = ResolveDate.getDateRes(dataNascimento);
+        if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 || res == true){
             validate = false;
             EditTextdataNascimento.setError("Este campo é obrigatório");
             EditTextdataNascimento.setFocusable (true);
             EditTextdataNascimento.requestFocus ();
+        }else{
+            EditTextdataNascimento.setError(null);
         }
         String dataBastismo = EditTextdataBastismo.getEditText().getText().toString().trim();
-        if( dataBastismo.equals ( "" ) || dataBastismo.length ( ) < 8 ){
+        res = ResolveDate.getDateRes(dataBastismo);
+        if( dataBastismo.equals ( "" ) || dataBastismo.length ( ) < 8 || res == true){
             validate = false;
             EditTextdataBastismo.setError("Este campo é obrigatório");
             EditTextdataBastismo.setFocusable (true);
             EditTextdataBastismo.requestFocus ();
+        }else{
+            EditTextdataBastismo.setError(null);
         }
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
         if(nomepai .equals ("")){
@@ -229,6 +257,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextnomepai.setError("Este campo é obrigatório");
             EditTextnomepai.setFocusable (true);
             EditTextnomepai.requestFocus ();
+        }else{
+            EditTextnomepai.setError(null);
         }
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         if(nomemae.equals ("")){
@@ -236,6 +266,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextnomemae.setError("Este campo é obrigatório");
             EditTextnomemae.setFocusable (true);
             EditTextnomemae.requestFocus ();
+        }else{
+            EditTextnomemae.setError(null);
         }
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
         if( estadocivil.equals ( "" )){
@@ -243,6 +275,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextestadocivil.setError("Este campo é obrigatório, dois dígitos");
             EditTextestadocivil.setFocusable (true);
             EditTextestadocivil.requestFocus ();
+        }else{
+            EditTextestadocivil.setError(null);
         }
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
         if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
@@ -250,14 +284,17 @@ public class AddLeaderActivity extends AppCompatActivity {
             EdiTextddi.setError("Este campo é obrigatório, dois dígitos");
             EdiTextddi.setFocusable (true);
             EdiTextddi.requestFocus ();
+        }else{
+            EdiTextddi.setError(null);
         }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
-
         if( telefone.equals ( "" ) || telefone.length ( ) < 9 ){
             validate = false;
             EditTexttelefone.setError("Este campo é obrigatório, min. 9 dígitos.");
             EditTexttelefone.setFocusable (true);
             EditTexttelefone.requestFocus ();
+        }else{
+            EditTexttelefone.setError(null);
         }
         useremail =  EditTextemail.getEditText().getText().toString().trim();
         String email = useremail;
@@ -266,6 +303,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextemail.setError("Campo inválido");
             EditTextemail.setFocusable (true);
             EditTextemail.requestFocus ();
+        }else{
+            EditTextemail.setError(null);
         }
         String endereco =  EditTextendereco.getEditText().getText().toString().trim();
         if(endereco.equals ("")){
@@ -273,6 +312,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextendereco.setError("Este campo é obrigatório");
             EditTextendereco.setFocusable (true);
             EditTextendereco.requestFocus ();
+        }else{
+            EditTextendereco.setError(null);
         }
         String bairro = EditTextbairro.getEditText().getText().toString().trim();
         if(bairro.equals ("")){
@@ -280,6 +321,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextbairro.setError("Este campo é obrigatório");
             EditTextbairro.setFocusable (true);
             EditTextbairro.requestFocus ();
+        }else{
+            EditTextbairro.setError(null);
         }
         String cidade =  EditTextcidade.getEditText().getText().toString().trim();
         if(cidade.equals ("")){
@@ -287,6 +330,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextcidade.setError("Este campo é obrigatório");
             EditTextcidade.setFocusable (true);
             EditTextcidade.requestFocus ();
+        }else{
+            EditTextcidade.setError(null);
         }
         String estado =  EditTextestado.getEditText().getText().toString().trim();
         if(estado.equals ("")){
@@ -294,6 +339,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextestado.setError("Este campo é obrigatório");
             EditTextestado.setFocusable (true);
             EditTextestado.requestFocus ();
+        }else{
+            EditTextestado.setError(null);
         }
         String pais =  EditTextpais.getEditText().getText().toString().trim();
         if(pais.equals ("")){
@@ -301,6 +348,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextpais.setError("Este campo é obrigatório");
             EditTextpais.setFocusable (true);
             EditTextpais.requestFocus ();
+        }else{
+            EditTextpais.setError(null);
         }
         String cep = EditTextcep.getEditText().getText().toString().trim();
         if(cep.equals ("")){
@@ -308,6 +357,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextcep.setError("Este campo é obrigatório");
             EditTextcep.setFocusable (true);
             EditTextcep.requestFocus ();
+        }else{
+            EditTextcep.setError(null);
         }
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
         if(cargoIgreja.equals ("")|| cargoIgreja.length() < 4){
@@ -315,6 +366,8 @@ public class AddLeaderActivity extends AppCompatActivity {
             EditTextcargoIgreja.setError("Obrigatório +4 digitos.");
             EditTextcargoIgreja.setFocusable (true);
             EditTextcargoIgreja.requestFocus ();
+        }else{
+            EditTextcargoIgreja.setError(null);
         }
         String status = "1";
         final String igreja = HomeActivity.igreja;
@@ -337,12 +390,24 @@ public class AddLeaderActivity extends AppCompatActivity {
                     //atualiza membro na igreja
                     Map < String, Object > map = new HashMap <> ( );
                     map.put ( "/members/" + uid , telefone );
+
                     ref.child ( "churchs/" + uidIgreja ).updateChildren ( map );
 
-                    Toast.makeText ( this , "Criado leader com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    if ( celula != "Escolha uma célula" ) {
+
+                        pegandoConteudoCelula(celula);
+                        //atualiza lider na célula
+                        Map < String, Object > map1 = new HashMap <> ( );
+                        map1.put ( celula + "/" + uidCelula + "/lider" , nome );
+
+                        ref.child ( "churchs/" + uidIgreja + "/cells/").updateChildren ( map1 );
+                    }
+
+                    Toast.makeText ( this , "Criado leader com sucesso" , Toast.LENGTH_SHORT ).show ( );
 
                     Intent intent = new Intent ( AddLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );
+
                 }else {
                     Toast.makeText ( this , "Erro ao tentar criar leader !" , Toast.LENGTH_LONG ).show ( );
                     if ( !typeUserAdmin ) {
@@ -353,6 +418,26 @@ public class AddLeaderActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void pegandoConteudoCelula(String name) {
+
+        novaRef7 = databaseReference.child( "churchs/" + uidIgreja +"/cells/" + name);
+        queryCelula = novaRef7;
+        listenerCelula =  new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    Celula c = ds.getValue( Celula.class );
+                    uidCelula = Objects.requireNonNull( c ,"").getUid();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        } ;
+        queryCelula.addValueEventListener (listenerCelula);
 
     }
 
@@ -426,6 +511,7 @@ public class AddLeaderActivity extends AppCompatActivity {
     @Override
     protected void onPause ( ) {
         query.removeEventListener(queryListener );
+        queryCelula.removeEventListener (listenerCelula);
         super.onPause ( );
     }
 
