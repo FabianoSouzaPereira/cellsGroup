@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="25dp"
     tools:context=".Igreja.EditIgrejaActivity"
     tools:showIn="@layout/activity_edit_igreja">
 
@@ -43,9 +43,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
-                    android:longClickable="false"
                     android:hint="@string/denominacao"
                     android:inputType="text"
+                    android:longClickable="false"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,9 +62,9 @@
                     android:layout_height="wrap_content"
                     android:clickable="false"
                     android:focusable="false"
-                    android:longClickable="false"
                     android:hint="@string/igreja"
                     android:inputType="text"
+                    android:longClickable="false"
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,9 +174,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/c_digo_do_pa_s_required"
-                    android:text="@string/_55"
                     android:inputType="phone"
-                    android:maxLength="3" />
+                    android:maxLength="3"
+                    android:text="@string/_55" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

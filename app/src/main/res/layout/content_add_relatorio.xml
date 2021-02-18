@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
+    android:paddingBottom="25dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".relatorios.AddRelatorioActivity"
     tools:showIn="@layout/app_bar_add_relatorio">
@@ -198,8 +199,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contextClickable="false"
+                    android:cursorVisible="true"
                     android:hint="@string/base_celula1"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:selectAllOnFocus="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -211,7 +215,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/membros_ieq1"
+                    android:contextClickable="false"
+                    android:hint="@string/membros_igr"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -224,6 +229,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contextClickable="false"
                     android:hint="@string/convidados1"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -237,6 +243,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contextClickable="false"
                     android:hint="@string/criancas1"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>

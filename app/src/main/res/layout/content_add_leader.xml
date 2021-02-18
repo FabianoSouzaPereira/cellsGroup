@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="25dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".leader.AddLeaderActivity"
     tools:showIn="@layout/app_bar_add_leader">
@@ -11,7 +12,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,11 +165,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:prefixText="+"
                     android:hint="@string/ddi_req"
-                    android:text="@string/_55"
                     android:inputType="phone"
-                    android:maxLength="3" />
+                    android:maxLength="3"
+                    android:text="@string/_55"
+                    app:prefixText="+" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

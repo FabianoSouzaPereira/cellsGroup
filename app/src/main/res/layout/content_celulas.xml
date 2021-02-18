@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="25dp"
     android:weightSum="10"
     tools:context=".celulas.CelulasActivity"
     tools:ignore="MissingDefaultResource"

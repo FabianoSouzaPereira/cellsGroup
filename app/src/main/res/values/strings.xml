@@ -59,7 +59,7 @@
     <string name="dia_da_semana1" translatable="true">Dia da emana</string>
     <string name="horario1" translatable="true">Horário</string>
     <string name="base_celula1" translatable="true">Base célula</string>
-    <string name="membros_ieq1" translatable="true">Membros IEQ</string>
+    <string name="membros_igr" translatable="true">Membros da igreja</string>
     <string name="convidados1" translatable="true">Convidados</string>
     <string name="criancas1" translatable="true">Crianças</string>
     <string name="total1" translatable="true">Total</string>
@@ -84,7 +84,7 @@
     <string name="anfitriao" translatable="true">Anfitrião</string>
     <string name="colaborador" translatable="true">Colaborador</string>
     <string name="secretario" translatable="true">Secretário</string>
-    <string name="hora" translatable="true">Hora:</string>
+    <string name="hora" translatable="true">hora:</string>
     <string name="dataInicio" translatable="true">Data início</string>
 
     <string name="action_save" translatable="true">Salvar</string>
@@ -272,4 +272,5 @@ Nesse contexto, célula é simplesmente uma miniatura da igreja reunindo-se nas 
     <string name="sem_igreja">Sem Igreja</string>
     <string name="criar_nova_igreja">Criar nova igreja</string>
     <string name="voc_n_o_criou_a_igeja_ainda_n_click_no_link_abaixo_ou_v_no_menu_tr_s_poninho_e_adiione_a_sua_igreja">Você não criou a igreja ainda. Click no link abaixo ou vá no menu (três poninho) e adicione a sua igreja.</string>
+    <string name="min">min:</string>
 </resources>

@@ -20,6 +20,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -164,8 +165,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    base = convertToint( textInputBaseCelula.getEditText().getText().toString ()  );
-                    total += base;
+                    base = convertToint( textInputBaseCelula.getEditText().getText().toString());
+                    total = base + membros + convidados + crianca;
+                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
                 }
             }
         } ;
@@ -173,8 +175,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
-                    membros = convertToint(textInputMembrosIEQ.getEditText().getText().toString().trim());
-                    total += membros;
+                    membros = convertToint(textInputMembrosIEQ.getEditText().getText().toString());
+                    total = base + membros + convidados + crianca;
+                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
                 }
             }
         };
@@ -184,16 +187,19 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
                     convidados = convertToint ( textInputConvidados.getEditText ( ).getText ( ).toString ( ) );
-                    total += convidados;
+                    total = base + membros + convidados + crianca;
+                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
                 }
             }
         };
+
         listenerCrianca = new View.OnFocusChangeListener ( ) {
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
                 if (!hasFocus) {
                     crianca = convertToint ( textInputCriancas.getEditText ( ).getText ( ).toString ( ) );
-                    total += crianca;
+                    total = base + membros + convidados + crianca;
+                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
                 }
             }
         } ;
@@ -201,9 +207,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         listenerTotal = new View.OnFocusChangeListener ( ) {
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
-                if (hasFocus) {
-                    textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
-                }
             }
         };
 
@@ -212,6 +215,8 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
         textInputConvidados.getEditText ().setOnFocusChangeListener(listenerConvidados);
         textInputCriancas.getEditText ().setOnFocusChangeListener(listenerCrianca);
         textInputTotal.getEditText ().setOnFocusChangeListener(listenerTotal);
+
+        textInputTotal.getEditText ( ).setText ( Integer.toString ( total ) );
 
         textInputDataInicio = findViewById( R.id.txt_dataInicio );
 
@@ -390,6 +395,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputBaseCelula.requestFocus ();
             }else {
                 textInputBaseCelula.setError(null);
+                textInputBaseCelula.getEditText ().clearFocus ();
             }
             String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText(), ""  ).getText().toString().trim();
             if(baseCelula.equals ("")){
@@ -399,6 +405,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputMembrosIEQ.requestFocus ();
             }else {
                 textInputMembrosIEQ.setError(null);
+                textInputBaseCelula.getEditText ().clearFocus ();
             }
             String convidados = Objects.requireNonNull( textInputConvidados.getEditText(), ""  ).getText().toString().trim();
             if(convidados.equals ("")){
@@ -408,6 +415,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputConvidados.requestFocus ();
             }else {
                 textInputConvidados.setError(null);
+                textInputConvidados.getEditText ().clearFocus ();
             }
             String criancas = Objects.requireNonNull( textInputCriancas.getEditText(), ""  ).getText().toString().trim();
             if(criancas .equals ("")){
@@ -417,6 +425,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputCriancas.requestFocus ();
             }else {
                 textInputCriancas.setError(null);
+                textInputCriancas.getEditText ().clearFocus ();
             }
             String total =  Objects.requireNonNull( textInputTotal.getEditText(), ""  ).getText().toString().trim();
             if(total.equals ("")){
@@ -426,6 +435,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 textInputTotal.requestFocus ();
             }else {
                 textInputTotal.setError(null);
+                textInputTotal.getEditText ().clearFocus ();
             }
 
             String status = "1";

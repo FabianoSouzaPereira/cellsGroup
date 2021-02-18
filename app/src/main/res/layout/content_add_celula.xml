@@ -146,7 +146,7 @@
 
             <Spinner
                 android:id="@+id/spinnerSemana"
-                android:layout_width="300dp"
+                android:layout_width="200dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
@@ -155,17 +155,36 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp">
 
+                <TextView
+                    android:id="@+id/txtHora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="@string/hora" />
+
                 <Spinner
                     android:id="@+id/spinnerhora"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
+                <TextView
+                    android:id="@+id/txtMinuto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/min" />
+
                 <Spinner
                     android:id="@+id/spinnermin"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
+
+
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout

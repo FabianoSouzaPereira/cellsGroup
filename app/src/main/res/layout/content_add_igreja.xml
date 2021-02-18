@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="12dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +46,7 @@
                     android:inputType=""
                     android:maxLength="65" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editIgreja"
                 android:layout_width="match_parent"
@@ -153,6 +155,7 @@
                     android:inputType="date"
                     android:maxLength="20" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_editddi"
                 android:layout_width="match_parent"
@@ -166,10 +169,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/c_digo_do_pa_s_required"
-                    android:text="@string/_55"
                     android:inputType="phone"
-                    android:maxLength="3" />
+                    android:maxLength="3"
+                    android:text="@string/_55" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_phone"
                 android:layout_width="match_parent"
