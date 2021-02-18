@@ -216,7 +216,8 @@
     <string name="messageCelula" translatable="true">Nenhuma célula foi criada ainda.</string>
     <string name="messageCelula2" translatable="true">Crie um Célula e depois crie os relatórios para ela.</string>
     <string name="messageLider" translatable="true">Nenhum Líder foi criado ainda.</string>
-    <string name="messageLider2" translatable="true" formatted="true">Crie uma Célula e depois crie o líder para ela. <br/><br/>Coloque o mesmo nome do líder na célula e no líder!</string>
+    <string name="messageLider2" translatable="true" formatted="true">Crie uma Célula e depois crie o líder para ela.</string>
+    <string name="messageLider3" translatable="true" formatted="true">Coloque o mesmo nome do líder na célula e no líder!</string>
     <string name="messageContato" translatable="true">Nenhum Contato foi criado ainda, os contatos são informações que vem do Cadastro de Lideres.</string>
     <string name="messageContato2" translatable="true">Só aparecerá algo aqui se um Líder for criado!</string>
     <string name="messageIgreja" translatable="true">A sua Igreja ainda não foi criada, crie um Igreja e depois crie as células.</string>

@@ -54,13 +54,27 @@
                 android:visibility="visible" />
 
             <TextView
-                android:id="@+id/textMensagemLeader2"
-                android:layout_width="match_parent"
+                android:id="@+id/textMensagemleader2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="300dp"
+                android:layout_marginBottom="30dp"
                 android:fontFamily="casual"
                 android:gravity="center"
                 android:text="@string/messageLider2"
+                android:textColor="#373737"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textMensagemLeader3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="50dp"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/messageLider3"
                 android:textColor="#373737"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
