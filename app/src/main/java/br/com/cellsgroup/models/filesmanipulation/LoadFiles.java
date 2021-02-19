@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@SuppressWarnings( "ResultOfMethodCallIgnored" )
 public class LoadFiles {
 
     //a handle to the application's resources

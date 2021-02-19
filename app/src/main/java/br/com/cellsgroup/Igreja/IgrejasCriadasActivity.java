@@ -1,8 +1,6 @@
 package br.com.cellsgroup.Igreja;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -36,7 +34,6 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 
-import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
@@ -59,6 +56,17 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     TextView nhEmail;
     TextView nhName;
     private Button btnIgreja;
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
+    String mensagem6 = "";
+    String mensagem7 = "";
+    String mensagem8 = "";
+    String mensagem9 = "";
+    String mensagem10 = "";
+    String mensagem11 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,19 +134,21 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                                     String cep = igr.getCep ( );
                                     String ddi = igr.getDdi ( );
                                     String telefone = igr.getPhone ( );
+                                    String telefone_fixo = igr.getPhone_fixo ();
                                     String igrejaID = igr.getIgrejaID ();
                                     String members = igr.getMembers ();
 
-                                    ig.add ( "Denominação:  " + group );
-                                    ig.add ( "Nome:  " + nome );
-                                    ig.add ( "Endereço:  " + endereco );
-                                    ig.add ( "Bairro:  " + bairro );
-                                    ig.add ( "Cidade:  " + cidade );
-                                    ig.add ( "Estado:  " + estado );
-                                    ig.add ( "País:  " + pais );
-                                    ig.add ( "Cep:  " + cep );
-                                    ig.add ( "DDI:  " + ddi );
-                                    ig.add ( "Fone:  " + telefone );
+                                    ig.add ( mensagem1 + ": " + group );
+                                    ig.add ( mensagem2 + ": " + nome );
+                                    ig.add ( mensagem3 + ": " + endereco );
+                                    ig.add ( mensagem4 + ": " + bairro );
+                                    ig.add ( mensagem5 + ": " + cidade );
+                                    ig.add ( mensagem6 + ": " + estado );
+                                    ig.add ( mensagem7 + ": " + pais );
+                                    ig.add ( mensagem8 + ": " + cep );
+                                    ig.add ( mensagem9 + ": " + ddi );
+                                    ig.add ( mensagem10 + ": " + telefone );
+                                    ig.add ( mensagem11 + ": " + telefone_fixo);
                                 }
                             }
                         }
@@ -181,6 +191,17 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
     private void inicializaComponentes() {
         recyclerView = findViewById(R.id.recyclerViewIgreja );
+        mensagem1 = getResources ().getString (R.string.denominacao);
+        mensagem2 = getResources ().getString (R.string.nome);
+        mensagem3 = getResources ().getString (R.string.endere_o);
+        mensagem4 = getResources ().getString (R.string.bairro);
+        mensagem5 = getResources ().getString (R.string.cidade);
+        mensagem6 = getResources ().getString (R.string.estado);
+        mensagem7 = getResources ().getString (R.string.pa_s);
+        mensagem8 = getResources ().getString (R.string.cep);
+        mensagem9 = getResources ().getString (R.string.DDI);
+        mensagem10 = getResources ().getString (R.string.telefone);
+        mensagem11 = getResources ().getString (R.string.telefone_fixo);
     }
 
     @Override

@@ -64,6 +64,7 @@ import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
+@SuppressWarnings( "UnnecessaryLocalVariable" )
 public class LeaderActivity extends AppCompatActivity implements Serializable ,NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TAG";
     private FirebaseDatabase firebaseDatabase;
@@ -87,6 +88,9 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    String mensagem15 = "";
+    String mensagem16 = "";
+    String mensagem17 = "";
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -132,7 +136,9 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         nhEmail.setText (useremailAuth);
         nhTitle.setText (group);
         nhName.setText(igreja);
-
+        mensagem15 = getResources ().getString (R.string.cancelar);
+        mensagem16 = getResources ().getString (R.string.aviso);
+        mensagem17 = getResources ().getString (R.string.aviso);
     }
 
     private void iniciaComponentes ( ) {
@@ -142,10 +148,10 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
     private void aviso(){
         AlertDialog.Builder builder = new AlertDialog.Builder(LeaderActivity.this);
-        builder  = builder.setMessage( "Primeiro crie a sua Igreja. \n Depois as célula \n Por último os Lideres." );
-        builder.setTitle( "Igreja não encontrada!" )
+        builder  = builder.setMessage( mensagem16);
+        builder.setTitle( mensagem17 )
             .setCancelable( false )
-            .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+            .setNegativeButton( mensagem15, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                 }
@@ -189,6 +195,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
                       }
                   }
 
+                //noinspection UnnecessaryLocalVariable,UnnecessaryLocalVariable
                 List < Leader > leaders = arrayLeader;
 
                 mAdapter = new AdapterListViewLeader ( leaders );

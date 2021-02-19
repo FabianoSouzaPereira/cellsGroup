@@ -2,7 +2,6 @@ package br.com.cellsgroup.home;
 
 import android.content.Context;
 
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.google.firebase.FirebaseApp;

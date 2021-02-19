@@ -199,7 +199,7 @@
                         android:layout_gravity="center_horizontal|top"
                         android:background="@android:color/transparent"
                         android:contentDescription="@string/lideres"
-                        android:paddingLeft="20dp"
+                        android:paddingStart="20dp"
                         android:paddingEnd="0dp"
                         app:srcCompat="@drawable/ic_baseline_engineering_24" />
 

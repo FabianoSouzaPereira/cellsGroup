@@ -5,7 +5,7 @@ public final class Intercessao {
     private String nome = "";
     private String motivo = "";
     private String data = "";
-    private int iconeRid = -1;
+    private final int iconeRid = -1;
 
     public Intercessao() {
     }
@@ -15,7 +15,6 @@ public final class Intercessao {
         this.nome = nome;
         this.motivo = motivo;
         this.data = data;
-        this.iconeRid = iconeRid;
     }
 
     public String getUid() {

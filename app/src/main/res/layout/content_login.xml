@@ -151,7 +151,7 @@
                     android:onClick="onClick"
                     android:paddingTop="1dp"
                     android:paddingBottom="1dp"
-                    android:text="Esqueci a senha"
+                    android:text="@string/esqueci_a_senha"
                     android:textColor="#1976D2"
                     android:textSize="10sp" />
 

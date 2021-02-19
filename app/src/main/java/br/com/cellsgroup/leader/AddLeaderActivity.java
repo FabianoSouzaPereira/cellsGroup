@@ -10,15 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +46,6 @@ import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremail;
-import static br.com.cellsgroup.utils.ResolveDate.*;
 
 public class AddLeaderActivity extends AppCompatActivity {
 
@@ -99,7 +95,17 @@ public class AddLeaderActivity extends AppCompatActivity {
     ValueEventListener listenerCelula;
     private String celula = "";
     private String uidCelula = "";
-
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
+    String mensagem6 = "";
+    String mensagem7 = "";
+    String mensagem8 = "";
+    String mensagem9 = "";
+    String mensagem10 = "";
+    String mensagem11 = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -137,6 +143,17 @@ public class AddLeaderActivity extends AppCompatActivity {
         EditTextcep = findViewById( R.id.text_input_editCep );
         Objects.requireNonNull ( EditTextcep.getEditText ( ), "00000-000" ).addTextChangedListener ( MaskEditUtil.mask (EditTextcep, MaskEditUtil.FORMAT_CEP));
         EditTextcargoIgreja = findViewById( R.id.text_input_editCargoIgreja);
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.criadoleader);
+        mensagem3 =  getResources ().getString (R.string.erroCriarleader);
+        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
+        mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
+        mensagem6 = getResources ().getString (R.string.erroCampo3digitos);
+        mensagem7 = getResources ().getString (R.string.erroCampo11digitos);
+        mensagem8 = getResources ().getString (R.string.erroEmailexiste);
+        mensagem9 = getResources ().getString (R.string.escolhaCelula);
+        mensagem10 = getResources ().getString (R.string.erroCampoInvalido);
+        mensagem11 = getResources ().getString (R.string.erroCampo10digitos);
         loadSpinner();
     }
     public void loadSpinner(){
@@ -148,7 +165,7 @@ public class AddLeaderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 cels.clear();
-                cels.add("Escolha uma célula");
+                cels.add(mensagem9);
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     for(DataSnapshot dados : ds.getChildren()) {
                         if ( dados.hasChild ( "celula" ) ) {
@@ -207,7 +224,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String nome =  EditTextnome.getEditText().getText().toString().trim();
         if(nome.equals ("")|| nome.length() < 4){
             validate = false;
-            EditTextnome.setError("Este campo é obrigatório");
+            EditTextnome.setError(mensagem1);
             EditTextnome.setFocusable (true);
             EditTextnome.requestFocus ();
         }else{
@@ -216,7 +233,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String idade =  EditTextidade.getEditText ( ).getText().toString().trim();
         if( idade.equals ( "" ) || Integer.parseInt (idade) > 122){
             validate = false;
-            EditTextidade.setError("Este campo é obrigatório");
+            EditTextidade.setError(mensagem1);
             EditTextidade.setFocusable (true);
             EditTextidade.requestFocus ();
         }else{
@@ -225,7 +242,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String sexo = EditTextsexo.getEditText ( ).getText().toString().trim();
         if( sexo.equals ( "" )){
             validate = false;
-            EditTextsexo.setError("Este campo é obrigatório");
+            EditTextsexo.setError(mensagem1);
             EditTextsexo.setFocusable (true);
             EditTextsexo.requestFocus ();
         }else{
@@ -235,7 +252,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         res = ResolveDate.getDateRes(dataNascimento);
         if( dataNascimento .equals ( "" ) || dataNascimento .length ( ) < 8 || res == true){
             validate = false;
-            EditTextdataNascimento.setError("Este campo é obrigatório");
+            EditTextdataNascimento.setError(mensagem1);
             EditTextdataNascimento.setFocusable (true);
             EditTextdataNascimento.requestFocus ();
         }else{
@@ -245,7 +262,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         res = ResolveDate.getDateRes(dataBastismo);
         if( dataBastismo.equals ( "" ) || dataBastismo.length ( ) < 8 || res == true){
             validate = false;
-            EditTextdataBastismo.setError("Este campo é obrigatório");
+            EditTextdataBastismo.setError(mensagem1);
             EditTextdataBastismo.setFocusable (true);
             EditTextdataBastismo.requestFocus ();
         }else{
@@ -254,7 +271,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String nomepai = EditTextnomepai.getEditText().getText().toString().trim();
         if(nomepai .equals ("")){
             validate = false;
-            EditTextnomepai.setError("Este campo é obrigatório");
+            EditTextnomepai.setError(mensagem1);
             EditTextnomepai.setFocusable (true);
             EditTextnomepai.requestFocus ();
         }else{
@@ -263,7 +280,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String nomemae = EditTextnomemae.getEditText().getText().toString().trim();
         if(nomemae.equals ("")){
             validate = false;
-            EditTextnomemae.setError("Este campo é obrigatório");
+            EditTextnomemae.setError(mensagem1);
             EditTextnomemae.setFocusable (true);
             EditTextnomemae.requestFocus ();
         }else{
@@ -272,7 +289,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String estadocivil =  EditTextestadocivil.getEditText().getText().toString().trim();
         if( estadocivil.equals ( "" )){
             validate = false;
-            EditTextestadocivil.setError("Este campo é obrigatório, dois dígitos");
+            EditTextestadocivil.setError(mensagem1);
             EditTextestadocivil.setFocusable (true);
             EditTextestadocivil.requestFocus ();
         }else{
@@ -281,16 +298,16 @@ public class AddLeaderActivity extends AppCompatActivity {
         String ddi = EdiTextddi.getEditText().getText().toString().trim();
         if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
             validate = false;
-            EdiTextddi.setError("Este campo é obrigatório, dois dígitos");
+            EdiTextddi.setError(mensagem6);
             EdiTextddi.setFocusable (true);
             EdiTextddi.requestFocus ();
         }else{
             EdiTextddi.setError(null);
         }
         String telefone =  EditTexttelefone.getEditText().getText().toString().trim();
-        if( telefone.equals ( "" ) || telefone.length ( ) < 9 ){
+        if( telefone.equals ( "" ) || telefone.length ( ) < 14 ){
             validate = false;
-            EditTexttelefone.setError("Este campo é obrigatório, min. 9 dígitos.");
+            EditTexttelefone.setError(mensagem7);
             EditTexttelefone.setFocusable (true);
             EditTexttelefone.requestFocus ();
         }else{
@@ -300,7 +317,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String email = useremail;
         if(email .equals ("")|| email.length() < 8 || !email.contains ("@" )){
             validate = false;
-            EditTextemail.setError("Campo inválido");
+            EditTextemail.setError(mensagem10);
             EditTextemail.setFocusable (true);
             EditTextemail.requestFocus ();
         }else{
@@ -309,7 +326,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String endereco =  EditTextendereco.getEditText().getText().toString().trim();
         if(endereco.equals ("")){
             validate = false;
-            EditTextendereco.setError("Este campo é obrigatório");
+            EditTextendereco.setError(mensagem1);
             EditTextendereco.setFocusable (true);
             EditTextendereco.requestFocus ();
         }else{
@@ -318,7 +335,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String bairro = EditTextbairro.getEditText().getText().toString().trim();
         if(bairro.equals ("")){
             validate = false;
-            EditTextbairro.setError("Este campo é obrigatório");
+            EditTextbairro.setError(mensagem1);
             EditTextbairro.setFocusable (true);
             EditTextbairro.requestFocus ();
         }else{
@@ -327,7 +344,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String cidade =  EditTextcidade.getEditText().getText().toString().trim();
         if(cidade.equals ("")){
             validate = false;
-            EditTextcidade.setError("Este campo é obrigatório");
+            EditTextcidade.setError(mensagem1);
             EditTextcidade.setFocusable (true);
             EditTextcidade.requestFocus ();
         }else{
@@ -336,7 +353,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String estado =  EditTextestado.getEditText().getText().toString().trim();
         if(estado.equals ("")){
             validate = false;
-            EditTextestado.setError("Este campo é obrigatório");
+            EditTextestado.setError(mensagem1);
             EditTextestado.setFocusable (true);
             EditTextestado.requestFocus ();
         }else{
@@ -345,7 +362,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String pais =  EditTextpais.getEditText().getText().toString().trim();
         if(pais.equals ("")){
             validate = false;
-            EditTextpais.setError("Este campo é obrigatório");
+            EditTextpais.setError(mensagem1);
             EditTextpais.setFocusable (true);
             EditTextpais.requestFocus ();
         }else{
@@ -354,7 +371,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String cep = EditTextcep.getEditText().getText().toString().trim();
         if(cep.equals ("")){
             validate = false;
-            EditTextcep.setError("Este campo é obrigatório");
+            EditTextcep.setError(mensagem1);
             EditTextcep.setFocusable (true);
             EditTextcep.requestFocus ();
         }else{
@@ -363,7 +380,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         String cargoIgreja = EditTextcargoIgreja.getEditText().getText().toString().trim();
         if(cargoIgreja.equals ("")|| cargoIgreja.length() < 4){
             validate = false;
-            EditTextcargoIgreja.setError("Obrigatório +4 digitos.");
+            EditTextcargoIgreja.setError(mensagem1);
             EditTextcargoIgreja.setFocusable (true);
             EditTextcargoIgreja.requestFocus ();
         }else{
@@ -374,7 +391,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         if( emaildual ){
-            Toast.makeText( AddLeaderActivity.this, "Já existe um cadastro com esse mesmo email " + email, Toast.LENGTH_LONG ).show();
+            Toast.makeText( AddLeaderActivity.this, mensagem8 + " " + email, Toast.LENGTH_LONG ).show();
             return ;
         }
         if( validate ){
@@ -393,7 +410,7 @@ public class AddLeaderActivity extends AppCompatActivity {
 
                     ref.child ( "churchs/" + uidIgreja ).updateChildren ( map );
 
-                    if ( celula != "Escolha uma célula" ) {
+                    if ( celula != mensagem9 ) {
 
                         pegandoConteudoCelula(celula);
                         //atualiza lider na célula
@@ -403,15 +420,15 @@ public class AddLeaderActivity extends AppCompatActivity {
                         ref.child ( "churchs/" + uidIgreja + "/cells/").updateChildren ( map1 );
                     }
 
-                    Toast.makeText ( this , "Criado leader com sucesso" , Toast.LENGTH_SHORT ).show ( );
+                    Toast.makeText ( this , mensagem2, Toast.LENGTH_SHORT ).show ( );
 
                     Intent intent = new Intent ( AddLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );
 
                 }else {
-                    Toast.makeText ( this , "Erro ao tentar criar leader !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem3 , Toast.LENGTH_LONG ).show ( );
                     if ( !typeUserAdmin ) {
-                        Toast.makeText ( this , "Você não é um leader administrador. \n Não pode criar leader admin !" , Toast.LENGTH_LONG ).show ( );
+                        Toast.makeText ( this , mensagem5 , Toast.LENGTH_LONG ).show ( );
                     }
                     Intent intent = new Intent ( AddLeaderActivity.this , HomeActivity.class );
                     startActivity ( intent );

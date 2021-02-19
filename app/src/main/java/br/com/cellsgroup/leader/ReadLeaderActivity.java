@@ -98,6 +98,11 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    String mensagem11 = "";
+    String mensagem12 = "";
+    String mensagem13 = "";
+    String mensagem14 = "";
+    String mensagem15 = "";
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -153,6 +158,11 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         EditTextpais = findViewById( R.id.text_input_readPais );
         EditTextcep = findViewById( R.id.text_input_readCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_readCargoIgreja);
+        mensagem11 = getResources ().getString (R.string.apagadoLiderSuccess);
+        mensagem12 = getResources ().getString (R.string.erroApagarLider);
+        mensagem13 = getResources ().getString (R.string.lider);
+        mensagem14 = getResources ().getString (R.string.questionApagarlider);
+        mensagem15 = getResources ().getString (R.string.cancelar);
     }
 
     private void inicializarFirebase() {
@@ -173,7 +183,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                     try {
                         Leader l = dados.getValue (Leader.class);
                         if (l.getUid() != null && l.getUid() != null) {
-                            if(l.getUid().equalsIgnoreCase (l.getUid()) ) {
+                            if(l.getUid().equalsIgnoreCase (uid) ) {
                                 String celula = l.getCelula().trim();
                                 String nome = l.getNome().trim();
                                 String idade = l.getIdade().trim ();
@@ -234,11 +244,11 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
     private void deleteUsuario(){
         AlertDialog.Builder builder1 = new AlertDialog.Builder( ReadLeaderActivity.this );
-        builder1 = builder1.setMessage( "Lider "+ useremail);
-        builder1.setTitle( "Apagar Lider ?" ).setCancelable( false ).setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
+        builder1 = builder1.setMessage( mensagem13 + " " + useremail);
+        builder1.setTitle(  mensagem14  ).setCancelable( false ).setNegativeButton(  mensagem15, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText( getApplicationContext(), "Cancelar", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( getApplicationContext(),  mensagem15, Toast.LENGTH_SHORT ).show();
             }
         } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
             @Override
@@ -251,7 +261,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                 //Apaga leader em users/
                 leaders.child ( uid ).removeValue ( );
 
-                Toast.makeText ( ReadLeaderActivity.this , "Lider apagado com sucesso" , Toast.LENGTH_LONG ).show ( );
+                Toast.makeText ( ReadLeaderActivity.this , mensagem11 , Toast.LENGTH_LONG ).show ( );
 
                 ReadLeaderActivity.this.finish();
                 Intent intent = new Intent( ReadLeaderActivity.this, LeaderActivity.class );

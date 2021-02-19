@@ -30,7 +30,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
@@ -73,7 +72,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     private TextInputLayout textInputHora;
     private TextInputLayout textInputDataInicio;
     private static boolean validate = true;
-    private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
+    private String[] semana;
     private String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
@@ -81,6 +80,11 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
 
     @SuppressLint("SimpleDateFormat")
     @Override
@@ -125,8 +129,22 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
         textInputHora = findViewById(R.id.text_input_hora);
         textInputDataInicio = findViewById(R.id.text_input_DataInicio);
         textInputDataInicio.getEditText().setText( DataT );
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.criadocelula);
+        mensagem3 =  getResources ().getString (R.string.erroCriarcelula);
+        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
+        mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
         Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
-
+            semana  = new String[] {
+                getResources ().getString (R.string.dia_da_semana),
+                getResources ().getString (R.string.segunda_feira),
+                getResources ().getString (R.string.terca_feira),
+                getResources ().getString (R.string.quarta_feira),
+                getResources ().getString (R.string.quinta_feira),
+                getResources ().getString (R.string.sexta_feira),
+                getResources ().getString (R.string.sabado),
+                getResources ().getString (R.string.domingo),
+            };
         ArrayAdapter<String> adapter = new ArrayAdapter<>( AddCelulaActivity.this, android.R.layout.simple_spinner_dropdown_item, semana );
         sp = findViewById( R.id.spinnerSemana );
         sp.setAdapter( adapter );
@@ -269,7 +287,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             if(celula.equals ("")){
                 validate = false;
-                textInputCelula.setError("Este campo é obrigatório");
+                textInputCelula.setError(mensagem1);
                 textInputCelula.setFocusable (true);
                 textInputCelula.requestFocus ();
             }else{
@@ -278,7 +296,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             if(rede.equals ("")){
                 validate = false;
-                textInputRede.setError("Este campo é obrigatório");
+                textInputRede.setError(mensagem1);
                 textInputRede.setFocusable (true);
                 textInputRede.requestFocus ();
             }else{
@@ -287,7 +305,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
             if(supervisor.equals ("")){
                 validate = false;
-                textInputSupervisor.setError("Este campo é obrigatório");
+                textInputSupervisor.setError(mensagem1);
                 textInputSupervisor.setFocusable (true);
                 textInputSupervisor.requestFocus ();
             }else{
@@ -296,7 +314,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String lider = Objects.requireNonNull( textInputLider.getEditText(),"" ).getText().toString().trim();
             if(lider.equals ("")){
                 validate = false;
-                textInputLider.setError("Este campo é obrigatório");
+                textInputLider.setError(mensagem1);
                 textInputLider.setFocusable (true);
                 textInputLider.requestFocus ();
             }else{
@@ -305,7 +323,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
             if(viceLider.equals ("")){
                 validate = false;
-                textInputViceLider.setError("Este campo é obrigatório");
+                textInputViceLider.setError(mensagem1);
                 textInputViceLider.setFocusable (true);
                 textInputViceLider.requestFocus ();
             }else{
@@ -314,7 +332,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
             if(anfitriao.equals ("")){
                 validate = false;
-                textInputAnfitriao.setError("Este campo é obrigatório");
+                textInputAnfitriao.setError(mensagem1);
                 textInputAnfitriao.setFocusable (true);
                 textInputAnfitriao.requestFocus ();
             }else{
@@ -323,7 +341,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
             if(secretario.equals ("")){
                 validate = false;
-                textInputSecretario.setError("Este campo é obrigatório");
+                textInputSecretario.setError(mensagem1);
                 textInputSecretario.setFocusable (true);
                 textInputSecretario.requestFocus ();
             }else{
@@ -332,7 +350,7 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
             String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
             if(colaborador.equals ("")){
                 validate = false;
-                textInputColaborador.setError("Este campo é obrigatório");
+                textInputColaborador.setError(mensagem1);
                 textInputColaborador.setFocusable (true);
                 textInputColaborador.requestFocus ();
             }else{
@@ -350,11 +368,11 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
                     if ( uid == null ) throw new AssertionError ( );
                     Cells.child ( "churchs/" + uidIgreja + "/cells/" ).child ( celula ).child ( uid ).setValue ( cel );
 
-                    Toast.makeText ( this , "Criado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem2 , Toast.LENGTH_LONG ).show ( );
                 } else {
-                    Toast.makeText ( this , "Erro ao tentar criar célula !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem3 , Toast.LENGTH_LONG ).show ( );
                     if ( !typeUserAdmin ) {
-                        Toast.makeText ( this , "Você não é um lider administrador. \n Não pode criar celulas !" , Toast.LENGTH_LONG ).show ( );
+                        Toast.makeText ( this , mensagem5 , Toast.LENGTH_LONG ).show ( );
                     }
                 }
 
@@ -370,11 +388,11 @@ public class AddCelulaActivity extends AppCompatActivity implements NavigationVi
     public void  testNullvariable(String var){
 
         if ( "null".equals ( var ) ) {
-            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
+            Toast.makeText ( this , mensagem4 , Toast.LENGTH_LONG ).show ( );
         } else if ( "".equals ( var ) ) {
-            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
+            Toast.makeText ( this , mensagem4 , Toast.LENGTH_LONG ).show ( );
         } else if ( "   ".equals ( var ) ) {
-            Toast.makeText ( this , "Todos os camos tem que ser preenchidos !" , Toast.LENGTH_LONG ).show ( );
+            Toast.makeText ( this , mensagem4 , Toast.LENGTH_LONG ).show ( );
         }
     }
 

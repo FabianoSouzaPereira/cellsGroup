@@ -1,7 +1,5 @@
 package br.com.cellsgroup.Igreja;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,25 +12,13 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.models.igreja.Igreja;
 
-import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
-import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 public class DeleteIgrejaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;

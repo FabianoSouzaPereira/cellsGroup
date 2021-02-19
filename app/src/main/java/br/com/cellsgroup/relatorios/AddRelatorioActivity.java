@@ -20,7 +20,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -120,6 +119,26 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     View.OnFocusChangeListener listenerConvidados;
     View.OnFocusChangeListener listenerCrianca;
     View.OnFocusChangeListener listenerTotal;
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
+    String mensagem6 = "";
+    String mensagem7 = "";
+    String mensagem8 = "";
+    String mensagem9 = "";
+    String mensagem10 = "";
+    String mensagem11 = "";
+    String mensagem12 = "";
+    String mensagem13 = "";
+    String mensagem14 = "";
+    String mensagem15 = "";
+    String mensagem16 = "";
+    String mensagem17 = "";
+    String mensagem18 = "";
+    String mensagem19 = "";
+    String mensagem20 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +157,9 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     }
 
     private void inicializarComponentes() {
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.criadoRelatorioSuccess);
+        mensagem3 =  getResources ().getString (R.string.erroCriadoRelatorio);
 
         textInputCelula = findViewById(R.id.text_input_celula);
         textInputRede = findViewById(R.id.text_input_rede);
@@ -390,7 +412,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String baseCelula = Objects.requireNonNull( textInputBaseCelula.getEditText(), "0" ).getText().toString().trim();
             if(baseCelula.equals ("")){
                 validate = false;
-                textInputBaseCelula.setError("Este campo é obrigatório");
+                textInputBaseCelula.setError(mensagem1);
                 textInputBaseCelula.setFocusable (true);
                 textInputBaseCelula.requestFocus ();
             }else {
@@ -400,7 +422,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String membrosIEQ = Objects.requireNonNull( textInputMembrosIEQ.getEditText(), ""  ).getText().toString().trim();
             if(baseCelula.equals ("")){
                 validate = false;
-                textInputMembrosIEQ.setError("Este campo é obrigatório");
+                textInputMembrosIEQ.setError(mensagem1);
                 textInputMembrosIEQ.setFocusable (true);
                 textInputMembrosIEQ.requestFocus ();
             }else {
@@ -410,7 +432,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String convidados = Objects.requireNonNull( textInputConvidados.getEditText(), ""  ).getText().toString().trim();
             if(convidados.equals ("")){
                 validate = false;
-                textInputConvidados.setError("Este campo é obrigatório");
+                textInputConvidados.setError(mensagem1);
                 textInputConvidados.setFocusable (true);
                 textInputConvidados.requestFocus ();
             }else {
@@ -420,7 +442,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String criancas = Objects.requireNonNull( textInputCriancas.getEditText(), ""  ).getText().toString().trim();
             if(criancas .equals ("")){
                 validate = false;
-                textInputCriancas.setError("Este campo é obrigatório");
+                textInputCriancas.setError(mensagem1);
                 textInputCriancas.setFocusable (true);
                 textInputCriancas.requestFocus ();
             }else {
@@ -430,7 +452,7 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
             String total =  Objects.requireNonNull( textInputTotal.getEditText(), ""  ).getText().toString().trim();
             if(total.equals ("")){
                 validate = false;
-                textInputTotal.setError("Este campo é obrigatório");
+                textInputTotal.setError(mensagem1);
                 textInputTotal.setFocusable (true);
                 textInputTotal.requestFocus ();
             }else {
@@ -447,13 +469,13 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                     if ( uid != null ) {
                         relatorios.child ( celula ).child ( uid ).setValue ( relatorio );
 
-                        Toast.makeText ( this , "Relatório enviado com sucesso" , Toast.LENGTH_LONG ).show ( );
+                        Toast.makeText ( this , mensagem2 , Toast.LENGTH_LONG ).show ( );
                         Intent intent = new Intent ( AddRelatorioActivity.this , RelatorioActivityView.class );
                         startActivity ( intent );
                         finish ( );
                     }
                 } else {
-                    Toast.makeText ( this , "Erro ao menu_config o relatório !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem3, Toast.LENGTH_LONG ).show ( );
                 }
             }
         } catch (Exception e) {

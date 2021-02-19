@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="100dp"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/bot_o_adicionar"
         app:srcCompat="@drawable/ic_baseline_groups_24" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="7dp"
         android:gravity="center_horizontal"
-        android:text="Igreja em Células"
+        android:text="@string/igreja_em_c_lulas"
         android:textColor="#454545"
         android:textSize="38sp" />
 

@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +24,7 @@
             android:id="@+id/listViewCelula"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="15dp"
             android:visibility="visible">
 
         </ListView>
@@ -33,7 +33,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardviewCells"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:visibility="gone"
             app:cardElevation="0dp">
 
@@ -52,8 +52,8 @@
                 android:id="@+id/textMensagemCell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="80dp"
+                android:layout_gravity="top"
+                android:layout_marginTop="200dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="casual"
                 android:gravity="center_horizontal"
@@ -66,8 +66,8 @@
                 android:id="@+id/textMensagemCell2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="40dp"
+                android:layout_gravity="top"
+                android:layout_marginTop="230dp"
                 android:fontFamily="casual"
                 android:gravity="center_horizontal"
                 android:text="@string/messageCelula2"

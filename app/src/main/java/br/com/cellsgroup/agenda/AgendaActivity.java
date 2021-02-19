@@ -51,6 +51,7 @@ import br.com.cellsgroup.celulas.CelulasActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
+@SuppressWarnings( { "UnnecessaryLocalVariable" , "UnusedAssignment" } )
 public class AgendaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DatabaseReference novaRef;
     private FirebaseDatabase firebaseDatabase;

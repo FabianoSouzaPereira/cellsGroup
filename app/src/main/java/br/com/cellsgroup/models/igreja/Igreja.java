@@ -12,6 +12,7 @@ public final class Igreja {
     private String cep = "";
     private String ddi = "";
     private String phone = "";
+    private String phone_fixo = "";
     private String datahora = "";
     private String user;
     private String status = "1";
@@ -23,7 +24,7 @@ public final class Igreja {
     public Igreja ( ) {
     }
 
-    public Igreja ( String uid , String nome , String endereco , String bairro , String cidade , String estado , String pais_ , String cep , String ddi , String phone , String datahora , String user , String status , String group , String igrejaID , String members ) {
+    public Igreja ( String uid , String nome , String endereco , String bairro , String cidade , String estado , String pais_ , String cep , String ddi , String phone , String phone_fixo, String datahora , String user , String status , String group , String igrejaID , String members ) {
         this.uid = uid;
         this.nome = nome;
         this.endereco = endereco;
@@ -34,6 +35,7 @@ public final class Igreja {
         this.cep = cep;
         this.ddi = ddi;
         this.phone = phone;
+        this.phone_fixo = phone_fixo;
         this.datahora = datahora;
         this.user = user;
         this.status = status;
@@ -120,6 +122,14 @@ public final class Igreja {
 
     public void setPhone ( String phone ) {
         this.phone = phone;
+    }
+
+    public String getPhone_fixo ( ) {
+        return phone_fixo;
+    }
+
+    public void setPhone_fixo ( String phone_fixo ) {
+        this.phone_fixo = phone_fixo;
     }
 
     public String getDatahora ( ) {

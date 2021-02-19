@@ -42,6 +42,7 @@ import br.com.cellsgroup.models.intercessao.Intercessao;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
+@SuppressWarnings( "UnnecessaryLocalVariable" )
 public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final String TAG = "ClickLista";
     private DatabaseReference Intercessao;

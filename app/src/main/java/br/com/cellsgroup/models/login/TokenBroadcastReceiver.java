@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+@SuppressWarnings( "UnnecessaryLocalVariable" )
 public abstract class TokenBroadcastReceiver extends BroadcastReceiver {
     private static final String TAG = "TokenBroadcastReceiver";
 

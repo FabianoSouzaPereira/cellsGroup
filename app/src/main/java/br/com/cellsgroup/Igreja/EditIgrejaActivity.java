@@ -31,7 +31,6 @@ import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.utils.MaskEditUtil;
 
 import static br.com.cellsgroup.home.HomeActivity.igreja;
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 public class EditIgrejaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
@@ -45,16 +44,30 @@ public class EditIgrejaActivity extends AppCompatActivity {
     private String nome_extra;
     private static boolean validate = true;
 
-    TextInputLayout denominacao;
-    TextInputLayout editIgreja;
-    TextInputLayout editEndereco;
-    TextInputLayout editBairro;
-    TextInputLayout editCidade;
-    TextInputLayout editEstado;
-    TextInputLayout editPais;
-    TextInputLayout editCep;
-    TextInputLayout editDdi;
-    TextInputLayout editPhone;
+    private TextInputLayout denominacao;
+    private TextInputLayout editIgreja;
+    private TextInputLayout editEndereco;
+    private TextInputLayout editBairro;
+    private TextInputLayout editCidade;
+    private TextInputLayout editEstado;
+    private TextInputLayout editPais;
+    private TextInputLayout editCep;
+    private TextInputLayout editDdi;
+    private TextInputLayout editPhone;
+    private TextInputLayout editPhoneFixo;
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
+    String mensagem6 = "";
+    String mensagem7 = "";
+    String mensagem8 = "";
+    String mensagem9 = "";
+    String mensagem10 = "";
+    String mensagem11 = "";
+    String mensagem12 = "";
+    String mensagem13 = "";
 
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
@@ -85,6 +98,20 @@ public class EditIgrejaActivity extends AppCompatActivity {
         editDdi = findViewById (R.id.text_input_editddi);
         editPhone = findViewById (R.id.text_input_phone);
         editPhone.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhone, MaskEditUtil.FORMAT_FONE));
+        editPhoneFixo = findViewById (R.id.text_input_Fixo);
+        editPhoneFixo.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhoneFixo, MaskEditUtil.FORMAT_FONE_FIXO));
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.editadoIgrejasuccess);
+        mensagem3 =  getResources ().getString (R.string.erroEditarIgreja);
+        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
+        mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
+        mensagem6 = getResources ().getString (R.string.erroCampo3digitos);
+        mensagem7 = getResources ().getString (R.string.erroCampo11digitos);
+        mensagem8 = getResources ().getString (R.string.erroEmailexiste);
+        mensagem9 = getResources ().getString (R.string.escolhaCelula);
+        mensagem10 = getResources ().getString (R.string.erroCampoInvalido);
+        mensagem11 = getResources ().getString (R.string.erroCampo10digitos);
+
     }
 
     private void readIgrejaCadastrada() {
@@ -116,6 +143,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
                                 Objects.requireNonNull ( editCep.getEditText ( ) , "" ).setText ( igr.getCep ( ) );
                                 Objects.requireNonNull ( editDdi.getEditText ( ) , "" ).setText ( igr.getDdi ( ) );
                                 Objects.requireNonNull ( editPhone.getEditText ( ) , "" ).setText ( igr.getPhone ( ) );
+                                Objects.requireNonNull ( editPhoneFixo.getEditText ( ) , "" ).setText ( igr.getPhone_fixo () );
                             }
                         }
                     }
@@ -139,16 +167,16 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String denom = Objects.requireNonNull ( denominacao.getEditText ( ), "" ).getText ().toString().trim();
             if(denom .equals ("")|| denom.length() < 4){
                 validate = false;
-                denominacao.setError("Este campo é obrigatório");
+                denominacao.setError(mensagem1);
                 denominacao.setFocusable (true);
                 denominacao.requestFocus ();
             }else{
                 denominacao.setError(null);
             }
             String igrejanome = Objects.requireNonNull ( editIgreja.getEditText ( ), "" ).getText ().toString().trim();
-            if(igreja .equals ("")|| igreja.length() < 4){
+            if(igrejanome .equals ("")|| igrejanome.length() < 4){
                 validate = false;
-                editIgreja.setError("Este campo é obrigatório");
+                editIgreja.setError(mensagem1);
                 editIgreja.setFocusable (true);
                 editIgreja.requestFocus ();
             }else{
@@ -157,7 +185,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String endereco = Objects.requireNonNull ( editEndereco.getEditText ( ), "" ).getText ().toString().trim();
             if(endereco.equals ("")){
                 validate = false;
-                editEndereco.setError("Este campo é obrigatório");
+                editEndereco.setError(mensagem1);
                 editEndereco.setFocusable (true);
                 editEndereco.requestFocus ();
             }else{
@@ -166,7 +194,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String bairro = Objects.requireNonNull ( editBairro.getEditText ( ), "" ).getText ().toString().trim();
             if(bairro.equals ("")){
                 validate = false;
-                editBairro.setError("Este campo é obrigatório");
+                editBairro.setError(mensagem1);
                 editBairro.setFocusable (true);
                 editBairro.requestFocus ();
             }else{
@@ -175,7 +203,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String cidade = Objects.requireNonNull ( editCidade.getEditText ( ), "" ).getText ().toString().trim();
             if(cidade.equals ("")){
                 validate = false;
-                editCidade.setError("Este campo é obrigatório");
+                editCidade.setError(mensagem1);
                 editCidade.setFocusable (true);
                 editCidade.requestFocus ();
             }else{
@@ -184,7 +212,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String estado = Objects.requireNonNull ( editEstado.getEditText ( ), "" ).getText ().toString().trim();
             if(estado.equals ("")){
                 validate = false;
-                editEstado.setError("Este campo é obrigatório");
+                editEstado.setError(mensagem1);
                 editEstado.setFocusable (true);
                 editEstado.requestFocus ();
             }else{
@@ -193,7 +221,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String pais = Objects.requireNonNull ( editPais.getEditText ( ), "" ).getText ().toString().trim();
             if(pais.equals ("")){
                 validate = false;
-                editPais.setError("Este campo é obrigatório");
+                editPais.setError(mensagem1);
                 editPais.setFocusable (true);
                 editPais.requestFocus ();
             }else{
@@ -202,7 +230,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String cep = Objects.requireNonNull ( editCep.getEditText ( ), "" ).getText ().toString().trim();
             if(cep.equals ("")){
                 validate = false;
-                editCep.setError("Este campo é obrigatório");
+                editCep.setError(mensagem1);
                 editCep.setFocusable (true);
                 editCep.requestFocus ();
             }else{
@@ -211,20 +239,30 @@ public class EditIgrejaActivity extends AppCompatActivity {
             String ddi = Objects.requireNonNull ( editDdi.getEditText ( ), "" ).getText ().toString().trim();
             if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
                 validate = false;
-                editDdi.setError("Este campo é obrigatório, 3 dígitos.");
+                editDdi.setError(mensagem6);
                 editDdi.setFocusable (true);
                 editDdi.requestFocus ();
             }else{
                 editDdi.setError(null);
             }
             String fone = Objects.requireNonNull ( editPhone.getEditText ( ), "" ).getText ().toString().trim();
-            if( fone.equals ( "" ) || fone.length ( ) < 9 ){
+            if( fone.equals ( "" ) || fone.length ( ) < 14 ){
                 validate = false;
-                editPhone.setError("Este campo é obrigatório, min. 9 dígitos.");
+                editPhone.setError(mensagem7);
                 editPhone.setFocusable (true);
                 editPhone.requestFocus ();
             }else{
                 editPhone.setError(null);
+            }
+            String phone_fixo  = editPhoneFixo.getEditText().getText().toString().trim();
+            // pode ser vazio, mas se tiver valor, tem que ser maior que 10
+            if( phone_fixo.length ( ) > 0 && phone_fixo.length ( ) < 13 ){
+                validate = false;
+                editPhoneFixo.setError(mensagem11);
+                editPhoneFixo.setFocusable (true);
+                editPhoneFixo.requestFocus ();
+            }else{
+                editPhoneFixo.setError(null);
             }
             //  String hora = hh + ":" + mm;
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -242,10 +280,11 @@ public class EditIgrejaActivity extends AppCompatActivity {
                     IgrejaUpdates.put ( nome_extra + "/cep" , cep );
                     IgrejaUpdates.put ( nome_extra + "/ddi" , ddi );
                     IgrejaUpdates.put ( nome_extra + "/phone" , fone );
+                    IgrejaUpdates.put ( nome_extra + "/phone_fixo" , phone_fixo );
 
                     novaRef2.updateChildren ( IgrejaUpdates );
 
-                    Toast.makeText ( this , "Editado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem2, Toast.LENGTH_LONG ).show ( );
 
                     Intent intent = new Intent ( EditIgrejaActivity.this , IgrejasCriadasActivity.class );
                     intent.addFlags ( Intent.FLAG_ACTIVITY_NEW_TASK );
@@ -254,7 +293,7 @@ public class EditIgrejaActivity extends AppCompatActivity {
                     finish ( );
 
                 } else {
-                    Toast.makeText ( this , "Erro ao tentar Editar célula !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem3, Toast.LENGTH_LONG ).show ( );
                 }
             }
         } catch ( Exception e ) {

@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/bot_o_configura_o"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

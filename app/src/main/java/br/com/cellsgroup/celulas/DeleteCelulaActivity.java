@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-import br.com.cellsgroup.Igreja.DeleteIgrejaActivity;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;

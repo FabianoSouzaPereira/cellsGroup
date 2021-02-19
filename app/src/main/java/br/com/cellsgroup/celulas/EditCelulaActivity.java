@@ -86,7 +86,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     private Spinner min;
     private String  hrs;
     private static boolean validate = true;
-    private String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
+    private String[] semana;
     private String[] hora = new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "00" };
     private String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
@@ -94,6 +94,11 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,7 +248,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String celula = Objects.requireNonNull( textInputCelula.getEditText() ).getText().toString().trim();
             if(celula.equals ("")){
                 validate = false;
-                textInputCelula.setError("Este campo é obrigatório");
+                textInputCelula.setError(mensagem1);
                 textInputCelula.setFocusable (true);
                 textInputCelula.requestFocus ();
             }else{
@@ -252,7 +257,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String rede = Objects.requireNonNull( textInputRede.getEditText() ).getText().toString().trim();
             if(rede.equals ("")){
                 validate = false;
-                textInputRede.setError("Este campo é obrigatório");
+                textInputRede.setError(mensagem1);
                 textInputRede.setFocusable (true);
                 textInputRede.requestFocus ();
             }else{
@@ -261,7 +266,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String supervisor = Objects.requireNonNull( textInputSupervisor.getEditText() ).getText().toString().trim();
             if(supervisor.equals ("")){
                 validate = false;
-                textInputSupervisor.setError("Este campo é obrigatório");
+                textInputSupervisor.setError(mensagem1);
                 textInputSupervisor.setFocusable (true);
                 textInputSupervisor.requestFocus ();
             }else{
@@ -270,7 +275,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String lider = Objects.requireNonNull( textInputLider.getEditText(),"" ).getText().toString().trim();
             if(lider.equals ("")){
                 validate = false;
-                textInputLider.setError("Este campo é obrigatório");
+                textInputLider.setError(mensagem1);
                 textInputLider.setFocusable (true);
                 textInputLider.requestFocus ();
             }else{
@@ -279,7 +284,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String viceLider = Objects.requireNonNull( textInputViceLider.getEditText() ).getText().toString().trim();
             if(viceLider.equals ("")){
                 validate = false;
-                textInputViceLider.setError("Este campo é obrigatório");
+                textInputViceLider.setError(mensagem1);
                 textInputViceLider.setFocusable (true);
                 textInputViceLider.requestFocus ();
             }else{
@@ -288,7 +293,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String anfitriao = Objects.requireNonNull( textInputAnfitriao.getEditText() ).getText().toString().trim();
             if(anfitriao.equals ("")){
                 validate = false;
-                textInputAnfitriao.setError("Este campo é obrigatório");
+                textInputAnfitriao.setError(mensagem1);
                 textInputAnfitriao.setFocusable (true);
                 textInputAnfitriao.requestFocus ();
             }else{
@@ -297,7 +302,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String secretario = Objects.requireNonNull( textInputSecretario.getEditText() ).getText().toString().trim();
             if(secretario.equals ("")){
                 validate = false;
-                textInputSecretario.setError("Este campo é obrigatório");
+                textInputSecretario.setError(mensagem1);
                 textInputSecretario.setFocusable (true);
                 textInputSecretario.requestFocus ();
             }else{
@@ -306,7 +311,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
             String colaborador = Objects.requireNonNull( textInputColaborador.getEditText() ).getText().toString().trim();
             if(colaborador.equals ("")){
                 validate = false;
-                textInputColaborador.setError("Este campo é obrigatório");
+                textInputColaborador.setError(mensagem1);
                 textInputColaborador.setFocusable (true);
                 textInputColaborador.requestFocus ();
             }else{
@@ -334,9 +339,9 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
 
                     novaRef2.updateChildren ( celulaUpdates );
 
-                    Toast.makeText ( this , "Editado célula com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem2 , Toast.LENGTH_LONG ).show ( );
                 } else {
-                    Toast.makeText ( this , "Erro ao tentar Editar célula !" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this , mensagem3 , Toast.LENGTH_LONG ).show ( );
                 }
 
                 Intent intent = new Intent ( EditCelulaActivity.this , CelulasActivity.class );
@@ -369,6 +374,22 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         textInputDia = findViewById(R.id.text_input_dia);
         textInputHora = findViewById(R.id.text_input_hora);
         textInputDataInicio = findViewById(R.id.text_input_DataInicio);
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.criadocelula);
+        mensagem3 =  getResources ().getString (R.string.erroEditardocelula);
+        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
+        mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
+        Objects.requireNonNull( textInputDataInicio.getEditText() ).setText(DataT);
+        semana  = new String[] {
+            getResources ().getString (R.string.dia_da_semana),
+            getResources ().getString (R.string.segunda_feira),
+            getResources ().getString (R.string.terca_feira),
+            getResources ().getString (R.string.quarta_feira),
+            getResources ().getString (R.string.quinta_feira),
+            getResources ().getString (R.string.sexta_feira),
+            getResources ().getString (R.string.sabado),
+            getResources ().getString (R.string.domingo),
+        };
     }
 
     @Override

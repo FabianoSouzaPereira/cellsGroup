@@ -402,7 +402,7 @@
                     android:background="@null"
                     android:clickable="false"
                     android:focusable="false"
-                    android:hint="Data-Hora"
+                    android:hint="@string/data_hora"
                     android:inputType="none"
                     android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>

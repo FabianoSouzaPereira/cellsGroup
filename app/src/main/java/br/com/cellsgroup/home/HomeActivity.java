@@ -58,7 +58,6 @@ import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.models.login.LoginActivity;
-import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 import br.com.cellsgroup.leader.LeaderActivity;
 

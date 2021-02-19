@@ -33,7 +33,6 @@ import br.com.cellsgroup.utils.MaskEditUtil;
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
-import static java.lang.System.currentTimeMillis;
 
 public class addIgrejaActivity extends AppCompatActivity {
     private DatabaseReference ref;
@@ -51,6 +50,7 @@ public class addIgrejaActivity extends AppCompatActivity {
     private TextInputLayout editCep;
     private TextInputLayout editddi;
     private TextInputLayout editPhone;
+    private TextInputLayout editPhoneFixo;
     private FirebaseAuth mAuth;
     private static boolean validate = true;
     private Query query;
@@ -59,6 +59,20 @@ public class addIgrejaActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
     private String denominacao ="";
+    String mensagem1 = "";
+    String mensagem2 = "";
+    String mensagem3 = "";
+    String mensagem4 = "";
+    String mensagem5 = "";
+    String mensagem6 = "";
+    String mensagem7 = "";
+    String mensagem8 = "";
+    String mensagem9 = "";
+    String mensagem10 = "";
+    String mensagem11 = "";
+    String mensagem12 = "";
+    String mensagem13 = "";
+
 
 
     @Override
@@ -96,6 +110,21 @@ public class addIgrejaActivity extends AppCompatActivity {
         editddi = findViewById( R.id.text_input_editddi);
         editPhone= findViewById (R.id.text_input_phone );
         editPhone.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhone, MaskEditUtil.FORMAT_FONE));
+        editPhoneFixo = findViewById (R.id.text_input_Fixo);
+        editPhoneFixo.getEditText ().addTextChangedListener ( MaskEditUtil.mask(editPhoneFixo, MaskEditUtil.FORMAT_FONE_FIXO));
+        mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
+        mensagem2 =  getResources ().getString (R.string.criadoleader);
+        mensagem3 =  getResources ().getString (R.string.erroCriarleader);
+        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
+        mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
+        mensagem6 = getResources ().getString (R.string.erroCampo3digitos);
+        mensagem7 = getResources ().getString (R.string.erroCampo11digitos);
+        mensagem8 = getResources ().getString (R.string.erroEmailexiste);
+        mensagem9 = getResources ().getString (R.string.escolhaCelula);
+        mensagem10 = getResources ().getString (R.string.erroCampoInvalido);
+        mensagem11 = getResources ().getString (R.string.erroCampo10digitos);
+        mensagem12 = getResources ().getString (R.string.criadoIgrejasuccess);
+        mensagem13 = getResources ().getString (R.string.erroCrairIgreja);
     }
 
 
@@ -108,17 +137,16 @@ public class addIgrejaActivity extends AppCompatActivity {
             denominacao = editDenominacao.getEditText().getText().toString().trim();
             if(denominacao .equals ("")|| denominacao.length() < 4){
                 validate = false;
-                editDenominacao.setError("Este campo é obrigatório");
+                editDenominacao.setError(mensagem1);
                 editDenominacao.setFocusable (true);
                 editDenominacao.requestFocus ();
             }else{
                 editDenominacao.setError(null);
             }
              String igrejaName = editIgreja.getEditText().getText().toString().trim();
-            igreja = igrejaName;
-            if(igreja .equals ("")|| igreja.length() < 4){
+            if(igrejaName.equals ("")|| igrejaName.length() < 4){
                 validate = false;
-                editIgreja.setError("Este campo é obrigatório");
+                editIgreja.setError(mensagem1);
                 editIgreja.setFocusable (true);
                 editIgreja.requestFocus ();
             }else{
@@ -127,7 +155,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String endereco = editEndereco.getEditText().getText().toString().trim();
             if(endereco.equals ("")){
                 validate = false;
-                editEndereco.setError("Este campo é obrigatório");
+                editEndereco.setError(mensagem1);
                 editEndereco.setFocusable (true);
                 editEndereco.requestFocus ();
             }else{
@@ -136,7 +164,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String bairro = editBairro.getEditText().getText().toString().trim();
             if(bairro.equals ("")){
                 validate = false;
-                editBairro.setError("Este campo é obrigatório");
+                editBairro.setError(mensagem1);
                 editBairro.setFocusable (true);
                 editBairro.requestFocus ();
             }else{
@@ -145,7 +173,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String cidade = editCidade.getEditText().getText().toString().trim();
             if(cidade.equals ("")){
                 validate = false;
-                editCidade.setError("Este campo é obrigatório");
+                editCidade.setError(mensagem1);
                 editCidade.setFocusable (true);
                 editCidade.requestFocus ();
             }else{
@@ -154,7 +182,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String estado = editEstado.getEditText().getText().toString().trim();
             if(estado.equals ("")){
                 validate = false;
-                editEstado.setError("Este campo é obrigatório");
+                editEstado.setError(mensagem1);
                 editEstado.setFocusable (true);
                 editEstado.requestFocus ();
             }else{
@@ -163,7 +191,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String pais_ = editPais.getEditText().getText().toString().trim();
             if(pais_.equals ("")){
                 validate = false;
-                editPais.setError("Este campo é obrigatório");
+                editPais.setError(mensagem1);
                 editPais.setFocusable (true);
                 editPais.requestFocus ();
             }else{
@@ -172,7 +200,7 @@ public class addIgrejaActivity extends AppCompatActivity {
             String cep = editCep.getEditText().getText().toString().trim();
             if(cep.equals ("")){
                 validate = false;
-                editCep.setError("Este campo é obrigatório");
+                editCep.setError(mensagem1);
                 editCep.setFocusable (true);
                 editCep.requestFocus ();
             }else{
@@ -181,46 +209,56 @@ public class addIgrejaActivity extends AppCompatActivity {
             String ddi = editddi.getEditText().getText().toString().trim();
             if( ddi.equals ( "" ) || ddi.length ( ) > 3 ){
                 validate = false;
-                editddi.setError("Este campo é obrigatório, 3 dígitos.");
+                editddi.setError(mensagem6);
                 editddi.setFocusable (true);
                 editddi.requestFocus ();
             }else{
                 editddi.setError(null);
             }
             String phone  = editPhone.getEditText().getText().toString().trim();
-            if( phone.equals ( "" ) || phone.length ( ) < 9 ){
+            if( phone.equals ( "" ) || phone.length ( ) < 14 ){
                 validate = false;
-                editPhone.setError("Este campo é obrigatório, min. 9 dígitos.");
+                editPhone.setError(mensagem7);
                 editPhone.setFocusable (true);
                 editPhone.requestFocus ();
             }else{
                 editPhone.setError(null);
+            }
+            String phone_fixo  = editPhoneFixo.getEditText().getText().toString().trim();
+            // pode ser vazio, mas se tiver valor ter'que ser maior que oito
+            if( phone_fixo.length ( ) > 0 && phone_fixo.length ( ) < 13 ){
+                validate = false;
+                editPhoneFixo.setError(mensagem11);
+                editPhoneFixo.setFocusable (true);
+                editPhoneFixo.requestFocus ();
+            }else{
+                editPhoneFixo.setError(null);
             }
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String members = "";
 
             if(validate) {
                 //insere igreja
-                if ( !TextUtils.isEmpty ( igreja ) && Logado == true && typeUserAdmin == true ) {
+                if ( !TextUtils.isEmpty ( igrejaName ) && Logado == true && typeUserAdmin == true ) {
                     String uid = ref.push ( ).getKey ( );
                     String igrejaID = uid;
-                    Igreja ig = new Igreja ( uid , igreja , endereco , bairro , cidade , estado , pais_ , cep , ddi , phone , DataTime , userId , status , denominacao , igrejaID , members );
-                    ref.child ( "churchs/" ).child ( uid + "/" + igreja ).setValue ( ig );
+                    Igreja ig = new Igreja ( uid , igrejaName , endereco , bairro , cidade , estado , pais_ , cep , ddi , phone , phone_fixo, DataTime , userId , status , denominacao , igrejaID , members );
+                    ref.child ( "churchs/" ).child ( uid + "/" + igrejaName ).setValue ( ig );
 
                     //insere no groups de igrejas
                     Map < String, Object > map1 = new HashMap <> ( );
-                    map1.put ( "members/" + uid , igreja );
+                    map1.put ( "members/" + uid , igrejaName );
                     ref2.child ( "groups/" ).child ( denominacao ).updateChildren ( map1 );
 
                     clearEditTexts ( );
-                    Toast.makeText ( this , "Criado Igreja com sucesso" , Toast.LENGTH_LONG ).show ( );
+                    Toast.makeText ( this ,mensagem12 , Toast.LENGTH_LONG ).show ( );
                 }
                 Intent home = new Intent( addIgrejaActivity.this, HomeActivity.class);
                 startActivity(home);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText( this, "Erro ao tentar criar a igreja!", Toast.LENGTH_LONG ).show();
+            Toast.makeText( this, mensagem13, Toast.LENGTH_LONG ).show();
         }
     }
 
