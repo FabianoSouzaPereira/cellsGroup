@@ -274,4 +274,5 @@ Nesse contexto, célula é simplesmente uma miniatura da igreja reunindo-se nas 
     <string name="criar_nova_igreja">Criar nova igreja</string>
     <string name="voc_n_o_criou_a_igeja_ainda_n_click_no_link_abaixo_ou_v_no_menu_tr_s_poninho_e_adiione_a_sua_igreja">Você não criou a igreja ainda. Click no link abaixo ou vá no menu (três poninho) e adicione a sua igreja.</string>
     <string name="min">min:</string>
+    <string name="Permission_denied">Erro: Permissão Negada !</string>
 </resources>

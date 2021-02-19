@@ -76,28 +76,29 @@ public class DeleteIgrejaActivity extends AppCompatActivity {
 
     //ToDo Falta fazer no futuro um metodo que não apague a igreja permanentemento usando status= 0 ;
     private void deleteIgreja() {
+        try {
 
-        novaRef4.child( uid_extra );
+            if(!TextUtils.isEmpty( uid_extra )){
 
-        if(!TextUtils.isEmpty( uid_extra )){
-            novaRef4.child( uid_extra ).removeValue();
+                //apaga igreja de groups
+                ref = databaseReference;
+                ref.child("groups/").child(igreja).child ("member/");
+                ref.child(uid_extra).removeValue ();
 
-            ref = databaseReference;
+                novaRef4.child( uid_extra );
+                novaRef4.child( uid_extra ).removeValue();
 
-            //apaga leader de membros
-            ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
-
-            //Apaga leader em users/
-            leaders.child ( uid ).removeValue ( );
-
-            Toast.makeText(this,"Igreja Apagada com sucesso", Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(this,"Erro ao tentar Apagar a Igreja !", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Igreja Apagada com sucesso", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this,"Erro ao tentar Apagar a Igreja !", Toast.LENGTH_LONG).show();
+            }
+        } catch ( Exception e ) {
+            e.printStackTrace ( );
+        } finally {
+            Intent igreja  = new Intent( DeleteIgrejaActivity.this, IgrejasCriadasActivity.class);
+            startActivity( igreja);
+            finish();
         }
-
-        Intent igreja  = new Intent( DeleteIgrejaActivity.this, IgrejasCriadasActivity.class);
-        startActivity( igreja);
-        finish();
     }
 
     private void inicializarFirebase() {

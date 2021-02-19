@@ -1,6 +1,8 @@
 package br.com.cellsgroup.Igreja;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -34,6 +36,7 @@ import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 
+import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 
@@ -87,6 +90,7 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
                 Snackbar.make( view, "Replace with your own action", Snackbar.LENGTH_SHORT ).setAction( "Action", null ).show();
             }
         } );
+
     }
 
     private void readIgrejaCadastrada() {
@@ -151,11 +155,17 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                hiddShowMessage();
+                String errorPermission = "";
+                Snackbar snackbar = Snackbar.make(findViewById (R.id.constrantLayoutIgrejas), R.string.Permission_denied, Snackbar.LENGTH_INDEFINITE);
+                snackbar.setTextColor (getColor (R.color.colorWhite ) );
+                snackbar.show();
             }
         };
         query.addListenerForSingleValueEvent (listener);
         query.removeEventListener (listener);
     }
+
     // Mostra memsagem se lista vir vazia
     private void hiddShowMessage(){
 
@@ -174,6 +184,11 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
     }
 
     @Override
+    protected void onStart ( ) {
+        super.onStart ( );
+     }
+
+    @Override
     public void onBackPressed() {
         IgrejasCriadasActivity.this.finish();
         Intent home = new Intent(IgrejasCriadasActivity.this, HomeActivity.class);
@@ -185,7 +200,6 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
-
 
     @Override
     public void onIgrejaClick(int position) {
@@ -207,27 +221,28 @@ public class IgrejasCriadasActivity<onIgrejaListener> extends AppCompatActivity 
         int id = item.getItemId();
 
         if(id == R.id.action_Edit){
-            Intent intent = new Intent ( IgrejasCriadasActivity.this , EditIgrejaActivity.class );
-            intent.putExtra("Igreja", "" + uid );
-            intent.putExtra("Nome", "" + nome );
-            startActivity ( intent );
+            if( ig.size() != 0) {
+                Intent intent = new Intent ( IgrejasCriadasActivity.this , EditIgrejaActivity.class );
+                intent.putExtra ( "Igreja" , "" + uid );
+                intent.putExtra ( "Nome" , "" + nome );
+                startActivity ( intent );
+            }
             return true;
         }
         if(id == R.id.action_delete){
-            Intent intent = new Intent ( IgrejasCriadasActivity.this , DeleteIgrejaActivity.class );
-            intent.putExtra("Igreja", "" + uid );
-            intent.putExtra("Nome", "" + nome );
-            startActivity ( intent);
+            if( ig.size() != 0) {
+                Intent intent = new Intent ( IgrejasCriadasActivity.this , DeleteIgrejaActivity.class );
+                intent.putExtra ( "Igreja" , "" + uid );
+                intent.putExtra ( "Nome" , "" + nome );
+                startActivity ( intent );
+            }
             return true;
         }
 
         return super.onOptionsItemSelected( item );
     }
 
-    @Override
-    protected void onStart ( ) {
-        super.onStart ( );
-    }
+
 
     @Override
     protected void onStop ( ) {

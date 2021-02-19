@@ -4,16 +4,10 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         release {
-        storeFile file('/home/fsp/KEYS_ANDROID')
+        storeFile file('/home/fsp/Área de Trabalho/PRIVATE KEYS ANDROID/KEYS_ANDROID')
             storePassword '5Jard#secret'
             keyAlias 'keysAndroid'
             keyPassword '5Jard#secret'
-        }
-        debug {
-            storeFile file('/home/fsp/KEYS_ANDROID')
-            storePassword '5Jard#secret'
-            keyPassword '5Jard#secret'
-            keyAlias 'keysAndroid'
         }
     }
     compileSdkVersion 30
@@ -24,18 +18,15 @@ android {
         versionCode 6
         versionName "1.9.8"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            debuggable true
+            debuggable false
             signingConfig signingConfigs.release
-        }
-        debug {
-            debuggable true
-            signingConfig signingConfigs.debug
         }
     }
     testOptions {
