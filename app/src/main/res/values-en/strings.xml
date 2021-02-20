@@ -253,4 +253,5 @@
     <string name="igreja_em_c_lulas">Church in Cells</string>
     <string name="minuto">minute:</string>
     <string name="data_hora">Date-Time</string>
+    <string name="logo" />
 </resources>

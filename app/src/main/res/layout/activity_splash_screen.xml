@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="100dp"
-        android:contentDescription="@string/bot_o_adicionar"
+        android:contentDescription="@string/logo"
         app:srcCompat="@drawable/ic_baseline_groups_24" />
 
     <TextView

@@ -122,23 +122,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
     String mensagem1 = "";
     String mensagem2 = "";
     String mensagem3 = "";
-    String mensagem4 = "";
-    String mensagem5 = "";
-    String mensagem6 = "";
-    String mensagem7 = "";
-    String mensagem8 = "";
-    String mensagem9 = "";
-    String mensagem10 = "";
-    String mensagem11 = "";
-    String mensagem12 = "";
-    String mensagem13 = "";
-    String mensagem14 = "";
-    String mensagem15 = "";
-    String mensagem16 = "";
-    String mensagem17 = "";
-    String mensagem18 = "";
-    String mensagem19 = "";
-    String mensagem20 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +186,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 }
             }
         };
-
         listenerConvidados =  new View.OnFocusChangeListener ( ) {
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
@@ -214,7 +196,6 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 }
             }
         };
-
         listenerCrianca = new View.OnFocusChangeListener ( ) {
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
@@ -225,13 +206,11 @@ public final class AddRelatorioActivity extends AppCompatActivity implements Nav
                 }
             }
         } ;
-
         listenerTotal = new View.OnFocusChangeListener ( ) {
             @Override
             public void onFocusChange ( View v , boolean hasFocus ) {
             }
         };
-
         textInputBaseCelula.getEditText ().setOnFocusChangeListener(listenerBase );
         textInputMembrosIEQ.getEditText () .setOnFocusChangeListener(listenerMembros);
         textInputConvidados.getEditText ().setOnFocusChangeListener(listenerConvidados);
