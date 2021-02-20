@@ -252,7 +252,7 @@
     <string name="barras" translatable="false">/ /</string>
     <string name="data_" translatable="false">/ /</string>
     <string name="_00_00" translatable="false">00:00</string>
-    <string name="ver_" translatable="false">ver 2.0.0</string>
+    <string name="ver_" translatable="false">ver 2.0.1</string>
 
     <!-- Sobre -->
     <string name="fabianodspereira_outlook_com" translatable="false">fabianodspereira@outlook.com</string>
