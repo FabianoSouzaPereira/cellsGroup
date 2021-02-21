@@ -2,10 +2,9 @@ package br.com.cellsgroup.contato;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.MenuItem;
-
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,43 +25,33 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapters.AdapterListViewContato;
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
-import br.com.cellsgroup.SobreActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.EnviarActivity;
+import adapters.AdapterListViewContato;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.*;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
+import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.home.HomeActivity.igreja;
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
-import static br.com.cellsgroup.home.HomeActivity.group;
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class ContatoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , AdapterListViewContato.OnContatoListener{
-    private static final String TAG = "TAG";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
@@ -75,8 +64,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
 
     private Query querycontato;
     private ValueEventListener queryContatoListener;
-    private String uid;
-    private String nome;
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
@@ -101,7 +88,6 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
         queryContatoListener =  new ValueEventListener () {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                uid = "";
                 int count=0;
                 arrayLeader.clear();
                 for(DataSnapshot dados : dataSnapshot.getChildren()) {
@@ -329,9 +315,9 @@ public class ContatoActivity extends AppCompatActivity implements NavigationView
     protected void onDestroy ( ) {
         super.onDestroy ( );
     }
-
+    
     @Override
-    public void onContatoClick ( int position , String key ) {
-
+    public void onContatoClick( int position , String key ){
+    
     }
 }

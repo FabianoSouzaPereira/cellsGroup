@@ -2,9 +2,9 @@ package br.com.cellsgroup.intercessao;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,24 +19,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapters.AdapterListViewIntercessao;
+import adapters.AdapterListViewIntercessao;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.intercessao.Intercessao;
 
@@ -44,22 +39,18 @@ import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
 @SuppressWarnings( "UnnecessaryLocalVariable" )
 public class IntercessaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private static final String TAG = "ClickLista";
     private DatabaseReference Intercessao;
+    private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
     private final int limitebusca = 500;
-    private final ArrayList< Intercessao > inter = new ArrayList<Intercessao>( );
+    private final ArrayList< Intercessao > inter = new ArrayList <>( );
     private String mUid;
     private RecyclerView recyclerView;
     private AdapterListViewIntercessao mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private final boolean mItemPressed = false;
-    private final boolean itemReturned = false;
-    private String uid;
-    private String nome;
-
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -156,7 +147,7 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        IntercessaoActivity.this.finish();
+        finish();
          DrawerLayout drawer = findViewById( R.id.drawer_activityIntercessao);
         if (drawer.isDrawerOpen( GravityCompat.START )) {
             drawer.closeDrawer( GravityCompat.START );
@@ -229,11 +220,6 @@ public class IntercessaoActivity extends AppCompatActivity implements Navigation
         drawer.closeDrawer( GravityCompat.START );
         return true;
     }
-
-   public void onIntercessaoClick(int position, String uid){
-       mUid = uid;
-
-   }
 
     private void deleteViewselected(String uid) {
         novaRef = Intercessao.child( "Igrejas/" + uidIgreja + "/Intercessao" );

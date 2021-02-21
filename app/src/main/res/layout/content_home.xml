@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="top"
@@ -48,7 +47,6 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardview_celula"
                     android:layout_width="74dp"
                     android:layout_height="110dp"
                     android:layout_margin="8dp"
@@ -60,7 +58,6 @@
 
 
                     <ImageView
-                        android:id="@+id/imgcelulaligacao"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_gravity="top"
@@ -69,7 +66,6 @@
                         app:srcCompat="@drawable/ic_baseline_groups_24" />
 
                     <TextView
-                        android:id="@+id/tvcardCelulas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -92,7 +88,6 @@
 
 
                     <ImageView
-                        android:id="@+id/imgrelatorio"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:background="@android:color/transparent"
@@ -100,7 +95,6 @@
                         app:srcCompat="@drawable/ic_baseline_menu_book_24_yellow" />
 
                     <TextView
-                        android:id="@+id/tvcardRelatorios"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -124,14 +118,12 @@
 
 
                     <ImageView
-                        android:id="@+id/imgintercesao"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:contentDescription="@string/Intersession"
                         android:src="@drawable/ic_baseline_sports_kabaddi_24_yellow" />
 
                     <TextView
-                        android:id="@+id/tvcardIntercesão"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -162,14 +154,12 @@
 
 
                     <ImageView
-                        android:id="@+id/imgagenda"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:contentDescription="@string/agenda"
                         android:src="@drawable/ic_baseline_menu_book_24_yellow" />
 
                     <TextView
-                        android:id="@+id/tvcardAgenda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -193,7 +183,6 @@
 
 
                     <ImageView
-                        android:id="@+id/imgleaders"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_gravity="center_horizontal|top"
@@ -204,7 +193,6 @@
                         app:srcCompat="@drawable/ic_baseline_engineering_24" />
 
                     <TextView
-                        android:id="@+id/tvcardLeaders"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -227,7 +215,6 @@
 
 
                     <ImageView
-                        android:id="@+id/imgContato"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_gravity="top"
@@ -236,7 +223,6 @@
                         app:srcCompat="@drawable/ic_baseline_phone_24_yellow" />
 
                     <TextView
-                        android:id="@+id/tvcardBatismo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
@@ -266,7 +252,6 @@
 
 
                     <ImageView
-                        android:id="@+id/imgIgreja"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_gravity="top"
@@ -276,7 +261,6 @@
                         app:tint="#000000" />
 
                     <TextView
-                        android:id="@+id/tvcardIgreja"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"

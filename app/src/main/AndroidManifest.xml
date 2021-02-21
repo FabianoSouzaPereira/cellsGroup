@@ -19,8 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:versionCode="9"
-        android:versionName="2.0.1"
+        android:versionCode="10"
+        android:versionName="2.1.1"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".RememberActivity"/>
         <activity android:name=".RegisterActivity" />
@@ -37,15 +37,15 @@
             android:label="@string/lideres"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Igreja.DeleteIgrejaActivity"
+            android:name=".igreja.DeleteIgrejaActivity"
             android:label="@string/apagar_igreja_min"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Igreja.EditIgrejaActivity"
+            android:name=".igreja.EditIgrejaActivity"
             android:label="@string/editar_igreja"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Igreja.IgrejasCriadasActivity"
+            android:name=".igreja.IgrejasCriadasActivity"
             android:label="@string/title_activity_igrejas_criadas"
             android:theme="@style/AppTheme" />
         <activity
@@ -65,7 +65,7 @@
             android:label="@string/title_activity_add_intercessaoa"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Igreja.addIgrejaActivity"
+            android:name=".igreja.addIgrejaActivity"
             android:label="@string/title_activity_add_igreja"
             android:theme="@style/AppTheme" />
         <activity

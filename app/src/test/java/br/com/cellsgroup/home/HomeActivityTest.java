@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.functions.FirebaseFunctions;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,30 +20,14 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 public class HomeActivityTest {
     Context appContext = getInstrumentation ().getContext ();
     public static FirebaseUser UI;
-    public static Object groups;
-    public static String group="";
-    public static String igreja = "";
-    public static String username = "";
-    public static String useremail = "";
-    public static String cellPhone = "";
-    public static String uidIgreja = "";
-    public static String useremailAuth = "";
-
-    public static boolean typeUserAdmin = true;
-    public static boolean typeUserNormal = false;
-
-    public FirebaseAuth mAuth;
-    public FirebaseAuth.AuthStateListener mAuthListener;
+ 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private final DatabaseReference novaref = null;
-    private final DatabaseReference novaref2 = null;
-    private FirebaseFunctions mFunctions;
-
-    @Test
+ 
+ @Test
     public void onCreate ( ) {
-        UI = FirebaseAuth.getInstance().getCurrentUser();
-        Assert.assertNotNull (UI);
+    HomeActivityTest.UI = FirebaseAuth.getInstance().getCurrentUser();
+        Assert.assertNotNull ( HomeActivityTest.UI );
         inicializarFirebase();
     }
 

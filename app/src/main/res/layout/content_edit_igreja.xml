@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="25dp"
-    tools:context=".Igreja.EditIgrejaActivity"
+    tools:context=".igreja.EditIgrejaActivity"
     tools:showIn="@layout/activity_edit_igreja">
 
     <ScrollView

@@ -3,16 +3,11 @@ package br.com.cellsgroup.celulas;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,22 +26,17 @@ import java.util.Date;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.R;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-import br.com.cellsgroup.R;
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
-import static br.com.cellsgroup.home.HomeActivity.Logado;
-import static br.com.cellsgroup.home.HomeActivity.group;
-import static br.com.cellsgroup.home.HomeActivity.igreja;
-import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
-import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
-import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
+import static br.com.cellsgroup.home.HomeActivity.*;
 
 @SuppressWarnings( "ALL" )
 public class AddCelulaActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

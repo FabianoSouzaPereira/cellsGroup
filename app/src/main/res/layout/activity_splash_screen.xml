@@ -16,7 +16,6 @@
         app:srcCompat="@drawable/ic_baseline_groups_24" />
 
     <TextView
-        android:id="@+id/text11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgLogo"

@@ -58,204 +58,93 @@ public class Relatorio {
         this.userId  = userId ;
 
     }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getUserId ( ) {
-        return userId ;
-    }
-
-    public void setUserId ( String userId  ) {
-        this.userId  = userId ;
-    }
-
-    public String getCelula() {
+   
+   public String getCelula() {
         return celula;
     }
-
-    public void setCelula(String celula) {
-        this.celula = celula;
-    }
-
-    public String getRede() {
+   
+   public String getRede() {
         return rede;
     }
-
-    public void setRede(String rede) {
-        this.rede = rede;
-    }
-
-    public String getSupervisor() {
+   
+   public String getSupervisor() {
         return supervisor;
     }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public String getLider() {
+   
+   public String getLider() {
         return lider;
     }
-
-    public void setLider(String lider) {
-        this.lider = lider;
-    }
-
-    public String getViceLider() {
+   
+   public String getViceLider() {
         return viceLider;
     }
-
-    public void setViceLider(String viceLider) {
-        this.viceLider = viceLider;
-    }
-
-    public String getAnfitriao() {
+   
+   public String getAnfitriao() {
         return anfitriao;
     }
-
-    public void setAnfitriao(String anfitriao) {
-        this.anfitriao = anfitriao;
-    }
-
-    public String getSecretario() {
+   
+   public String getSecretario() {
         return secretario;
     }
-
-    public void setSecretario(String secretario) {
-        this.secretario = secretario;
-    }
-
-    public String getColaborador() {
+   
+   public String getColaborador() {
         return colaborador;
     }
-
-    public void setColaborador(String colaborador) {
-        this.colaborador = colaborador;
-    }
-
-    public String getDia() {
+   
+   public String getDia() {
         return dia;
     }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public String getHora() {
+   
+   public String getHora() {
         return hora;
     }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String  getBaseCelula() {
+   
+   public String  getBaseCelula() {
         return baseCelula;
     }
-
-    public void setBaseCelula(String  baseCelula) {
-        this.baseCelula = baseCelula;
-    }
-
-    public String  getMembrosIEQ() {
+   
+   public String  getMembrosIEQ() {
         return membrosIEQ;
     }
-
-    public void setMembrosIEQ(String membrosIEQ) {
-        this.membrosIEQ = membrosIEQ;
-    }
-
-    public String  getConvidados() {
+   
+   public String  getConvidados() {
         return convidados;
     }
-
-    public void setConvidados(String  convidados) {
-        this.convidados = convidados;
-    }
-
-    public String  getCriancas() {
+   
+   public String  getCriancas() {
         return criancas;
     }
-
-    public void setCriancas(String  criancas) {
-        this.criancas = criancas;
-    }
-
-    public String  getTotal() {
+   
+   public String  getTotal() {
         return total;
     }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-
-    public String getEstudo() {
+   
+   public String getEstudo() {
         return estudo;
     }
-
-    public void setEstudo(String estudo) {
-        this.estudo = estudo;
-    }
-
-    public String getQuebragelo() {
+   
+   public String getQuebragelo() {
         return quebragelo;
     }
-
-    public void setQuebragelo(String quebragelo) {
-        this.quebragelo = quebragelo;
-    }
-
-    public String getLanche() {
+   
+   public String getLanche() {
         return lanche;
     }
-
-    public void setLanche(String lanche) {
-        this.lanche = lanche;
-    }
-
-    public String getAceitacao() {
+   
+   public String getAceitacao() {
         return aceitacao;
     }
-
-    public void setAceitacao(String aceitacao) {
-        this.aceitacao = aceitacao;
-    }
-
-    public String getReconciliacao() {
+   
+   public String getReconciliacao() {
         return reconciliacao;
     }
-
-    public void setReconciliacao(String reconciliacao) {
-        this.reconciliacao = reconciliacao;
-    }
-
-    public String getTestemunho() {
+   
+   public String getTestemunho() {
         return testemunho;
     }
-
-    public void setTestemunho(String testemunho) {
-        this.testemunho = testemunho;
-    }
-
-    public String getDatahora() {
+   
+   public String getDatahora() {
         return datahora;
     }
-
-    public void setDatahora(String datahora) {
-        this.datahora = datahora;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+   
 }

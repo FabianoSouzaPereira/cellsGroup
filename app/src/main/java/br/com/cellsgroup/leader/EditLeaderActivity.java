@@ -1,12 +1,6 @@
 package br.com.cellsgroup.leader;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,22 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
@@ -50,20 +39,14 @@ import static br.com.cellsgroup.home.HomeActivity.useremail;
 
 public class EditLeaderActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
-    public String DataTime;
-    public String DataT;
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference leaders;
     private DatabaseReference ref;
     private DatabaseReference novaRef;
-    private DatabaseReference novaRef6;
     private DatabaseReference novaRef7;
 
-    private final int limitebusca = 1;
     private Spinner spCelula;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
@@ -84,29 +67,22 @@ public class EditLeaderActivity extends AppCompatActivity {
     private TextInputLayout EditTextcep;
     private TextInputLayout EditTextcargoIgreja;
     private final boolean emaildual = false;
-    private final String email = "";
-    private final String emailTest = "";
-    private String key;
     private static boolean validate = true;
     private static Boolean res = false;
     private String uid;
     private String user;
+    private FirebaseAuth mAuth;
 
     private Query query;
     private ValueEventListener queryListener;
-    private static final boolean DeletePermission = false;
-    private String cel;
     private String celula;
     private final ArrayList<String> cels = new ArrayList<String>();
-    private ArrayAdapter<String> arrayAdapterCelula;
-    private String celulaName;
     private String uidCelula = "";
     Query queryCelula;
     ValueEventListener listenerCelula;
     String mensagem1 = "";
     String mensagem2 = "";
     String mensagem3 = "";
-    String mensagem4 = "";
     String mensagem5 = "";
     String mensagem6 = "";
     String mensagem7 = "";
@@ -118,7 +94,8 @@ public class EditLeaderActivity extends AppCompatActivity {
     String mensagem13 = "";
     String mensagem14 = "";
     String mensagem15 = "";
-
+  
+    
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
@@ -164,7 +141,6 @@ public class EditLeaderActivity extends AppCompatActivity {
         mensagem1 = getResources ().getString (R.string.erroCampoObrigatorio);
         mensagem2 = getResources ().getString (R.string.editadoleader);
         mensagem3 = getResources ().getString (R.string.erroEditarleader);
-        mensagem4 = getResources ().getString (R.string.erroPreencherTudo);
         mensagem5 = getResources ().getString (R.string.erroNaoAdmin);
         mensagem6 = getResources ().getString (R.string.erroCampo3digitos);
         mensagem7 = getResources ().getString (R.string.erroCampo11digitos);
@@ -566,54 +542,6 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     }
 
-    //private method of your class
-    private int getIndex(Spinner sp, String pos){
-        for (int i=0;i<sp.getCount();i++){
-            if (sp.getItemAtPosition(i).toString().equalsIgnoreCase(pos)){
-                return i;
-            }
-        }
-
-        return 0;
-    }
-
-    private void deleteUsuario(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder( EditLeaderActivity.this );
-        builder1 = builder1.setMessage( mensagem13 + " " + useremail);
-        builder1.setTitle( mensagem14 ).setCancelable( false ).setNegativeButton( mensagem15, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText( getApplicationContext(), mensagem15, Toast.LENGTH_SHORT ).show();
-            }
-        } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                try {
-                    ref = databaseReference;
-                    leaders = databaseReference.child( "churchs/" + uidIgreja + "/leaders/");
-                    //apaga leader de membros
-                    ref.child ( "churchs/" + uidIgreja ).child ("/members/").child(uid).removeValue ();
-
-                    //Apaga leader em users/
-                    leaders.child ( uid ).removeValue ( );
-
-                    Toast.makeText ( EditLeaderActivity.this , mensagem11, Toast.LENGTH_SHORT ).show ( );
-
-                    EditLeaderActivity.this.finish();
-                    Intent intent = new Intent( EditLeaderActivity.this, LeaderActivity.class );
-                    startActivity(intent);
-                } catch ( Exception e ) {
-                    Toast.makeText ( EditLeaderActivity.this , mensagem12, Toast.LENGTH_SHORT ).show ( );
-                    e.printStackTrace ( );
-                }
-            }
-        } );
-
-        AlertDialog alertDialog1 = builder1.create();
-        alertDialog1.show();
-
-    }
-
     @Override
     public void onBackPressed() {
         EditLeaderActivity.this.finish();
@@ -653,8 +581,6 @@ public class EditLeaderActivity extends AppCompatActivity {
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat ("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
-        DataT = data;
     }
 
     @Override

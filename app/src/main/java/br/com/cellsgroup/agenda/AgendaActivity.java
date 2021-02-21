@@ -3,6 +3,10 @@ package br.com.cellsgroup.agenda;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,22 +17,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Spinner;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
+import com.google.firebase.database.*;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -38,16 +30,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Adapters.AdapterListViewAgenda;
-import br.com.cellsgroup.models.agendas.Agenda;
+import adapters.AdapterListViewAgenda;
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.models.agendas.Agenda;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;
 
@@ -56,31 +48,14 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
     private DatabaseReference novaRef;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private static final String TAG = "ERRO ! ";
     private final int limitebusca = 60;
-    private final ArrayList<Agenda> ag = new ArrayList<Agenda>( );
+    private final ArrayList<Agenda> ag = new ArrayList <>( );
     private List<Agenda> agendas;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager layoutManager;
     private MaterialCalendarView calendarView;
     private String widgetdate;
-
-    public String DataTime;
-    public String DataT;
-    private String dia;
-    private String hh;
-    private String mm;
-    private Spinner sp;
-    private Spinner hr;
-    private Spinner min;
-    private String  hrs;
-
-    private final String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
-    private final String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
-    private final String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
-        "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
-        "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,8 +277,6 @@ public class AgendaActivity extends AppCompatActivity implements NavigationView.
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat ("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
-        DataT = data;
     }
     @Override
     protected void onDestroy ( ) {

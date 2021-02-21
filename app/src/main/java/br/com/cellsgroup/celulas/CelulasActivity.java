@@ -3,6 +3,10 @@ package br.com.cellsgroup.celulas;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,45 +16,27 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.SobreActivity;
-import br.com.cellsgroup.relatorios.AddRelatorioActivity;
-import br.com.cellsgroup.agenda.AgendaActivity;
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.models.celulas.Celula;
-
+import br.com.cellsgroup.*;
+import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
+import br.com.cellsgroup.models.celulas.Celula;
+import br.com.cellsgroup.relatorios.AddRelatorioActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
@@ -66,11 +52,8 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
-    private static final String TAG = "ERRO ! ";
-    public  String uid;
-    public String rede;
     private ListView celulaList;
-    private final ArrayList<String> cels = new ArrayList<String>();
+    private final ArrayList<String> cels = new ArrayList <>( );
     private ArrayAdapter<String> arrayAdapterCelula;
     private final int limitebusca = 500;
     Query query;
@@ -96,7 +79,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!igreja.equals("") && !igreja.equals (null)) {
+                if(!igreja.equals("") ||  igreja != null) {
                     Intent addCelula = new Intent ( CelulasActivity.this , AddCelulaActivity.class );
                     startActivity ( addCelula );
                     finish ( );
@@ -124,8 +107,8 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
 
     private void aviso(){
         AlertDialog.Builder builder = new AlertDialog.Builder(CelulasActivity.this);
-        builder  = builder.setMessage( "Primeiro crie a sua Igreja." );
-        builder.setTitle( "Igreja não encontrada!" )
+        builder  = builder.setMessage( "Primeiro crie a sua igreja." );
+        builder.setTitle( "igreja não encontrada!" )
             .setCancelable( false )
             .setNegativeButton( "cancelar", new DialogInterface.OnClickListener() {
                 @Override
@@ -170,7 +153,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
                         }
                     }
                 }
-                arrayAdapterCelula = new ArrayAdapter<String>(CelulasActivity.this,android.R.layout.simple_selectable_list_item, cels );
+                arrayAdapterCelula = new ArrayAdapter <>( CelulasActivity.this , android.R.layout.simple_selectable_list_item , cels );
                 celulaList.setAdapter( arrayAdapterCelula );
                 arrayAdapterCelula.notifyDataSetChanged();
                 hiddShowMessage();
@@ -239,7 +222,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
 
     @Override
     public void onBackPressed() {
-        CelulasActivity.this.finish();
+        finish();
         Intent home = new Intent(CelulasActivity.this, HomeActivity.class);
         startActivity(home);
     }

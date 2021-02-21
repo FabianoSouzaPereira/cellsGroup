@@ -263,7 +263,6 @@
 
 
             <TextView
-                android:id="@+id/tvEstudo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
@@ -296,7 +295,6 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tvQuebragelo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
@@ -329,7 +327,6 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tvLanche"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/foi_servido_lanche"
@@ -361,7 +358,6 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tvAceitacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
@@ -393,7 +389,6 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tvReconciliacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
@@ -426,7 +421,6 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/tvTestemunho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"

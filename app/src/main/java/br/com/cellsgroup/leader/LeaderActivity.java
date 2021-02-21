@@ -3,11 +3,9 @@ package br.com.cellsgroup.leader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,33 +24,23 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapters.AdapterListViewLeader;
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
+import adapters.AdapterListViewLeader;
 import br.com.cellsgroup.R;
-import br.com.cellsgroup.SobreActivity;
+import br.com.cellsgroup.*;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
-
 import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-
 import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
 
@@ -66,19 +54,16 @@ import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 @SuppressWarnings( "UnnecessaryLocalVariable" )
 public class LeaderActivity extends AppCompatActivity implements Serializable ,NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "TAG";
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef;
-    private final Boolean listaLider = true;
 
     private RecyclerView recyclerView;
-    private final ArrayList < Leader > arrayLeader = new ArrayList < Leader > ();
+    private final ArrayList < Leader > arrayLeader = new ArrayList <>( );
     private AdapterListViewLeader mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     private final boolean mItemPressed = false;
-    private final boolean itemReturned = false;
 
     private final int limitebusca = 200;
     private Query query;
@@ -195,7 +180,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
                       }
                   }
 
-                //noinspection UnnecessaryLocalVariable,UnnecessaryLocalVariable
+                // noinspection UnnecessaryLocalVariable
                 List < Leader > leaders = arrayLeader;
 
                 mAdapter = new AdapterListViewLeader ( leaders );
@@ -368,7 +353,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
     @Override
     public void onBackPressed() {
-        LeaderActivity.this.finish();
+        finish();
         Intent intent = new Intent( LeaderActivity.this, HomeActivity.class );
         startActivity(intent);
     }

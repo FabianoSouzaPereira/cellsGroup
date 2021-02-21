@@ -2,7 +2,6 @@ package br.com.cellsgroup.relatorios;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,28 +21,21 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.SobreActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.*;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 

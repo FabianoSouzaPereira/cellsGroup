@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,27 +19,16 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.models.celulas.Celula;
-import br.com.cellsgroup.models.pessoas.Leader;
 import br.com.cellsgroup.models.pessoas.User;
-import br.com.cellsgroup.utils.MaskEditUtil;
-import br.com.cellsgroup.utils.ResolveDate;
+import br.com.cellsgroup.utils.*;
 
 import static br.com.cellsgroup.home.HomeActivity.UI;
 import static br.com.cellsgroup.home.HomeActivity.group;
@@ -50,15 +39,11 @@ import static br.com.cellsgroup.home.HomeActivity.useremail;
 public class AddLeaderActivity extends AppCompatActivity {
 
     public String DataTime;
-    public String DataT;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference Leaders;
     private DatabaseReference ref;
     private DatabaseReference novaRef;
-    private DatabaseReference novaRef6;
     private DatabaseReference novaRef7;
     private final int limitebusca = 1;
     private Spinner spCelula;
@@ -83,12 +68,10 @@ public class AddLeaderActivity extends AppCompatActivity {
     private boolean emaildual = false;
     private String email = "";
     private String emailTest = "";
-    private String key;
     private static boolean validate = true;
     private static Boolean res = false;
     private final ArrayList<String> cels = new ArrayList<String>();
-
-    private ArrayAdapter<String> arrayAdapterCelula;
+    
     Query query;
     Query queryCelula;
     ValueEventListener queryListener;
@@ -98,23 +81,20 @@ public class AddLeaderActivity extends AppCompatActivity {
     String mensagem1 = "";
     String mensagem2 = "";
     String mensagem3 = "";
-    String mensagem4 = "";
     String mensagem5 = "";
     String mensagem6 = "";
     String mensagem7 = "";
     String mensagem8 = "";
     String mensagem9 = "";
     String mensagem10 = "";
-    String mensagem11 = "";
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_leader );
         Toolbar toolbar = findViewById( R.id.toolbarAddleader );
         setSupportActionBar( toolbar );
-
-        mAuth = FirebaseAuth.getInstance();
+        
         inicializarFirebase();
         inicializarComponentes();
 
@@ -146,14 +126,12 @@ public class AddLeaderActivity extends AppCompatActivity {
         mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
         mensagem2 =  getResources ().getString (R.string.criadoleader);
         mensagem3 =  getResources ().getString (R.string.erroCriarleader);
-        mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
         mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
         mensagem6 = getResources ().getString (R.string.erroCampo3digitos);
         mensagem7 = getResources ().getString (R.string.erroCampo11digitos);
         mensagem8 = getResources ().getString (R.string.erroEmailexiste);
         mensagem9 = getResources ().getString (R.string.escolhaCelula);
         mensagem10 = getResources ().getString (R.string.erroCampoInvalido);
-        mensagem11 = getResources ().getString (R.string.erroCampo10digitos);
         loadSpinner();
     }
     public void loadSpinner(){
@@ -216,7 +194,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         databaseReference.keepSynced(true);
     }
 
-    private void addLeaderClick(MenuItem item){
+    private void addLeaderClick( ){
         addDataHora();
         validate = true;
         res = false;
@@ -457,35 +435,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         queryCelula.addValueEventListener (listenerCelula);
 
     }
-
-    private void readOnlyActive() {
-
-        emailTest = EditTextemail.getEditText().getText().toString().trim();
-        Leaders = databaseReference.child( "Leaders/" );
-        Query query = Leaders.orderByChild( "email" ).equalTo(email).limitToFirst(limitebusca);
-        query.addListenerForSingleValueEvent( new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        for (DataSnapshot dados : ds.getChildren()) {
-                            Leader u = dados.getValue( Leader.class );
-                            email = u.getEmail();
-                        }
-                    }
-                    if (email == emailTest) {
-                        emaildual = true;
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-
-        } );
-    }
-
+    
     @Override
     public void onBackPressed() {
         AddLeaderActivity.this.finish();
@@ -502,7 +452,7 @@ public class AddLeaderActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id == R.id.action_save){
-            addLeaderClick(item);
+            addLeaderClick( );
             return true;
         }
         if(id == R.id.action_Cancel){
@@ -522,7 +472,6 @@ public class AddLeaderActivity extends AppCompatActivity {
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
         DataTime = data + " "+ hora;
-        DataT = data;
     }
 
     @Override

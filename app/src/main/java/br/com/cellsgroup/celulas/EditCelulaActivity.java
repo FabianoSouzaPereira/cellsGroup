@@ -3,16 +3,11 @@ package br.com.cellsgroup.celulas;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,11 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,13 +30,13 @@ import java.util.Map;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.contato.ContatoActivity;
 import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
 import br.com.cellsgroup.agenda.AgendaActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.celulas.Celula;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;

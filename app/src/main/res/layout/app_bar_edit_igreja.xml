@@ -5,11 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Igreja.EditIgrejaActivity">
+    tools:context=".igreja.EditIgrejaActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout44"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"

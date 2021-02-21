@@ -1,5 +1,15 @@
 package br.com.cellsgroup.leader;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -8,31 +18,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 import br.com.cellsgroup.CompartilharActivity;
@@ -54,18 +45,13 @@ import static br.com.cellsgroup.home.HomeActivity.useremailAuth;
 
 public class ReadLeaderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "TAG";
-    public String DataTime;
-    public String DataT;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference leaders;
     private DatabaseReference ref;
-    private DatabaseReference novaRef;
 
-    private final int limitebusca = 1;
     private TextInputLayout EditTextCelula;
     private TextInputLayout EditTextnome;
     private TextInputLayout EditTextidade;
@@ -85,16 +71,9 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
     private TextInputLayout EditTextpais;
     private TextInputLayout EditTextcep;
     private TextInputLayout EditTextcargoIgreja;
-    private final boolean emaildual = false;
-    private final String email = "";
-    private final String emailTest = "";
-    private String key;
-    private static final boolean validate = true;
     private String uid;
-    private String user;
     private Query query;
     private ValueEventListener queryListener;
-    private static final boolean DeletePermission = false;
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
@@ -103,7 +82,8 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
     String mensagem13 = "";
     String mensagem14 = "";
     String mensagem15 = "";
-
+    private String user;
+    
     @Override
     protected void onCreate ( Bundle savedInstanceState ) {
         super.onCreate ( savedInstanceState );
@@ -234,7 +214,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG,"Erro Database"+ databaseError.toException() );
+                Log.e( ReadLeaderActivity.TAG ,"Erro Database"+ databaseError.toException() );
             }
         } ;
 
@@ -262,8 +242,8 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                 leaders.child ( uid ).removeValue ( );
 
                 Toast.makeText ( ReadLeaderActivity.this , mensagem11 , Toast.LENGTH_LONG ).show ( );
-
-                ReadLeaderActivity.this.finish();
+    
+                finish();
                 Intent intent = new Intent( ReadLeaderActivity.this, LeaderActivity.class );
                 startActivity(intent);
             }
@@ -276,7 +256,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-        ReadLeaderActivity.this.finish();
+        finish();
         Intent intent = new Intent( ReadLeaderActivity.this, LeaderActivity.class );
         startActivity(intent);
     }
@@ -292,7 +272,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         int id = item.getItemId();
 
         if(id == R.id.action_Edit){
-            ReadLeaderActivity.this.finish();
+            finish();
             Intent intent = new Intent(  ReadLeaderActivity.this, EditLeaderActivity.class );
             intent.putExtra("uid", String.valueOf( uid) );
             startActivity(intent);
@@ -304,7 +284,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         }
 
         if(id == R.id.action_Cancel){
-            ReadLeaderActivity.this.finish();
+            finish();
             Intent intent = new Intent(  ReadLeaderActivity.this, LeaderActivity.class );
             startActivity(intent);
             return true;
@@ -365,15 +345,6 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
-
-    @SuppressLint("SimpleDateFormat")
-    public void addDataHora() {
-        Date dataHoraAtual = new Date();
-        String data = new SimpleDateFormat ("dd/MM/yyyy").format(dataHoraAtual);
-        String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
-        DataT = data;
-    }
 
     @Override
     protected void onResume ( ) {

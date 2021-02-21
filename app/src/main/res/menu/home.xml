@@ -31,7 +31,6 @@
         android:title="@string/action_Sair"
         app:showAsAction="never" />
     <item
-        android:id="@+id/Desconectar"
         android:orderInCategory="105"
         android:title="@string/desconectar">
         <menu>

@@ -2,11 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/register_frament"
+    android:id="@+id/RegistryActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".RegisterActivity">
+    tools:context=".RegisterActivity"
+    tools:ignore="MergeRootFrame">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/icon_register"
             app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -70,7 +70,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <View
-            android:id="@+id/divider3"
             android:layout_width="150dp"
             android:layout_height="1dp"
             android:layout_gravity="center_horizontal"
@@ -97,7 +96,8 @@
                 android:enabled="true"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/cancelar"
-                android:textColor="#0541F4" />
+                android:textColor="#0541F4"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/btnEnviarRegistroRegister"
@@ -116,7 +116,8 @@
                 android:minHeight="20dp"
                 android:text="@string/registrar"
                 android:textColor="#0541F4"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
@@ -126,10 +127,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtregistroRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 android:lines="3"
                 android:paddingStart="15dp"
                 android:paddingTop="30dp"
@@ -143,7 +142,6 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/loading3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

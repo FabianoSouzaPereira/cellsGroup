@@ -1,8 +1,5 @@
 package br.com.cellsgroup;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,12 +26,9 @@ import br.com.cellsgroup.home.HomeActivity;
 public class RegisterActivity extends AppCompatActivity {
     // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private View login;
     //  private final EditText editNome = null;
-    private TextInputLayout editEmail = null;
-    private TextInputLayout editSenha = null;
+    private TextInputLayout editEmail;
+    private TextInputLayout editSenha;
     private Button btnRegistrar;
     private Button btnCancelarLogin;
     private ProgressDialog progressDialog3;
@@ -81,20 +78,20 @@ public class RegisterActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(RegisterActivity.this,getString( R.string.Registro_sucesso), Toast.LENGTH_SHORT ).show();
                         FirebaseUser currentUser = mAuth.getCurrentUser();
-                        updateUI( currentUser );
+                        RegisterActivity.updateUI( currentUser );
                         sendEmailVerification();
-                        RegisterActivity.this.onBackPressed();
+                        onBackPressed();
                         //  createToken();
                     }else{  //se houver colisão de mesmo usuário
                         if (task.getException() instanceof FirebaseAuthUserCollisionException ){
                             Toast.makeText(RegisterActivity.this,getString( R.string.registro_existe), Toast.LENGTH_LONG ).show();
-                            updateUI( null );
+                            RegisterActivity.updateUI( null );
                             editEmail.setError ("Esse registro já existe!");
                             editEmail.setFocusable (true);
                             editEmail.requestFocus ();
                         }else{
                             Toast.makeText( RegisterActivity.this,getString( R.string.Falha_registro), Toast.LENGTH_LONG ).show();
-                            updateUI( null );
+                            RegisterActivity.updateUI( null );
                             editEmail.setError ("Esse registro já existe!");
                             editEmail.setFocusable (true);
                             editEmail.requestFocus ();
@@ -111,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
         boolean valid = true;
         String email = editEmail.getEditText().getText().toString().trim();
         if ( TextUtils.isEmpty(email) || !validateEmailFormat ( email ) ) {
-            Toast.makeText(RegisterActivity.this.getApplicationContext(),getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
+            Toast.makeText( getApplicationContext(),getString( R.string.Email_erro), Toast.LENGTH_LONG).show();
             editEmail.setError(getString( R.string.obrigatorio_email_valid));
             editEmail.setFocusable ( true );
             editEmail.requestFocus ( );
@@ -171,21 +168,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
     }
-
-    private void updateEmail(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        user.updateEmail("user@example.com")
-            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Log.d("Email Update ", "User email address updated.");
-                    }
-                }
-            });
-    }
-
 
 
     @Override

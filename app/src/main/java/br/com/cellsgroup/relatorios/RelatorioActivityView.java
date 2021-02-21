@@ -1,19 +1,11 @@
 package br.com.cellsgroup.relatorios;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,30 +18,20 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.SobreActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.home.HomeActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.*;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.home.HomeActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.relatorios.Relatorio;
 
@@ -66,12 +48,10 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
     private DatabaseReference databaseReference;
     private DatabaseReference novaRef4;
     private DatabaseReference novarefPesq;
-    private final ArrayList<String> rel = new ArrayList<String>();
+    private final ArrayList<String> rel = new ArrayList <>( );
     private ArrayAdapter<String> ArrayAdapterRelatorio;
     private ListView relatorio;
     SearchView searchView;
-    public String DataTime;
-    public String DataT;
     private final int limitebusca = 500;
     TextView nhTitle;
     TextView nhEmail;
@@ -157,7 +137,7 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
                     }
                 }
 
-                ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
+                ArrayAdapterRelatorio = new ArrayAdapter <>( RelatorioActivityView.this , android.R.layout.simple_selectable_list_item , rel );
                 relatorio.setAdapter( ArrayAdapterRelatorio );
                 ArrayAdapterRelatorio.notifyDataSetChanged();
                 hiddShowMessage();
@@ -191,36 +171,6 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         FirebaseApp.initializeApp(RelatorioActivityView.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-    }
-
-    private void pesquisarRelatorios(){
-        String datainicial = "";
-        String datafinal = "";
-
-        novarefPesq = databaseReference.child("churchs/" + uidIgreja + "/Reports/" );
-        Query querypesq = novarefPesq.orderByChild( "datahora" ).startAt( datainicial ).endAt( datafinal );
-        querypesq.addListenerForSingleValueEvent( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                rel.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    for(DataSnapshot dados : ds.getChildren()) {
-                        Relatorio r = dados.getValue( Relatorio.class );
-                        String relatorio = r.getCelula();
-                        String datahora = r.getDatahora();
-                        rel.add( relatorio + ": " + datahora );
-                    }
-                }
-
-                 ArrayAdapterRelatorio = new ArrayAdapter<String>(RelatorioActivityView.this,android.R.layout.simple_selectable_list_item, rel );
-                 relatorio.setAdapter( ArrayAdapterRelatorio );
-                 ArrayAdapterRelatorio.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
@@ -338,20 +288,6 @@ public class RelatorioActivityView extends AppCompatActivity implements Navigati
         DrawerLayout drawer = findViewById( R.id.drawer_read_relatorioView );
         drawer.closeDrawer( GravityCompat.START );
         return true;
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    public void addDataHora() {
-
-        try {
-            Date dataHoraAtual = new Date();
-            String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
-            String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-            DataTime = data + " "+ hora;
-            DataT = data;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 

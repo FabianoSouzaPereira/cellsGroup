@@ -47,137 +47,61 @@ public final class Igreja {
     public String getUid ( ) {
         return uid;
     }
-
-    public void setUid ( String uid ) {
-        this.uid = uid;
-    }
-
-    public String getNome ( ) {
+   
+   public String getNome ( ) {
         return nome;
     }
-
-    public void setNome ( String nome ) {
-        this.nome = nome;
-    }
-
-    public String getEndereco ( ) {
+   
+   public String getEndereco ( ) {
         return endereco;
     }
-
-    public void setEndereco ( String endereco ) {
-        this.endereco = endereco;
-    }
-
-    public String getBairro ( ) {
+   
+   public String getBairro ( ) {
         return bairro;
     }
-
-    public void setBairro ( String bairro ) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade ( ) {
+   
+   public String getCidade ( ) {
         return cidade;
     }
-
-    public void setCidade ( String cidade ) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado ( ) {
+   
+   public String getEstado ( ) {
         return estado;
     }
-
-    public void setEstado ( String estado ) {
-        this.estado = estado;
-    }
-
-    public String getPais_ ( ) {
+   
+   public String getPais_ ( ) {
         return pais_;
     }
-
-    public void setPais_ ( String pais_ ) {
-        this.pais_ = pais_;
-    }
-
-    public String getCep ( ) {
+   
+   public String getCep ( ) {
         return cep;
     }
-
-    public void setCep ( String cep ) {
-        this.cep = cep;
-    }
-
-    public String getDdi ( ) {
+   
+   public String getDdi ( ) {
         return ddi;
     }
-
-    public void setDdi ( String ddi ) {
-        this.ddi = ddi;
-    }
-
-    public String getPhone ( ) {
+   
+   public String getPhone ( ) {
         return phone;
     }
-
-    public void setPhone ( String phone ) {
-        this.phone = phone;
-    }
-
-    public String getPhone_fixo ( ) {
+   
+   public String getPhone_fixo ( ) {
         return phone_fixo;
     }
-
-    public void setPhone_fixo ( String phone_fixo ) {
-        this.phone_fixo = phone_fixo;
-    }
-
-    public String getDatahora ( ) {
-        return datahora;
-    }
-
-    public void setDatahora ( String datahora ) {
-        this.datahora = datahora;
-    }
-
-    public String getUser ( ) {
+   
+   public String getUser ( ) {
         return user;
     }
-
-    public void setUser ( String user ) {
-        this.user = user;
-    }
-
-    public String getStatus ( ) {
-        return status;
-    }
-
-    public void setStatus ( String status ) {
-        this.status = status;
-    }
-
-    public String getGroup ( ) {
+   
+   public String getGroup ( ) {
         return group;
     }
-
-    public void setGroup ( String group ) {
-        this.group = group;
-    }
-
-    public String getIgrejaID ( ) {
+   
+   public String getIgrejaID ( ) {
         return igrejaID;
     }
-
-    public void setIgrejaID ( String igrejaID ) {
-        this.igrejaID = igrejaID;
-    }
-
-    public String getMembers ( ) {
+   
+   public String getMembers ( ) {
         return members;
     }
-
-    public void setMembers ( String members ) {
-        this.members = members;
-    }
-
+   
 }

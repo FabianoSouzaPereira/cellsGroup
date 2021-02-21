@@ -43,129 +43,57 @@ public final class Celula {
     public String getUid() {
         return uid;
     }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getCelula() {
+   
+   public String getCelula() {
         return celula;
     }
-
-    public void setCelula(String celula) {
-        this.celula = celula;
-    }
-
-    public String getRede() {
+   
+   public String getRede() {
         return rede;
     }
-
-    public void setRede(String rede) {
-        this.rede = rede;
-    }
-
-    public String getSupervisor() {
+   
+   public String getSupervisor() {
         return supervisor;
     }
-
-    public void setSupervisor(String supervisor) {
-        this.supervisor = supervisor;
-    }
-
-    public String getLider() {
+   
+   public String getLider() {
         return lider;
     }
-
-    public void setLider(String lider) {
-        this.lider = lider;
-    }
-
-    public String getViceLider() {
+   
+   public String getViceLider() {
         return viceLider;
     }
-
-    public void setViceLider(String viceLider) {
-        this.viceLider = viceLider;
-    }
-
-    public String getAnfitriao() {
+   
+   public String getAnfitriao() {
         return anfitriao;
     }
-
-    public void setAnfitriao(String anfitriao) {
-        this.anfitriao = anfitriao;
-    }
-
-    public String getSecretario() {
+   
+   public String getSecretario() {
         return secretario;
     }
-
-    public void setSecretario(String secretario) {
-        this.secretario = secretario;
-    }
-
-    public String getColaborador() {
+   
+   public String getColaborador() {
         return colaborador;
     }
-
-    public void setColaborador(String colaborador) {
-        this.colaborador = colaborador;
-    }
-
-    public String getDia() {
+   
+   public String getDia() {
         return dia;
     }
-
-    public void setDia(String dia) {
-        this.dia = dia;
-    }
-
-    public String getHora() {
+   
+   public String getHora() {
         return hora;
     }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String getDatainicio() {
+   
+   public String getDatainicio() {
         return datainicio;
     }
-
-    public void setDatainicio(String datainicio) {
-        this.datainicio = datainicio;
-    }
-
-    public String getDatahora() {
-        return datahora;
-    }
-
-    public void setDatahora(String datahora) {
-        this.datahora = datahora;
-    }
-
-    public String getStatus() {
+   
+   public String getStatus() {
         return status;
     }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getUserId() {
+   
+   public String getUserId() {
         return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getIgreja() {
-        return igreja;
-    }
-
-    public void setIgreja(String igreja) {
-        this.igreja = igreja;
     }
 
     /*    @Override

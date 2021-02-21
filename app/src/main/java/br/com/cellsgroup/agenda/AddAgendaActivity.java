@@ -3,7 +3,6 @@ package br.com.cellsgroup.agenda;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,8 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import br.com.cellsgroup.models.agendas.Agenda;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.models.agendas.Agenda;
 
 import static br.com.cellsgroup.home.HomeActivity.Logado;
 import static br.com.cellsgroup.home.HomeActivity.typeUserAdmin;
@@ -37,21 +36,15 @@ public class AddAgendaActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private TextInputLayout EditTextDataEvento;
-    private TextInputLayout EditTexthora;
     private TextInputLayout EditTextevento;
     private TextInputLayout EditTextlocal;
     private TextInputLayout EditTextdescricao;
-    public String DataTime;
     public String DataT;
-    private String dia;
     private String hh;
     private String mm;
-    private Spinner sp;
     private Spinner hr;
     private Spinner min;
-    private String  hrs;
 
-    private final String[] semana = new String[] { "Dia da semana", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"};
     private final String[] hora = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
     private final String[] minuto = new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "24",
             "25","26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
@@ -172,7 +165,6 @@ public class AddAgendaActivity extends AppCompatActivity {
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
         DataT = data;
     }
 

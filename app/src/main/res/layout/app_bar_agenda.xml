@@ -24,7 +24,6 @@
 
 
     <include
-        android:id="@+id/include4"
         layout="@layout/content_agenda"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

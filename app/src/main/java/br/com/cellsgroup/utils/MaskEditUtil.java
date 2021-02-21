@@ -2,24 +2,23 @@ package br.com.cellsgroup.utils;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-
 import com.google.android.material.textfield.TextInputLayout;
 
-public abstract class MaskEditUtil {
 
-    public static final String FORMAT_CPF = "###.###.###-##";
+@SuppressWarnings( "ALL" )
+public abstract class MaskEditUtil {
+    
     public static final String FORMAT_FONE = "(##)#####-####";
     public static final String FORMAT_FONE_FIXO = "(##)####-####";
     public static final String FORMAT_CEP = "#####-###";
     public static final String FORMAT_DATE = "##/##/####";
-    public static final String FORMAT_HOUR = "##:##";
-
+    
     /**
      * Método que deve ser chamado para realizar a formatação
      *
-     * @param ediTxt
-     * @param mask
-     * @return
+     * @param ediTxt - EditText para aplicar a mascara
+     * @param mask - tipo d mascara
+     * @return - return
      */
     public static TextWatcher mask(final TextInputLayout ediTxt, final String mask) {
         return new TextWatcher() {

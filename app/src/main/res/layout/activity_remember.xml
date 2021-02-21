@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RememberActivity">
+    tools:context=".RememberActivity"
+    tools:ignore="MergeRootFrame">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,11 +17,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24" />
+            app:srcCompat="@drawable/ic_baseline_person_add_alt_1_24"
+            android:contentDescription="@string/icone_adicionar" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailRemember"
@@ -45,7 +46,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <View
-            android:id="@+id/divider3"
             android:layout_width="150dp"
             android:layout_height="1dp"
             android:layout_gravity="center_horizontal"
@@ -72,7 +72,8 @@
                 android:enabled="true"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/cancelar"
-                android:textColor="#0541F4" />
+                android:textColor="#0541F4"
+                tools:ignore="ButtonStyle" />
 
             <Button
                 android:id="@+id/btnEnviarEmailRemember"
@@ -91,7 +92,8 @@
                 android:minHeight="20dp"
                 android:text="@string/enviar"
                 android:textColor="#0541F4"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="ButtonStyle" />
 
         </LinearLayout>
 
@@ -101,10 +103,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtregistroRemember"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 android:lines="3"
                 android:paddingStart="15dp"
                 android:paddingTop="30dp"
@@ -118,7 +118,6 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/loading4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

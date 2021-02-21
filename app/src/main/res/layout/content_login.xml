@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -20,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:scrollIndicators="right"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,12 +28,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView2"
                 android:layout_width="243dp"
                 android:layout_height="136dp"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/ic_baseline_menu_book_24_green"
-                android:contentDescription="@string/google_login" />
+                android:contentDescription="@string/google_login"
+                app:srcCompat="@drawable/ic_baseline_menu_book_24_green" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email"
@@ -82,7 +80,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <View
-                android:id="@+id/divider3"
                 android:layout_width="150dp"
                 android:layout_height="1dp"
                 android:layout_gravity="center_horizontal"
@@ -109,7 +106,8 @@
                     android:enabled="true"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/cancelar"
-                    android:textColor="#0541F4" />
+                    android:textColor="#0541F4"
+                    tools:ignore="ButtonStyle" />
 
                 <Button
                     android:id="@+id/btnEnviarLogin"
@@ -153,10 +151,10 @@
                     android:paddingBottom="1dp"
                     android:text="@string/esqueci_a_senha"
                     android:textColor="#1976D2"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
 
                 <View
-                    android:id="@+id/divider4"
                     android:layout_width="150dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_horizontal"
@@ -182,8 +180,7 @@
                     </ImageButton>
 
                     <TextView
-                        android:id="@+id/tvGoogle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="0dp"
@@ -193,7 +190,6 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/divider5"
                     android:layout_width="150dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_horizontal"
@@ -201,7 +197,6 @@
                     android:background="?android:attr/listDivider" />
 
                 <TextView
-                    android:id="@+id/txtregistro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:lines="3"
@@ -231,7 +226,6 @@
         </LinearLayout>
     </ScrollView>
     <ProgressBar
-        android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

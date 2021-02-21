@@ -3,7 +3,6 @@ package br.com.cellsgroup.intercessao;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,9 +35,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
     private TextInputLayout EditTextmotivo;
     private TextInputLayout EditTextdata;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
-    public String DataTime;
     public String DataT;
 
     @Override
@@ -54,6 +51,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
 
     }
 
+    @SuppressWarnings( "ConstantConditions" )
     private void addIntercessaoClick(MenuItem item){
         try {
             String nome =  EditTextnome.getEditText().getText().toString().trim();
@@ -95,7 +93,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AddIntercessaoActivity.this.finish();
+        finish();
         Intent home = new Intent(AddIntercessaoActivity.this, HomeActivity.class);
         startActivity(home);
         DrawerLayout drawer = findViewById( R.id.drawer_add_intercessao);
@@ -127,7 +125,7 @@ public class AddIntercessaoActivity extends AppCompatActivity {
         }
 
         if(id == R.id.action_Cancel){
-            AddIntercessaoActivity.this.finish();
+            finish();
             Intent intent = new Intent( AddIntercessaoActivity.this,IntercessaoActivity.class );
             startActivity(intent);
             return true;
@@ -141,7 +139,6 @@ public class AddIntercessaoActivity extends AppCompatActivity {
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-        DataTime = data + " "+ hora;
         DataT = data;
     }
 }

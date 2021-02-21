@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,68 +21,46 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 import com.google.firebase.functions.FirebaseFunctions;
-import com.google.firebase.functions.HttpsCallableResult;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-import br.com.cellsgroup.Activity_splash_screen;
-import br.com.cellsgroup.CompartilharActivity;
-import br.com.cellsgroup.Igreja.IgrejasCriadasActivity;
-import br.com.cellsgroup.SobreActivity;
-import br.com.cellsgroup.comunicados.ComunicadosActivity;
-import br.com.cellsgroup.Configuracao;
-import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
-import br.com.cellsgroup.Igreja.addIgrejaActivity;
-import br.com.cellsgroup.intercessao.IntercessaoActivity;
 import br.com.cellsgroup.R;
+import br.com.cellsgroup.*;
 import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.celulas.CelulasActivity;
+import br.com.cellsgroup.comunicados.ComunicadosActivity;
+import br.com.cellsgroup.contato.ContatoActivity;
+import br.com.cellsgroup.igreja.IgrejasCriadasActivity;
+import br.com.cellsgroup.igreja.addIgrejaActivity;
+import br.com.cellsgroup.intercessao.IntercessaoActivity;
+import br.com.cellsgroup.leader.LeaderActivity;
 import br.com.cellsgroup.models.igreja.Igreja;
 import br.com.cellsgroup.models.login.LoginActivity;
 import br.com.cellsgroup.relatorios.RelatorioActivityView;
-import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.models.login.LoginActivity.updateUI;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "IGREJA PADRAO -> ";
     public static FirebaseUser UI;
-    public static Object groups;
     public static String group="";
     public static String igreja = "";
-    public static String username = "";
     public static String useremail = "";
-    public static String cellPhone = "";
     public static String uidIgreja = "";
     public static String useremailAuth = "";
 
     public static boolean typeUserAdmin = true;
-    public static boolean typeUserNormal = false;
 
     public FirebaseAuth mAuth;
-    public FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private DatabaseReference novaref = null;
     private DatabaseReference novaref2 = null;
     private FirebaseFunctions mFunctions;
     public static final int  Permission_All = 1;
@@ -93,15 +70,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     };
     public static boolean Logado = false;
     public static String tag = "0";
-    public String DataTime;
-    public String DataT;
-    public String status = "1";
 
-    private final int count = 0;
-    private final int limitebusca = 500;
-
-    //Variaveis de MENU
-    int addigreja;
     TextView nhTitle;
     TextView nhEmail;
     TextView nhName;
@@ -297,38 +266,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void splashScreean() {
-        if (tag == "0") {
-            Intent i = new Intent( HomeActivity.this, Activity_splash_screen.class );
-            startActivity( i );
-            finish();
-        }
-    }
-
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HomeActivity.this);  //inicializa  o SDK credenciais padrão do aplicativo do Google
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         databaseReference.keepSynced(true);
-    }
-
-    /* Create the arguments to the callable function. */
-    private Task<String> addMessage(String text) {
-        // Create the arguments to the callable function.
-        Map<String, Object> data = new HashMap<>();
-        data.put("text", text);
-        data.put("push", true);
-
-        return mFunctions
-                .getHttpsCallable("addMessage")
-                .call(data)
-                .continueWith(new Continuation<HttpsCallableResult, String>() {
-                    @Override
-                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
-                        String result = (String) task.getResult().getData();
-                        return result;
-                    }
-                });
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -338,8 +280,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Date dataHoraAtual = new Date();
             String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
             String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
-            DataTime = data + " "+ hora;
-            DataT = data;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -467,11 +407,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( celulas );
     }
 
-    public void cardcomunicacaoClick(View view) throws Exception {
-        Intent comunidados = new Intent(HomeActivity.this,ComunicadosActivity.class);
-        startActivity( comunidados );
-    }
-
     public void cardigrejaClick(View view) throws Exception {
         Intent igrejas = new Intent(HomeActivity.this,IgrejasCriadasActivity.class);
         startActivity( igrejas );
@@ -502,19 +437,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( relatorio );
     }
 
-
-    /**
-     * @return firebaseDatabase
-     */
-    public FirebaseDatabase getFirebaseDatabase() {
-        return firebaseDatabase;
-    }
-
-    /**
-     * @return databaseReference
-     */
-    public DatabaseReference getDatabaseReference() {
-        return databaseReference;
-    }
 
 }

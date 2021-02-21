@@ -2,7 +2,6 @@ package br.com.cellsgroup.celulas;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +23,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
-import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.CompartilharActivity;
+import br.com.cellsgroup.EnviarActivity;
+import br.com.cellsgroup.R;
+import br.com.cellsgroup.agenda.AgendaActivity;
 import br.com.cellsgroup.comunicados.ComunicadosActivity;
 import br.com.cellsgroup.contato.ContatoActivity;
-import br.com.cellsgroup.EnviarActivity;
 import br.com.cellsgroup.home.HomeActivity;
 import br.com.cellsgroup.intercessao.IntercessaoActivity;
-import br.com.cellsgroup.R;
 import br.com.cellsgroup.leader.LeaderActivity;
 
 import static br.com.cellsgroup.home.HomeActivity.uidIgreja;

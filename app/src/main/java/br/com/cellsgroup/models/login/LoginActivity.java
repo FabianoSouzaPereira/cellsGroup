@@ -8,15 +8,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,36 +21,22 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.*;
 
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-
+import br.com.cellsgroup.R;
 import br.com.cellsgroup.RegisterActivity;
 import br.com.cellsgroup.RememberActivity;
 import br.com.cellsgroup.home.HomeActivity;
-import static br.com.cellsgroup.home.HomeActivity.tag;
-import br.com.cellsgroup.R;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private static int RC_SIGN_IN;
+    private static final int RC_SIGN_IN = 100;
     // [START declare_auth]
     private FirebaseAuth mAuth;
-    // [END declare_auth]
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private View login;
-    private final EditText editNome = null;
     private TextInputLayout editEmail = null;
     private TextInputLayout editSenha = null;
-    private Button btnRegistrar;
     private Button btnCancelarLogin;
-    private Button btnForgotPassword;
     private ImageButton btnGoogleConection;
     private ProgressDialog progressDialog;
     private static final String TAG = "CustomAuthActivity";
@@ -62,9 +45,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private GoogleSignInOptions gso;
     private GoogleSignInClient mGoogleSignInClient;
-
-
-
+    private View btnForgotPassword;
+    
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -177,72 +160,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void registrarUsuario(){
-        String email = editEmail.getEditText().getText().toString().trim();
-        String senha = editSenha.getEditText().getText().toString().trim();
-
-        if (!validateForm()) {
-            return;
-        }
-
-        progressDialog.setMessage( getString( R.string.registrando) );
-        progressDialog.show();
-
-        //criando novo leader
-        mAuth.createUserWithEmailAndPassword( email, senha )
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checando sucesso
-                        if(task.isSuccessful()){
-                            Toast.makeText( LoginActivity.this,getString( R.string.Registro_sucesso), Toast.LENGTH_LONG ).show();
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            updateUI( currentUser );
-                            Intent home = new Intent( LoginActivity.this, HomeActivity.class );
-                            startActivity( home );
-                          //  createToken();
-                        }else{  //se houver colisão de mesmo usuário
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException){
-                                Toast.makeText( LoginActivity.this,getString( R.string.registro_existe), Toast.LENGTH_LONG ).show();
-                               updateUI( null );
-                            }else{
-                                Toast.makeText( LoginActivity.this,getString( R.string.Falha_registro), Toast.LENGTH_LONG ).show();
-                                updateUI( null );
-                            }
-
-                        }
-                        editEmail.getEditText().setText("");
-                        editSenha.getEditText().setText("");
-                        progressDialog.dismiss();
-                    }
-                } );
-
-    }
-
-    private void createToken() {
-        // Initiate sign in with custom token
-        // [START sign_in_custom]
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCustomToken:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCustomToken:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END sign_in_custom]
-    }
-
     private void setCustomToken(String token) {
         mCustomToken = token;
 
@@ -252,34 +169,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             status = "Token: null";
         }
-    }
-
-    private void startSignIn() {
-        // Initiate sign in with custom token
-        // [START sign_in_custom]
-        mAuth.signInWithCustomToken(mCustomToken)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-        // [END sign_in_custom]
-    }
-
-    private String getString(String string) {
-        return string;
-    }
-
-    private CharSequence getString(CharSequence charSequence) {
-        return charSequence;
     }
 
     private boolean validateForm() {
@@ -337,6 +226,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        progressDialog.setMessage( getString( R.string.iniciando_login) );
+        progressDialog.show();
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -349,6 +240,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.w(TAG, "Google sign in failed", e);
                 // ...
             }
+            progressDialog.dismiss();
         }
     }
     private void firebaseAuthWithGoogle(String idToken) {
@@ -415,18 +307,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStop() {
         super.onStop();
-    }
-
-    public void nav_header(){
-
-    }
-
-    private void signOut() {
-        HomeActivity.igreja = "";
-        HomeActivity.uidIgreja = "";
-        tag = "0";
-        mAuth.signOut();
-        updateUI(null);
     }
 
     private boolean validateEmailFormat(final String email) {
