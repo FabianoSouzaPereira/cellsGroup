@@ -22,6 +22,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -412,11 +413,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity( igrejas );
     }
 
-    public void cardintercessaoClick(View view) throws Exception {
-        Intent intercessao = new Intent( HomeActivity.this,IntercessaoActivity.class );
-        startActivity( intercessao );
-    }
-
     public void cardagendaClick(View view) throws Exception {
         Intent agenda = new Intent( HomeActivity.this,AgendaActivity.class );
         startActivity( agenda );
@@ -436,6 +432,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent relatorio = new Intent( HomeActivity.this, RelatorioActivityView.class );
         startActivity( relatorio );
     }
-
-
+    
+    public void cardintercessaoClick(View view) {
+        Snackbar.make(view, getString ( R.string.implementacao_futura ), Snackbar.LENGTH_LONG)
+           .setAction("Action", null)
+           .setTextColor(getColor(R.color.colorWhite))
+           .show();
+    }
 }
