@@ -97,7 +97,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!igreja.equals("") && !igreja.equals (null)) {
+                if(!igreja.isEmpty()) {
                     Intent addLeader = new Intent ( LeaderActivity.this , AddLeaderActivity.class );
                     startActivity ( addLeader );
                     finish ( );
@@ -248,7 +248,7 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
     public boolean onPrepareOptionsMenu ( Menu menu ) {
         MenuItem addIgreja = menu.findItem(R.id.action_addIgreja);
         MenuItem igreja = menu.findItem(R.id.action_readIgreja);
-        if( uidIgreja != null && !uidIgreja.equals ( "" ) ) {
+        if( uidIgreja.isEmpty()) {
             addIgreja.setVisible ( false );
             igreja.setVisible (true );
         }else{
@@ -370,7 +370,9 @@ public class LeaderActivity extends AppCompatActivity implements Serializable ,N
 
     @Override
     protected void onStop ( ) {
-        query.removeEventListener (queryListener);
+        if(queryListener != null){
+            query.removeEventListener (queryListener);
+        }
         super.onStop ( );
     }
 

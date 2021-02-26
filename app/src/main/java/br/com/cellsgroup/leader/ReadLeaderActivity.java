@@ -7,8 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -20,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.*;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
@@ -71,6 +71,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
     private TextInputLayout EditTextpais;
     private TextInputLayout EditTextcep;
     private TextInputLayout EditTextcargoIgreja;
+    private MaterialTextView EditTextUserId;
     private String uid;
     private Query query;
     private ValueEventListener queryListener;
@@ -138,6 +139,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         EditTextpais = findViewById( R.id.text_input_readPais );
         EditTextcep = findViewById( R.id.text_input_readCep );
         EditTextcargoIgreja = findViewById( R.id.text_input_readCargoIgreja);
+        EditTextUserId = findViewById(R.id.text_uid_redLeader);
         mensagem11 = getResources ().getString (R.string.apagadoLiderSuccess);
         mensagem12 = getResources ().getString (R.string.erroApagarLider);
         mensagem13 = getResources ().getString (R.string.lider);
@@ -164,6 +166,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                         Leader l = dados.getValue (Leader.class);
                         if (l.getUid() != null && l.getUid() != null) {
                             if(l.getUid().equalsIgnoreCase (uid) ) {
+                                String userUid = l.getUid().trim();
                                 String celula = l.getCelula().trim();
                                 String nome = l.getNome().trim();
                                 String idade = l.getIdade().trim ();
@@ -203,7 +206,7 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
                                 Objects.requireNonNull ( EditTextpais.getEditText ( ) , "" ).setText ( pais );
                                 Objects.requireNonNull ( EditTextcep.getEditText ( ) , "" ).setText ( cep );
                                 Objects.requireNonNull ( EditTextcargoIgreja.getEditText ( ) , "" ).setText ( cargoIgreja );
-
+                                EditTextUserId.setText ( userUid );
                             }
                         }
                     } catch ( Exception e ) {
@@ -213,8 +216,8 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e( ReadLeaderActivity.TAG ,"Erro Database"+ databaseError.toException() );
+            public void onCancelled(@NonNull DatabaseError error ) {
+                Log.e( TAG ,"Erro Database " + error.toException() );
             }
         } ;
 
@@ -227,12 +230,12 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
         builder1 = builder1.setMessage( mensagem13 + " " + useremail);
         builder1.setTitle(  mensagem14  ).setCancelable( false ).setNegativeButton(  mensagem15, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface , int i ) {
                 Toast.makeText( getApplicationContext(),  mensagem15, Toast.LENGTH_SHORT ).show();
             }
         } ).setPositiveButton( "Ok", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialogInterface , int i ) {
                 ref = databaseReference;
 
                 //apaga leader de membros
@@ -358,7 +361,9 @@ public class ReadLeaderActivity extends AppCompatActivity implements NavigationV
 
     @Override
     protected void onStop ( ) {
-        query.removeEventListener (queryListener);
+        if(queryListener != null){
+            query.removeEventListener (queryListener);
+        }
         super.onStop ( );
     }
 

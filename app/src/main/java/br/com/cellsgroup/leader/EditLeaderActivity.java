@@ -595,8 +595,12 @@ public class EditLeaderActivity extends AppCompatActivity {
 
     @Override
     protected void onStop ( ) {
-        query.removeEventListener (queryListener);
-        queryCelula.removeEventListener (listenerCelula);
+        if(queryListener != null){
+            query.removeEventListener (queryListener);
+        }
+        if(listenerCelula != null){
+            queryCelula.removeEventListener (listenerCelula);
+        }
         super.onStop ( );
     }
 

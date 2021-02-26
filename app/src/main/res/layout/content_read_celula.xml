@@ -25,17 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_uid_redCelula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/_000000000000000000"
-                android:textAlignment="center"
-                android:textColor="#4D8DAF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_celula"
                 android:layout_width="match_parent"
@@ -223,6 +212,23 @@
                     android:inputType="none"
                     android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_uid_redCelula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:selectAllOnFocus="true"
+                android:text="@string/_000000000000000000"
+                android:textAlignment="center"
+                android:textColor="#4D8DAF"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
         </LinearLayout>
     </ScrollView>

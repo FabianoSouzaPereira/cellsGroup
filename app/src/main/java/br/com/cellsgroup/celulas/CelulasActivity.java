@@ -79,7 +79,7 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!igreja.equals("") ||  igreja != null) {
+                if( !igreja.isEmpty( )) {
                     Intent addCelula = new Intent ( CelulasActivity.this , AddCelulaActivity.class );
                     startActivity ( addCelula );
                     finish ( );
@@ -347,7 +347,9 @@ public final class CelulasActivity extends AppCompatActivity   implements Naviga
 
     @Override
     protected void onStop ( ) {
-        query.removeEventListener (queryListener);
+        if(queryListener != null){
+            query.removeEventListener (queryListener);
+        }
         super.onStop ( );
     }
 

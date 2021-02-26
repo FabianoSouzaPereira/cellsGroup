@@ -27,17 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_uid_editCelula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/_000000000000000000"
-                android:textAlignment="center"
-                android:textColor="#4D8DAF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_input_celula"
                 android:layout_width="match_parent"
@@ -183,6 +172,17 @@
                     android:hint="@string/dataInicio"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_uid_editCelula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/_000000000000000000"
+                android:textAlignment="center"
+                android:textColor="#4D8DAF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
