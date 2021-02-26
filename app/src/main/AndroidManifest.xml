@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:versionCode="10"
-        android:versionName="2.1.1"
+        android:versionName="2.3.1"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".RememberActivity"/>
         <activity android:name=".RegisterActivity" />
