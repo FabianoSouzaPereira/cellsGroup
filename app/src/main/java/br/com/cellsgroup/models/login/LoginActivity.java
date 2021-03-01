@@ -115,27 +115,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText( LoginActivity.this, getString( R.string.logado_sucesso),Toast.LENGTH_SHORT).show();
                                 FirebaseUser currentUser = mAuth.getCurrentUser();
                                 updateUI(currentUser);
+                                
                                 editEmail.getEditText().setText("");
                                 editSenha.getEditText().setText("");
+                                
                                 Intent home = new Intent( LoginActivity.this, HomeActivity.class );
                                 startActivity( home );
-                              //  startSignIn();
+                                progressDialog.dismiss();
+  
                             }else{  //se houver colisão de mesmo usuário
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                                    progressDialog.dismiss();
                                     Toast.makeText( LoginActivity.this, getString( R.string.usuario_existe),Toast.LENGTH_SHORT).show();
                                     HomeActivity.Logado = false;
                                 }else{
+                                    progressDialog.dismiss();
                                     Toast.makeText( LoginActivity.this,getString( R.string.falha_login), Toast.LENGTH_LONG ).show();
                                     HomeActivity.Logado = false;
                                 }
 
                             }
-                            progressDialog.dismiss();
                         }
 
                     } );
 
         } catch ( Exception e ) {
+            progressDialog.dismiss();
             e.printStackTrace ( );
         }
 
@@ -219,15 +224,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //start google conection
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        progressDialog.setMessage( getString( R.string.iniciando_login) );
+        progressDialog.show();
+       if( progressDialog.isShowing()){
+           Intent signInIntent = mGoogleSignInClient.getSignInIntent( );
+           startActivityForResult( signInIntent , RC_SIGN_IN );
+       }
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        progressDialog.setMessage( getString( R.string.iniciando_login) );
-        progressDialog.show();
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
@@ -236,17 +243,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
+                progressDialog.dismiss();
                 Log.w(TAG, "Google sign in failed", e);
-                // ...
             }
-            progressDialog.dismiss();
         }
+       
     }
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        progressDialog.setMessage( getString( R.string.iniciando_login) );
-        progressDialog.show();
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
@@ -257,16 +261,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
                         Intent home = new Intent( LoginActivity.this, HomeActivity.class );
-                        progressDialog.dismiss();
                         startActivity( home );
+                        progressDialog.dismiss();
 
                     } else {
-                        // If sign in fails, display a message to the user.
+                        progressDialog.dismiss();
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                         updateUI(null);
                     }
-
-                    // ...
                 }
             });
     }

@@ -209,7 +209,7 @@
     <string name="igreja_em_c_lulas">Church in Cells</string>
     <string name="minuto">minute:</string>
     <string name="data_hora">Date-Time</string>
-    <string name="logo" />
+    <string name="logo" >logo</string>
     <string name="local_do_evento">Local do evento</string>
     <string name="descri_o_do_evento">Descrição do evento</string>
     <string name="nome_do_evento">Nome do evento</string>
@@ -217,4 +217,5 @@
     <string name="icon_register">Icon Register</string>
     <string name="icon_certo">Icon certo</string>
     <string name="implementacao_futura">Future implementation</string>
+    <string name="editadocelula">Successfully edited cell</string>
 </resources>

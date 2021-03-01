@@ -366,7 +366,7 @@ public class EditCelulaActivity extends AppCompatActivity implements NavigationV
         textInputHora = findViewById(R.id.text_input_hora);
         textInputDataInicio = findViewById(R.id.text_input_DataInicio);
         mensagem1 =  getResources ().getString (R.string.erroCampoObrigatorio);
-        mensagem2 =  getResources ().getString (R.string.criadocelula);
+        mensagem2 =  getResources ().getString (R.string.editadocelula);
         mensagem3 =  getResources ().getString (R.string.erroEditardocelula);
         mensagem4 =  getResources ().getString (R.string.erroPreencherTudo);
         mensagem5 =  getResources ().getString (R.string.erroNaoAdmin);
