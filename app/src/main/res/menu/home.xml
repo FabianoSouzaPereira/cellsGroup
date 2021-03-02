@@ -20,14 +20,20 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_Sobre"
+        android:id="@+id/action_manual"
         android:orderInCategory="103"
+        android:title="@string/Manual"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_Sobre"
+        android:orderInCategory="104"
         android:title="@string/Sobre"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_Sair"
-        android:orderInCategory="104"
+        android:orderInCategory="105"
         android:title="@string/action_Sair"
         app:showAsAction="never" />
     <item

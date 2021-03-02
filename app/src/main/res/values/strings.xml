@@ -224,9 +224,9 @@
     <string name="email">Email</string>
     <string name="esqueci_a_senha">Esqueci a senha</string>
     <string name="erroCampoObrigatorio">Este campo e obrigatório</string>
-    <string name="criadocelula" >Criado célula com sucesso</string>
-    <string name="editadocelula" >Editado célula com sucesso</string>
-    <string name="erroCriarcelula" >Erro ao tentar criar célula !</string>
+    <string name="criadocelula">Criado célula com sucesso</string>
+    <string name="editadocelula">Editado célula com sucesso</string>
+    <string name="erroCriarcelula">Erro ao tentar criar célula !</string>
     <string name="erroPreencherTudo">Todos os campos tem que ser preenchidos !</string>
     <string name="erroNaoAdmin">Você não é um líder administrador. \n Não pode criar celulas !</string>
     <string name="erroEditardocelula">Erro ao tentar Editar célula !</string>
@@ -256,7 +256,7 @@
     <string name="igreja_em_c_lulas">Igreja em Células</string>
     <string name="minuto">minuto:</string>
     <string name="data_hora">Data-Hora</string>
-    <string name="logo" >logo</string>
+    <string name="logo">logo</string>
     <string name="local_do_evento">Local do evento</string>
     <string name="descri_o_do_evento">Descrição do evento</string>
     <string name="nome_do_evento">Nome do evento</string>
@@ -264,4 +264,10 @@
     <string name="icon_register">Icon Register</string>
     <string name="icon_certo">Icon certo</string>
     <string name="implementacao_futura">Implementaçao futura</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="adicione_uma_igreja">Igreja cadastrada.</string>
+    <string name="bot_o_igreja">botão igreja</string>
+    <string name="manual_de_uso">Manual de uso</string>
+    <string name="Manual">Manual</string>
 </resources>

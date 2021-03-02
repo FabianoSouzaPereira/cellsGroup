@@ -310,6 +310,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -329,6 +330,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }else if ( itemId == R.id.action_lideres) {
             Intent addlideres = new Intent ( HomeActivity.this , LeaderActivity.class );
             startActivity ( addlideres);
+            return true;
+        }else if ( itemId == R.id.action_manual) {
+            Intent manual= new Intent ( HomeActivity.this , ManualActivity.class );
+            startActivity ( manual);
             return true;
         }else if ( itemId == R.id.action_Sobre) {
             Intent sobre= new Intent ( HomeActivity.this , SobreActivity.class );

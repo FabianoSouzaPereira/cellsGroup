@@ -22,7 +22,8 @@
         android:versionCode="12"
         android:versionName="2.3.2"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RememberActivity"/>
+        <activity android:name=".ManualActivity"></activity>
+        <activity android:name=".RememberActivity" />
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".leader.ReadLeaderActivity"
@@ -136,8 +137,8 @@
         <activity
             android:name=".models.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Activity_splash_screen"
             android:screenOrientation="portrait"
