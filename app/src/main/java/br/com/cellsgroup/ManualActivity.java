@@ -8,6 +8,7 @@ import android.util.*;
 import android.widget.*;
 import com.google.android.material.textfield.*;
 import java.io.*;
+import java.net.*;
 import java.util.*;
 
 public class ManualActivity extends AppCompatActivity{
@@ -20,21 +21,17 @@ public class ManualActivity extends AppCompatActivity{
      String language = LanguageHelper.getLocale();
    
       try{
-         switch(language){
-            case "es_ES":
-               MANUAL = R.raw.manual_es;
-               break;
-            case "en_EN":
-               MANUAL = R.raw.manual_en;
-               break;
-            default:
-               MANUAL = R.raw.manual;
-               break;
+         if(language.contains("es_")){
+            MANUAL = R.raw.manual_es;
+         }else if(language.contains("pt_")){
+            MANUAL = R.raw.manual;
+         }else{
+            MANUAL = R.raw.manual_en;
          }
       }catch( Exception e ){
          e.printStackTrace( );
       }
-   
+      
       editTextManual = findViewById(R.id.editTextManual );
       try{
          Resources res =  getResources();

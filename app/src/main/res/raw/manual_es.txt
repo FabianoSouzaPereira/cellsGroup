@@ -1,13 +1,13 @@
 <br/><font size='16' color='green'><b>Manual de usuario</b></font><br/><br/>
 
-1° Es posible agregar solo una iglesia por cuenta de correo electrónico;<br/>
-2° Cada celda puede tener solo un líder.<br/>
-3° Cada líder tiene acceso solo a su celda y a sus informes.<br/>
-4° Todos los usuarios de la misma iglesia pueden ver el nombre, correo electrónico y teléfono de los líderes para promover la integración entre los miembros.<br/>
-5° Los informes se pueden enumerar por nombre, fecha, hora, combinación de letras.<br/>
-6° La aplicación del pastor puede ver todos los informes de todas las celdas.<br/><br/><br/>
+Es posible agregar solo una iglesia por cuenta de correo electrónico; <br/>
+Cada celda puede tener un solo líder. <br/>
+Cada líder tiene acceso solo a su celda y a sus informes. <br/>
+Todos los usuarios de la misma iglesia pueden ver el nombre, correo electrónico y teléfono de los líderes para promover la integración entre los miembros. <br/>
+Los informes se pueden enumerar por nombre, fecha, hora, combinación de letras. <br/>
+La aplicación del pastor puede ver todos los informes de todas las celdas. <br/> <br/> <br/>
 
-<font size='16' color='green'><b>Comprender el flujo de la creación:</b></font><br/><br/>
+<font size='16' color='green'><b>Comprender el uso:</b></font><br/><br/>
 
 Lo primero que debe hacer es crear una iglesia.<br/>
 Luego creas una celda.<br/>
@@ -23,10 +23,10 @@ Luego, luego cree los informes<br/><br/><br/>
 
 <font size='16' color='red'>Obs.: ¡¡Muy importante !!</b></font><br/><br/>
 
-Al agregar la iglesia, preste atención al nombre que ingresó, ya que no será posible cambiarlo más adelante.<br/>
-Si desea cambiar el nombre de la iglesia, tendrá que eliminarlo y volver a hacerlo, pero eso eliminaría lo que incluyó en esa iglesia.<br/>
-Al eliminar la iglesia, las celdas también eliminarán a los líderes, todos los informes de todas las celdas también se eliminarán.<br/>
-Por lo tanto, considere NO BORRAR LA IGLESIA.<br/><br/><br/>
+Al agregar la iglesia, preste atención al nombre que ingresó, ya que no será posible cambiarlo más adelante. <br/>
+Si desea cambiar el nombre de la iglesia, tendrá que eliminarlo y volver a hacerlo, pero eso eliminaría lo que incluyó en esa iglesia. <br/>
+Cuando elimine la iglesia, también eliminará las celdas, los líderes y todos los informes de todas las celdas también se eliminarán. <br/>
+Así que considere NO BORRAR LA IGLESIA. <br/> <br/> <br/>
 
 
 <font size='16' color='green'>Creando una celda</b></font><br/><br/>
@@ -49,10 +49,10 @@ Haga esto desde el principio para evitar perder información importante. Y estam
 
 <font size='16' color='green'>Enviar la clave de identificación de la celda al líder</b></font><br/><br/>
 
-1° Después de guardar el líder, abra el líder que creó nuevamente y desplácese hasta el final y encontrará un número que es el número de identificación del líder.<br/>
-2° Haga clic y mantenga presionado este número y se le ofrecerá copiar o compartir este número.<br/>
-3° Elija compartir, y en la nueva pantalla que se abrirá, elija la ubicación para compartir de su preferencia para enviarle a su líder el número que deberá ingresar como el líder de su celda.
-Elija whatsapp por ejemplo y envíelo.<br/><br/><br/>
+1° Después de guardar la información del líder, vuelva a abrir el registro de líder. En la parte inferior de la pantalla encontrará un número de identificación de líder. Este número permite el acceso del líder para usar la aplicación y se comunica entre las aplicaciones. <br/>
+2° Haga clic y mantenga presionado este número y se le ofrecerá copiar o compartir. <br/>
+3° Elija compartir, y en la nueva pantalla que se abrirá, elija el lugar preferido para compartir para enviar a su líder. <br/>
+Elija whatsapp o SMS por ejemplo y envíelo. <br/> <br/> <br/>
 
 <font size='16' color='green'>Crear informes para la celda</b></font><br/><br/>
 

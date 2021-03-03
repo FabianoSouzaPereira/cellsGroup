@@ -7,11 +7,11 @@ O nome, e-mail e o telefone dos lideres podem ser vistos por todos os usuários 
 Os relatórios podem ser listados por nome, data, hora, combinação de letras.<br/>
 O app do pastor pode ver todos os relatórios de todas as células.<br/><br/><br/>
 
-<font size='16' color='green'><b>Compreendendo o fluxo de criação:</b></font><br/><br/>
+<font size='16' color='green'><b>Compreendendo a utilização:</b></font><br/><br/>
 
 A primeira coisa a ser feita é criar uma igreja.<br/>
 Depois é criar uma célula.<br/>
-Logo sem seguida criar um líder para a célula.<br/>
+Logo em seguida criar um líder para a célula.<br/>
 Então posteriormente crie os relatórios.<br/><br/><br/>
 
 <font size='16' color='green'><b>Adicionando igreja</b></font><br/><br/>
@@ -25,39 +25,38 @@ Então posteriormente crie os relatórios.<br/><br/><br/>
 
 Ao adicionar a igreja preste atenção no nome que você colocou pois não será possível alterá-lo depois.<br/>
 Caso queira alterar o nome da igreja terá que apagá-la e fazer outra vez, mas isso apagaria tudo o que incluiu nessa igreja.<br/>
-Ao apagar a igreja apagará também as células os lideres todos os relatórios de todas as células também, serão apagados.<br/>
-Por tanto considere em NÃO APAGA A IGREJA.<br/><br/><br/>
+Ao apagar a igreja apagará também as células, os lideres e todos os relatórios de todas as células também serão apagados.<br/>
+Por tanto considere em NÃO APAGAR A IGREJA.<br/><br/><br/>
 
 
 <font size='16' color='green'><b>Criando uma célula</b></font><br/><br/>
 
-1° Clique no ícone da célula<br/>
-2° Clique no ícone (+) adicionar<br/>
-3° Preencha todos os campos solicitados. Observe o nome da célula pois não poderá alterá-lo depois. Caso erre o nome apague a célula e crie outra.
+1° Clique no ícone da célula.<br/>
+2° Clique no ícone (+) adicionar.<br/>
+3° Preencha todos os campos solicitados. Observe o nome da célula pois não poderá alterá-lo depois. Caso erre o nome, apague a célula e crie outra.
 Faça isso logo no início para não perder nenhuma informação importante. E termos sincronia com os relatórios.<br/>
 4° Clique em salvar no ícone disquete<br/><br/><br/>
 
 
 <font size='16' color='green'><b>Adicionando um líder</b></font><br/><br/>
 
-1° Clique no ícone do líder ou vá no menu direito e Clique em Lideres.<br/>
+1° Clique no ícone do líder ou vá no menu direito e clique em Lideres.<br/>
 2° Clique no botão  (+) e registre o novo líder.<br/>
-3° Escolha uma célula que o líder vai liderar e preencha o resto das informações.<br/>
-4° O nome do líder → coloque o mesmo nome que você colou no campo líder, lá na célula quando você a criou. Lembre-se a célula vem primeiro, pois o líder para ela.<br/>
-5° O número do telefone é de fundamental importância, pois ele faz parte do registro do usuário no sistema.<br/>
-6° Clique em salvar no ícone disquete.<br/><br/><br/>
+3° Registre o lider de acordo com sua célula e complete as demais informações.<br/>
+4° O número do telefone é de fundamental importância, pois ele faz parte do registro do usuário no sistema.<br/>
+5° Clique em salvar no ícone disquete.<br/><br/><br/>
 
 <font size='16' color='green'><b>Enviar a chave Id da célula para o líder</b></font><br/><br/>
 
-1° Após salvar o líder abra outra vez o líder que você criou e role a tela até o final e você encontrará um número que é o número ID do líder.<br/>
-2° Clique e segure esse número e será oferecido copiar ou compartilhar esse número.<br/>
-3° Escolha compartilhar, e na nova tela que vai se abrir escolha o local de compartilhamento da sua preferencia para enviar ao seu líder esse número que ele precisará pra entrar como líder da usa célula.<br/>
-Escolha whatsapp por exemplo e envie a ele.<br/><br/><br/>
+1° Após salvar as informações do líder,abra o  cadastro líder novamente. No final da tela você encontrará um número de identificação do líder. Esse número permite o acesso do líder ao uso do aplicativo e faz comunicação entre os aplicativos.<br/>
+2° Clique e segure esse número e será oferecido para copiar ou compartilhar.<br/>
+3° Escolha compartilhar, e na nova tela que vai se abrir escolha o local de compartilhamento da sua preferência para enviar ao seu líder.<br/>
+Escolha whatsapp ou SMS por exemplo e envie a ele.<br/><br/><br/>
 
 <font size='16' color='green'>Criando relatórios para a célula</b></font><br/><br/>
 
 1° Clique e segure o nome da célula.<br/>
 2° Abrirá um relatório com algumas informações já preenchidas pelo sistema.<br/>
 3° Role a página e preencha as informações que faltam, que são o relatório em si.<br/>
-4° Preste atenção no relatório pois após enviado não poderá revisitá-lo para alterar dados incorretos. Caso o relatório enviado tenha erros, crie outro relatório supelementar e envie.<br/>
+4° Preste atenção no relatório pois após enviado não poderá revisitá-lo para alterar dados incorretos. Caso o relatório enviado tenha erros, crie outro relatório suplementar e envie.<br/>
 5° Clique em salvar no icone disquete.<br/><br/>
