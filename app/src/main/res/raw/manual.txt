@@ -1,7 +1,7 @@
 <br/><font size='16' color='green'><b>Manual de uso</b></font><br/><br/>
 
 É possível adicionar somente uma igreja por conta de e-mail;<br/>
-Cada célula pode ter apenas um Líder.<br/>
+Cada célula pode ter apenas um líder.<br/>
 Cada líder tem acesso apenas a sua célula e aos seus relatórios.<br/>
 O nome, e-mail e o telefone dos lideres podem ser vistos por todos os usuários da mesma igreja a fim de promover integração entre os membros.<br/>
 Os relatórios podem ser listados por nome, data, hora, combinação de letras.<br/>
@@ -33,8 +33,9 @@ Por tanto considere em NÃO APAGA A IGREJA.<br/><br/><br/>
 
 1° Clique no ícone da célula<br/>
 2° Clique no ícone (+) adicionar<br/>
-3° Preencha todos os campos solicitados. Observe o nome da célula pois não poderá altera-lo depois. Caso erre o nome apague a célula e crie outra. Faça isso logo no início para não perder nenhuma informação importe. E termos sincronia com os relatórios.<br/>
-4° Clique em salvar no ícone disquete<br/><br/>
+3° Preencha todos os campos solicitados. Observe o nome da célula pois não poderá alterá-lo depois. Caso erre o nome apague a célula e crie outra.
+Faça isso logo no início para não perder nenhuma informação importante. E termos sincronia com os relatórios.<br/>
+4° Clique em salvar no ícone disquete<br/><br/><br/>
 
 
 <font size='16' color='green'><b>Adicionando um líder</b></font><br/><br/>
@@ -44,18 +45,19 @@ Por tanto considere em NÃO APAGA A IGREJA.<br/><br/><br/>
 3° Escolha uma célula que o líder vai liderar e preencha o resto das informações.<br/>
 4° O nome do líder → coloque o mesmo nome que você colou no campo líder, lá na célula quando você a criou. Lembre-se a célula vem primeiro, pois o líder para ela.<br/>
 5° O número do telefone é de fundamental importância, pois ele faz parte do registro do usuário no sistema.<br/>
-6° Clique em salvar no ícone disquete<br/><br/><br/>
+6° Clique em salvar no ícone disquete.<br/><br/><br/>
 
 <font size='16' color='green'><b>Enviar a chave Id da célula para o líder</b></font><br/><br/>
 
 1° Após salvar o líder abra outra vez o líder que você criou e role a tela até o final e você encontrará um número que é o número ID do líder.<br/>
-2° Clique e segure esse número e será oferecido copiar ou compartilhar esse número. Escolha compartilhar, e na nova tela que vai se abrir escolha o local de compartilhamento da sua preferencia para enviar ao seu líder esse número que ele precisará pra entrar como líder da usa célula.<br/>
+2° Clique e segure esse número e será oferecido copiar ou compartilhar esse número.<br/>
+3° Escolha compartilhar, e na nova tela que vai se abrir escolha o local de compartilhamento da sua preferencia para enviar ao seu líder esse número que ele precisará pra entrar como líder da usa célula.<br/>
 Escolha whatsapp por exemplo e envie a ele.<br/><br/><br/>
 
 <font size='16' color='green'>Criando relatórios para a célula</b></font><br/><br/>
 
-1° Clique e sergure o nome da célula.<br/>
+1° Clique e segure o nome da célula.<br/>
 2° Abrirá um relatório com algumas informações já preenchidas pelo sistema.<br/>
 3° Role a página e preencha as informações que faltam, que são o relatório em si.<br/>
-4° Preste atenção no relatoio pois após enviado não poderá revisita-lo para alterar dados incorretos. Caso o relatório enviado tenha erros, crie outro relatório supelementar e envie.<br/>
+4° Preste atenção no relatório pois após enviado não poderá revisitá-lo para alterar dados incorretos. Caso o relatório enviado tenha erros, crie outro relatório supelementar e envie.<br/>
 5° Clique em salvar no icone disquete.<br/><br/>

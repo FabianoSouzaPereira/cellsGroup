@@ -136,10 +136,10 @@
     <string name="cep">Código postal</string>
     <string name="title_activity_celulas">Células</string>
     <string name="title_activity_read_celula">Células</string>
-    <string name="c_lulas">Células</string>
+    <string name="c_lulas">Celdas</string>
     <string name="celulas">Células</string>
     <string name="Cells">Células</string>
-    <string name="celula">Células</string>
+    <string name="celula">Celda</string>
     <string name="celula1">Células</string>
     <string name="caso_ainda_n_o_seja_registrado_npreencha_o_email_e_senha_e_click_em_registrar">Si aún no estás registrado? ¡Complete el correo electrónico y la contraseña y haga clic en registrarse!</string>
     <string name="cargo_igreja">Posición Iglesia *</string>

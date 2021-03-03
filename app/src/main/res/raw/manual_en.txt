@@ -1,0 +1,63 @@
+<br/><font size='16' color='green'><b>User manual</b></font><br/><br/>
+
+It is possible to add only one church per email account;<br/>
+Each cell can have only one Leader.<br/>
+Each leader has access only to his cell and to his reports.<br/>
+The name, e-mail and telephone number of the leaders can be seen by all users of the same church in order to promote integration among members.<br/>
+Reports can be listed by name, date, time, letter combination.<br/>
+The pastor's app can view all reports from all cells.<br/><br/><br/>
+
+<font size='16' color='green'><b>Understanding the flow of creation:</b></font><br/><br/>
+
+The first thing to do is to create a church.<br/>
+Then you create a cell.<br/>
+Then, without creating a leader for the cell.<br/>
+Then later create the reports.<br/><br/><br/>
+
+<font size='16' color='green'><b>Adding church<br/></b></font><br/><br/>
+
+1° Click on the church icon or go to the top right menu.<br/>
+2° Click on add church.<br/>
+3° Fill in the fields<br/>
+4° Click save on the floppy disk icon<br/><br/>
+
+<font size='16' color='red'><b>Obs .: Very important !!</b></font><br/><br/>
+
+When adding the church, pay attention to the name you entered as it will not be possible to change it later.<br/>
+If you want to change the name of the church you will have to delete it and do it again, but that would delete everything you included in that church.<br/>
+By deleting the church the cells will also delete the leaders all reports of all cells will also be deleted.<br/>
+Therefore, consider NOT DELETING THE CHURCH.<br/><br/><br/>
+
+
+<font size='16' color='green'><b>Creating a cell</b></font><br/><br/>
+
+1° Click on the cell icon<br/>
+2° Click on the (+) add icon<br/>
+3° Fill in all the requested fields. Note the cell name as you will not be able to change it later. If the name is wrong, delete the cell and create another one.<br/>
+ Do this right at the beginning to avoid losing any important information. And we are in sync with the reports.<br/>
+4° Click save on the floppy disk icon<br/><br/><br/>
+
+
+<font size='16' color='green'><b>Adding a leader</b></font><br/><br/>
+
+1° Click on the leader icon or go to the right menu and click on Leaders.<br/>
+2° Click on the (+) button and register the new leader.<br/>
+3° Choose a cell that the leader will lead and fill in the rest of the information.<br/>
+4° The name of the leader → put the same name that you pasted in the leader field, there in the cell when you created it. Remember the cell comes first, as the leader for it.<br/>
+5° The telephone number is of fundamental importance, as it is part of the user's registration in the system.<br/>
+6° Click save on the floppy disk icon.<br/><br/><br/>
+
+<font size='16' color='green'><b>Send cell ID key to leader</b></font><br/><br/>
+
+1° After saving the leader, open the leader you created again and scroll to the end and you will find a number that is the leader ID number.<br/>
+2° Click and hold this number and you will be offered to copy or share this number.<br/>
+3° Choose to share, and in the new screen that will open choose the sharing location of your preference to send to your leader that number that he will need to enter as leader of your cell.<br/>
+Choose whatsapp for example and send it to him.<br/><br/><br/>
+
+<font size='16' color='green'><b>Creating reports for the cell</b></font><br/><br/>
+
+1° Click and hold the cell name.<br/>
+2° A report will open with some information already filled in by the system.<br/>
+3° Scroll down the page and fill in the missing information, which is the report itself.<br/>
+4° Pay attention to the report because once sent you will not be able to revisit it to change incorrect data. If the submitted report has errors, create another supplementary report and send it.<br/>
+5° Click save on the floppy disk icon.<br/><br/>
