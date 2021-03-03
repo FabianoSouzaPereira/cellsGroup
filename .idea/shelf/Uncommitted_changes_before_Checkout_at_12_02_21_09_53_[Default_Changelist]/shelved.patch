@@ -1,0 +1,41 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\napply plugin: 'com.google.gms.google-services'\n\nandroid {\n    compileSdkVersion 30\n    defaultConfig {\n        applicationId \"br.com.cellsgroup\"\n        minSdkVersion 23\n        targetSdkVersion 30\n        versionCode 2\n        versionName \"1.0.3\"\n        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'\n    }\n    buildTypes {\n        release {\n            minifyEnabled true\n            shrinkResources true\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n}\n\ndependencies {\n    implementation fileTree(dir: 'libs', include: ['*.jar'])\n\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\n    implementation 'androidx.recyclerview:recyclerview:1.1.0'\n    implementation 'androidx.preference:preference:1.1.1'\n    implementation 'androidx.navigation:navigation-fragment:2.3.2'\n    implementation 'androidx.navigation:navigation-ui:2.3.2'\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'\n    implementation 'androidx.cardview:cardview:1.0.0'\n    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'\n    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'\n    implementation 'com.google.android.material:material:1.2.0-alpha02'\n    androidTestImplementation 'androidx.test:rules:1.3.0'\n    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'\n\n    // Required -- JUnit 4 framework\n    testImplementation 'junit:junit:4.13.1'\n    // Optional -- Robolectric environment\n    testImplementation 'androidx.test:core:1.3.0'\n    // Optional -- Mockito framework\n    testImplementation 'org.mockito:mockito-core:1.10.19'\n\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'\n\n    //firebase\n    implementation 'com.google.firebase:firebase-functions:19.2.0'\n    implementation 'com.google.firebase:firebase-storage:19.2.1'\n    implementation platform('com.google.firebase:firebase-bom:26.3.0')\n    implementation 'com.google.firebase:firebase-analytics'\n    implementation 'com.google.firebase:firebase-database:19.6.0'\n    implementation 'com.google.firebase:firebase-auth:20.0.2'\n    implementation 'com.github.prolificinteractive:material-calendarview:1.4.3'\n\n    //glide\n    implementation 'com.github.bumptech.glide:glide:4.8.0'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.2'\n    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision e855f4284865666d53a44e52a6ef6a2b9d5b729b)
++++ app/build.gradle	(date 1613093160000)
+@@ -7,8 +7,8 @@
+         applicationId "br.com.cellsgroup"
+         minSdkVersion 23
+         targetSdkVersion 30
+-        versionCode 2
+-        versionName "1.0.3"
++        versionCode 4
++        versionName "1.1.1"
+         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+     }
+     buildTypes {
+@@ -35,7 +35,10 @@
+     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+     implementation 'com.google.android.material:material:1.2.0-alpha02'
+     androidTestImplementation 'androidx.test:rules:1.3.0'
++
+     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
++    implementation 'com.google.firebase:firebase-functions:19.2.0'
++    implementation 'com.google.firebase:firebase-storage:19.2.1'
+ 
+     // Required -- JUnit 4 framework
+     testImplementation 'junit:junit:4.13.1'
+@@ -48,9 +51,6 @@
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+ 
+-    //firebase
+-    implementation 'com.google.firebase:firebase-functions:19.2.0'
+-    implementation 'com.google.firebase:firebase-storage:19.2.1'
+     implementation platform('com.google.firebase:firebase-bom:26.3.0')
+     implementation 'com.google.firebase:firebase-analytics'
+     implementation 'com.google.firebase:firebase-database:19.6.0'
